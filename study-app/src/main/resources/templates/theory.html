@@ -23,18 +23,52 @@
         </ul>
     </nav>
     <main class="content">
-        <div class="page-header">
-            <h1>
-                <span th:text="${topic.icon}"></span>
-                <span th:text="${topic.name} + ' - Lý Thuyết'"></span>
-            </h1>
-            <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary">📝 Đến Bài Tập</a>
+        <div class="page-header theory-page-header">
+            <div class="page-header-left">
+                <h1>
+                    <span th:text="${topic.icon}"></span>
+                    <span th:text="${topic.name} + ' - Lý Thuyết'"></span>
+                </h1>
+                <p th:text="${topic.description}"></p>
+            </div>
+            <div class="page-header-actions">
+                <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary">📝 Đến Bài Tập</a>
+            </div>
         </div>
-        <div class="theory-content markdown-body" th:utext="${topic.theoryHtml}"></div>
+
+        <div class="reading-progress-bar">
+            <div class="reading-progress-fill" id="readingProgress"></div>
+        </div>
+
+        <div class="theory-layout">
+            <aside class="toc-sidebar" id="tocSidebar">
+                <div class="toc-header">
+                    <h3>📑 Mục Lục</h3>
+                    <button class="toc-toggle" id="tocToggle" title="Thu gọn">◀</button>
+                </div>
+                <nav class="toc-nav" id="tocNav"></nav>
+            </aside>
+
+            <div class="theory-main">
+                <div class="theory-content markdown-body" id="theoryContent" th:utext="${topic.theoryHtml}"></div>
+
+                <div class="theory-nav-buttons">
+                    <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary btn-lg">
+                        📝 Bắt Đầu Làm Bài Tập →
+                    </a>
+                </div>
+            </div>
+        </div>
     </main>
+
+    <button class="scroll-to-top" id="scrollToTop" title="Lên đầu trang">↑</button>
+
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
-    <script>hljs.highlightAll();</script>
+    <script th:src="@{/js/app.js}"></script>
+    <script>
+        initTheoryPage();
+    </script>
 </body>
 </html>

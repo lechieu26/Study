@@ -28,25 +28,66 @@
                 <span th:text="${topic.name}"></span>
             </h1>
             <p th:text="${topic.description}"></p>
-            <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline">📖 Xem Lý Thuyết</a>
+            <div class="page-header-actions">
+                <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline">📖 Xem Lý Thuyết</a>
+            </div>
         </div>
+
+        <!-- Progress Bar -->
+        <div class="topic-progress-section" th:id="'progress-' + ${topic.id}">
+            <div class="topic-progress-info">
+                <span class="progress-label">Tiến độ:</span>
+                <span class="progress-count" id="progressCount">0 / <span th:text="${#lists.size(topic.exercises)}"></span> bài</span>
+            </div>
+            <div class="topic-progress-bar">
+                <div class="topic-progress-fill" id="progressFill"></div>
+            </div>
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-bar">
+            <button class="filter-btn active" data-filter="all" onclick="filterExercises('all', this)">
+                Tất cả (<span th:text="${#lists.size(topic.exercises)}"></span>)
+            </button>
+            <button class="filter-btn" data-filter="completed" onclick="filterExercises('completed', this)">
+                ✅ Đã hoàn thành
+            </button>
+            <button class="filter-btn" data-filter="pending" onclick="filterExercises('pending', this)">
+                📝 Chưa làm
+            </button>
+        </div>
+
         <div class="exercise-list">
             <h2>Danh Sách Bài Tập</h2>
-            <div th:each="ex : ${topic.exercises}" class="exercise-card">
-                <div class="exercise-header">
-                    <h3>
-                        <span class="exercise-num" th:text="'Bài ' + ${ex.id}"></span>
-                        <span th:text="${ex.title}"></span>
-                    </h3>
-                    <span class="difficulty-badge"
-                          th:classappend="${ex.difficulty.contains('Khó')} ? 'hard' : (${ex.difficulty.contains('Trung')} ? 'medium' : 'easy')"
-                          th:text="${ex.difficulty}"></span>
+            <div th:each="ex : ${topic.exercises}" class="exercise-card"
+                 th:id="'exercise-card-' + ${ex.id}"
+                 th:attr="data-exercise-id=${ex.id}">
+                <div class="exercise-card-left">
+                    <span class="exercise-status-dot" th:id="'status-dot-' + ${ex.id}"></span>
+                    <div class="exercise-header">
+                        <h3>
+                            <span class="exercise-num" th:text="'Bài ' + ${ex.id}"></span>
+                            <span th:text="${ex.title}"></span>
+                        </h3>
+                        <span class="difficulty-badge"
+                              th:classappend="${ex.difficulty.contains('Khó')} ? 'hard' : (${ex.difficulty.contains('Trung')} ? 'medium' : 'easy')"
+                              th:text="${ex.difficulty}"></span>
+                    </div>
                 </div>
-                <a th:href="@{'/topic/' + ${topic.id} + '/exercise/' + ${ex.id}}" class="btn btn-primary">
-                    Làm bài
-                </a>
+                <div class="exercise-card-right">
+                    <span class="exercise-score-badge" th:id="'score-' + ${ex.id}"></span>
+                    <a th:href="@{'/topic/' + ${topic.id} + '/exercise/' + ${ex.id}}" class="btn btn-primary">
+                        Làm bài
+                    </a>
+                </div>
             </div>
         </div>
     </main>
+    <script th:src="@{/js/app.js}"></script>
+    <script th:inline="javascript">
+        var currentTopicId = [[${topic.id}]];
+        var totalExercises = [[${#lists.size(topic.exercises)}]];
+        initTopicPage(currentTopicId, totalExercises);
+    </script>
 </body>
 </html>
