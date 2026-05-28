@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${topic.name} + ' - Lý Thuyết'">Lý Thuyết</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="back-link">← Trang chủ</a>
+            <h2>📚 Ôn Tập</h2>
+        </div>
+        <ul class="nav-list">
+            <li th:each="t : ${topics}">
+                <a th:href="@{'/topic/' + ${t.id}}" class="nav-link" th:classappend="${t.id == topic.id} ? 'active'">
+                    <span class="nav-icon" th:text="${t.icon}"></span>
+                    <span th:text="${t.name}"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main class="content">
+        <div class="page-header">
+            <h1>
+                <span th:text="${topic.icon}"></span>
+                <span th:text="${topic.name} + ' - Lý Thuyết'"></span>
+            </h1>
+            <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary">📝 Đến Bài Tập</a>
+        </div>
+        <div class="theory-content markdown-body" th:utext="${topic.theoryHtml}"></div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

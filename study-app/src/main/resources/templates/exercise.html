@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="'Bài ' + ${exercise.id} + ' - ' + ${exercise.title}">Bài Tập</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <a th:href="@{'/topic/' + ${topic.id}}" class="back-link">← Danh sách bài tập</a>
+            <h2>📚 Ôn Tập</h2>
+        </div>
+        <ul class="nav-list">
+            <li th:each="ex : ${topic.exercises}">
+                <a th:href="@{'/topic/' + ${topic.id} + '/exercise/' + ${ex.id}}"
+                   class="nav-link"
+                   th:classappend="${ex.id == exercise.id} ? 'active'">
+                    <span class="nav-icon">📝</span>
+                    <span th:text="'Bài ' + ${ex.id} + ': ' + ${ex.title}"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main class="content">
+        <div class="exercise-page">
+            <div class="exercise-description">
+                <div class="page-header">
+                    <h1>
+                        <span th:text="'Bài ' + ${exercise.id} + ': ' + ${exercise.title}"></span>
+                    </h1>
+                    <span class="difficulty-badge"
+                          th:classappend="${exercise.difficulty.contains('Khó')} ? 'hard' : (${exercise.difficulty.contains('Trung')} ? 'medium' : 'easy')"
+                          th:text="${exercise.difficulty}"></span>
+                </div>
+                <div class="description-content markdown-body" th:utext="${exercise.descriptionHtml}"></div>
+            </div>
+
+            <div class="code-section">
+                <h2>Viết Code Tại Đây</h2>
+                <div class="editor-container">
+                    <textarea id="codeEditor">public class Solution {
+    public static void main(String[] args) {
+        // Viết code của bạn ở đây
+
+    }
+}</textarea>
+                </div>
+                <div class="action-buttons">
+                    <button id="checkBtn" class="btn btn-primary" onclick="checkCode()">
+                        ✅ Kiểm Tra (Check)
+                    </button>
+                    <button id="showSolutionBtn" class="btn btn-outline" onclick="toggleSolution()">
+                        👁️ Xem Đáp Án
+                    </button>
+                    <button class="btn btn-secondary" onclick="resetCode()">
+                        🔄 Làm Lại
+                    </button>
+                </div>
+                <div id="resultPanel" class="result-panel" style="display:none;">
+                    <div id="resultHeader" class="result-header"></div>
+                    <div id="resultScore" class="result-score"></div>
+                    <div id="resultFeedback" class="result-feedback"></div>
+                    <pre id="resultOutput" class="result-output"></pre>
+                    <pre id="resultError" class="result-error"></pre>
+                </div>
+            </div>
+
+            <div id="solutionPanel" class="solution-panel" style="display:none;">
+                <h2>Đáp Án</h2>
+                <div th:each="sol, iter : ${exercise.solutions}" class="solution-item">
+                    <h3 th:text="'Cách ' + ${iter.count} + ': ' + ${sol.approach}"></h3>
+                    <div class="solution-content markdown-body" th:utext="${sol.codeHtml}"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script th:src="@{/js/app.js}"></script>
+    <script>
+        var topicId = '[[${topic.id}]]';
+        var exerciseId = [[${exercise.id}]];
+        initEditor();
+    </script>
+</body>
+</html>
