@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lộ Trình Ôn Tập Lập Trình</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <h2>📚 Ôn Tập</h2>
+        </div>
+        <ul class="nav-list">
+            <li th:each="t : ${topics}">
+                <a th:href="@{'/topic/' + ${t.id}}" class="nav-link">
+                    <span class="nav-icon" th:text="${t.icon}"></span>
+                    <span th:text="${t.name}"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main class="content">
+        <div class="hero">
+            <h1>Lộ Trình Ôn Tập Lập Trình</h1>
+            <p class="subtitle">Hệ thống ôn tập toàn diện với lý thuyết chi tiết, bài tập thực hành và nhiều cách giải khác nhau</p>
+        </div>
+        <div class="topic-grid">
+            <div th:each="topic : ${topics}" class="topic-card">
+                <div class="topic-icon" th:text="${topic.icon}"></div>
+                <h3 th:text="${topic.name}"></h3>
+                <p th:text="${topic.description}"></p>
+                <div class="topic-stats">
+                    <span class="badge" th:text="${#lists.size(topic.exercises)} + ' bài tập'"></span>
+                </div>
+                <div class="topic-actions">
+                    <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline">Lý thuyết</a>
+                    <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary">Bài tập</a>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

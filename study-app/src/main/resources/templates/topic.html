@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${topic.name} + ' - Bài Tập'">Bài Tập</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+</head>
+<body>
+    <nav class="sidebar">
+        <div class="sidebar-header">
+            <a href="/" class="back-link">← Trang chủ</a>
+            <h2>📚 Ôn Tập</h2>
+        </div>
+        <ul class="nav-list">
+            <li th:each="t : ${topics}">
+                <a th:href="@{'/topic/' + ${t.id}}" class="nav-link" th:classappend="${t.id == topic.id} ? 'active'">
+                    <span class="nav-icon" th:text="${t.icon}"></span>
+                    <span th:text="${t.name}"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <main class="content">
+        <div class="page-header">
+            <h1>
+                <span th:text="${topic.icon}"></span>
+                <span th:text="${topic.name}"></span>
+            </h1>
+            <p th:text="${topic.description}"></p>
+            <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline">📖 Xem Lý Thuyết</a>
+        </div>
+        <div class="exercise-list">
+            <h2>Danh Sách Bài Tập</h2>
+            <div th:each="ex : ${topic.exercises}" class="exercise-card">
+                <div class="exercise-header">
+                    <h3>
+                        <span class="exercise-num" th:text="'Bài ' + ${ex.id}"></span>
+                        <span th:text="${ex.title}"></span>
+                    </h3>
+                    <span class="difficulty-badge"
+                          th:classappend="${ex.difficulty.contains('Khó')} ? 'hard' : (${ex.difficulty.contains('Trung')} ? 'medium' : 'easy')"
+                          th:text="${ex.difficulty}"></span>
+                </div>
+                <a th:href="@{'/topic/' + ${topic.id} + '/exercise/' + ${ex.id}}" class="btn btn-primary">
+                    Làm bài
+                </a>
+            </div>
+        </div>
+    </main>
+</body>
+</html>
