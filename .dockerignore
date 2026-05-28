@@ -1,0 +1,8 @@
+*.md
+!content/**/*.md
+.git
+.gitignore
+study-app/target/
+*.iml
+.idea/
+.vscode/
