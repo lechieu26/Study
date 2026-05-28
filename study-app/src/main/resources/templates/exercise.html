@@ -18,9 +18,10 @@
         <ul class="nav-list">
             <li th:each="ex : ${topic.exercises}">
                 <a th:href="@{'/topic/' + ${topic.id} + '/exercise/' + ${ex.id}}"
-                   class="nav-link"
-                   th:classappend="${ex.id == exercise.id} ? 'active'">
-                    <span class="nav-icon">📝</span>
+                   class="nav-link exercise-nav-link"
+                   th:classappend="${ex.id == exercise.id} ? 'active'"
+                   th:attr="data-exercise-id=${ex.id}">
+                    <span class="nav-icon exercise-status-icon" th:id="'nav-status-' + ${ex.id}">📝</span>
                     <span th:text="'Bài ' + ${ex.id} + ': ' + ${ex.title}"></span>
                 </a>
             </li>
@@ -28,53 +29,102 @@
     </nav>
     <main class="content">
         <div class="exercise-page">
-            <div class="exercise-description">
-                <div class="page-header">
-                    <h1>
-                        <span th:text="'Bài ' + ${exercise.id} + ': ' + ${exercise.title}"></span>
-                    </h1>
+            <!-- Exercise Header -->
+            <div class="exercise-top-bar">
+                <div class="exercise-top-info">
+                    <h1 th:text="'Bài ' + ${exercise.id} + ': ' + ${exercise.title}"></h1>
                     <span class="difficulty-badge"
                           th:classappend="${exercise.difficulty.contains('Khó')} ? 'hard' : (${exercise.difficulty.contains('Trung')} ? 'medium' : 'easy')"
                           th:text="${exercise.difficulty}"></span>
                 </div>
-                <div class="description-content markdown-body" th:utext="${exercise.descriptionHtml}"></div>
+                <div class="exercise-top-nav">
+                    <a th:if="${exercise.id > 1}"
+                       th:href="@{'/topic/' + ${topic.id} + '/exercise/' + ${exercise.id - 1}}"
+                       class="btn btn-secondary btn-sm">← Bài trước</a>
+                    <a th:if="${exercise.id < #lists.size(topic.exercises)}"
+                       th:href="@{'/topic/' + ${topic.id} + '/exercise/' + ${exercise.id + 1}}"
+                       class="btn btn-secondary btn-sm">Bài tiếp →</a>
+                    <a th:href="@{'/topic/' + ${topic.id} + '/theory'}"
+                       class="btn btn-outline btn-sm">📖 Xem Lý Thuyết</a>
+                </div>
             </div>
 
-            <div class="code-section">
-                <h2>Viết Code Tại Đây</h2>
-                <div class="editor-container">
-                    <textarea id="codeEditor">public class Solution {
+            <!-- Split Pane: Description | Editor -->
+            <div class="exercise-split">
+                <!-- Left: Problem Description -->
+                <div class="exercise-description" id="exerciseDesc">
+                    <div class="panel-tabs">
+                        <button class="panel-tab active" data-panel="desc-tab">📋 Đề Bài</button>
+                        <button class="panel-tab" data-panel="solution-tab"
+                                id="solutionTabBtn" onclick="showSolutionTab()">💡 Lời Giải</button>
+                    </div>
+                    <div class="panel-content" id="desc-tab">
+                        <div class="description-content markdown-body" th:utext="${exercise.descriptionHtml}"></div>
+                    </div>
+                    <div class="panel-content" id="solution-tab" style="display:none;">
+                        <div class="solution-tabs" th:if="${exercise.solutions != null and #lists.size(exercise.solutions) > 0}">
+                            <div class="solution-tab-bar">
+                                <button th:each="sol, iter : ${exercise.solutions}"
+                                        class="solution-tab-btn"
+                                        th:classappend="${iter.index == 0} ? 'active'"
+                                        th:attr="data-sol-idx=${iter.index}"
+                                        th:text="'Cách ' + ${iter.count} + ': ' + ${sol.approach}"
+                                        onclick="switchSolution(this)"></button>
+                            </div>
+                            <div th:each="sol, iter : ${exercise.solutions}"
+                                 class="solution-content markdown-body"
+                                 th:id="'sol-' + ${iter.index}"
+                                 th:styleappend="${iter.index != 0} ? 'display:none;'"
+                                 th:utext="${sol.codeHtml}"></div>
+                        </div>
+                        <div th:if="${exercise.solutions == null or #lists.size(exercise.solutions) == 0}">
+                            <p class="text-muted">Đáp án đang được cập nhật...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Right: Code Editor + Result -->
+                <div class="exercise-editor-panel">
+                    <div class="code-section">
+                        <div class="code-section-header">
+                            <h3>💻 Code Editor</h3>
+                            <div class="code-lang-badge">Java</div>
+                        </div>
+                        <div class="editor-container">
+                            <textarea id="codeEditor">public class Solution {
     public static void main(String[] args) {
         // Viết code của bạn ở đây
 
     }
 }</textarea>
-                </div>
-                <div class="action-buttons">
-                    <button id="checkBtn" class="btn btn-primary" onclick="checkCode()">
-                        ✅ Kiểm Tra (Check)
-                    </button>
-                    <button id="showSolutionBtn" class="btn btn-outline" onclick="toggleSolution()">
-                        👁️ Xem Đáp Án
-                    </button>
-                    <button class="btn btn-secondary" onclick="resetCode()">
-                        🔄 Làm Lại
-                    </button>
-                </div>
-                <div id="resultPanel" class="result-panel" style="display:none;">
-                    <div id="resultHeader" class="result-header"></div>
-                    <div id="resultScore" class="result-score"></div>
-                    <div id="resultFeedback" class="result-feedback"></div>
-                    <pre id="resultOutput" class="result-output"></pre>
-                    <pre id="resultError" class="result-error"></pre>
-                </div>
-            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button id="runBtn" class="btn btn-success" onclick="runCode()">
+                                ▶ Chạy (Run)
+                            </button>
+                            <button id="checkBtn" class="btn btn-primary" onclick="checkCode()">
+                                ✅ Nộp Bài (Submit)
+                            </button>
+                            <button class="btn btn-secondary" onclick="resetCode()">
+                                🔄 Làm Lại
+                            </button>
+                        </div>
+                    </div>
 
-            <div id="solutionPanel" class="solution-panel" style="display:none;">
-                <h2>Đáp Án</h2>
-                <div th:each="sol, iter : ${exercise.solutions}" class="solution-item">
-                    <h3 th:text="'Cách ' + ${iter.count} + ': ' + ${sol.approach}"></h3>
-                    <div class="solution-content markdown-body" th:utext="${sol.codeHtml}"></div>
+                    <!-- Result Panel -->
+                    <div id="resultPanel" class="result-panel" style="display:none;">
+                        <div class="result-panel-header">
+                            <div id="resultHeader" class="result-header"></div>
+                            <button class="result-close" onclick="closeResult()">&times;</button>
+                        </div>
+                        <div id="resultScore" class="result-score"></div>
+                        <div id="resultFeedback" class="result-feedback"></div>
+                        <div class="result-output-wrapper">
+                            <div class="result-output-label">Output:</div>
+                            <pre id="resultOutput" class="result-output"></pre>
+                        </div>
+                        <pre id="resultError" class="result-error"></pre>
+                    </div>
                 </div>
             </div>
         </div>
@@ -89,7 +139,9 @@
     <script>
         var topicId = '[[${topic.id}]]';
         var exerciseId = [[${exercise.id}]];
+        var totalExercises = [[${#lists.size(topic.exercises)}]];
         initEditor();
+        initExerciseNav();
     </script>
 </body>
 </html>
