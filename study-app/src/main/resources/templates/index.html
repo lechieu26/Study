@@ -43,6 +43,8 @@
                 <div class="topic-actions">
                     <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline">📖 Lý thuyết</a>
                     <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary">📝 Bài tập</a>
+                    <a th:if="${topic.quizQuestions != null and !topic.quizQuestions.isEmpty()}"
+                       th:href="@{'/topic/' + ${topic.id} + '/quiz'}" class="btn btn-quiz">🧠 Quiz</a>
                 </div>
             </div>
         </div>

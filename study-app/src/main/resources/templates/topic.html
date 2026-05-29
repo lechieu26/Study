@@ -32,6 +32,8 @@
             <p th:text="${topic.description}"></p>
             <div class="page-header-actions">
                 <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline">📖 Xem Lý Thuyết</a>
+                <a th:if="${topic.quizQuestions != null and !topic.quizQuestions.isEmpty()}"
+                   th:href="@{'/topic/' + ${topic.id} + '/quiz'}" class="btn btn-quiz">🧠 Làm Quiz (<span th:text="${#lists.size(topic.quizQuestions)}"></span> câu)</a>
             </div>
         </div>
 
