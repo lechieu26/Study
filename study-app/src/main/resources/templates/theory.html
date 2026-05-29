@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 </head>
 <body>
-    <nav class="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menu">☰</button>
+    <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <a href="/" class="back-link">← Trang chủ</a>
             <h2>📚 Ôn Tập</h2>
@@ -22,6 +23,7 @@
             </li>
         </ul>
     </nav>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <main class="content">
         <div class="page-header theory-page-header">
             <div class="page-header-left">

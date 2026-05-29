@@ -1144,7 +1144,50 @@ body {
     color: var(--text-muted);
 }
 
+/* === Hamburger Menu Toggle === */
+.sidebar-toggle {
+    display: none;
+    position: fixed;
+    top: 0.75rem;
+    left: 0.75rem;
+    z-index: 200;
+    width: 44px;
+    height: 44px;
+    border-radius: 10px;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    color: var(--text);
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.4rem;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.3);
+    transition: background 0.2s;
+}
+
+.sidebar-toggle:hover {
+    background: var(--primary);
+}
+
+.sidebar-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 99;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.sidebar-overlay.visible {
+    opacity: 1;
+}
+
 /* === Responsive === */
+
+/* --- Desktop large (>1200px): full sidebar + full content --- */
+
+/* --- Tablet landscape / small desktop (<=1100px) --- */
 @media (max-width: 1100px) {
     .exercise-split {
         grid-template-columns: 1fr;
@@ -1155,8 +1198,12 @@ body {
     .theory-layout {
         flex-direction: column;
     }
+    .content {
+        padding: 2rem;
+    }
 }
 
+/* --- Tablet portrait (<=900px): icon sidebar --- */
 @media (max-width: 900px) {
     .sidebar {
         width: 60px;
@@ -1174,7 +1221,7 @@ body {
         padding: 1.5rem;
     }
     .topic-grid {
-        grid-template-columns: 1fr;
+        grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
     }
     .reading-progress-bar {
         left: 60px;
@@ -1186,37 +1233,234 @@ body {
     .exercise-top-nav {
         flex-wrap: wrap;
     }
+    .hero h1 {
+        font-size: 2rem;
+    }
+    .hero {
+        padding: 2rem 0;
+    }
+    .page-header h1 {
+        font-size: 1.5rem;
+    }
+    .theory-page-header {
+        flex-direction: column;
+    }
 }
 
-@media (max-width: 600px) {
+/* --- Mobile (<=768px): sidebar hidden, hamburger toggle --- */
+@media (max-width: 768px) {
+    .sidebar-toggle {
+        display: flex;
+    }
+    .sidebar {
+        width: var(--sidebar-width);
+        overflow-y: auto;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    .sidebar.open {
+        transform: translateX(0);
+    }
+    .sidebar.open ~ .sidebar-overlay {
+        display: block;
+    }
+    .sidebar-header h2,
+    .nav-link span:not(.nav-icon),
+    .back-link {
+        display: revert;
+    }
+    .nav-link {
+        justify-content: flex-start;
+        padding: 0.75rem 1.5rem;
+    }
     .content {
-        padding: 1rem;
+        margin-left: 0;
+        padding: 1.25rem;
+        padding-top: 4rem;
+        max-width: 100%;
+    }
+    .reading-progress-bar {
+        left: 0;
+        top: 0;
+    }
+    .topic-grid {
+        grid-template-columns: 1fr;
+    }
+    .hero {
+        padding: 1.5rem 0;
     }
     .hero h1 {
-        font-size: 1.8rem;
+        font-size: 1.6rem;
+    }
+    .subtitle {
+        font-size: 0.95rem;
     }
     .hero-stats {
         flex-wrap: wrap;
         gap: 1rem;
+    }
+    .hero-stat-value {
+        font-size: 1.5rem;
+    }
+    .page-header h1 {
+        font-size: 1.3rem;
+        flex-wrap: wrap;
+    }
+    .page-header {
+        margin-bottom: 1.25rem;
+        padding-bottom: 1rem;
+    }
+    .theory-page-header {
+        flex-direction: column;
+    }
+    .exercise-top-bar {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .exercise-top-info {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+    .exercise-top-info h1 {
+        font-size: 1.2rem;
+    }
+    .exercise-top-nav {
+        flex-wrap: wrap;
+        width: 100%;
+    }
+    .exercise-split {
+        grid-template-columns: 1fr;
+        min-height: auto;
+    }
+    .CodeMirror {
+        height: 280px !important;
     }
     .exercise-card {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.75rem;
     }
+    .exercise-card-left {
+        width: 100%;
+    }
     .exercise-card-right {
         width: 100%;
         justify-content: space-between;
     }
-    .action-buttons {
-        flex-direction: column;
-    }
-    .filter-bar {
-        flex-direction: column;
-    }
-    .exercise-top-info {
+    .exercise-header {
         flex-direction: column;
         align-items: flex-start;
         gap: 0.5rem;
+    }
+    .filter-bar {
+        gap: 0.4rem;
+    }
+    .filter-btn {
+        padding: 0.4rem 0.75rem;
+        font-size: 0.8rem;
+    }
+    .action-buttons {
+        flex-direction: column;
+    }
+    .action-buttons .btn {
+        width: 100%;
+        justify-content: center;
+    }
+    .panel-content {
+        padding: 1rem;
+    }
+    .code-section {
+        padding: 1rem;
+    }
+    .topic-card {
+        padding: 1.25rem;
+    }
+    .topic-actions {
+        flex-wrap: wrap;
+    }
+    .topic-actions .btn {
+        flex: 1;
+        justify-content: center;
+        min-width: 120px;
+    }
+    .btn {
+        padding: 0.55rem 1rem;
+        font-size: 0.85rem;
+    }
+    .btn-sm {
+        padding: 0.35rem 0.7rem;
+        font-size: 0.75rem;
+    }
+    .result-panel {
+        padding: 1rem;
+    }
+    .solution-tab-bar {
+        gap: 0.35rem;
+    }
+    .solution-tab-btn {
+        padding: 0.35rem 0.6rem;
+        font-size: 0.75rem;
+    }
+    .markdown-body h1 { font-size: 1.4rem; }
+    .markdown-body h2 { font-size: 1.2rem; }
+    .markdown-body h3 { font-size: 1.05rem; }
+    .markdown-body pre {
+        padding: 0.75rem;
+        font-size: 0.8rem;
+    }
+    .markdown-body table {
+        display: block;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+    }
+    .scroll-to-top {
+        bottom: 1rem;
+        right: 1rem;
+        width: 38px;
+        height: 38px;
+    }
+}
+
+/* --- Small mobile (<=480px) --- */
+@media (max-width: 480px) {
+    .content {
+        padding: 1rem 0.75rem;
+        padding-top: 3.75rem;
+    }
+    .hero h1 {
+        font-size: 1.35rem;
+    }
+    .subtitle {
+        font-size: 0.85rem;
+    }
+    .hero-stats {
+        gap: 0.75rem;
+    }
+    .hero-stat-value {
+        font-size: 1.25rem;
+    }
+    .topic-card h3 {
+        font-size: 1.1rem;
+    }
+    .topic-card p {
+        font-size: 0.82rem;
+    }
+    .exercise-top-info h1 {
+        font-size: 1.05rem;
+    }
+    .CodeMirror {
+        height: 220px !important;
+        font-size: 12px !important;
+    }
+    .page-header h1 {
+        font-size: 1.15rem;
+    }
+    .exercise-list h2 {
+        font-size: 1.1rem;
+    }
+    .filter-btn {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.6rem;
     }
 }

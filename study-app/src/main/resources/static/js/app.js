@@ -1,6 +1,67 @@
 var editor;
 
 /* ===========================
+   Mobile Sidebar Toggle
+   =========================== */
+
+(function() {
+    document.addEventListener('DOMContentLoaded', function() {
+        var toggle = document.getElementById('sidebarToggle');
+        var sidebar = document.getElementById('sidebar');
+        var overlay = document.getElementById('sidebarOverlay');
+        if (!toggle || !sidebar) return;
+
+        function openSidebar() {
+            sidebar.classList.add('open');
+            if (overlay) {
+                overlay.style.display = 'block';
+                requestAnimationFrame(function() {
+                    overlay.classList.add('visible');
+                });
+            }
+            toggle.innerHTML = '✕';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeSidebar() {
+            sidebar.classList.remove('open');
+            if (overlay) {
+                overlay.classList.remove('visible');
+                setTimeout(function() { overlay.style.display = 'none'; }, 300);
+            }
+            toggle.innerHTML = '☰';
+            document.body.style.overflow = '';
+        }
+
+        toggle.addEventListener('click', function() {
+            if (sidebar.classList.contains('open')) {
+                closeSidebar();
+            } else {
+                openSidebar();
+            }
+        });
+
+        if (overlay) {
+            overlay.addEventListener('click', closeSidebar);
+        }
+
+        sidebar.querySelectorAll('.nav-link').forEach(function(link) {
+            link.addEventListener('click', function() {
+                if (window.innerWidth <= 768) {
+                    closeSidebar();
+                }
+            });
+        });
+
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768 && sidebar.classList.contains('open')) {
+                closeSidebar();
+            }
+        });
+    });
+})();
+
+/* ===========================
    Code Editor & Exercise Page
    =========================== */
 

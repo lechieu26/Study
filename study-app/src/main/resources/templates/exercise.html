@@ -10,7 +10,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/theme/dracula.min.css">
 </head>
 <body>
-    <nav class="sidebar">
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menu">☰</button>
+    <nav class="sidebar" id="sidebar">
         <div class="sidebar-header">
             <a th:href="@{'/topic/' + ${topic.id}}" class="back-link">← Danh sách bài tập</a>
             <h2>📚 Ôn Tập</h2>
@@ -27,6 +28,7 @@
             </li>
         </ul>
     </nav>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
     <main class="content">
         <div class="exercise-page">
             <!-- Exercise Header -->
