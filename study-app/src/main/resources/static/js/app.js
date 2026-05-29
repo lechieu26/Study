@@ -65,12 +65,14 @@ var editor;
    Code Editor & Exercise Page
    =========================== */
 
-function initEditor() {
+function initEditor(lang) {
     var textarea = document.getElementById('codeEditor');
     if (!textarea) return;
 
+    var editorMode = (lang === 'sql') ? 'text/x-sql' : 'text/x-java';
+
     editor = CodeMirror.fromTextArea(textarea, {
-        mode: 'text/x-java',
+        mode: editorMode,
         theme: 'dracula',
         lineNumbers: true,
         matchBrackets: true,
@@ -316,7 +318,13 @@ function toggleSolution() {
 
 function resetCode() {
     if (confirm('Bạn có chắc muốn xóa code hiện tại và bắt đầu lại?')) {
-        editor.setValue('public class Solution {\n    public static void main(String[] args) {\n        // Viết code của bạn ở đây\n\n    }\n}');
+        var defaultCode;
+        if (typeof editorLang !== 'undefined' && editorLang === 'sql') {
+            defaultCode = '-- Viết câu lệnh SQL của bạn ở đây\n-- Dữ liệu mẫu: phong_ban, nhan_vien, du_an, phan_cong\n\nSELECT * FROM nhan_vien LIMIT 5;\n';
+        } else {
+            defaultCode = 'public class Solution {\n    public static void main(String[] args) {\n        // Viết code của bạn ở đây\n\n    }\n}';
+        }
+        editor.setValue(defaultCode);
         localStorage.removeItem('code_' + topicId + '_' + exerciseId);
         document.getElementById('resultPanel').style.display = 'none';
     }

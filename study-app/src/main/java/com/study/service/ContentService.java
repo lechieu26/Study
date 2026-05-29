@@ -3,6 +3,7 @@ package com.study.service;
 import com.study.model.Exercise;
 import com.study.model.Solution;
 import com.study.model.Topic;
+import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
 import org.commonmark.renderer.html.HtmlRenderer;
@@ -24,8 +25,12 @@ import java.util.regex.Pattern;
 public class ContentService {
 
     private final Map<String, Topic> topics = new LinkedHashMap<>();
-    private final Parser mdParser = Parser.builder().build();
-    private final HtmlRenderer htmlRenderer = HtmlRenderer.builder().build();
+    private final Parser mdParser = Parser.builder()
+            .extensions(List.of(TablesExtension.create()))
+            .build();
+    private final HtmlRenderer htmlRenderer = HtmlRenderer.builder()
+            .extensions(List.of(TablesExtension.create()))
+            .build();
 
     @PostConstruct
     public void init() {

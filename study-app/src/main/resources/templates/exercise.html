@@ -90,15 +90,20 @@
                     <div class="code-section">
                         <div class="code-section-header">
                             <h3>💻 Code Editor</h3>
-                            <div class="code-lang-badge">Java</div>
+                            <div class="code-lang-badge" id="codeLangBadge" th:text="${topic.id == 'sql'} ? 'SQL' : 'Java'">Java</div>
                         </div>
                         <div class="editor-container">
-                            <textarea id="codeEditor">public class Solution {
+                            <textarea id="codeEditor" th:text="${topic.id == 'sql'} ? '-- Viết câu lệnh SQL của bạn ở đây
+-- Dữ liệu mẫu đã được tạo sẵn với các bảng:
+-- phong_ban, nhan_vien, du_an, phan_cong
+
+SELECT * FROM nhan_vien LIMIT 5;
+' : 'public class Solution {
     public static void main(String[] args) {
         // Viết code của bạn ở đây
 
     }
-}</textarea>
+}'"></textarea>
                         </div>
                         <div class="action-buttons">
                             <button id="runBtn" class="btn btn-success" onclick="runCode()">
@@ -134,6 +139,7 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/clike/clike.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.16/mode/sql/sql.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
@@ -142,7 +148,8 @@
         var topicId = '[[${topic.id}]]';
         var exerciseId = [[${exercise.id}]];
         var totalExercises = [[${#lists.size(topic.exercises)}]];
-        initEditor();
+        var editorLang = '[[${topic.id}]]' === 'sql' ? 'sql' : 'java';
+        initEditor(editorLang);
         initExerciseNav();
     </script>
 </body>
