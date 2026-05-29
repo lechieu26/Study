@@ -1,8 +1,26 @@
+# Docs (keep content/ markdown files)
 *.md
 !content/**/*.md
+
+# Git
 .git
 .gitignore
-study-app/target/
+.github/
+
+# IDE
 *.iml
 .idea/
 .vscode/
+.settings/
+
+# Build artifacts
+study-app/target/
+build/
+out/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docs
+docs/

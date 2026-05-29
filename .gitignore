@@ -1,26 +1,70 @@
-# Maven
+# ==========================================
+#  Study Platform — .gitignore
+# ==========================================
+
+# === Maven Build ===
 target/
 *.jar
 *.war
 *.class
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.next
+release.properties
 
-# IDE
+# === IDE ===
+# IntelliJ IDEA
 .idea/
 *.iml
+*.iws
+*.ipr
+
+# Visual Studio Code
 .vscode/
+*.code-workspace
+
+# Eclipse
 .settings/
 .project
 .classpath
-*.swp
-*.swo
+.factorypath
 
-# OS
+# NetBeans
+nbproject/
+nbbuild/
+nbdist/
+nb-configuration.xml
+
+# === OS ===
 .DS_Store
+.DS_Store?
 Thumbs.db
+ehthumbs.db
+Desktop.ini
+._*
 
-# Logs
+# === Logs ===
 *.log
+logs/
 
-# Build
+# === Build ===
 build/
 out/
+dist/
+
+# === Editor ===
+*.swp
+*.swo
+*.bak
+*.tmp
+*~
+
+# === Spring Boot ===
+HELP.md
+.mvn/timing.properties
+
+# === Environment ===
+.env
+.env.local
+.env.production
