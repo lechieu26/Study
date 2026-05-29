@@ -1054,37 +1054,97 @@ body {
 
 .markdown-body table {
     width: 100%;
-    border-collapse: collapse;
-    margin: 1rem 0;
-    font-size: 0.9rem;
+    border-collapse: separate;
+    border-spacing: 0;
+    margin: 1.5rem 0;
+    font-size: 0.88rem;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.15);
 }
 
 .markdown-body th, .markdown-body td {
-    border: 1px solid var(--border);
-    padding: 0.6rem 0.8rem;
+    padding: 0.7rem 1rem;
     text-align: left;
+    border-bottom: 1px solid rgba(51, 65, 85, 0.5);
 }
 
 .markdown-body th {
-    background: var(--bg-sidebar);
+    background: linear-gradient(135deg, rgba(79, 70, 229, 0.25), rgba(99, 102, 241, 0.15));
     font-weight: 600;
     color: var(--primary-light);
+    text-transform: none;
+    letter-spacing: 0.02em;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    position: sticky;
+    top: 0;
+    z-index: 1;
 }
 
 .markdown-body tr:nth-child(even) {
-    background: rgba(30, 41, 59, 0.5);
+    background: rgba(30, 41, 59, 0.35);
+}
+
+.markdown-body tr:hover {
+    background: rgba(79, 70, 229, 0.08);
+    transition: background 0.2s;
+}
+
+.markdown-body td:first-child {
+    font-weight: 500;
+    color: var(--text);
+}
+
+.markdown-body td code {
+    background: rgba(79, 70, 229, 0.12);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.82rem;
 }
 
 .markdown-body blockquote {
     border-left: 4px solid var(--primary);
-    padding: 0.5rem 1rem;
-    margin: 1rem 0;
-    background: rgba(79, 70, 229, 0.05);
+    padding: 0.75rem 1.25rem;
+    margin: 1.25rem 0;
+    background: rgba(79, 70, 229, 0.06);
+    border-radius: 0 8px 8px 0;
     color: var(--text-muted);
+}
+
+.markdown-body blockquote p:last-child {
+    margin-bottom: 0;
 }
 
 .markdown-body strong {
     color: var(--text);
+}
+
+.markdown-body ul {
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.markdown-body ul li {
+    position: relative;
+    padding-left: 1.5rem;
+}
+
+.markdown-body ul li::before {
+    content: "\25B8";
+    position: absolute;
+    left: 0;
+    color: var(--primary-light);
+    font-weight: bold;
+}
+
+.markdown-body ol {
+    padding-left: 1.5rem;
+}
+
+.markdown-body ol li {
+    padding-left: 0.25rem;
 }
 
 .markdown-body hr {
@@ -1413,6 +1473,15 @@ body {
         display: block;
         overflow-x: auto;
         -webkit-overflow-scrolling: touch;
+        font-size: 0.82rem;
+        border-radius: 8px;
+    }
+    .markdown-body th, .markdown-body td {
+        padding: 0.5rem 0.65rem;
+        white-space: nowrap;
+    }
+    .markdown-body th {
+        font-size: 0.78rem;
     }
     .scroll-to-top {
         bottom: 1rem;
