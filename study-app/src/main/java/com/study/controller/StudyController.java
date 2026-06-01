@@ -52,4 +52,13 @@ public class StudyController {
         model.addAttribute("topics", contentService.getAllTopics());
         return "exercise";
     }
+
+    @GetMapping("/topic/{topicId}/quiz")
+    public String quiz(@PathVariable String topicId, Model model) {
+        Topic topic = contentService.getTopicById(topicId)
+            .orElseThrow(() -> new RuntimeException("Chủ đề không tồn tại: " + topicId));
+        model.addAttribute("topic", topic);
+        model.addAttribute("topics", contentService.getAllTopics());
+        return "quiz";
+    }
 }

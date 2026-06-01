@@ -1,6 +1,7 @@
 package com.study.service;
 
 import com.study.model.Exercise;
+import com.study.model.QuizQuestion;
 import com.study.model.Solution;
 import com.study.model.Topic;
 import org.commonmark.ext.gfm.tables.TablesExtension;
@@ -57,6 +58,9 @@ public class ContentService {
             loadMarkdownContent(exercisePath),
             loadMarkdownContent(solutionPath)
         ));
+
+        String quizPath = getContentPath(id, "quiz.md");
+        topic.setQuizQuestions(parseQuizQuestions(loadMarkdownContent(quizPath)));
 
         return topic;
     }
@@ -188,5 +192,99 @@ public class ContentService {
             .flatMap(topic -> topic.getExercises().stream()
                 .filter(e -> e.getId() == exerciseId)
                 .findFirst());
+    }
+
+    private List<QuizQuestion> parseQuizQuestions(String quizMd) {
+        List<QuizQuestion> questions = new ArrayList<>();
+        if (quizMd.isEmpty()) return questions;
+
+        String[] sections = quizMd.split("(?=## Câu \\d+)");
+        for (String section : sections) {
+            section = section.trim();
+            if (!section.startsWith("## Câu")) continue;
+
+            Matcher numMatcher = Pattern.compile("## Câu (\\d+)").matcher(section);
+            if (!numMatcher.find()) continue;
+            int questionNum = Integer.parseInt(numMatcher.group(1));
+
+            QuizQuestion.QuestionType type = parseQuestionType(section);
+
+            String questionText = extractQuestionText(section);
+            String codeSnippet = extractCodeSnippet(section);
+            List<String> options = extractOptions(section);
+            int correctAnswer = extractCorrectAnswer(section);
+            String explanation = extractExplanation(section);
+
+            String questionHtml = renderMarkdown(questionText);
+
+            questions.add(new QuizQuestion(
+                questionNum, type, questionText, questionHtml,
+                codeSnippet, options, correctAnswer, explanation
+            ));
+        }
+        return questions;
+    }
+
+    private QuizQuestion.QuestionType parseQuestionType(String section) {
+        if (section.contains("[TYPE: FILL_BLANK]")) return QuizQuestion.QuestionType.FILL_BLANK;
+        if (section.contains("[TYPE: SELECT_RESULT]")) return QuizQuestion.QuestionType.SELECT_RESULT;
+        if (section.contains("[TYPE: TRUE_FALSE]")) return QuizQuestion.QuestionType.TRUE_FALSE;
+        return QuizQuestion.QuestionType.MULTIPLE_CHOICE;
+    }
+
+    private String extractQuestionText(String section) {
+        Matcher m = Pattern.compile("## Câu \\d+[^\\n]*\\n(.*?)(?=\\n```|\\n- \\[|\\n\\*\\*Đáp án|$)",
+                Pattern.DOTALL).matcher(section);
+        if (m.find()) {
+            String text = m.group(1).trim();
+            text = text.replaceAll("\\[TYPE: [A-Z_]+]", "").trim();
+            return text;
+        }
+        return "";
+    }
+
+    private String extractCodeSnippet(String section) {
+        Matcher m = Pattern.compile("```[a-z]*\\n(.*?)```", Pattern.DOTALL).matcher(section);
+        if (m.find()) {
+            return m.group(1).trim();
+        }
+        return null;
+    }
+
+    private List<String> extractOptions(String section) {
+        List<String> options = new ArrayList<>();
+        Matcher m = Pattern.compile("- \\[([ x])\\]\\s+(.+)").matcher(section);
+        while (m.find()) {
+            options.add(m.group(2).trim());
+        }
+        return options;
+    }
+
+    private int extractCorrectAnswer(String section) {
+        Matcher explicitAnswer = Pattern.compile("\\*\\*Đáp án:\\s*(\\d+)\\*\\*").matcher(section);
+        if (explicitAnswer.find()) {
+            return Integer.parseInt(explicitAnswer.group(1));
+        }
+        int index = 0;
+        Matcher m = Pattern.compile("- \\[([ x])\\]\\s+(.+)").matcher(section);
+        while (m.find()) {
+            if ("x".equals(m.group(1))) {
+                return index;
+            }
+            index++;
+        }
+        return 0;
+    }
+
+    private String extractExplanation(String section) {
+        Matcher m = Pattern.compile("> \\*\\*Giải thích:\\*\\*\\s*(.+)", Pattern.DOTALL).matcher(section);
+        if (m.find()) {
+            return m.group(1).trim();
+        }
+        Matcher m2 = Pattern.compile("> Giải thích:\\s*(.+)", Pattern.DOTALL).matcher(section);
+        if (m2.find()) {
+            return m2.group(1).trim();
+        }
+        return "";
     }
 }

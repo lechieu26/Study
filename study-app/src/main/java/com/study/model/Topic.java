@@ -9,6 +9,7 @@ public class Topic {
     private String icon;
     private String theoryHtml;
     private List<Exercise> exercises;
+    private List<QuizQuestion> quizQuestions;
 
     public Topic() {}
 
@@ -31,4 +32,6 @@ public class Topic {
     public void setTheoryHtml(String theoryHtml) { this.theoryHtml = theoryHtml; }
     public List<Exercise> getExercises() { return exercises; }
     public void setExercises(List<Exercise> exercises) { this.exercises = exercises; }
+    public List<QuizQuestion> getQuizQuestions() { return quizQuestions; }
+    public void setQuizQuestions(List<QuizQuestion> quizQuestions) { this.quizQuestions = quizQuestions; }
 }

@@ -589,3 +589,234 @@ function addCopyButtons() {
         wrapper.appendChild(btn);
     });
 }
+
+/* ===========================
+   Quiz Page
+   =========================== */
+
+var quizState = {
+    currentIndex: 0,
+    totalQuestions: 0,
+    topicId: '',
+    answers: {},
+    correctCount: 0,
+    answered: {}
+};
+
+function initQuizPage(topicId, totalQuestions) {
+    quizState.topicId = topicId;
+    quizState.totalQuestions = totalQuestions;
+    quizState.currentIndex = 0;
+    quizState.answers = {};
+    quizState.correctCount = 0;
+    quizState.answered = {};
+
+    hljs.highlightAll();
+    updateQuizProgress();
+    updateQuizNav();
+}
+
+function selectOption(btn, questionId, optionIndex) {
+    if (quizState.answered[questionId]) return;
+    quizState.answered[questionId] = true;
+    quizState.answers[questionId] = optionIndex;
+
+    var card = document.getElementById('question-' + questionId);
+    var correctAnswer = parseInt(card.getAttribute('data-correct'));
+    var options = card.querySelectorAll('.quiz-option');
+
+    options.forEach(function(opt) {
+        opt.disabled = true;
+        opt.classList.add('quiz-option-disabled');
+    });
+
+    if (optionIndex === correctAnswer) {
+        btn.classList.add('quiz-option-correct');
+        quizState.correctCount++;
+    } else {
+        btn.classList.add('quiz-option-wrong');
+        options[correctAnswer].classList.add('quiz-option-correct');
+    }
+
+    var explanation = document.getElementById('explanation-' + questionId);
+    if (explanation) {
+        explanation.style.display = 'block';
+    }
+
+    updateQuizScore();
+    saveQuizProgress();
+}
+
+function updateQuizProgress() {
+    var current = document.getElementById('currentQuestion');
+    var fill = document.getElementById('quizProgressFill');
+    if (current) current.textContent = quizState.currentIndex + 1;
+    if (fill) {
+        var pct = quizState.totalQuestions > 0 ? ((quizState.currentIndex + 1) / quizState.totalQuestions * 100) : 0;
+        fill.style.width = pct + '%';
+    }
+}
+
+function updateQuizScore() {
+    var scoreEl = document.getElementById('quizScore');
+    if (scoreEl) {
+        var answeredCount = Object.keys(quizState.answered).length;
+        scoreEl.textContent = 'Đúng: ' + quizState.correctCount + '/' + answeredCount;
+    }
+}
+
+function updateQuizNav() {
+    var prevBtn = document.getElementById('prevBtn');
+    var nextBtn = document.getElementById('nextBtn');
+    var finishBtn = document.getElementById('finishBtn');
+
+    if (prevBtn) prevBtn.disabled = quizState.currentIndex === 0;
+
+    if (quizState.currentIndex >= quizState.totalQuestions - 1) {
+        if (nextBtn) nextBtn.style.display = 'none';
+        if (finishBtn) finishBtn.style.display = 'inline-flex';
+    } else {
+        if (nextBtn) nextBtn.style.display = 'inline-flex';
+        if (finishBtn) finishBtn.style.display = 'none';
+    }
+}
+
+function showQuestion(index) {
+    var cards = document.querySelectorAll('.quiz-question-card');
+    cards.forEach(function(card, i) {
+        if (i === index) {
+            card.classList.remove('quiz-hidden');
+        } else {
+            card.classList.add('quiz-hidden');
+        }
+    });
+    quizState.currentIndex = index;
+    updateQuizProgress();
+    updateQuizNav();
+}
+
+function nextQuestion() {
+    if (quizState.currentIndex < quizState.totalQuestions - 1) {
+        showQuestion(quizState.currentIndex + 1);
+    }
+}
+
+function prevQuestion() {
+    if (quizState.currentIndex > 0) {
+        showQuestion(quizState.currentIndex - 1);
+    }
+}
+
+function finishQuiz() {
+    document.getElementById('quizContainer').style.display = 'none';
+    document.getElementById('quizNav').style.display = 'none';
+    document.getElementById('quizProgress').style.display = 'none';
+
+    var result = document.getElementById('quizResult');
+    result.style.display = 'block';
+
+    var scoreValue = document.getElementById('resultScoreValue');
+    var resultFill = document.getElementById('resultFill');
+    var resultIcon = document.getElementById('resultIcon');
+    var resultTitle = document.getElementById('resultTitle');
+    var resultMessage = document.getElementById('resultMessage');
+
+    var pct = quizState.totalQuestions > 0 ? (quizState.correctCount / quizState.totalQuestions * 100) : 0;
+
+    scoreValue.textContent = quizState.correctCount;
+    resultFill.style.width = pct + '%';
+
+    if (pct >= 80) {
+        resultIcon.textContent = '🏆';
+        resultTitle.textContent = 'Xuất sắc!';
+        resultMessage.textContent = 'Bạn nắm vững kiến thức rất tốt! Hãy tiếp tục với các bài tập thực hành.';
+        resultFill.style.background = 'var(--success)';
+    } else if (pct >= 60) {
+        resultIcon.textContent = '👍';
+        resultTitle.textContent = 'Tốt lắm!';
+        resultMessage.textContent = 'Bạn đã nắm được phần lớn kiến thức. Hãy ôn lại những phần còn thiếu.';
+        resultFill.style.background = 'var(--warning)';
+    } else if (pct >= 40) {
+        resultIcon.textContent = '📚';
+        resultTitle.textContent = 'Cần cố gắng thêm!';
+        resultMessage.textContent = 'Hãy xem lại lý thuyết và thử lại quiz.';
+        resultFill.style.background = '#f97316';
+    } else {
+        resultIcon.textContent = '💪';
+        resultTitle.textContent = 'Đừng nản chí!';
+        resultMessage.textContent = 'Hãy đọc kỹ lý thuyết trước khi thử lại. Mỗi lần thử là một lần học!';
+        resultFill.style.background = 'var(--error)';
+    }
+
+    saveQuizResult();
+}
+
+function restartQuiz() {
+    quizState.currentIndex = 0;
+    quizState.answers = {};
+    quizState.correctCount = 0;
+    quizState.answered = {};
+
+    var cards = document.querySelectorAll('.quiz-question-card');
+    cards.forEach(function(card, i) {
+        var options = card.querySelectorAll('.quiz-option');
+        options.forEach(function(opt) {
+            opt.disabled = false;
+            opt.classList.remove('quiz-option-disabled', 'quiz-option-correct', 'quiz-option-wrong');
+        });
+        var explanation = card.querySelector('.quiz-explanation');
+        if (explanation) explanation.style.display = 'none';
+    });
+
+    document.getElementById('quizResult').style.display = 'none';
+    document.getElementById('quizContainer').style.display = 'block';
+    document.getElementById('quizNav').style.display = 'flex';
+    document.getElementById('quizProgress').style.display = 'block';
+
+    showQuestion(0);
+    updateQuizScore();
+
+    localStorage.removeItem('quiz_progress_' + quizState.topicId);
+}
+
+function reviewQuiz() {
+    document.getElementById('quizResult').style.display = 'none';
+    document.getElementById('quizContainer').style.display = 'block';
+    document.getElementById('quizNav').style.display = 'flex';
+    document.getElementById('quizProgress').style.display = 'block';
+
+    var cards = document.querySelectorAll('.quiz-question-card');
+    cards.forEach(function(card) {
+        card.classList.remove('quiz-hidden');
+    });
+
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+function saveQuizProgress() {
+    var data = {
+        answers: quizState.answers,
+        correctCount: quizState.correctCount,
+        answered: quizState.answered,
+        currentIndex: quizState.currentIndex
+    };
+    localStorage.setItem('quiz_progress_' + quizState.topicId, JSON.stringify(data));
+}
+
+function saveQuizResult() {
+    var key = 'quiz_result_' + quizState.topicId;
+    var prev = JSON.parse(localStorage.getItem(key) || '{}');
+    var pct = quizState.totalQuestions > 0 ? Math.round(quizState.correctCount / quizState.totalQuestions * 100) : 0;
+    if (!prev.bestScore || pct > prev.bestScore) {
+        prev.bestScore = pct;
+        prev.bestCorrect = quizState.correctCount;
+        prev.total = quizState.totalQuestions;
+    }
+    prev.lastScore = pct;
+    prev.attempts = (prev.attempts || 0) + 1;
+    localStorage.setItem(key, JSON.stringify(prev));
+}
+
+function getQuizResult(topicId) {
+    return JSON.parse(localStorage.getItem('quiz_result_' + topicId) || '{}');
+}

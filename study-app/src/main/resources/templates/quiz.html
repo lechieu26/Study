@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title th:text="${topic.name} + ' - Quiz'">Quiz</title>
+    <link rel="stylesheet" th:href="@{/css/style.css}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+</head>
+<body>
+    <button class="sidebar-toggle" id="sidebarToggle" aria-label="Menu">☰</button>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <a th:href="@{'/topic/' + ${topic.id}}" class="back-link">← Quay lại</a>
+            <h2>📚 Ôn Tập</h2>
+        </div>
+        <ul class="nav-list">
+            <li th:each="t : ${topics}">
+                <a th:href="@{'/topic/' + ${t.id}}" class="nav-link" th:classappend="${t.id == topic.id} ? 'active'">
+                    <span class="nav-icon" th:text="${t.icon}"></span>
+                    <span th:text="${t.name}"></span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+    <main class="content">
+        <div class="quiz-page">
+            <!-- Quiz Header -->
+            <div class="quiz-header">
+                <div class="quiz-header-left">
+                    <h1>
+                        <span th:text="${topic.icon}"></span>
+                        <span th:text="${topic.name} + ' - Quiz'"></span>
+                    </h1>
+                    <p th:text="'Kiểm tra kiến thức với ' + ${#lists.size(topic.quizQuestions)} + ' câu hỏi'"></p>
+                </div>
+                <div class="quiz-header-actions">
+                    <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline btn-sm">📖 Lý Thuyết</a>
+                    <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-secondary btn-sm">📝 Bài Tập</a>
+                </div>
+            </div>
+
+            <!-- Quiz Progress -->
+            <div class="quiz-progress-section" id="quizProgress">
+                <div class="quiz-progress-info">
+                    <span class="quiz-progress-text">
+                        Câu <span id="currentQuestion">1</span> / <span th:text="${#lists.size(topic.quizQuestions)}" id="totalQuestions"></span>
+                    </span>
+                    <span class="quiz-score" id="quizScore">Điểm: 0</span>
+                </div>
+                <div class="quiz-progress-bar">
+                    <div class="quiz-progress-fill" id="quizProgressFill"></div>
+                </div>
+            </div>
+
+            <!-- Quiz Empty State -->
+            <div th:if="${#lists.isEmpty(topic.quizQuestions)}" class="quiz-empty">
+                <div class="quiz-empty-icon">📝</div>
+                <h3>Quiz đang được cập nhật</h3>
+                <p>Câu hỏi quiz cho chủ đề này sẽ sớm được thêm vào.</p>
+                <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-primary">📖 Xem Lý Thuyết</a>
+            </div>
+
+            <!-- Quiz Questions Container -->
+            <div th:if="${!#lists.isEmpty(topic.quizQuestions)}" class="quiz-container" id="quizContainer">
+                <div th:each="q, iter : ${topic.quizQuestions}"
+                     class="quiz-question-card"
+                     th:id="'question-' + ${q.id}"
+                     th:classappend="${iter.index == 0} ? '' : 'quiz-hidden'"
+                     th:attr="data-question-id=${q.id},data-correct=${q.correctAnswer},data-type=${q.type}">
+
+                    <!-- Question Type Badge -->
+                    <div class="quiz-type-badge" th:switch="${q.type.name()}">
+                        <span th:case="'MULTIPLE_CHOICE'" class="type-mc">Trắc nghiệm</span>
+                        <span th:case="'FILL_BLANK'" class="type-fb">Điền từ</span>
+                        <span th:case="'SELECT_RESULT'" class="type-sr">Chọn kết quả</span>
+                        <span th:case="'TRUE_FALSE'" class="type-tf">Đúng/Sai</span>
+                    </div>
+
+                    <!-- Question Text -->
+                    <div class="quiz-question-text" th:utext="${q.questionHtml}"></div>
+
+                    <!-- Code Snippet (if any) -->
+                    <div th:if="${q.codeSnippet != null}" class="quiz-code-snippet">
+                        <pre><code th:text="${q.codeSnippet}"></code></pre>
+                    </div>
+
+                    <!-- Options -->
+                    <div class="quiz-options">
+                        <button th:each="opt, optIter : ${q.options}"
+                                class="quiz-option"
+                                th:attr="data-option-index=${optIter.index}"
+                                th:onclick="'selectOption(this, ' + ${q.id} + ', ' + ${optIter.index} + ')'"
+                                th:text="${opt}">
+                        </button>
+                    </div>
+
+                    <!-- Explanation (hidden until answered) -->
+                    <div class="quiz-explanation" th:id="'explanation-' + ${q.id}" style="display:none;">
+                        <div class="quiz-explanation-header">
+                            <span class="quiz-explanation-icon">💡</span>
+                            <span>Giải thích</span>
+                        </div>
+                        <p th:text="${q.explanation}"></p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Quiz Navigation -->
+            <div th:if="${!#lists.isEmpty(topic.quizQuestions)}" class="quiz-nav-buttons" id="quizNav">
+                <button class="btn btn-secondary" id="prevBtn" onclick="prevQuestion()" disabled>← Câu trước</button>
+                <button class="btn btn-primary" id="nextBtn" onclick="nextQuestion()">Câu tiếp →</button>
+                <button class="btn btn-success" id="finishBtn" onclick="finishQuiz()" style="display:none;">Hoàn thành Quiz</button>
+            </div>
+
+            <!-- Quiz Result (hidden until finish) -->
+            <div class="quiz-result" id="quizResult" style="display:none;">
+                <div class="quiz-result-card">
+                    <div class="quiz-result-icon" id="resultIcon">🏆</div>
+                    <h2 id="resultTitle">Kết quả Quiz</h2>
+                    <div class="quiz-result-score">
+                        <span class="result-score-value" id="resultScoreValue">0</span>
+                        <span class="result-score-total" th:text="'/ ' + ${#lists.size(topic.quizQuestions)}"></span>
+                    </div>
+                    <div class="quiz-result-bar">
+                        <div class="quiz-result-fill" id="resultFill"></div>
+                    </div>
+                    <p class="quiz-result-message" id="resultMessage"></p>
+                    <div class="quiz-result-actions">
+                        <button class="btn btn-primary" onclick="restartQuiz()">🔄 Làm lại</button>
+                        <button class="btn btn-outline" onclick="reviewQuiz()">📋 Xem lại đáp án</button>
+                        <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-secondary">📖 Xem Lý Thuyết</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script th:src="@{/js/app.js}"></script>
+    <script th:inline="javascript">
+        var quizTopicId = [[${topic.id}]];
+        var quizTotalQuestions = [[${#lists.size(topic.quizQuestions)}]];
+        initQuizPage(quizTopicId, quizTotalQuestions);
+    </script>
+</body>
+</html>
