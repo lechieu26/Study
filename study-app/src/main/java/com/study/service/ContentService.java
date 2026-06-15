@@ -40,6 +40,7 @@ public class ContentService {
 
     private void loadTopics() {
         topics.put("java", createTopic("java", "Java", "Java từ Cơ bản đến Nâng cao: OOP, Collections, Stream API, Multi-threading", "☕"));
+        topics.put("oop", createTopic("oop", "Java OOP", "Lập trình Hướng đối tượng: Encapsulation, Inheritance, Polymorphism, Abstraction, SOLID", "🧱"));
         topics.put("design-patterns", createTopic("design-patterns", "Design Patterns", "Các mẫu thiết kế phần mềm: Creational, Structural, Behavioral", "🏗️"));
         topics.put("dsa", createTopic("dsa", "Cấu Trúc Dữ Liệu & Giải Thuật", "DSA: Array, Linked List, Tree, Graph, DP, Sorting, Searching", "🧮"));
         topics.put("sql", createTopic("sql", "SQL (PostgreSQL)", "SQL nâng cao: JOIN, Window Functions, CTE, Stored Functions, Optimization", "🗄️"));
@@ -68,10 +69,11 @@ public class ContentService {
     private String getContentPath(String topicId, String filename) {
         return switch (topicId) {
             case "java" -> "01-java/" + filename;
-            case "design-patterns" -> "02-design-patterns/" + filename;
-            case "dsa" -> "03-dsa/" + filename;
-            case "sql" -> "04-sql-postgresql/" + filename;
-            case "spring" -> "05-java-spring/" + filename;
+            case "oop" -> "02-oop/" + filename;
+            case "design-patterns" -> "03-design-patterns/" + filename;
+            case "dsa" -> "04-dsa/" + filename;
+            case "sql" -> "05-sql-postgresql/" + filename;
+            case "spring" -> "06-java-spring/" + filename;
             default -> throw new IllegalArgumentException("Unknown topic: " + topicId);
         };
     }
