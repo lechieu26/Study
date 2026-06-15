@@ -45,6 +45,14 @@ public class ContentService {
         topics.put("dsa", createTopic("dsa", "Cấu Trúc Dữ Liệu & Giải Thuật", "DSA: Array, Linked List, Tree, Graph, DP, Sorting, Searching", "🧮"));
         topics.put("sql", createTopic("sql", "SQL (PostgreSQL)", "SQL nâng cao: JOIN, Window Functions, CTE, Stored Functions, Optimization", "🗄️"));
         topics.put("spring", createTopic("spring", "Java Spring", "Spring Framework: Core, Boot, Security, AOP, JPA, Testing", "🌱"));
+        topics.put("collection-framework", createTopic("collection-framework", "Collection Framework", "List, Set, Queue, Map: ArrayList, LinkedList, HashMap, TreeMap, ConcurrentHashMap", "📦"));
+        topics.put("exception-handling", createTopic("exception-handling", "Exception Handling", "Xử lý ngoại lệ: Try-Catch-Finally, Custom Exception, Best Practices", "⚠️"));
+        topics.put("io", createTopic("io", "Java IO", "Input/Output: Byte Streams, Character Streams, NIO, Serialization", "📂"));
+        topics.put("stream-api", createTopic("stream-api", "Stream API", "Functional Programming: filter, map, reduce, Collectors, Parallel Streams", "🌊"));
+        topics.put("reflection", createTopic("reflection", "Reflection API", "Runtime Inspection: Class, Method, Field, Dynamic Proxy, Annotations", "🔍"));
+        topics.put("concurrency", createTopic("concurrency", "Concurrency", "Multi-threading: synchronized, Locks, Executor, CompletableFuture", "⚡"));
+        topics.put("generic", createTopic("generic", "Generic", "Type Safety: Generic Class, Method, Bounded Types, Wildcards, PECS", "🔤"));
+        topics.put("jdbc-connection-pool", createTopic("jdbc-connection-pool", "JDBC & Connection Pool", "Database Connection: HikariCP, Pool Sizing, Spring Boot Integration", "🗃️"));
     }
 
     private Topic createTopic(String id, String name, String description, String icon) {
@@ -74,6 +82,14 @@ public class ContentService {
             case "dsa" -> "04-dsa/" + filename;
             case "sql" -> "05-sql-postgresql/" + filename;
             case "spring" -> "06-java-spring/" + filename;
+            case "collection-framework" -> "07-collection-framework/" + filename;
+            case "exception-handling" -> "08-exception-handling/" + filename;
+            case "io" -> "09-io/" + filename;
+            case "stream-api" -> "10-stream-api/" + filename;
+            case "reflection" -> "11-reflection/" + filename;
+            case "concurrency" -> "12-concurrency/" + filename;
+            case "generic" -> "13-generic/" + filename;
+            case "jdbc-connection-pool" -> "14-jdbc-connection-pool/" + filename;
             default -> throw new IllegalArgumentException("Unknown topic: " + topicId);
         };
     }
