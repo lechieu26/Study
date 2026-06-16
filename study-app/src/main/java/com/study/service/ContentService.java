@@ -54,6 +54,7 @@ public class ContentService {
         topics.put("generic", createTopic("generic", "Generic", "Type Safety: Generic Class, Method, Bounded Types, Wildcards, PECS", "🔤"));
         topics.put("jdbc-connection-pool", createTopic("jdbc-connection-pool", "JDBC & Connection Pool", "Database Connection: HikariCP, Pool Sizing, Spring Boot Integration", "🗃️"));
         topics.put("react", createTopic("react", "React", "React từ Basic đến Advanced: JSX, Components, Hooks, Redux, Router, SSR, Testing", "⚛️"));
+        topics.put("javascript", createTopic("javascript", "JavaScript", "JavaScript từ Cơ bản đến Nâng cao: ES6+, DOM, Async/Await, Closure, Prototype, Patterns", "🟨"));
     }
 
     private Topic createTopic(String id, String name, String description, String icon) {
@@ -92,6 +93,7 @@ public class ContentService {
             case "generic" -> "13-generic/" + filename;
             case "jdbc-connection-pool" -> "14-jdbc-connection-pool/" + filename;
             case "react" -> "15-react/" + filename;
+            case "javascript" -> "16-javascript/" + filename;
             default -> throw new IllegalArgumentException("Unknown topic: " + topicId);
         };
     }
