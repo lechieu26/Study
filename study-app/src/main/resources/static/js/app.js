@@ -489,7 +489,8 @@ function buildTableOfContents() {
         var cls = 'toc-link';
         if (tag === 'h3') cls += ' toc-h3';
         else if (tag === 'h4') cls += ' toc-h4';
-        html += '<a href="#' + id + '" class="' + cls + '" data-target="' + id + '">' + heading.textContent + '</a>';
+        var text = heading.textContent.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        html += '<a href="#' + id + '" class="' + cls + '" data-target="' + id + '">' + text + '</a>';
     });
     tocNav.innerHTML = html;
 
