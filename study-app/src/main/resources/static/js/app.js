@@ -218,6 +218,7 @@ function showResult(result) {
     var output = document.getElementById('resultOutput');
     var errorDiv = document.getElementById('resultError');
     var outputWrapper = document.querySelector('.result-output-wrapper');
+    var testResultsPanel = document.getElementById('testResultsPanel');
 
     panel.style.display = 'block';
 
@@ -231,19 +232,55 @@ function showResult(result) {
         }
         scoreDiv.innerHTML = '';
         feedback.textContent = '';
+        if (testResultsPanel) testResultsPanel.style.display = 'none';
     } else {
-        if (result.success) {
-            header.className = 'result-header success';
-            header.textContent = '✅ Biên dịch và chạy thành công!';
+        if (result.testResults && result.testResults.length > 0) {
+            var allPassed = result.passedCount === result.totalTests;
+            header.className = 'result-header ' + (allPassed ? 'success' : 'error');
+            header.textContent = allPassed
+                ? '✅ Tất cả test cases đều PASS!'
+                : '❌ ' + result.passedCount + '/' + result.totalTests + ' test cases PASS';
+
+            var score = result.score || 0;
+            var color = score >= 80 ? '#22c55e' : (score >= 60 ? '#f59e0b' : (score >= 40 ? '#f97316' : '#ef4444'));
+            scoreDiv.innerHTML = '<strong>Điểm: ' + score + '/100</strong> (' + result.passedCount + '/' + result.totalTests + ' PASS)' +
+                '<div class="score-bar"><div class="score-fill" style="width:' + score + '%;background:' + color + '"></div></div>';
+
+            if (testResultsPanel) {
+                testResultsPanel.style.display = 'block';
+                var html = '<div class="test-results-title">📋 Kết quả Test Cases:</div>';
+                result.testResults.forEach(function(tc) {
+                    var statusClass = tc.passed ? 'test-pass' : 'test-fail';
+                    var statusIcon = tc.passed ? '✅' : '❌';
+                    html += '<div class="test-case-row ' + statusClass + '">';
+                    html += '<span class="test-case-icon">' + statusIcon + '</span>';
+                    html += '<span class="test-case-label">Test ' + tc.testId + '</span>';
+                    if (!tc.passed && tc.expected) {
+                        html += '<span class="test-case-detail">Expected: <code>' + escapeHtml(tc.expected) + '</code> | Got: <code>' + escapeHtml(tc.actual) + '</code></span>';
+                    } else if (tc.passed) {
+                        html += '<span class="test-case-detail test-passed-text">PASSED</span>';
+                    }
+                    html += '</div>';
+                });
+                testResultsPanel.innerHTML = html;
+            }
         } else {
-            header.className = 'result-header error';
-            header.textContent = '❌ Có lỗi xảy ra';
+            if (result.success) {
+                header.className = 'result-header success';
+                header.textContent = '✅ Biên dịch và chạy thành công!';
+            } else {
+                header.className = 'result-header error';
+                header.textContent = '❌ Có lỗi xảy ra';
+            }
+            if (testResultsPanel) testResultsPanel.style.display = 'none';
         }
 
         var score = result.score || 0;
-        var color = score >= 80 ? '#22c55e' : (score >= 60 ? '#f59e0b' : (score >= 40 ? '#f97316' : '#ef4444'));
-        scoreDiv.innerHTML = '<strong>Điểm: ' + score + '/100</strong>' +
-            '<div class="score-bar"><div class="score-fill" style="width:' + score + '%;background:' + color + '"></div></div>';
+        if (!(result.testResults && result.testResults.length > 0)) {
+            var color = score >= 80 ? '#22c55e' : (score >= 60 ? '#f59e0b' : (score >= 40 ? '#f97316' : '#ef4444'));
+            scoreDiv.innerHTML = '<strong>Điểm: ' + score + '/100</strong>' +
+                '<div class="score-bar"><div class="score-fill" style="width:' + score + '%;background:' + color + '"></div></div>';
+        }
 
         feedback.textContent = result.feedback || '';
     }
@@ -265,6 +302,12 @@ function showResult(result) {
     }
 
     panel.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+}
+
+function escapeHtml(str) {
+    var div = document.createElement('div');
+    div.appendChild(document.createTextNode(str));
+    return div.innerHTML;
 }
 
 function closeResult() {
@@ -321,6 +364,8 @@ function resetCode() {
         var defaultCode;
         if (typeof editorLang !== 'undefined' && editorLang === 'sql') {
             defaultCode = '-- Viết câu lệnh SQL của bạn ở đây\n-- Dữ liệu mẫu: phong_ban, nhan_vien, du_an, phan_cong\n\nSELECT * FROM nhan_vien LIMIT 5;\n';
+        } else if (typeof boilerplateCode !== 'undefined' && boilerplateCode) {
+            defaultCode = boilerplateCode;
         } else {
             defaultCode = 'public class Solution {\n    public static void main(String[] args) {\n        // Viết code của bạn ở đây\n\n    }\n}';
         }

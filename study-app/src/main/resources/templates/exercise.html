@@ -98,12 +98,12 @@
 -- phong_ban, nhan_vien, du_an, phan_cong
 
 SELECT * FROM nhan_vien LIMIT 5;
-' : 'public class Solution {
+' : (${exercise.boilerplateCode != null} ? ${exercise.boilerplateCode} : 'public class Solution {
     public static void main(String[] args) {
         // Viết code của bạn ở đây
 
     }
-}'"></textarea>
+}')"></textarea>
                         </div>
                         <div class="action-buttons">
                             <button id="runBtn" class="btn btn-success" onclick="runCode()">
@@ -125,6 +125,7 @@ SELECT * FROM nhan_vien LIMIT 5;
                             <button class="result-close" onclick="closeResult()">&times;</button>
                         </div>
                         <div id="resultScore" class="result-score"></div>
+                        <div id="testResultsPanel" class="test-results-panel" style="display:none;"></div>
                         <div id="resultFeedback" class="result-feedback"></div>
                         <div class="result-output-wrapper">
                             <div class="result-output-label">Output:</div>
@@ -144,11 +145,12 @@ SELECT * FROM nhan_vien LIMIT 5;
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
     <script th:src="@{/js/app.js}"></script>
-    <script>
+    <script th:inline="javascript">
         var topicId = '[[${topic.id}]]';
         var exerciseId = [[${exercise.id}]];
         var totalExercises = [[${#lists.size(topic.exercises)}]];
         var editorLang = '[[${topic.id}]]' === 'sql' ? 'sql' : 'java';
+        var boilerplateCode = /*[[${exercise.boilerplateCode}]]*/ null;
         initEditor(editorLang);
         initExerciseNav();
     </script>
