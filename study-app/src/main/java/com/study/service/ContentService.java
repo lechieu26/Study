@@ -82,6 +82,15 @@ public class ContentService {
         topics.put("git", createTopic("git", "Git & Version Control", "Git: Basics, Branching, Merging, Collaboration, GitHub", "🔀"));
         topics.put("cicd", createTopic("cicd", "CI/CD & DevOps", "CI/CD: GitHub Actions, Jenkins, Docker, Deployment, Monitoring", "⚙️"));
         topics.put("docker", createTopic("docker", "Docker", "Docker: Containers, Images, Compose, Orchestration, Best Practices", "🐳"));
+
+        // ERP Personal Project
+        topics.put("erp-system", createTopic("erp-system", "Dự Án ERP - Tổng Quan", "Kiến trúc hệ thống ERP, Tech Stack, Database Design, Project Setup", "🏢"));
+        topics.put("erp-sales", createTopic("erp-sales", "ERP - Quản Lý Bán Hàng", "Báo giá, Đơn hàng, Hóa đơn, Thanh toán, Công nợ khách hàng", "💰"));
+        topics.put("erp-procurement", createTopic("erp-procurement", "ERP - Quản Lý Mua Hàng", "Yêu cầu mua, PO, Nhập hàng, Công nợ nhà cung cấp", "🛒"));
+        topics.put("erp-inventory", createTopic("erp-inventory", "ERP - Quản Lý Kho", "Nhập kho, Xuất kho, Chuyển kho, Kiểm kê, Tồn kho realtime", "🏭"));
+        topics.put("erp-manufacturing", createTopic("erp-manufacturing", "ERP - Quản Lý Sản Xuất", "BOM, Kế hoạch sản xuất, Lệnh sản xuất, Giá thành", "⚙️"));
+        topics.put("erp-accounting", createTopic("erp-accounting", "ERP - Kế Toán Tài Chính", "Sổ cái, Thu chi, Công nợ, Báo cáo tài chính", "📒"));
+        topics.put("erp-hr", createTopic("erp-hr", "ERP - Nhân Sự", "Hồ sơ nhân viên, Chấm công, Tính lương, KPI", "👥"));
     }
 
     private Topic createTopic(String id, String name, String description, String icon) {
@@ -147,6 +156,13 @@ public class ContentService {
             case "git" -> "21-git/" + filename;
             case "cicd" -> "22-cicd/" + filename;
             case "docker" -> "23-docker/" + filename;
+            case "erp-system" -> "30-erp-system/" + filename;
+            case "erp-sales" -> "30a-erp-sales/" + filename;
+            case "erp-procurement" -> "30b-erp-procurement/" + filename;
+            case "erp-inventory" -> "30c-erp-inventory/" + filename;
+            case "erp-manufacturing" -> "30d-erp-manufacturing/" + filename;
+            case "erp-accounting" -> "30e-erp-accounting/" + filename;
+            case "erp-hr" -> "30f-erp-hr/" + filename;
             default -> throw new IllegalArgumentException("Unknown topic: " + topicId);
         };
     }
@@ -303,6 +319,12 @@ public class ContentService {
         )));
 
         groups.add(new TopicGroup("SQL", "🗄️", filterTopics("sql")));
+
+        groups.add(new TopicGroup("Dự án cá nhân", "📊", filterTopics(
+                "erp-system", "erp-sales", "erp-procurement",
+                "erp-inventory", "erp-manufacturing",
+                "erp-accounting", "erp-hr"
+        )));
 
         return groups;
     }
