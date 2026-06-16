@@ -340,6 +340,11 @@ public class ContentService {
         return result;
     }
 
+    public String loadFile(String topicId, String filename) {
+        String relativePath = getContentPath(topicId, filename);
+        return loadMarkdownContent(relativePath);
+    }
+
     public Optional<Topic> getTopicById(String id) {
         return Optional.ofNullable(topics.get(id));
     }

@@ -15,6 +15,10 @@
 
 ---
 
+> **📥 Tải file SQL:** [inventory-database.sql](/api/download/erp-inventory/inventory-database.sql) — Cấu trúc bảng và dữ liệu mẫu cho module Kho (warehouses, stock, stock_transactions, stock_transfers, inventory_checks). Yêu cầu chạy file `erp-database.sql` từ module Tổng Quan trước.
+
+---
+
 ## 1. Tổng quan quản lý kho
 
 ### 1.1 Inventory Management là gì?

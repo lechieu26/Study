@@ -13,6 +13,10 @@
 
 ---
 
+> **📥 Tải file SQL:** [hr-database.sql](/api/download/erp-hr/hr-database.sql) — Cấu trúc bảng và dữ liệu mẫu cho module Nhân sự (departments, employees, attendance, payslips, kpi_evaluations). Yêu cầu chạy file `erp-database.sql` từ module Tổng Quan trước.
+
+---
+
 ## 1. Tổng quan quản lý nhân sự
 
 ### 1.1 HR module trong ERP
