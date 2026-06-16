@@ -1,6 +1,6 @@
-# CI/CD - Dap An Bai Tap
+# CI/CD - Đáp Án Bài Tập
 
-## Bai 1: GitHub Actions CI co ban
+## Bài 1: GitHub Actions CI cơ bản
 
 ```yaml
 # .github/workflows/ci.yml
@@ -43,16 +43,16 @@ jobs:
           retention-days: 7
 ```
 
-**Giai thich:**
-- `actions/checkout@v4`: Clone repo vao runner
-- `actions/setup-node@v4` voi `cache: 'npm'`: Cai Node.js va cache node_modules
-- `npm ci`: Cai dependencies tu lock file (nhanh va nhat quan hon `npm install`)
-- `--coverage`: Tao bao cao coverage
-- `retention-days: 7`: Giu artifact 7 ngay
+**Giải thích:**
+- `actions/checkout@v4`: Clone repo vào runner.
+- `actions/setup-node@v4` với `cache: 'npm'`: Cài Node.js và cache node_modules.
+- `npm ci`: Cài dependencies từ lock file (nhanh và nhất quán hơn `npm install`).
+- `--coverage`: Tạo báo cáo coverage.
+- `retention-days: 7`: Giữ artifact trong 7 ngày.
 
 ---
 
-## Bai 2: Multi-stage Pipeline
+## Bài 2: Multi-stage Pipeline
 
 ```yaml
 name: Multi-Stage CI
@@ -125,18 +125,18 @@ jobs:
           path: dist/
       - name: Deploy to staging
         run: echo "Deploying to staging..."
-        # Thay bang lenh deploy thuc te
+        # Thay bằng lệnh deploy thực tế
 ```
 
-**Giai thich:**
-- `needs: lint`: Job test CHI chay sau khi lint pass
-- `strategy.matrix`: Chay test tren 3 phien ban Node.js song song
-- `if: matrix.node-version == 20`: Chi upload coverage tu Node 20
-- `if: github.event_name == 'push' && github.ref == 'refs/heads/main'`: Chi deploy khi push len main
+**Giải thích:**
+- `needs: lint`: Job test CHỈ chạy sau khi lint pass.
+- `strategy.matrix`: Chạy test trên 3 phiên bản Node.js song song.
+- `if: matrix.node-version == 20`: Chỉ upload coverage từ Node 20.
+- `if: github.event_name == 'push' && github.ref == 'refs/heads/main'`: Chỉ deploy khi push lên main.
 
 ---
 
-## Bai 3: Docker CI/CD Pipeline
+## Bài 3: Docker CI/CD Pipeline
 
 ```yaml
 name: Docker CI/CD
@@ -206,7 +206,7 @@ jobs:
 
 ---
 
-## Bai 4: Full-Stack CI/CD
+## Bài 4: Full-Stack CI/CD
 
 ```yaml
 name: Full-Stack CI/CD
@@ -311,7 +311,7 @@ jobs:
   deploy-production:
     runs-on: ubuntu-latest
     needs: e2e
-    environment: production  # Requires manual approval
+    environment: production  # Yêu cầu manual approval (phê duyệt thủ công)
     steps:
       - name: Deploy to production
         run: echo "Deploying to production..."
@@ -323,20 +323,20 @@ jobs:
           STATUS=$(curl -s -o /dev/null -w "%{http_code}" https://app.example.com/health || echo "000")
           echo "status=$STATUS" >> $GITHUB_OUTPUT
 
-      - name: Rollback on failure
+      - name: Rollback on failure (Tự động rollback khi thất bại)
         if: steps.health.outputs.status != '200'
         run: |
           echo "Health check failed! Rolling back..."
           # ./scripts/rollback.sh
 
-      - name: Notify success
+      - name: Notify success (Thông báo thành công)
         if: success()
         run: |
           curl -X POST "${{ secrets.SLACK_WEBHOOK }}" \
             -H 'Content-Type: application/json' \
             -d '{"text":"Deploy v${{ github.sha }} to production SUCCESS"}'
 
-      - name: Notify failure
+      - name: Notify failure (Thông báo thất bại)
         if: failure()
         run: |
           curl -X POST "${{ secrets.SLACK_WEBHOOK }}" \

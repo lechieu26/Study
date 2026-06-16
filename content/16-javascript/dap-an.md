@@ -1,9 +1,9 @@
-# JavaScript - Dap An Bai Tap
+# JavaScript - Đáp Án Bài Tập
 
-## Bai 1: Array Utilities
+## Bài 1: Array Utilities
 
 ```javascript
-// myFilter - loc phan tu thoa dieu kien
+// myFilter - lọc phần tử thỏa điều kiện
 function myFilter(arr, callback) {
     const result = [];
     for (let i = 0; i < arr.length; i++) {
@@ -14,7 +14,7 @@ function myFilter(arr, callback) {
     return result;
 }
 
-// myMap - bien doi moi phan tu
+// myMap - biến đổi mỗi phần tử
 function myMap(arr, callback) {
     const result = [];
     for (let i = 0; i < arr.length; i++) {
@@ -23,7 +23,7 @@ function myMap(arr, callback) {
     return result;
 }
 
-// myReduce - gom mang thanh 1 gia tri
+// myReduce - gom mảng thành 1 giá trị
 function myReduce(arr, callback, initialValue) {
     let accumulator = initialValue;
     let startIndex = 0;
@@ -42,7 +42,7 @@ function myReduce(arr, callback, initialValue) {
     return accumulator;
 }
 
-// myFlat - lam phang mang long nhau
+// myFlat - làm phẳng mảng lồng nhau
 function myFlat(arr, depth = 1) {
     const result = [];
     for (const item of arr) {
@@ -74,15 +74,15 @@ console.log(myFlat([1, [2, [3, [4]]]], Infinity));
 // [1, 2, 3, 4]
 ```
 
-**Giai thich:**
-- `myFilter`: Duyet mang, goi callback cho tung phan tu, them vao ket qua neu callback tra ve `true`.
-- `myMap`: Duyet mang, goi callback cho tung phan tu, them ket qua callback vao mang moi.
-- `myReduce`: Su dung accumulator, goi callback voi (accumulator, currentValue) cho tung phan tu. Xu ly truong hop khong co initialValue.
-- `myFlat`: De quy - neu phan tu la array va depth > 0, goi de quy voi depth - 1. Neu khong, them truc tiep vao ket qua.
+**Giải thích:**
+- `myFilter`: Duyệt mảng, gọi callback cho từng phần tử, thêm vào kết quả nếu callback trả về `true`.
+- `myMap`: Duyệt mảng, gọi callback cho từng phần tử, thêm kết quả callback vào mảng mới.
+- `myReduce`: Sử dụng accumulator, gọi callback với (accumulator, currentValue) cho từng phần tử. Xử lý trường hợp không có initialValue.
+- `myFlat`: Đệ quy - nếu phần tử là array và depth > 0, gọi đệ quy với depth - 1. Nếu không, thêm trực tiếp vào kết quả.
 
 ---
 
-## Bai 2: Closure - Counter Factory
+## Bài 2: Closure - Counter Factory
 
 ```javascript
 function createCounter(options = {}) {
@@ -151,39 +151,39 @@ console.log(counter.getHistory()); // [4, 6, 8, 10, 10, 8, 10]
 console.log(counter.reset());      // 4
 ```
 
-**Giai thich:**
-- Closure giu cac bien `value`, `history`, `undoStack` private - khong truy cap duoc tu ben ngoai.
-- `clamp()` dam bao gia tri luon nam trong khoang [min, max].
-- `saveAndUpdate()` luu gia tri cu vao undoStack truoc khi cap nhat.
-- `undo()` lay gia tri tu undoStack va them vao history.
+**Giải thích:**
+- Closure giữ các biến `value`, `history`, `undoStack` private - không truy cập được từ bên ngoài.
+- `clamp()` đảm bảo giá trị luôn nằm trong khoảng [min, max].
+- `saveAndUpdate()` lưu giá trị cũ vào undoStack trước khi cập nhật.
+- `undo()` lấy giá trị từ undoStack và thêm vào history.
 
 ---
 
-## Bai 3: Deep Clone
+## Bài 3: Deep Clone
 
 ```javascript
 function deepClone(obj, seen = new WeakMap()) {
-    // Xu ly primitive va null
+    // Xử lý primitive và null
     if (obj === null || typeof obj !== "object") {
         return obj;
     }
 
-    // Xu ly circular reference
+    // Xử lý circular reference
     if (seen.has(obj)) {
         return seen.get(obj);
     }
 
-    // Xu ly Date
+    // Xử lý Date
     if (obj instanceof Date) {
         return new Date(obj.getTime());
     }
 
-    // Xu ly RegExp
+    // Xử lý RegExp
     if (obj instanceof RegExp) {
         return new RegExp(obj.source, obj.flags);
     }
 
-    // Xu ly Map
+    // Xử lý Map
     if (obj instanceof Map) {
         const mapClone = new Map();
         seen.set(obj, mapClone);
@@ -193,7 +193,7 @@ function deepClone(obj, seen = new WeakMap()) {
         return mapClone;
     }
 
-    // Xu ly Set
+    // Xử lý Set
     if (obj instanceof Set) {
         const setClone = new Set();
         seen.set(obj, setClone);
@@ -203,7 +203,7 @@ function deepClone(obj, seen = new WeakMap()) {
         return setClone;
     }
 
-    // Xu ly Array
+    // Xử lý Array
     if (Array.isArray(obj)) {
         const arrClone = [];
         seen.set(obj, arrClone);
@@ -213,7 +213,7 @@ function deepClone(obj, seen = new WeakMap()) {
         return arrClone;
     }
 
-    // Xu ly Object
+    // Xử lý Object
     const objClone = Object.create(Object.getPrototypeOf(obj));
     seen.set(obj, objClone);
 
@@ -257,19 +257,19 @@ console.log(cloned.pattern instanceof RegExp); // true
 console.log(cloned.tags instanceof Set); // true
 console.log(cloned.meta instanceof Map); // true
 
-console.log(cloned.self === cloned); // true (circular ref duoc xu ly)
+console.log(cloned.self === cloned); // true (circular ref được xử lý)
 console.log(cloned.self !== original); // true
 ```
 
-**Giai thich:**
-- Su dung `WeakMap` (`seen`) de theo doi cac object da clone, ngan vong lap vo han khi gap circular reference.
-- Kiem tra tung kieu du lieu va xu ly phu hop: Date -> copy timestamp, RegExp -> copy source va flags.
-- Su dung `Reflect.ownKeys()` de lay tat ca keys (ke ca Symbol).
-- `Object.create(Object.getPrototypeOf(obj))` giu nguyen prototype chain.
+**Giải thích:**
+- Sử dụng `WeakMap` (`seen`) để theo dõi các object đã clone, ngăn vòng lặp vô hạn khi gặp circular reference.
+- Kiểm tra từng kiểu dữ liệu và xử lý phù hợp: Date -> copy timestamp, RegExp -> copy source và flags.
+- Sử dụng `Reflect.ownKeys()` để lấy tất cả keys (kể cả Symbol).
+- `Object.create(Object.getPrototypeOf(obj))` giữ nguyên prototype chain.
 
 ---
 
-## Bai 4: Promise Pool
+## Bài 4: Promise Pool
 
 ```javascript
 async function promisePool(tasks, poolSize) {
@@ -288,7 +288,7 @@ async function promisePool(tasks, poolSize) {
         }
     }
 
-    // Tao poolSize workers chay dong thoi
+    // Tạo poolSize workers chạy đồng thời
     const workers = Array.from(
         { length: Math.min(poolSize, tasks.length) },
         () => runNext()
@@ -330,15 +330,15 @@ async function test() {
 test();
 ```
 
-**Giai thich:**
-- Tao `poolSize` workers chay dong thoi. Moi worker lay task tiep theo tu mang tasks khi hoan thanh task hien tai.
-- `currentIndex` dam bao moi task chi duoc lay 1 lan (JavaScript la single-threaded nen khong can lock).
-- Ket qua luu theo index goc de dam bao thu tu.
-- try/catch xu ly loi cua tung task rieng, khong anh huong task khac.
+**Giải thích:**
+- Tạo `poolSize` workers chạy đồng thời. Mỗi worker lấy task tiếp theo từ mảng tasks khi hoàn thành task hiện tại.
+- `currentIndex` đảm bảo mỗi task chỉ được lấy 1 lần (JavaScript là single-threaded nên không cần lock).
+- Kết quả lưu theo index gốc để đảm bảo thứ tự.
+- try/catch xử lý lỗi của từng task riêng, không ảnh hưởng task khác.
 
 ---
 
-## Bai 5: Event Emitter
+## Bài 5: Event Emitter
 
 ```javascript
 class EventEmitter {
@@ -351,7 +351,7 @@ class EventEmitter {
         }
         this.#listeners[event].push(callback);
 
-        // Tra ve ham unsubscribe
+        // Trả về hàm unsubscribe
         return () => this.off(event, callback);
     }
 
@@ -366,7 +366,7 @@ class EventEmitter {
     }
 
     emit(event, ...args) {
-        // Goi cac listener cua event cu the
+        // Gọi các listener của event cụ thể
         const listeners = this.#listeners[event] || [];
         for (const listener of [...listeners]) {
             try {
@@ -380,7 +380,7 @@ class EventEmitter {
             }
         }
 
-        // Goi wildcard listeners
+        // Gọi wildcard listeners
         const wildcardListeners = this.#listeners["*"] || [];
         for (const listener of [...wildcardListeners]) {
             try {
@@ -398,7 +398,7 @@ class EventEmitter {
             this.off(event, wrapper);
             callback(...args);
         };
-        wrapper._original = callback; // Luu ref de co the off bang callback goc
+        wrapper._original = callback; // Lưu ref để có thể off bằng callback gốc
         return this.on(event, wrapper);
     }
 
@@ -431,42 +431,42 @@ emitter.onError((error, event) => {
     console.log(`Error in "${event}": ${error.message}`);
 });
 
-// Wildcard - bat tat ca event
+// Wildcard - bắt tất cả event
 emitter.on("*", (event, ...args) => {
     console.log(`[${event}]`, ...args);
 });
 
-// Once - chi chay 1 lan
+// Once - chỉ chạy 1 lần
 emitter.once("connect", () => console.log("Connected!"));
 
-// Regular listener voi unsubscribe
+// Regular listener với unsubscribe
 const unsub = emitter.on("data", (msg) => console.log("Data:", msg));
 
 emitter.emit("connect");
-// "Connected!" va "[connect]"
+// "Connected!" và "[connect]"
 
 emitter.emit("connect");
-// Chi "[connect]" (once da xoa)
+// Chỉ "[connect]" (once đã xóa)
 
 emitter.emit("data", "Hello");
-// "Data: Hello" va "[data] Hello"
+// "Data: Hello" và "[data] Hello"
 
 console.log(emitter.listenerCount("data")); // 1
-unsub(); // Go bo
+unsub(); // Gỡ bỏ
 console.log(emitter.listenerCount("data")); // 0
 ```
 
-**Giai thich:**
-- Su dung private field `#listeners` de luu tru cac event handlers theo event name.
-- `on()` tra ve ham unsubscribe (closure).
-- `once()` boc callback trong wrapper, wrapper tu go bo chinh no sau khi chay.
-- `emit()` spread listener array (`[...listeners]`) de tranh loi khi listener tu go bo chinh no trong qua trinh emit.
-- Wildcard `*` nhan event name lam tham so dau tien.
-- Error handling bao ve cac listener khac khi 1 listener throw error.
+**Giải thích:**
+- Sử dụng private field `#listeners` để lưu trữ các event handlers theo event name.
+- `on()` trả về hàm unsubscribe (closure).
+- `once()` bọc callback trong wrapper, wrapper tự gỡ bỏ chính nó sau khi chạy.
+- `emit()` spread listener array (`[...listeners]`) để tránh lỗi khi listener tự gỡ bỏ chính nó trong quá trình emit.
+- Wildcard `*` nhận event name làm tham số đầu tiên.
+- Error handling bảo vệ các listener khác khi 1 listener throw error.
 
 ---
 
-## Bai 6: Debounce va Throttle
+## Bài 6: Debounce và Throttle
 
 ```javascript
 function debounce(fn, delay, options = {}) {
@@ -595,22 +595,22 @@ const debounced = debounce(() => {
 }, 100);
 
 debounced(); debounced(); debounced();
-// Chi goi 1 lan sau 100ms: "Called: 1"
+// Chỉ gọi 1 lần sau 100ms: "Called: 1"
 
 // Test throttle
 const throttled = throttle((x) => console.log("Throttled:", x), 200);
-throttled(1); // Goi ngay
-throttled(2); // Bo qua
-throttled(3); // Bo qua, nhung se goi sau 200ms voi args cuoi
+throttled(1); // Gọi ngay
+throttled(2); // Bỏ qua
+throttled(3); // Bỏ qua, nhưng sẽ gọi sau 200ms với args cuối
 ```
 
-**Giai thich:**
-- **Debounce**: Moi lan goi, huy timer cu va tao timer moi. Ham chi thuc su chay khi ngung goi trong `delay` ms. `leading` cho phep goi ngay lan dau. `maxWait` dam bao ham duoc goi it nhat 1 lan trong khoang thoi gian do.
-- **Throttle**: Dam bao ham chi chay 1 lan trong moi `interval`. Neu goi nhieu lan, lan cuoi se duoc goi khi het interval (trailing call).
+**Giải thích:**
+- **Debounce**: Mỗi lần gọi, hủy timer cũ và tạo timer mới. Hàm chỉ thực sự chạy khi ngừng gọi trong `delay` ms. `leading` cho phép gọi ngay lần đầu. `maxWait` đảm bảo hàm được gọi ít nhất 1 lần trong khoảng thời gian đó.
+- **Throttle**: Đảm bảo hàm chỉ chạy 1 lần trong mỗi `interval`. Nếu gọi nhiều lần, lần cuối sẽ được gọi khi hết interval (trailing call).
 
 ---
 
-## Bai 7: Mini Reactive System
+## Bài 7: Mini Reactive System
 
 ```javascript
 let activeEffect = null;
@@ -667,7 +667,7 @@ function effect(fn) {
         fn();
         activeEffect = null;
     };
-    effectFn(); // Chay lan dau de thu thap dependencies
+    effectFn(); // Chạy lần đầu để thu thập dependencies
     return effectFn;
 }
 
@@ -676,12 +676,12 @@ function computed(fn) {
     let dirty = true;
 
     const effectFn = effect(() => {
-        // Khi dependency thay doi, danh dau dirty
+        // Khi dependency thay đổi, đánh dấu dirty
         dirty = true;
     });
 
-    // Override effect de khong chay fn ngay
-    // Ma chi danh dau dirty
+    // Override effect để không chạy fn ngay
+    // Mà chỉ đánh dấu dirty
     activeEffect = null;
 
     return {
@@ -697,17 +697,17 @@ function computed(fn) {
     };
 }
 
-// Cach implement computed don gian hon (de hieu):
+// Cách implement computed đơn giản hơn (dễ hiểu):
 function computedSimple(fn) {
     let cache;
     let dirty = true;
 
-    // Tao effect de theo doi dependencies
+    // Tạo effect để theo dõi dependencies
     const runner = () => {
         dirty = true;
     };
 
-    // Thu thap dependencies lan dau
+    // Thu thập dependencies lần đầu
     activeEffect = runner;
     cache = fn();
     activeEffect = null;
@@ -731,18 +731,18 @@ const state = reactive({ count: 0, name: "An" });
 
 console.log("--- Effect demo ---");
 effect(() => {
-    console.log(`Count la: ${state.count}`);
+    console.log(`Count là: ${state.count}`);
 });
-// In ngay: "Count la: 0"
+// In ngay: "Count là: 0"
 
 state.count = 5;
-// Tu dong in: "Count la: 5"
+// Tự động in: "Count là: 5"
 
 state.count = 5;
-// KHONG in (gia tri khong thay doi)
+// KHÔNG in (giá trị không thay đổi)
 
-state.name = "Binh";
-// KHONG in (effect khong phu thuoc name)
+state.name = "Bình";
+// KHÔNG in (effect không phụ thuộc name)
 
 console.log("--- Computed demo ---");
 const doubled = computedSimple(() => state.count * 2);
@@ -751,16 +751,16 @@ state.count = 10;
 console.log(doubled.value); // 20
 ```
 
-**Giai thich:**
-- **reactive()**: Su dung Proxy de chan `get` (theo doi dependencies) va `set` (kich hoat re-render).
-- **track()**: Khi doc thuoc tinh trong effect, luu lai rang effect nay phu thuoc vao thuoc tinh do. Su dung `WeakMap -> Map -> Set` de luu dependency graph.
-- **trigger()**: Khi thay doi thuoc tinh, tim tat ca effects phu thuoc va chay lai chung.
-- **effect()**: Chay ham lan dau de thu thap dependencies (thiet lap `activeEffect` truoc khi chay).
-- **computed()**: Chi tinh lai khi dependency thay doi (lazy evaluation voi cache).
+**Giải thích:**
+- **reactive()**: Sử dụng Proxy để chặn `get` (theo dõi dependencies) và `set` (kích hoạt re-render).
+- **track()**: Khi đọc thuộc tính trong effect, lưu lại rằng effect này phụ thuộc vào thuộc tính đó. Sử dụng `WeakMap -> Map -> Set` để lưu dependency graph.
+- **trigger()**: Khi thay đổi thuộc tính, tìm tất cả effects phụ thuộc và chạy lại chúng.
+- **effect()**: Chạy hàm lần đầu để thu thập dependencies (thiết lập `activeEffect` trước khi chạy).
+- **computed()**: Chỉ tính lại khi dependency thay đổi (lazy evaluation với cache).
 
 ---
 
-## Bai 8: JSON Path Query
+## Bài 8: JSON Path Query
 
 ```javascript
 function jsonQuery(obj, path) {
@@ -775,7 +775,7 @@ function tokenize(path) {
     const regex = /(\w+)|\[(\d+)\]|\[\*\]|\[\?\((.+?)\)\]/g;
     let match;
 
-    // Tach path theo dot va bracket
+    // Tách path theo dot và bracket
     const parts = path.split(/\.(?![^\[]*\])/);
 
     for (const part of parts) {
@@ -864,7 +864,7 @@ const data = {
     store: {
         books: [
             { title: "JS Guide", price: 100, author: "An" },
-            { title: "CSS Tricks", price: 80, author: "Binh" },
+            { title: "CSS Tricks", price: 80, author: "Bình" },
             { title: "Node.js", price: 120, author: "An" }
         ],
         location: { city: "HCM", country: "VN" }
@@ -890,21 +890,21 @@ console.log(jsonQuery(data, "store.noExist.deep"));
 // undefined
 ```
 
-**Giai thich:**
-- **tokenize()**: Tach path string thanh mang tokens (property, index, wildcard, filter).
-- **evaluate()**: Duyet qua tung token va truy van du lieu:
-  - `prop`: Truy cap thuoc tinh object.
-  - `index`: Truy cap phan tu array theo chi so.
-  - `wildcard [*]`: Map qua tat ca phan tu, ap dung tokens con lai cho moi phan tu.
-  - `filter [?()]`: Loc phan tu theo dieu kien, thay `@.prop` bang gia tri thuc te.
-- Su dung de quy cho wildcard va filter de xu ly cac tokens con lai.
+**Giải thích:**
+- **tokenize()**: Tách path string thành mảng tokens (property, index, wildcard, filter).
+- **evaluate()**: Duyệt qua từng token và truy vấn dữ liệu:
+  - `prop`: Truy cập thuộc tính object.
+  - `index`: Truy cập phần tử array theo chỉ số.
+  - `wildcard [*]`: Map qua tất cả phần tử, áp dụng tokens còn lại cho mỗi phần tử.
+  - `filter [?()]`: Lọc phần tử theo điều kiện, thay `@.prop` bằng giá trị thực tế.
+- Sử dụng đệ quy cho wildcard và filter để xử lý các tokens còn lại.
 
 ---
 
-## Bai 9: Currying va Partial Application
+## Bài 9: Currying và Partial Application
 
 ```javascript
-// Curry - chuyen ham nhieu tham so thanh chuoi ham
+// Curry - chuyển hàm nhiều tham số thành chuỗi hàm
 function curry(fn) {
     const arity = fn.length;
 
@@ -918,14 +918,14 @@ function curry(fn) {
     };
 }
 
-// Partial - co dinh mot so tham so
+// Partial - cố định một số tham số
 function partial(fn, ...partialArgs) {
     return function(...remainingArgs) {
         return fn.apply(this, [...partialArgs, ...remainingArgs]);
     };
 }
 
-// Compose - chay tu phai sang trai
+// Compose - chạy từ phải sang trái
 function compose(...fns) {
     if (fns.length === 0) return (x) => x;
     if (fns.length === 1) return fns[0];
@@ -935,7 +935,7 @@ function compose(...fns) {
     };
 }
 
-// Pipe - chay tu trai sang phai
+// Pipe - chạy từ trái sang phải
 function pipe(...fns) {
     if (fns.length === 0) return (x) => x;
     if (fns.length === 1) return fns[0];
@@ -961,7 +961,7 @@ console.log(add10(20, 30));         // 60
 const add10and20 = partial(add, 10, 20);
 console.log(add10and20(30));        // 60
 
-// Test Compose va Pipe
+// Test Compose và Pipe
 const double = x => x * 2;
 const addOne = x => x + 1;
 const square = x => x * x;
@@ -973,15 +973,15 @@ const piped = pipe(double, addOne, square);
 console.log(piped(3));              // 49: double(3)=6, addOne(6)=7, square(7)=49
 ```
 
-**Giai thich:**
-- **curry()**: So sanh so luong args da nhan voi `fn.length` (so tham so cua ham goc). Neu du -> goi ham. Neu chua du -> tra ve ham moi cho them args.
-- **partial()**: Dung closure de luu `partialArgs`, khi goi ham moi -> gop partialArgs va remainingArgs.
-- **compose()**: `reduceRight` chay cac ham tu phai sang trai, truyen output cua ham truoc lam input cua ham sau.
-- **pipe()**: `reduce` chay cac ham tu trai sang phai.
+**Giải thích:**
+- **curry()**: So sánh số lượng args đã nhận với `fn.length` (số tham số của hàm gốc). Nếu đủ -> gọi hàm. Nếu chưa đủ -> trả về hàm mới chờ thêm args.
+- **partial()**: Dùng closure để lưu `partialArgs`, khi gọi hàm mới -> gộp partialArgs và remainingArgs.
+- **compose()**: `reduceRight` chạy các hàm từ phải sang trái, truyền output của hàm trước làm input của hàm sau.
+- **pipe()**: `reduce` chạy các hàm từ trái sang phải.
 
 ---
 
-## Bai 10: LRU Cache
+## Bài 10: LRU Cache
 
 ```javascript
 class LRUCache {
@@ -989,15 +989,15 @@ class LRUCache {
     #cache;
 
     constructor(capacity) {
-        if (capacity <= 0) throw new Error("Capacity phai > 0");
+        if (capacity <= 0) throw new Error("Capacity phải > 0");
         this.#capacity = capacity;
-        this.#cache = new Map(); // Map giu thu tu chen
+        this.#cache = new Map(); // Map giữ thứ tự chèn
     }
 
     get(key) {
         if (!this.#cache.has(key)) return -1;
 
-        // Di chuyen key len cuoi (recently used)
+        // Di chuyển key lên cuối (recently used)
         const value = this.#cache.get(key);
         this.#cache.delete(key);
         this.#cache.set(key, value);
@@ -1005,11 +1005,11 @@ class LRUCache {
     }
 
     put(key, value) {
-        // Neu key da ton tai, xoa de cap nhat vi tri
+        // Nếu key đã tồn tại, xóa để cập nhật vị trí
         if (this.#cache.has(key)) {
             this.#cache.delete(key);
         } else if (this.#cache.size >= this.#capacity) {
-            // Xoa item cu nhat (dau Map = least recently used)
+            // Xóa item cũ nhất (đầu Map = least recently used)
             const oldestKey = this.#cache.keys().next().value;
             this.#cache.delete(oldestKey);
         }
@@ -1028,12 +1028,12 @@ class LRUCache {
         this.#cache.clear();
     }
 
-    // Bonus: lay tat ca entries (tu moi nhat den cu nhat)
+    // Bonus: lấy tất cả entries (từ mới nhất đến cũ nhất)
     entries() {
         return [...this.#cache.entries()].reverse();
     }
 
-    // Bonus: kiem tra key co ton tai
+    // Bonus: kiểm tra key có tồn tại
     has(key) {
         return this.#cache.has(key);
     }
@@ -1047,30 +1047,30 @@ cache.put("b", 2);
 cache.put("c", 3);
 console.log(cache.size()); // 3
 
-console.log(cache.get("a")); // 1 (a tro thanh recently used)
+console.log(cache.get("a")); // 1 (a trở thành recently used)
 
-cache.put("d", 4); // Cache day -> xoa "b" (least recently used)
-console.log(cache.get("b")); // -1 (da bi xoa)
+cache.put("d", 4); // Cache đầy -> xóa "b" (least recently used)
+console.log(cache.get("b")); // -1 (đã bị xóa)
 
 console.log(cache.get("a")); // 1
 console.log(cache.get("c")); // 3
 console.log(cache.get("d")); // 4
 console.log(cache.size());   // 3
 
-// Thu tu tu moi nhat den cu nhat
+// Thứ tự từ mới nhất đến cũ nhất
 console.log(cache.entries());
 // [["d", 4], ["c", 3], ["a", 1]]
 
-cache.put("e", 5); // Xoa "a" (least recently used sau khi d va c duoc truy cap)
+cache.put("e", 5); // Xóa "a" (least recently used sau khi d và c được truy cập)
 console.log(cache.get("a")); // -1
 
 cache.clear();
 console.log(cache.size()); // 0
 ```
 
-**Giai thich:**
-- Su dung `Map` cua JavaScript vi no **giu thu tu chen**. Phan tu duoc chen dau tien se o dau iterator.
-- **get()**: Khi truy cap, xoa va them lai de chuyen key len cuoi (most recently used).
-- **put()**: Neu da day va key chua ton tai, xoa phan tu dau tien cua Map (least recently used) bang `map.keys().next().value`.
-- Do phuc tap: O(1) cho ca `get` va `put` vi Map operations la O(1) trung binh.
-- Su dung private fields (`#capacity`, `#cache`) de encapsulate.
+**Giải thích:**
+- Sử dụng `Map` của JavaScript vì nó **giữ thứ tự chèn**. Phần tử được chèn đầu tiên sẽ ở đầu iterator.
+- **get()**: Khi truy cập, xóa và thêm lại để chuyển key lên cuối (most recently used).
+- **put()**: Nếu đã đầy và key chưa tồn tại, xóa phần tử đầu tiên của Map (least recently used) bằng `map.keys().next().value`.
+- Độ phức tạp: O(1) cho cả `get` và `put` vì Map operations là O(1) trung bình.
+- Sử dụng private fields (`#capacity`, `#cache`) để encapsulate.

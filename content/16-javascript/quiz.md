@@ -1,23 +1,23 @@
 # Quiz - JavaScript
 
-## Cau 1
+## Câu 1
 
 [TYPE: MULTIPLE_CHOICE]
 
-JavaScript la gi?
+JavaScript là gì?
 
-- [ ] Mot phien ban rut gon cua Java
-- [x] Mot ngon ngu lap trinh dong, da mo hinh chay tren trinh duyet va server
-- [ ] Mot framework CSS
-- [ ] Mot he quan tri co so du lieu
+- [ ] Một phiên bản rút gọn của Java
+- [x] Một ngôn ngữ lập trình động, đa mô hình chạy trên trình duyệt và server
+- [ ] Một framework CSS
+- [ ] Một hệ quản trị cơ sở dữ liệu
 
-> **Giai thich:** JavaScript la ngon ngu lap trinh dong (dynamic), da mo hinh (multi-paradigm), chay native tren trinh duyet va co the chay tren server voi Node.js. JavaScript khong lien quan gi den Java.
+> **Giải thích:** JavaScript là ngôn ngữ lập trình động (dynamic), đa mô hình (multi-paradigm), chạy native trên trình duyệt và có thể chạy trên server với Node.js. JavaScript không liên quan gì đến Java.
 
-## Cau 2
+## Câu 2
 
 [TYPE: MULTIPLE_CHOICE]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 console.log(typeof null);
@@ -28,26 +28,26 @@ console.log(typeof null);
 - [ ] "undefined"
 - [ ] "boolean"
 
-> **Giai thich:** Day la mot bug lich su cua JavaScript tu phien ban dau tien. `typeof null` tra ve "object" thay vi "null". De kiem tra null, dung `value === null`.
+> **Giải thích:** Đây là một bug lịch sử của JavaScript từ phiên bản đầu tiên. `typeof null` trả về "object" thay vì "null". Để kiểm tra null, dùng `value === null`.
 
-## Cau 3
+## Câu 3
 
 [TYPE: MULTIPLE_CHOICE]
 
-Su khac biet chinh giua `let` va `var` la gi?
+Sự khác biệt chính giữa `let` và `var` là gì?
 
-- [ ] `let` nhanh hon `var`
-- [ ] `var` khong the gan lai gia tri
-- [x] `let` co block scope, `var` co function scope
-- [ ] `let` chi dung duoc trong ham
+- [ ] `let` nhanh hơn `var`
+- [ ] `var` không thể gán lại giá trị
+- [x] `let` có block scope, `var` có function scope
+- [ ] `let` chỉ dùng được trong hàm
 
-> **Giai thich:** `let` va `const` co block scope (chi ton tai trong `{}`), trong khi `var` co function scope. `var` con duoc hoisted voi gia tri undefined, con `let` nam trong Temporal Dead Zone (TDZ).
+> **Giải thích:** `let` và `const` có block scope (chỉ tồn tại trong `{}`), trong khi `var` có function scope. `var` còn được hoisted với giá trị undefined, còn `let` nằm trong Temporal Dead Zone (TDZ).
 
-## Cau 4
+## Câu 4
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 console.log(1 + "2" + 3);
@@ -58,24 +58,24 @@ console.log(1 + "2" + 3);
 - [x] "123"
 - [ ] 123
 
-> **Giai thich:** Khi gap toan tu `+` voi mot string, JavaScript se chuyen doi sang string va noi chuoi. `1 + "2"` = `"12"` (number + string = string), roi `"12" + 3` = `"123"`.
+> **Giải thích:** Khi gặp toán tử `+` với một string, JavaScript sẽ chuyển đổi sang string và nối chuỗi. `1 + "2"` = `"12"` (number + string = string), rồi `"12" + 3` = `"123"`.
 
-## Cau 5
+## Câu 5
 
 [TYPE: TRUE_FALSE]
 
-Menh de: "Arrow function co `this` rieng cua no."
+Mệnh đề: "Arrow function có `this` riêng của nó."
 
-- [ ] Dung
+- [ ] Đúng
 - [x] Sai
 
-> **Giai thich:** Arrow function KHONG co `this` rieng. No ke thua `this` tu scope cha (lexical this). Day la mot trong nhung khac biet quan trong nhat giua arrow function va regular function.
+> **Giải thích:** Arrow function KHÔNG có `this` riêng. Nó kế thừa `this` từ scope cha (lexical this). Đây là một trong những khác biệt quan trọng nhất giữa arrow function và regular function.
 
-## Cau 6
+## Câu 6
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 console.log([] == false);
@@ -87,26 +87,26 @@ console.log([] === false);
 - [ ] false, false
 - [ ] false, true
 
-> **Giai thich:** Voi `==` (so sanh long), `[]` duoc chuyen thanh `""` roi thanh `0`, `false` cung thanh `0`, nen `0 == 0` la `true`. Voi `===` (so sanh nghiem ngat), khong co type coercion, nen `[]` (object) !== `false` (boolean).
+> **Giải thích:** Với `==` (so sánh lỏng), `[]` được chuyển thành `""` rồi thành `0`, `false` cũng thành `0`, nên `0 == 0` là `true`. Với `===` (so sánh nghiêm ngặt), không có type coercion, nên `[]` (object) !== `false` (boolean).
 
-## Cau 7
+## Câu 7
 
 [TYPE: MULTIPLE_CHOICE]
 
-Phuong thuc nao KHONG lam thay doi mang goc?
+Phương thức nào KHÔNG làm thay đổi mảng gốc?
 
 - [ ] `push()`
 - [ ] `splice()`
 - [x] `map()`
 - [ ] `sort()`
 
-> **Giai thich:** `map()` tra ve mot mang moi ma khong thay doi mang goc. `push()`, `splice()`, `sort()` deu la mutating methods - chung thay doi mang goc truc tiep.
+> **Giải thích:** `map()` trả về một mảng mới mà không thay đổi mảng gốc. `push()`, `splice()`, `sort()` đều là mutating methods - chúng thay đổi mảng gốc trực tiếp.
 
-## Cau 8
+## Câu 8
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const arr = [1, 2, 3];
@@ -119,26 +119,26 @@ console.log(result);
 - [ ] 10
 - [ ] NaN
 
-> **Giai thich:** `reduce` bat dau voi gia tri khoi tao la `10`, roi cong lan luot: `10 + 1 = 11`, `11 + 2 = 13`, `13 + 3 = 16`.
+> **Giải thích:** `reduce` bắt đầu với giá trị khởi tạo là `10`, rồi cộng lần lượt: `10 + 1 = 11`, `11 + 2 = 13`, `13 + 3 = 16`.
 
-## Cau 9
+## Câu 9
 
 [TYPE: MULTIPLE_CHOICE]
 
-Closure trong JavaScript la gi?
+Closure trong JavaScript là gì?
 
-- [ ] Mot cach de dong trinh duyet
-- [ ] Mot loai vong lap dac biet
-- [x] Mot ham co the truy cap bien tu scope ben ngoai ngay ca khi ham cha da thuc thi xong
-- [ ] Mot ky thuat de xoa bien
+- [ ] Một cách để đóng trình duyệt
+- [ ] Một loại vòng lặp đặc biệt
+- [x] Một hàm có thể truy cập biến từ scope bên ngoài ngay cả khi hàm cha đã thực thi xong
+- [ ] Một kỹ thuật để xóa biến
 
-> **Giai thich:** Closure la mot ham co the "nho" va truy cap cac bien tu lexical scope (scope ben ngoai) ngay ca khi ham ben ngoai da return. Day la mot khai niem co ban va quan trong trong JavaScript.
+> **Giải thích:** Closure là một hàm có thể "nhớ" và truy cập các biến từ lexical scope (scope bên ngoài) ngay cả khi hàm bên ngoài đã return. Đây là một khái niệm cơ bản và quan trọng trong JavaScript.
 
-## Cau 10
+## Câu 10
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 for (var i = 0; i < 3; i++) {
@@ -151,26 +151,26 @@ for (var i = 0; i < 3; i++) {
 - [ ] undefined, undefined, undefined
 - [ ] 0, 0, 0
 
-> **Giai thich:** `var` co function scope, nen chi co 1 bien `i` duy nhat. Khi cac callback cua `setTimeout` chay (sau khi vong lap ket thuc), `i` da bang 3. De fix, dung `let` (block scope) thay cho `var`.
+> **Giải thích:** `var` có function scope, nên chỉ có 1 biến `i` duy nhất. Khi các callback của `setTimeout` chạy (sau khi vòng lặp kết thúc), `i` đã bằng 3. Để fix, dùng `let` (block scope) thay cho `var`.
 
-## Cau 11
+## Câu 11
 
 [TYPE: MULTIPLE_CHOICE]
 
-`===` khac gi voi `==` trong JavaScript?
+`===` khác gì với `==` trong JavaScript?
 
-- [ ] `===` nhanh hon `==`
-- [ ] Khong co su khac biet
-- [x] `===` so sanh ca gia tri va kieu du lieu (khong co type coercion)
-- [ ] `===` chi dung cho string
+- [ ] `===` nhanh hơn `==`
+- [ ] Không có sự khác biệt
+- [x] `===` so sánh cả giá trị và kiểu dữ liệu (không có type coercion)
+- [ ] `===` chỉ dùng cho string
 
-> **Giai thich:** `===` (strict equality) so sanh ca gia tri va kieu du lieu ma khong chuyen doi kieu. `==` (loose equality) se tu dong chuyen doi kieu truoc khi so sanh. Vi du: `"5" == 5` la `true`, nhung `"5" === 5` la `false`.
+> **Giải thích:** `===` (strict equality) so sánh cả giá trị và kiểu dữ liệu mà không chuyển đổi kiểu. `==` (loose equality) sẽ tự động chuyển đổi kiểu trước khi so sánh. Ví dụ: `"5" == 5` là `true`, nhưng `"5" === 5` là `false`.
 
-## Cau 12
+## Câu 12
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const obj = { a: 1, b: 2, c: 3 };
@@ -183,26 +183,26 @@ console.log(rest);
 - [x] { b: 2, c: 3 }
 - [ ] [2, 3]
 
-> **Giai thich:** Rest pattern (`...rest`) trong destructuring thu thap cac thuoc tinh con lai vao mot object moi. `a` da duoc lay rieng, nen `rest` chua `{ b: 2, c: 3 }`.
+> **Giải thích:** Rest pattern (`...rest`) trong destructuring thu thập các thuộc tính còn lại vào một object mới. `a` đã được lấy riêng, nên `rest` chứa `{ b: 2, c: 3 }`.
 
-## Cau 13
+## Câu 13
 
 [TYPE: MULTIPLE_CHOICE]
 
-Promise co bao nhieu trang thai?
+Promise có bao nhiêu trạng thái?
 
-- [ ] 2: Resolved va Rejected
+- [ ] 2: Resolved và Rejected
 - [x] 3: Pending, Fulfilled, Rejected
 - [ ] 4: Pending, Loading, Fulfilled, Rejected
 - [ ] 1: Completed
 
-> **Giai thich:** Promise co 3 trang thai: **Pending** (dang cho), **Fulfilled** (thanh cong - resolved), va **Rejected** (that bai). Khi da chuyen sang fulfilled hoac rejected, Promise khong the thay doi trang thai nua (settled).
+> **Giải thích:** Promise có 3 trạng thái: **Pending** (đang chờ), **Fulfilled** (thành công - resolved), và **Rejected** (thất bại). Khi đã chuyển sang fulfilled hoặc rejected, Promise không thể thay đổi trạng thái nữa (settled).
 
-## Cau 14
+## Câu 14
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 console.log("1");
@@ -216,71 +216,71 @@ console.log("4");
 - [x] 1, 4, 3, 2
 - [ ] 1, 3, 4, 2
 
-> **Giai thich:** Event Loop: (1) Dong bo: "1", "4" chay truoc. (2) Microtask (Promise.then): "3" chay tiep. (3) Macrotask (setTimeout): "2" chay cuoi. Microtask luon duoc xu ly truoc Macrotask.
+> **Giải thích:** Event Loop: (1) Đồng bộ: "1", "4" chạy trước. (2) Microtask (Promise.then): "3" chạy tiếp. (3) Macrotask (setTimeout): "2" chạy cuối. Microtask luôn được xử lý trước Macrotask.
 
-## Cau 15
+## Câu 15
 
 [TYPE: MULTIPLE_CHOICE]
 
-Cach nao dung de tao ban sao sau (deep copy) cua mot object?
+Cách nào dùng để tạo bản sao sâu (deep copy) của một object?
 
 - [ ] `Object.assign({}, obj)`
 - [ ] `{ ...obj }`
 - [x] `structuredClone(obj)`
 - [ ] `obj.clone()`
 
-> **Giai thich:** `Object.assign` va spread operator (`...`) chi tao shallow copy (nested objects van la tham chieu). `structuredClone()` (ES2022) tao deep copy thuc su. `JSON.parse(JSON.stringify(obj))` cung la deep copy nhung co gioi han (khong ho tro Date, Function, Map, Set).
+> **Giải thích:** `Object.assign` và spread operator (`...`) chỉ tạo shallow copy (nested objects vẫn là tham chiếu). `structuredClone()` (ES2022) tạo deep copy thực sự. `JSON.parse(JSON.stringify(obj))` cũng là deep copy nhưng có giới hạn (không hỗ trợ Date, Function, Map, Set).
 
-## Cau 16
+## Câu 16
 
 [TYPE: TRUE_FALSE]
 
-Menh de: "Mang rong `[]` va object rong `{}` deu la falsy values."
+Mệnh đề: "Mảng rỗng `[]` và object rỗng `{}` đều là falsy values."
 
-- [ ] Dung
+- [ ] Đúng
 - [x] Sai
 
-> **Giai thich:** `[]` va `{}` deu la **truthy** values! Chi co 8 gia tri falsy trong JS: `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`. Tat ca object (ke ca mang rong va object rong) deu la truthy.
+> **Giải thích:** `[]` và `{}` đều là **truthy** values! Chỉ có 8 giá trị falsy trong JS: `false`, `0`, `-0`, `0n`, `""`, `null`, `undefined`, `NaN`. Tất cả object (kể cả mảng rỗng và object rỗng) đều là truthy.
 
-## Cau 17
+## Câu 17
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const person = { name: "An" };
 Object.freeze(person);
-person.name = "Binh";
+person.name = "Bình";
 person.age = 25;
 console.log(person);
 ```
 
-- [ ] { name: "Binh", age: 25 }
+- [ ] { name: "Bình", age: 25 }
 - [x] { name: "An" }
 - [ ] Error
-- [ ] { name: "Binh" }
+- [ ] { name: "Bình" }
 
-> **Giai thich:** `Object.freeze()` ngan khong cho thay doi, them, hoac xoa thuoc tinh cua object. Cac phep gan bi bo qua im lang (hoac throw error trong strict mode). Luu y: freeze chi hoat dong o cap dau tien (shallow freeze).
+> **Giải thích:** `Object.freeze()` ngăn không cho thay đổi, thêm, hoặc xóa thuộc tính của object. Các phép gán bị bỏ qua im lặng (hoặc throw error trong strict mode). Lưu ý: freeze chỉ hoạt động ở cấp đầu tiên (shallow freeze).
 
-## Cau 18
+## Câu 18
 
 [TYPE: MULTIPLE_CHOICE]
 
-`async/await` duoc xay dung dua tren co che nao?
+`async/await` được xây dựng dựa trên cơ chế nào?
 
 - [ ] Callback
 - [x] Promise
 - [ ] Observable
 - [ ] Generator
 
-> **Giai thich:** `async/await` la syntactic sugar (cu phap gon) dua tren Promise. Mot `async` function luon tra ve Promise. `await` tam dung thuc thi cho den khi Promise duoc resolve hoac reject.
+> **Giải thích:** `async/await` là syntactic sugar (cú pháp gọn) dựa trên Promise. Một `async` function luôn trả về Promise. `await` tạm dừng thực thi cho đến khi Promise được resolve hoặc reject.
 
-## Cau 19
+## Câu 19
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const arr = [1, 2, 3, 4, 5];
@@ -293,26 +293,26 @@ console.log(result);
 - [x] [30, 40, 50]
 - [ ] [1, 2, 30, 40, 50]
 
-> **Giai thich:** `filter(n => n > 2)` loc ra `[3, 4, 5]`, sau do `map(n => n * 10)` nhan moi phan tu voi 10, tra ve `[30, 40, 50]`.
+> **Giải thích:** `filter(n => n > 2)` lọc ra `[3, 4, 5]`, sau đó `map(n => n * 10)` nhân mỗi phần tử với 10, trả về `[30, 40, 50]`.
 
-## Cau 20
+## Câu 20
 
 [TYPE: MULTIPLE_CHOICE]
 
-Event Delegation la gi?
+Event Delegation là gì?
 
-- [ ] Xoa event listener sau khi su dung
-- [ ] Truyen event tu server xuong client
-- [x] Gan event listener cho element cha de xu ly event cua cac element con
-- [ ] Tao nhieu event listener cho moi element
+- [ ] Xóa event listener sau khi sử dụng
+- [ ] Truyền event từ server xuống client
+- [x] Gán event listener cho element cha để xử lý event của các element con
+- [ ] Tạo nhiều event listener cho mỗi element
 
-> **Giai thich:** Event Delegation la ky thuat gan 1 event listener cho element cha thay vi nhieu listener cho tung element con. No tan dung Event Bubbling - khi event xay ra tren element con, no se "bubble" (noi len) den element cha.
+> **Giải thích:** Event Delegation là kỹ thuật gán 1 event listener cho element cha thay vì nhiều listener cho từng element con. Nó tận dụng Event Bubbling - khi event xảy ra trên element con, nó sẽ "bubble" (nổi lên) đến element cha.
 
-## Cau 21
+## Câu 21
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 console.log(typeof typeof 42);
@@ -323,26 +323,26 @@ console.log(typeof typeof 42);
 - [ ] "typeof"
 - [ ] undefined
 
-> **Giai thich:** `typeof 42` tra ve chuoi `"number"`. Sau do `typeof "number"` tra ve `"string"`. Ket qua cua `typeof` luon la mot string.
+> **Giải thích:** `typeof 42` trả về chuỗi `"number"`. Sau đó `typeof "number"` trả về `"string"`. Kết quả của `typeof` luôn là một string.
 
-## Cau 22
+## Câu 22
 
 [TYPE: MULTIPLE_CHOICE]
 
-Cau nao dung ve `const` trong JavaScript?
+Câu nào đúng về `const` trong JavaScript?
 
-- [ ] Gia tri cua bien `const` khong bao gio thay doi duoc
-- [x] Bien `const` khong the gan lai (re-assign), nhung noi dung cua object/array van co the thay doi
-- [ ] `const` giong het `let` nhung nhanh hon
-- [ ] `const` chi dung cho so va string
+- [ ] Giá trị của biến `const` không bao giờ thay đổi được
+- [x] Biến `const` không thể gán lại (re-assign), nhưng nội dung của object/array vẫn có thể thay đổi
+- [ ] `const` giống hệt `let` nhưng nhanh hơn
+- [ ] `const` chỉ dùng cho số và string
 
-> **Giai thich:** `const` ngan viec gan lai (re-assign) bien, nhung khong ngan viec thay doi noi dung cua object/array. Vi du: `const arr = [1]; arr.push(2);` la hop le, nhung `arr = [3]` se loi.
+> **Giải thích:** `const` ngăn việc gán lại (re-assign) biến, nhưng không ngăn việc thay đổi nội dung của object/array. Ví dụ: `const arr = [1]; arr.push(2);` là hợp lệ, nhưng `arr = [3]` sẽ lỗi.
 
-## Cau 23
+## Câu 23
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const a = {};
@@ -360,26 +360,26 @@ console.log(a[b]);
 - [ ] undefined
 - [ ] Error
 
-> **Giai thich:** Khi dung object lam key, no duoc chuyen thanh string `"[object Object]"`. Ca `b` va `c` deu thanh cung mot key `"[object Object]"`, nen `a[c] = 456` ghi de len `a[b] = 123`. Do do `a[b]` tra ve `456`.
+> **Giải thích:** Khi dùng object làm key, nó được chuyển thành string `"[object Object]"`. Cả `b` và `c` đều thành cùng một key `"[object Object]"`, nên `a[c] = 456` ghi đè lên `a[b] = 123`. Do đó `a[b]` trả về `456`.
 
-## Cau 24
+## Câu 24
 
 [TYPE: MULTIPLE_CHOICE]
 
-Cach nao de kiem tra mot bien la Array?
+Cách nào để kiểm tra một biến là Array?
 
 - [ ] `typeof arr === "array"`
 - [ ] `arr.type === "Array"`
 - [x] `Array.isArray(arr)`
 - [ ] `arr typeof Array`
 
-> **Giai thich:** `typeof []` tra ve `"object"` (khong phai "array"), nen khong dung `typeof` de kiem tra. `Array.isArray()` la cach chuan va dang tin cay nhat. Co the dung `arr instanceof Array` nhung no co van de voi cross-frame/iframe.
+> **Giải thích:** `typeof []` trả về `"object"` (không phải "array"), nên không dùng `typeof` để kiểm tra. `Array.isArray()` là cách chuẩn và đáng tin cậy nhất. Có thể dùng `arr instanceof Array` nhưng nó có vấn đề với cross-frame/iframe.
 
-## Cau 25
+## Câu 25
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 function foo() {
@@ -396,26 +396,26 @@ console.log(foo());
 - [ ] SyntaxError
 - [ ] null
 
-> **Giai thich:** JavaScript tu dong them dau cham phay (ASI - Automatic Semicolon Insertion) sau `return` vi dong tiep theo bat dau tren dong moi. Ham thuc su la `return;` nen tra ve `undefined`. De fix: `return {` phai cung dong voi `return`.
+> **Giải thích:** JavaScript tự động thêm dấu chấm phẩy (ASI - Automatic Semicolon Insertion) sau `return` vì dòng tiếp theo bắt đầu trên dòng mới. Hàm thực sự là `return;` nên trả về `undefined`. Để fix: `return {` phải cùng dòng với `return`.
 
-## Cau 26
+## Câu 26
 
 [TYPE: MULTIPLE_CHOICE]
 
-Nullish Coalescing Operator `??` khac gi voi `||`?
+Nullish Coalescing Operator `??` khác gì với `||`?
 
-- [ ] Khong co su khac biet
-- [ ] `??` chi dung cho so
-- [x] `??` chi kiem tra `null` va `undefined`, con `||` kiem tra tat ca falsy values
-- [ ] `??` la phien ban cu cua `||`
+- [ ] Không có sự khác biệt
+- [ ] `??` chỉ dùng cho số
+- [x] `??` chỉ kiểm tra `null` và `undefined`, còn `||` kiểm tra tất cả falsy values
+- [ ] `??` là phiên bản cũ của `||`
 
-> **Giai thich:** `||` tra ve gia tri ben phai neu ben trai la falsy (0, "", false, null, undefined, NaN). `??` chi tra ve gia tri ben phai khi ben trai la `null` hoac `undefined`. Vi du: `0 || 5` = `5`, nhung `0 ?? 5` = `0`.
+> **Giải thích:** `||` trả về giá trị bên phải nếu bên trái là falsy (0, "", false, null, undefined, NaN). `??` chỉ trả về giá trị bên phải khi bên trái là `null` hoặc `undefined`. Ví dụ: `0 || 5` = `5`, nhưng `0 ?? 5` = `0`.
 
-## Cau 27
+## Câu 27
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const obj = { a: 1, b: 2 };
@@ -428,24 +428,24 @@ console.log(clone);
 - [x] { a: 1, b: 3, c: 4 }
 - [ ] Error
 
-> **Giai thich:** Spread operator (`...obj`) trai cac thuoc tinh cua obj, sau do `b: 3` ghi de gia tri cu cua `b`, va `c: 4` duoc them moi. Thu tu quan trong: thuoc tinh sau se ghi de thuoc tinh truoc neu cung key.
+> **Giải thích:** Spread operator (`...obj`) trải các thuộc tính của obj, sau đó `b: 3` ghi đè giá trị cũ của `b`, và `c: 4` được thêm mới. Thứ tự quan trọng: thuộc tính sau sẽ ghi đè thuộc tính trước nếu cùng key.
 
-## Cau 28
+## Câu 28
 
 [TYPE: TRUE_FALSE]
 
-Menh de: "`NaN === NaN` tra ve `true`."
+Mệnh đề: "`NaN === NaN` trả về `true`."
 
-- [ ] Dung
+- [ ] Đúng
 - [x] Sai
 
-> **Giai thich:** `NaN` la gia tri duy nhat trong JavaScript khong bang chinh no! `NaN === NaN` tra ve `false`. De kiem tra NaN, dung `Number.isNaN(value)` hoac `Object.is(value, NaN)`.
+> **Giải thích:** `NaN` là giá trị duy nhất trong JavaScript không bằng chính nó! `NaN === NaN` trả về `false`. Để kiểm tra NaN, dùng `Number.isNaN(value)` hoặc `Object.is(value, NaN)`.
 
-## Cau 29
+## Câu 29
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 let x = 10;
@@ -459,26 +459,26 @@ console.log(y);
 - [ ] undefined
 - [ ] Error
 
-> **Giai thich:** Primitive values (number, string, boolean,...) duoc truyen theo gia tri (pass by value). Khi `y = x`, gia tri 10 duoc copy sang `y`. Thay doi `x` thanh 20 khong anh huong den `y`.
+> **Giải thích:** Primitive values (number, string, boolean,...) được truyền theo giá trị (pass by value). Khi `y = x`, giá trị 10 được copy sang `y`. Thay đổi `x` thành 20 không ảnh hưởng đến `y`.
 
-## Cau 30
+## Câu 30
 
 [TYPE: MULTIPLE_CHOICE]
 
-Phuong thuc `addEventListener` co uu diem gi so voi `onclick`?
+Phương thức `addEventListener` có ưu điểm gì so với `onclick`?
 
-- [ ] Nhanh hon
-- [ ] De viet hon
-- [x] Co the gan nhieu handler cho cung mot event tren cung element
-- [ ] Ho tro nhieu trinh duyet hon
+- [ ] Nhanh hơn
+- [ ] Dễ viết hơn
+- [x] Có thể gán nhiều handler cho cùng một event trên cùng element
+- [ ] Hỗ trợ nhiều trình duyệt hơn
 
-> **Giai thich:** `addEventListener` cho phep them nhieu handler cho cung mot event, ho tro capturing phase, va co tuy chon nhu `once`, `passive`. `onclick` (DOM property) chi cho phep 1 handler - handler moi se ghi de handler cu.
+> **Giải thích:** `addEventListener` cho phép thêm nhiều handler cho cùng một event, hỗ trợ capturing phase, và có tùy chọn như `once`, `passive`. `onclick` (DOM property) chỉ cho phép 1 handler - handler mới sẽ ghi đè handler cũ.
 
-## Cau 31
+## Câu 31
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 console.log(0.1 + 0.2 === 0.3);
@@ -489,26 +489,26 @@ console.log(0.1 + 0.2 === 0.3);
 - [ ] Error
 - [ ] undefined
 
-> **Giai thich:** Do IEEE 754 floating-point arithmetic, `0.1 + 0.2` = `0.30000000000000004`, khong chinh xac bang `0.3`. De so sanh so thap phan, dung `Math.abs(0.1 + 0.2 - 0.3) < Number.EPSILON` hoac lam viec voi so nguyen (nhan 100).
+> **Giải thích:** Do IEEE 754 floating-point arithmetic, `0.1 + 0.2` = `0.30000000000000004`, không chính xác bằng `0.3`. Để so sánh số thập phân, dùng `Math.abs(0.1 + 0.2 - 0.3) < Number.EPSILON` hoặc làm việc với số nguyên (nhân 100).
 
-## Cau 32
+## Câu 32
 
 [TYPE: MULTIPLE_CHOICE]
 
-Generator function duoc khai bao nhu the nao?
+Generator function được khai báo như thế nào?
 
 - [ ] `function gen() {}`
 - [x] `function* gen() {}`
 - [ ] `async function gen() {}`
 - [ ] `generator function gen() {}`
 
-> **Giai thich:** Generator function duoc khai bao bang `function*` (co dau `*`). Ben trong co the dung tu khoa `yield` de tam dung va tiep tuc thuc thi. Generator tra ve mot iterator khi goi.
+> **Giải thích:** Generator function được khai báo bằng `function*` (có dấu `*`). Bên trong có thể dùng từ khóa `yield` để tạm dừng và tiếp tục thực thi. Generator trả về một iterator khi gọi.
 
-## Cau 33
+## Câu 33
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const arr = [1, 2, 3];
@@ -521,26 +521,26 @@ console.log(arr.length);
 - [x] 11
 - [ ] 10
 
-> **Giai thich:** Khi gan gia tri tai index 10, JavaScript tu dong tang `length` thanh 11. Cac vi tri tu index 3 den 9 la "empty slots" (holes) - chung ton tai nhung khong co gia tri.
+> **Giải thích:** Khi gán giá trị tại index 10, JavaScript tự động tăng `length` thành 11. Các vị trí từ index 3 đến 9 là "empty slots" (holes) - chúng tồn tại nhưng không có giá trị.
 
-## Cau 34
+## Câu 34
 
 [TYPE: MULTIPLE_CHOICE]
 
-`Map` khac gi so voi Object thong thuong?
+`Map` khác gì so với Object thông thường?
 
-- [ ] Map nhanh hon Object
-- [ ] Map chi chua string values
-- [x] Map cho phep key la bat ky kieu du lieu nao, khong chi string/symbol
-- [ ] Map la immutable
+- [ ] Map nhanh hơn Object
+- [ ] Map chỉ chứa string values
+- [x] Map cho phép key là bất kỳ kiểu dữ liệu nào, không chỉ string/symbol
+- [ ] Map là immutable
 
-> **Giai thich:** Khac voi Object (key chi co the la string hoac symbol), Map cho phep key la bat ky kieu nao (object, function, number,...). Map cung dam bao thu tu chen va co property `size` truc tiep.
+> **Giải thích:** Khác với Object (key chỉ có thể là string hoặc symbol), Map cho phép key là bất kỳ kiểu nào (object, function, number,...). Map cũng đảm bảo thứ tự chèn và có property `size` trực tiếp.
 
-## Cau 35
+## Câu 35
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 function test() {
@@ -554,29 +554,29 @@ test();
 
 - [ ] 1, 2
 - [ ] undefined, undefined
-- [x] undefined roi ReferenceError
-- [ ] ReferenceError ngay dong dau
+- [x] undefined rồi ReferenceError
+- [ ] ReferenceError ngay dòng đầu
 
-> **Giai thich:** `var a` duoc hoisted len dau ham voi gia tri `undefined`, nen `console.log(a)` in `undefined`. `let b` cung duoc hoisted nhung nam trong Temporal Dead Zone (TDZ), nen truy cap truoc khi khai bao gay `ReferenceError`.
+> **Giải thích:** `var a` được hoisted lên đầu hàm với giá trị `undefined`, nên `console.log(a)` in `undefined`. `let b` cũng được hoisted nhưng nằm trong Temporal Dead Zone (TDZ), nên truy cập trước khi khai báo gây `ReferenceError`.
 
-## Cau 36
+## Câu 36
 
 [TYPE: MULTIPLE_CHOICE]
 
-Cach nao huy mot Fetch request dang chay?
+Cách nào hủy một Fetch request đang chạy?
 
 - [ ] `fetch.cancel()`
 - [ ] `request.abort()`
-- [x] Su dung `AbortController` va truyen `signal` vao fetch options
-- [ ] Khong the huy Fetch request
+- [x] Sử dụng `AbortController` và truyền `signal` vào fetch options
+- [ ] Không thể hủy Fetch request
 
-> **Giai thich:** Dung `const controller = new AbortController()`, truyen `{ signal: controller.signal }` vao fetch, roi goi `controller.abort()` de huy. Fetch se throw mot `AbortError`.
+> **Giải thích:** Dùng `const controller = new AbortController()`, truyền `{ signal: controller.signal }` vào fetch, rồi gọi `controller.abort()` để hủy. Fetch sẽ throw một `AbortError`.
 
-## Cau 37
+## Câu 37
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const set = new Set([1, 2, 3, 3, 2, 1]);
@@ -588,24 +588,24 @@ console.log(set.size);
 - [ ] 1
 - [ ] Error
 
-> **Giai thich:** `Set` chi luu tru cac gia tri duy nhat (khong trung lap). Tu mang `[1, 2, 3, 3, 2, 1]`, cac gia tri trung se bi loai bo, con lai `{1, 2, 3}` voi `size = 3`.
+> **Giải thích:** `Set` chỉ lưu trữ các giá trị duy nhất (không trùng lặp). Từ mảng `[1, 2, 3, 3, 2, 1]`, các giá trị trùng sẽ bị loại bỏ, còn lại `{1, 2, 3}` với `size = 3`.
 
-## Cau 38
+## Câu 38
 
 [TYPE: TRUE_FALSE]
 
-Menh de: "`forEach()` co the dung `break` hoac `return` de dung vong lap."
+Mệnh đề: "`forEach()` có thể dùng `break` hoặc `return` để dừng vòng lặp."
 
-- [ ] Dung
+- [ ] Đúng
 - [x] Sai
 
-> **Giai thich:** `forEach` KHONG the dung `break` de thoat vong lap. `return` trong forEach chi thoat khoi callback hien tai (tuong tu `continue`), khong dung ham forEach. De dung som, dung `for...of` voi `break`, hoac dung `some()`/`every()`.
+> **Giải thích:** `forEach` KHÔNG thể dùng `break` để thoát vòng lặp. `return` trong forEach chỉ thoát khỏi callback hiện tại (tương tự `continue`), không dừng hàm forEach. Để dừng sớm, dùng `for...of` với `break`, hoặc dùng `some()`/`every()`.
 
-## Cau 39
+## Câu 39
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const user = {
@@ -622,26 +622,26 @@ console.log(user.greet());
 - [ ] Error
 - [ ] "Hello"
 
-> **Giai thich:** Arrow function khong co `this` rieng, no ke thua tu scope cha. O day scope cha la global/module scope, khong phai object `user`. `this.name` la `undefined`. De fix, dung regular function: `greet() { return \`Hello ${this.name}\`; }`.
+> **Giải thích:** Arrow function không có `this` riêng, nó kế thừa từ scope cha. Ở đây scope cha là global/module scope, không phải object `user`. `this.name` là `undefined`. Để fix, dùng regular function: `greet() { return \`Hello ${this.name}\`; }`.
 
-## Cau 40
+## Câu 40
 
 [TYPE: MULTIPLE_CHOICE]
 
-`Symbol` dung de lam gi?
+`Symbol` dùng để làm gì?
 
-- [ ] Tao icon cho web
-- [ ] Ma hoa du lieu
-- [x] Tao gia tri duy nhat (unique) dung lam property key
-- [ ] Khai bao hang so
+- [ ] Tạo icon cho web
+- [ ] Mã hóa dữ liệu
+- [x] Tạo giá trị duy nhất (unique) dùng làm property key
+- [ ] Khai báo hằng số
 
-> **Giai thich:** `Symbol()` tao mot gia tri primitive duy nhat va bat bien. Chinh yeu duoc dung lam property key de tranh xung dot ten, va cung duoc dung cho cac well-known Symbols (Symbol.iterator, Symbol.toPrimitive,...).
+> **Giải thích:** `Symbol()` tạo một giá trị primitive duy nhất và bất biến. Chủ yếu được dùng làm property key để tránh xung đột tên, và cũng được dùng cho các well-known Symbols (Symbol.iterator, Symbol.toPrimitive,...).
 
-## Cau 41
+## Câu 41
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 console.log(+"");
@@ -655,26 +655,26 @@ console.log(+undefined);
 - [ ] NaN, NaN, NaN, NaN
 - [ ] "", true, null, undefined
 
-> **Giai thich:** Unary plus (`+`) chuyen doi sang Number: `+""` = `0`, `+true` = `1`, `+null` = `0`, `+undefined` = `NaN`. Luu y: `null` chuyen thanh `0` nhung `undefined` chuyen thanh `NaN`.
+> **Giải thích:** Unary plus (`+`) chuyển đổi sang Number: `+""` = `0`, `+true` = `1`, `+null` = `0`, `+undefined` = `NaN`. Lưu ý: `null` chuyển thành `0` nhưng `undefined` chuyển thành `NaN`.
 
-## Cau 42
+## Câu 42
 
 [TYPE: MULTIPLE_CHOICE]
 
-`WeakMap` khac gi so voi `Map`?
+`WeakMap` khác gì so với `Map`?
 
-- [ ] WeakMap nhanh hon Map
-- [x] Key cua WeakMap phai la object va co the bi garbage collected
-- [ ] WeakMap co the iterate (duyet)
-- [ ] WeakMap luu tru nhieu du lieu hon
+- [ ] WeakMap nhanh hơn Map
+- [x] Key của WeakMap phải là object và có thể bị garbage collected
+- [ ] WeakMap có thể iterate (duyệt)
+- [ ] WeakMap lưu trữ nhiều dữ liệu hơn
 
-> **Giai thich:** WeakMap chi chap nhan object lam key va giu "weak reference" - key co the bi garbage collected khi khong con tham chieu nao khac. WeakMap khong co `size`, khong the iterate, va khong co method `keys()`/`values()`/`entries()`.
+> **Giải thích:** WeakMap chỉ chấp nhận object làm key và giữ "weak reference" - key có thể bị garbage collected khi không còn tham chiếu nào khác. WeakMap không có `size`, không thể iterate, và không có method `keys()`/`values()`/`entries()`.
 
-## Cau 43
+## Câu 43
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const [a, , b, ...rest] = [1, 2, 3, 4, 5];
@@ -686,26 +686,26 @@ console.log(a, b, rest);
 - [x] 1, 3, [4, 5]
 - [ ] 1, 2, [4, 5]
 
-> **Giai thich:** Destructuring: `a = 1`, bo qua index 1 (gia tri 2), `b = 3`, `...rest` = `[4, 5]`. Dau phay trong bo qua phan tu tai vi tri do.
+> **Giải thích:** Destructuring: `a = 1`, bỏ qua index 1 (giá trị 2), `b = 3`, `...rest` = `[4, 5]`. Dấu phẩy trống bỏ qua phần tử tại vị trí đó.
 
-## Cau 44
+## Câu 44
 
 [TYPE: MULTIPLE_CHOICE]
 
-`Proxy` trong JavaScript dung de lam gi?
+`Proxy` trong JavaScript dùng để làm gì?
 
-- [ ] Ket noi voi proxy server
-- [ ] Bao mat du lieu
-- [x] Chan va tuy chinh cac thao tac tren object (get, set, delete,...)
-- [ ] Tao ban sao cua object
+- [ ] Kết nối với proxy server
+- [ ] Bảo mật dữ liệu
+- [x] Chặn và tùy chỉnh các thao tác trên object (get, set, delete,...)
+- [ ] Tạo bản sao của object
 
-> **Giai thich:** Proxy cho phep dinh nghia cac "trap" (bo chan) cho cac thao tac co ban tren object nhu doc thuoc tinh (get), ghi thuoc tinh (set), xoa (deleteProperty), kiem tra (has), v.v.
+> **Giải thích:** Proxy cho phép định nghĩa các "trap" (bộ chặn) cho các thao tác cơ bản trên object như đọc thuộc tính (get), ghi thuộc tính (set), xóa (deleteProperty), kiểm tra (has), v.v.
 
-## Cau 45
+## Câu 45
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 async function test() {
@@ -719,24 +719,24 @@ console.log(test());
 - [ ] undefined
 - [ ] Error
 
-> **Giai thich:** `async` function luon tra ve mot Promise. Khi `return 42`, no tuong duong `return Promise.resolve(42)`. `console.log` hien thi Promise object. De lay gia tri 42, can dung `await test()` hoac `.then(val => ...)`.
+> **Giải thích:** `async` function luôn trả về một Promise. Khi `return 42`, nó tương đương `return Promise.resolve(42)`. `console.log` hiển thị Promise object. Để lấy giá trị 42, cần dùng `await test()` hoặc `.then(val => ...)`.
 
-## Cau 46
+## Câu 46
 
 [TYPE: TRUE_FALSE]
 
-Menh de: "`Object.keys()` tra ve ca cac thuoc tinh ke thua tu prototype."
+Mệnh đề: "`Object.keys()` trả về cả các thuộc tính kế thừa từ prototype."
 
-- [ ] Dung
+- [ ] Đúng
 - [x] Sai
 
-> **Giai thich:** `Object.keys()` chi tra ve cac own enumerable string properties cua object, KHONG bao gom thuoc tinh ke thua tu prototype. De lay ca thuoc tinh ke thua, dung `for...in` loop.
+> **Giải thích:** `Object.keys()` chỉ trả về các own enumerable string properties của object, KHÔNG bao gồm thuộc tính kế thừa từ prototype. Để lấy cả thuộc tính kế thừa, dùng `for...in` loop.
 
-## Cau 47
+## Câu 47
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const nums = [10, 5, 20, 1, 100];
@@ -748,26 +748,26 @@ console.log(nums.sort());
 - [ ] [100, 20, 10, 5, 1]
 - [ ] Error
 
-> **Giai thich:** `sort()` mac dinh sap xep theo thu tu tu dien (string). So duoc chuyen sang string roi so sanh: "1" < "10" < "100" < "20" < "5". De sap xep so dung: `nums.sort((a, b) => a - b)`.
+> **Giải thích:** `sort()` mặc định sắp xếp theo thứ tự từ điển (string). Số được chuyển sang string rồi so sánh: "1" < "10" < "100" < "20" < "5". Để sắp xếp số đúng: `nums.sort((a, b) => a - b)`.
 
-## Cau 48
+## Câu 48
 
 [TYPE: MULTIPLE_CHOICE]
 
-Optional Chaining (`?.`) hoat dong nhu the nao?
+Optional Chaining (`?.`) hoạt động như thế nào?
 
-- [ ] Throw error neu thuoc tinh khong ton tai
-- [x] Tra ve `undefined` thay vi throw error khi truy cap thuoc tinh cua null/undefined
-- [ ] Tao thuoc tinh moi neu chua ton tai
-- [ ] Chi dung duoc voi object, khong dung voi array
+- [ ] Throw error nếu thuộc tính không tồn tại
+- [x] Trả về `undefined` thay vì throw error khi truy cập thuộc tính của null/undefined
+- [ ] Tạo thuộc tính mới nếu chưa tồn tại
+- [ ] Chỉ dùng được với object, không dùng với array
 
-> **Giai thich:** Optional Chaining (`?.`) kiem tra xem gia tri truoc no co phai null/undefined khong. Neu co, tra ve `undefined` ngay ma khong tiep tuc truy cap. Co the dung voi properties (`?.`), methods (`?.()`), va array index (`?.[]`).
+> **Giải thích:** Optional Chaining (`?.`) kiểm tra xem giá trị trước nó có phải null/undefined không. Nếu có, trả về `undefined` ngay mà không tiếp tục truy cập. Có thể dùng với properties (`?.`), methods (`?.()`), và array index (`?.[]`).
 
-## Cau 49
+## Câu 49
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 function* gen() {
@@ -785,13 +785,13 @@ console.log(g.next().value);
 - [ ] undefined, undefined
 - [ ] Error
 
-> **Giai thich:** Generator function tam dung tai moi `yield`. Lan `next()` dau tra ve `{ value: 1, done: false }`, lan thu hai tra ve `{ value: 2, done: false }`. Moi lan goi `next()`, generator tiep tuc tu vi tri yield truoc do.
+> **Giải thích:** Generator function tạm dừng tại mỗi `yield`. Lần `next()` đầu trả về `{ value: 1, done: false }`, lần thứ hai trả về `{ value: 2, done: false }`. Mỗi lần gọi `next()`, generator tiếp tục từ vị trí yield trước đó.
 
-## Cau 50
+## Câu 50
 
 [TYPE: SELECT_RESULT]
 
-Dau ra cua doan code sau la gi?
+Đầu ra của đoạn code sau là gì?
 
 ```javascript
 const promise1 = Promise.resolve("A");
@@ -808,6 +808,6 @@ Promise.allSettled([promise1, promise2, promise3])
 - [ ] 2, "fulfilled"
 - [ ] 3, "fulfilled"
 - [x] 3, "rejected"
-- [ ] Error vi promise2 reject
+- [ ] Error vì promise2 reject
 
-> **Giai thich:** `Promise.allSettled()` cho tat ca promises hoan thanh (khong quan tam thanh cong hay that bai). Ket qua co 3 phan tu. `results[1]` la `{ status: "rejected", reason: "B" }` vi `promise2` bi reject.
+> **Giải thích:** `Promise.allSettled()` chờ tất cả promises hoàn thành (không quan trọng thành công hay thất bại). Kết quả có 3 phần tử. `results[1]` là `{ status: "rejected", reason: "B" }` vì `promise2` bị reject.

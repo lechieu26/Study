@@ -1,61 +1,61 @@
-# TypeScript - Ly Thuyet Tu Co Ban Den Nang Cao
+# TypeScript - Lý Thuyết Từ Cơ Bản Đến Nâng Cao
 
-## Muc luc
+## Mục lục
 
-1. [Gioi thieu ve TypeScript](#1-gioi-thieu-ve-typescript)
-2. [Cai dat va Cau hinh](#2-cai-dat-va-cau-hinh)
+1. [Giới thiệu về TypeScript](#1-gioi-thieu-ve-typescript)
+2. [Cài đặt và Cấu hình](#2-cai-dat-va-cau-hinh)
 3. [Basic Types](#3-basic-types)
-4. [Interfaces va Type Aliases](#4-interfaces-va-type-aliases)
+4. [Interfaces và Type Aliases](#4-interfaces-va-type-aliases)
 5. [Functions](#5-functions)
 6. [Classes](#6-classes)
 7. [Generics](#7-generics)
 8. [Enums](#8-enums)
-9. [Union va Intersection Types](#9-union-va-intersection-types)
-10. [Type Guards va Narrowing](#10-type-guards-va-narrowing)
+9. [Union và Intersection Types](#9-union-va-intersection-types)
+10. [Type Guards và Narrowing](#10-type-guards-va-narrowing)
 11. [Utility Types](#11-utility-types)
 12. [Advanced Types](#12-advanced-types)
-13. [Modules va Namespaces](#13-modules-va-namespaces)
+13. [Modules và Namespaces](#13-modules-va-namespaces)
 14. [Declaration Files](#14-declaration-files)
 15. [Best Practices](#15-best-practices)
 
 ---
 
-## 1. Gioi thieu ve TypeScript
+## 1. Giới thiệu về TypeScript
 
-### 1.1 TypeScript la gi?
+### 1.1 TypeScript là gì?
 
-TypeScript la **superset cua JavaScript** do Microsoft phat trien. No them **he thong kieu (type system)** vao JavaScript, giup phat hien loi tai thoi diem bien dich (compile-time) thay vi chay (runtime).
+TypeScript là **superset của JavaScript** do Microsoft phát triển. Nó thêm **hệ thống kiểu (type system)** vào JavaScript, giúp phát hiện lỗi tại thời điểm biên dịch (compile-time) thay vì khi chạy (runtime).
 
-### 1.2 Tai sao dung TypeScript?
+### 1.2 Tại sao dùng TypeScript?
 
 | JavaScript | TypeScript |
 |-----------|-----------|
-| Kieu dong (dynamic) | Kieu tinh (static) |
-| Loi phat hien luc runtime | Loi phat hien luc compile |
-| IntelliSense han che | IntelliSense manh me |
-| Kho refactor du an lon | Refactor an toan |
-| Khong co interface | Interface, Generics, Enums |
+| Kiểu động (dynamic) | Kiểu tĩnh (static) |
+| Lỗi phát hiện lúc runtime | Lỗi phát hiện lúc compile |
+| IntelliSense hạn chế | IntelliSense mạnh mẽ |
+| Khó refactor dự án lớn | Refactor an toàn |
+| Không có interface | Interface, Generics, Enums |
 
 ### 1.3 TypeScript Compiler
 
 ```
-TypeScript (.ts) → tsc compiler → JavaScript (.js) → Trinh duyet/Node.js
+TypeScript (.ts) → tsc compiler → JavaScript (.js) → Trình duyệt/Node.js
 ```
 
 ---
 
-## 2. Cai dat va Cau hinh
+## 2. Cài đặt và Cấu hình
 
-### 2.1 Cai dat
+### 2.1 Cài đặt
 
 ```bash
-# Cai dat global
+# Cài đặt global
 npm install -g typescript
 
-# Kiem tra phien ban
+# Kiểm tra phiên bản
 tsc --version
 
-# Cai dat trong project
+# Cài đặt trong project
 npm install --save-dev typescript
 ```
 
@@ -93,7 +93,7 @@ npm install --save-dev typescript
 ```typescript
 // String
 let name: string = "Nguyen Van A";
-let greeting: string = `Xin chao ${name}`;
+let greeting: string = `Xin chào ${name}`;
 
 // Number
 let age: number = 25;
@@ -103,7 +103,7 @@ let hex: number = 0xff;
 // Boolean
 let isActive: boolean = true;
 
-// Null va Undefined
+// Null và Undefined
 let empty: null = null;
 let notDefined: undefined = undefined;
 
@@ -114,41 +114,41 @@ let bigNumber: bigint = 100n;
 let sym: symbol = Symbol("unique");
 ```
 
-### 3.2 Array va Tuple
+### 3.2 Array và Tuple
 
 ```typescript
 // Array
 let numbers: number[] = [1, 2, 3];
-let names: Array<string> = ["An", "Binh", "Chi"];
+let names: Array<string> = ["An", "Bình", "Chi"];
 
-// Tuple - mang co dinh kieu va so luong
+// Tuple - mảng cố định kiểu và số lượng
 let person: [string, number] = ["An", 25];
 let rgb: [number, number, number] = [255, 128, 0];
 
 // Readonly Array
 let readonlyArr: readonly number[] = [1, 2, 3];
-// readonlyArr.push(4); // Loi!
+// readonlyArr.push(4); // Lỗi!
 ```
 
 ### 3.3 Any, Unknown, Never, Void
 
 ```typescript
-// any - tat kieu (TRANH DUNG)
+// any - tắt kiểu (TRÁNH DÙNG)
 let anything: any = "hello";
-anything = 42;    // OK nhung mat an toan kieu
+anything = 42;    // OK nhưng mất an toàn kiểu
 
-// unknown - an toan hon any, phai kiem tra kieu truoc khi dung
+// unknown - an toàn hơn any, phải kiểm tra kiểu trước khi dùng
 let value: unknown = "hello";
 if (typeof value === "string") {
-    console.log(value.toUpperCase()); // OK sau khi kiem tra
+    console.log(value.toUpperCase()); // OK sau khi kiểm tra
 }
 
-// void - ham khong tra ve gi
+// void - hàm không trả về gì
 function log(msg: string): void {
     console.log(msg);
 }
 
-// never - ham khong bao gio ket thuc binh thuong
+// never - hàm không bao giờ kết thúc bình thường
 function throwError(msg: string): never {
     throw new Error(msg);
 }
@@ -158,7 +158,7 @@ function infiniteLoop(): never {
 }
 ```
 
-### 3.4 Object va Type Assertions
+### 3.4 Object và Type Assertions
 
 ```typescript
 // Object type
@@ -167,19 +167,19 @@ let user: { name: string; age: number } = {
     age: 25
 };
 
-// Type Assertion (ep kieu)
+// Type Assertion (ép kiểu)
 let someValue: unknown = "hello world";
 let strLength: number = (someValue as string).length;
-// Hoac: let strLength = (<string>someValue).length;
+// Hoặc: let strLength = (<string>someValue).length;
 
 // Non-null Assertion
 let el: HTMLElement | null = document.getElementById("app");
-el!.innerHTML = "Hello"; // ! khang dinh khong null (can than!)
+el!.innerHTML = "Hello"; // ! khẳng định không null (cẩn thận!)
 ```
 
 ---
 
-## 4. Interfaces va Type Aliases
+## 4. Interfaces và Type Aliases
 
 ### 4.1 Interface
 
@@ -189,10 +189,10 @@ interface User {
     name: string;
     email: string;
     age?: number;                    // Optional
-    readonly createdAt: Date;        // Chi doc
+    readonly createdAt: Date;        // Chỉ đọc
 }
 
-// Ke thua
+// Kế thừa
 interface Admin extends User {
     role: "admin" | "superadmin";
     permissions: string[];
@@ -227,7 +227,7 @@ type ApiResponse<T> = {
     message: string;
 };
 
-// Intersection (ket hop)
+// Intersection (kết hợp)
 type Employee = User & {
     department: string;
     salary: number;
@@ -238,10 +238,10 @@ type Employee = User & {
 
 | Interface | Type |
 |-----------|------|
-| Khai bao lai de merge | Khong the khai bao lai |
-| extends de ke thua | & de ket hop |
-| Tot cho OOP patterns | Tot cho union, tuple, mapped types |
-| De doc hon cho object shape | Linh hoat hon |
+| Khai báo lại để merge | Không thể khai báo lại |
+| extends để kế thừa | & để kết hợp |
+| Tốt cho OOP patterns | Tốt cho union, tuple, mapped types |
+| Dễ đọc hơn cho object shape | Linh hoạt hơn |
 
 ---
 
@@ -250,7 +250,7 @@ type Employee = User & {
 ### 5.1 Function Types
 
 ```typescript
-// Khai bao kieu tham so va tra ve
+// Khai báo kiểu tham số và trả về
 function add(a: number, b: number): number {
     return a + b;
 }
@@ -258,8 +258,8 @@ function add(a: number, b: number): number {
 // Arrow function
 const multiply = (a: number, b: number): number => a * b;
 
-// Optional va Default parameters
-function greet(name: string, greeting: string = "Xin chao"): string {
+// Optional và Default parameters
+function greet(name: string, greeting: string = "Xin chào"): string {
     return `${greeting}, ${name}!`;
 }
 
@@ -291,7 +291,7 @@ format(3.14159);     // "3.14"
 
 ## 6. Classes
 
-### 6.1 Class co ban
+### 6.1 Class cơ bản
 
 ```typescript
 class Animal {
@@ -330,7 +330,7 @@ class Point {
 }
 ```
 
-### 6.2 Ke thua va Abstract
+### 6.2 Kế thừa và Abstract
 
 ```typescript
 abstract class Shape {
@@ -362,7 +362,7 @@ class Rectangle extends Shape {
 }
 ```
 
-### 6.3 Interface voi Class
+### 6.3 Interface với Class
 
 ```typescript
 interface Serializable {
@@ -397,10 +397,10 @@ function identity<T>(value: T): T {
     return value;
 }
 
-identity<string>("hello");  // kieu string
-identity(42);              // TypeScript tu suy ra kieu number
+identity<string>("hello");  // kiểu string
+identity(42);              // TypeScript tự suy ra kiểu number
 
-// Nhieu generic
+// Nhiều generic
 function pair<K, V>(key: K, value: V): [K, V] {
     return [key, value];
 }
@@ -418,9 +418,9 @@ function logLength<T extends HasLength>(item: T): T {
     return item;
 }
 
-logLength("hello");      // OK - string co length
-logLength([1, 2, 3]);   // OK - array co length
-// logLength(42);        // Loi - number khong co length
+logLength("hello");      // OK - string có length
+logLength([1, 2, 3]);   // OK - array có length
+// logLength(42);        // Lỗi - number không có length
 
 // keyof constraint
 function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
@@ -428,11 +428,11 @@ function getProperty<T, K extends keyof T>(obj: T, key: K): T[K] {
 }
 
 const user = { name: "An", age: 25 };
-getProperty(user, "name"); // OK, tra ve string
-// getProperty(user, "email"); // Loi! "email" khong phai key cua user
+getProperty(user, "name"); // OK, trả về string
+// getProperty(user, "email"); // Lỗi! "email" không phải key của user
 ```
 
-### 7.3 Generic Classes va Interfaces
+### 7.3 Generic Classes và Interfaces
 
 ```typescript
 interface Repository<T> {
@@ -479,36 +479,36 @@ enum Direction {
     Right = 3
 }
 
-// String Enum (KHUYEN DUNG)
+// String Enum (KHUYÊN DÙNG)
 enum Status {
     Active = "ACTIVE",
     Inactive = "INACTIVE",
     Pending = "PENDING"
 }
 
-// Const Enum (toi uu performance - inline khi compile)
+// Const Enum (tối ưu performance - inline khi compile)
 const enum Color {
     Red = "#ff0000",
     Green = "#00ff00",
     Blue = "#0000ff"
 }
 
-// Su dung
+// Sử dụng
 let dir: Direction = Direction.Up;
 let status: Status = Status.Active;
 
-// Thay the enum bang union type (toi uu hon)
+// Thay thế enum bằng union type (tối ưu hơn)
 type StatusType = "ACTIVE" | "INACTIVE" | "PENDING";
 ```
 
 ---
 
-## 9. Union va Intersection Types
+## 9. Union và Intersection Types
 
 ### 9.1 Union Types
 
 ```typescript
-// Bien co the la nhieu kieu
+// Biến có thể là nhiều kiểu
 type StringOrNumber = string | number;
 
 function format(value: StringOrNumber): string {
@@ -552,15 +552,15 @@ type Product = BaseEntity & {
 
 ---
 
-## 10. Type Guards va Narrowing
+## 10. Type Guards và Narrowing
 
 ```typescript
 // typeof guard
 function process(value: string | number) {
     if (typeof value === "string") {
-        return value.toUpperCase(); // TypeScript biet day la string
+        return value.toUpperCase(); // TypeScript biết đây là string
     }
-    return value * 2;               // TypeScript biet day la number
+    return value * 2;               // TypeScript biết đây là number
 }
 
 // instanceof guard
@@ -608,45 +608,45 @@ interface User {
     age: number;
 }
 
-// Partial - tat ca thuoc tinh thanh optional
+// Partial - tất cả thuộc tính thành optional
 type UpdateUser = Partial<User>;
 // { id?: number; name?: string; email?: string; age?: number }
 
-// Required - tat ca thuoc tinh thanh bat buoc
+// Required - tất cả thuộc tính thành bắt buộc
 type RequiredUser = Required<User>;
 
-// Readonly - tat ca thuoc tinh chi doc
+// Readonly - tất cả thuộc tính chỉ đọc
 type FrozenUser = Readonly<User>;
 
-// Pick - chon mot so thuoc tinh
+// Pick - chọn một số thuộc tính
 type UserPreview = Pick<User, "id" | "name">;
 // { id: number; name: string }
 
-// Omit - bo mot so thuoc tinh
+// Omit - bỏ một số thuộc tính
 type CreateUser = Omit<User, "id">;
 // { name: string; email: string; age: number }
 
-// Record - tao object type tu key va value type
+// Record - tạo object type từ key và value type
 type UserMap = Record<string, User>;
 
-// Exclude - loai kieu khoi union
+// Exclude - loại kiểu khỏi union
 type NotString = Exclude<string | number | boolean, string>;
 // number | boolean
 
-// Extract - lay kieu tu union
+// Extract - lấy kiểu từ union
 type OnlyString = Extract<string | number | boolean, string>;
 // string
 
-// NonNullable - loai null va undefined
+// NonNullable - loại null và undefined
 type SafeValue = NonNullable<string | null | undefined>;
 // string
 
-// ReturnType - lay kieu tra ve cua function
+// ReturnType - lấy kiểu trả về của function
 function getUser() { return { id: 1, name: "An" }; }
 type UserReturn = ReturnType<typeof getUser>;
 // { id: number; name: string }
 
-// Parameters - lay kieu tham so cua function
+// Parameters - lấy kiểu tham số của function
 type GetUserParams = Parameters<typeof getUser>;
 // []
 ```
@@ -666,7 +666,7 @@ type ReadonlyAll<T> = {
     readonly [K in keyof T]: T[K];
 };
 
-// Mapped type voi key remapping
+// Mapped type với key remapping
 type Getters<T> = {
     [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K];
 };
@@ -683,7 +683,7 @@ type IsString<T> = T extends string ? true : false;
 type A = IsString<"hello">; // true
 type B = IsString<42>;       // false
 
-// infer - suy ra kieu ben trong
+// infer - suy ra kiểu bên trong
 type ArrayElement<T> = T extends (infer U)[] ? U : never;
 type Elem = ArrayElement<number[]>; // number
 
@@ -699,12 +699,12 @@ type Handler = `on${Capitalize<EventName>}`;
 // "onClick" | "onScroll" | "onMousemove"
 
 type CSSProperty = `${string}-${string}`;
-// Bat ky string co chua "-"
+// Bất kỳ string có chứa "-"
 ```
 
 ---
 
-## 13. Modules va Namespaces
+## 13. Modules và Namespaces
 
 ### 13.1 ES Modules
 
@@ -731,7 +731,7 @@ import type { User as UserType } from "./user"; // Type-only import
 ### 13.2 Type-only Imports
 
 ```typescript
-// Chi import kieu, khong import runtime code
+// Chỉ import kiểu, không import runtime code
 import type { User } from "./user";
 
 // Inline type import
@@ -745,7 +745,7 @@ import { type User, createUser } from "./user";
 ### 14.1 .d.ts Files
 
 ```typescript
-// types.d.ts - Khai bao kieu cho thu vien JS khong co TypeScript
+// types.d.ts - Khai báo kiểu cho thư viện JS không có TypeScript
 declare module "my-library" {
     export function doSomething(input: string): number;
     export interface Config {
@@ -769,27 +769,27 @@ declare global {
 
 ## 15. Best Practices
 
-1. **Bat `strict: true`** trong tsconfig.json
-2. **Tranh `any`:** Dung `unknown` khi khong biet kieu, roi narrow
-3. **Dung `interface` cho object shapes**, `type` cho union/intersection
-4. **Type-only imports:** Dung `import type` khi chi can kieu
-5. **Enum vs Union:** Uu tien union type (`"a" | "b"`) hon enum
-6. **Discriminated Unions:** Dung cho state management phuc tap
-7. **Utility Types:** Tan dung Partial, Pick, Omit thay vi tao type moi
-8. **Generic constraints:** Luon rang buoc generic (`<T extends ...>`)
-9. **Khong cast vo to:** Tranh `as any` - no pha vo type safety
-10. **Readonly:** Dung `readonly` va `Readonly<T>` cho immutable data
+1. **Bật `strict: true`** trong tsconfig.json
+2. **Tránh `any`:** Dùng `unknown` khi không biết kiểu, rồi narrow
+3. **Dùng `interface` cho object shapes**, `type` cho union/intersection
+4. **Type-only imports:** Dùng `import type` khi chỉ cần kiểu
+5. **Enum vs Union:** Ưu tiên union type (`"a" | "b"`) hơn enum
+6. **Discriminated Unions:** Dùng cho state management phức tạp
+7. **Utility Types:** Tận dụng Partial, Pick, Omit thay vì tạo type mới
+8. **Generic constraints:** Luôn ràng buộc generic (`<T extends ...>`)
+9. **Không cast vô tội vạ:** Tránh `as any` - nó phá vỡ type safety
+10. **Readonly:** Dùng `readonly` và `Readonly<T>` cho immutable data
 
 ---
 
-## Tong ket
+## Tổng kết
 
-TypeScript tang cuong JavaScript voi he thong kieu manh me:
+TypeScript tăng cường JavaScript với hệ thống kiểu mạnh mẽ:
 
-1. **Type Safety:** Phat hien loi som tai compile time
-2. **IntelliSense:** Auto-complete va documentation tot hon
-3. **Generics:** Code tai su dung va type-safe
-4. **Utility Types:** Bien doi kieu de dang (Partial, Pick, Omit, Record)
-5. **Union/Intersection:** Kieu linh hoat va an toan
-6. **Narrowing:** Tu dong thu hep kieu qua type guards
+1. **Type Safety:** Phát hiện lỗi sớm tại compile time
+2. **IntelliSense:** Auto-complete và documentation tốt hơn
+3. **Generics:** Code tái sử dụng và type-safe
+4. **Utility Types:** Biến đổi kiểu dễ dàng (Partial, Pick, Omit, Record)
+5. **Union/Intersection:** Kiểu linh hoạt và an toàn
+6. **Narrowing:** Tự động thu hẹp kiểu qua type guards
 7. **Advanced Types:** Mapped, Conditional, Template Literal types

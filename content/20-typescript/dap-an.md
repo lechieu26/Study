@@ -1,6 +1,6 @@
-# TypeScript - Dap An Bai Tap
+# TypeScript - Đáp Án Bài Tập
 
-## Bai 1: Type-safe Collection
+## Bài 1: Type-safe Collection
 
 ```typescript
 class TypedCollection<T> implements Iterable<T> {
@@ -79,15 +79,15 @@ for (const n of nums) {
 }
 ```
 
-**Giai thich:**
-- Generic `<T>` cho phep collection lam viec voi bat ky kieu nao
-- `map<U>` tra ve `TypedCollection<U>` - kieu moi co the khac kieu goc
-- `toArray()` tra ve `readonly T[]` de ngan viec thay doi tu ben ngoai
-- `[Symbol.iterator]` implement Iterable protocol cho for...of
+**Giải thích:**
+- Generic `<T>` cho phép collection làm việc với bất kỳ kiểu nào.
+- `map<U>` trả về `TypedCollection<U>` - kiểu mới có thể khác kiểu gốc.
+- `toArray()` trả về `readonly T[]` để ngăn việc thay đổi từ bên ngoài.
+- `[Symbol.iterator]` implement Iterable protocol cho for...of.
 
 ---
 
-## Bai 2: API Response Handler
+## Bài 2: API Response Handler
 
 ```typescript
 // Discriminated Union cho Response
@@ -97,7 +97,7 @@ type ApiResponse<T> =
 
 type HttpMethod = "GET" | "POST" | "PUT" | "DELETE";
 
-// Conditional type: body chi khi POST/PUT
+// Conditional type: body chỉ khi POST/PUT
 type RequestConfig<T> = {
     url: string;
     headers?: Record<string, string>;
@@ -106,7 +106,7 @@ type RequestConfig<T> = {
     | { method: "POST" | "PUT"; body: T }
 );
 
-// Utility type lay data tu response
+// Utility type lấy data từ response
 type ExtractData<R> = R extends ApiResponse<infer T>
     ? T extends { success: true } ? T : never
     : never;
@@ -140,11 +140,11 @@ async function fetchData<T>(config: RequestConfig<T>): Promise<ApiResponse<T>> {
     }
 }
 
-// Su dung
+// Sử dụng
 interface User { id: number; name: string; }
 
 async function example() {
-    // GET - khong co body
+    // GET - không có body
     const getResult = await fetchData<User>({
         method: "GET",
         url: "/api/users/1"
@@ -156,21 +156,21 @@ async function example() {
         console.error(getResult.error);    // Type-safe
     }
 
-    // POST - co body
+    // POST - có body
     const postResult = await fetchData<User>({
         method: "POST",
         url: "/api/users",
-        body: { id: 0, name: "New User" } // Body bat buoc
+        body: { id: 0, name: "New User" } // Body bắt buộc
     });
 
-    // Loi compile: GET khong co body
+    // Lỗi compile: GET không có body
     // fetchData<User>({ method: "GET", url: "/", body: {} });
 }
 ```
 
 ---
 
-## Bai 3: Event Emitter Generic
+## Bài 3: Event Emitter Generic
 
 ```typescript
 class EventEmitter<Events extends Record<string, unknown>> {
@@ -222,23 +222,23 @@ interface AppEvents {
 const emitter = new EventEmitter<AppEvents>();
 
 emitter.on("login", (payload) => {
-    // payload tu dong la { userId: string; timestamp: Date }
+    // payload tự động là { userId: string; timestamp: Date }
     console.log(`User ${payload.userId} logged in at ${payload.timestamp}`);
 });
 
 emitter.on("error", (payload) => {
-    // payload tu dong la { code: number; message: string }
+    // payload tự động là { code: number; message: string }
     console.error(`Error ${payload.code}: ${payload.message}`);
 });
 
 emitter.emit("login", { userId: "123", timestamp: new Date() }); // OK
 // emitter.emit("login", { wrong: true }); // Compile error!
-// emitter.emit("unknown", {}); // Compile error! "unknown" khong phai key
+// emitter.emit("unknown", {}); // Compile error! "unknown" không phải key
 ```
 
 ---
 
-## Bai 4: Builder Pattern Generic
+## Bài 4: Builder Pattern Generic
 
 ```typescript
 interface WhereClause<T> {
@@ -334,10 +334,10 @@ console.log(query);
 
 ---
 
-## Bai 5: State Machine voi Types
+## Bài 5: State Machine với Types
 
 ```typescript
-// Dinh nghia trang thai va transitions
+// Định nghĩa trạng thái và transitions
 interface OrderStates {
     draft: { orderId: string };
     pending: { orderId: string; submittedAt: Date };
@@ -347,14 +347,14 @@ interface OrderStates {
     delivered: { orderId: string; deliveredAt: Date };
 }
 
-// Dinh nghia transitions hop le
+// Định nghĩa transitions hợp lệ
 interface OrderTransitions {
     draft: { submit: "pending" };
     pending: { confirm: "confirmed"; cancel: "cancelled" };
     confirmed: { ship: "shipped" };
     shipped: { deliver: "delivered" };
-    cancelled: {};   // Khong co transition nao
-    delivered: {};   // Khong co transition nao
+    cancelled: {};   // Không có transition nào
+    delivered: {};   // Không có transition nào
 }
 
 // Generic State Machine
@@ -416,25 +416,25 @@ class StateMachine<
     }
 }
 
-// Su dung
+// Sử dụng
 const orderMachine = new StateMachine<OrderStates, OrderTransitions>(
     "draft",
     { orderId: "ORD-001" }
 );
 
-// Chuyen trang thai hop le - OK
+// Chuyển trạng thái hợp lệ - OK
 orderMachine.transition("draft", "submit", {
     orderId: "ORD-001",
     submittedAt: new Date()
 });
 
-// Loi COMPILE TIME:
+// Lỗi COMPILE TIME:
 // orderMachine.transition("cancelled", "confirm", { ... });
-// "confirm" khong ton tai trong OrderTransitions["cancelled"]
+// "confirm" không tồn tại trong OrderTransitions["cancelled"]
 ```
 
-**Giai thich:**
-- Discriminated union `OrderStates` dinh nghia data cho moi trang thai
-- `OrderTransitions` map trang thai -> action -> trang thai moi
-- TypeScript en force tai compile time: chi cho phep cac transitions da dinh nghia
-- Goi `transition("cancelled", "confirm")` se bao loi vi "confirm" khong phai key cua `OrderTransitions["cancelled"]` (la `{}`)
+**Giải thích:**
+- Discriminated union `OrderStates` định nghĩa data cho mỗi trạng thái.
+- `OrderTransitions` map trạng thái -> action -> trạng thái mới.
+- TypeScript bắt buộc tại compile time: chỉ cho phép các transitions đã định nghĩa.
+- Gọi `transition("cancelled", "confirm")` sẽ báo lỗi vì "confirm" không phải key của `OrderTransitions["cancelled"]` (là `{}`).

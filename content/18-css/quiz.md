@@ -1,23 +1,23 @@
 # Quiz - CSS
 
-## Cau 1
+## Câu 1
 
 [TYPE: MULTIPLE_CHOICE]
 
-CSS la viet tat cua gi?
+CSS là viết tắt của gì?
 
 - [ ] Computer Style Sheets
 - [x] Cascading Style Sheets
 - [ ] Colorful Style Sheets
 - [ ] Creative Style Sheets
 
-> **Giai thich:** CSS = Cascading Style Sheets. "Cascading" (thac do) mo ta cach cac quy tac CSS duoc ap dung theo thu tu uu tien (specificity, source order).
+> **Giải thích:** CSS = Cascading Style Sheets. "Cascading" (thác đổ) mô tả cách các quy tắc CSS được áp dụng theo thứ tự ưu tiên (specificity, source order).
 
-## Cau 2
+## Câu 2
 
 [TYPE: SELECT_RESULT]
 
-Voi CSS sau, mau cua van ban la gi?
+Với CSS sau, màu của văn bản là gì?
 
 ```css
 p { color: red; }
@@ -34,91 +34,91 @@ p { color: blue; }
 - [x] green
 - [ ] black
 
-> **Giai thich:** Class selector `.text` co specificity (0-1-0) cao hon element selector `p` (0-0-1). Do do `.text { color: green }` thang, bat ke thu tu khai bao.
+> **Giải thích:** Class selector `.text` có specificity (0-1-0) cao hơn element selector `p` (0-0-1). Do đó `.text { color: green }` thắng, bất kể thứ tự khai báo.
 
-## Cau 3
-
-[TYPE: MULTIPLE_CHOICE]
-
-`box-sizing: border-box` co tac dung gi?
-
-- [ ] Them border cho element
-- [ ] Xoa padding cua element
-- [x] Width/height bao gom ca padding va border
-- [ ] Chi ap dung cho block elements
-
-> **Giai thich:** Voi `border-box`, width va height tinh luon padding va border. Vi du: `width: 300px` thi tong chieu rong la 300px (bao gom content + padding + border). Voi `content-box` (mac dinh), 300px chi la content, padding va border cong them.
-
-## Cau 4
+## Câu 3
 
 [TYPE: MULTIPLE_CHOICE]
 
-Dau la cach CAN GIUA mot element ca ngang va doc voi Flexbox?
+`box-sizing: border-box` có tác dụng gì?
+
+- [ ] Thêm border cho element
+- [ ] Xóa padding của element
+- [x] Width/height bao gồm cả padding và border
+- [ ] Chỉ áp dụng cho block elements
+
+> **Giải thích:** Với `border-box`, width và height tính luôn padding và border. Ví dụ: `width: 300px` thì tổng chiều rộng là 300px (bao gồm content + padding + border). Với `content-box` (mặc định), 300px chỉ là content, padding và border cộng thêm.
+
+## Câu 4
+
+[TYPE: MULTIPLE_CHOICE]
+
+Đâu là cách CĂN GIỮA một element cả ngang và dọc với Flexbox?
 
 - [ ] `display: flex; align-items: center;`
 - [ ] `display: flex; justify-content: center;`
 - [x] `display: flex; justify-content: center; align-items: center;`
 - [ ] `display: flex; text-align: center;`
 
-> **Giai thich:** `justify-content: center` can giua theo truc chinh (main axis, mac dinh la ngang). `align-items: center` can giua theo truc phu (cross axis, mac dinh la doc). Can ca hai de can giua hoan toan.
+> **Giải thích:** `justify-content: center` căn giữa theo trục chính (main axis, mặc định là ngang). `align-items: center` căn giữa theo trục phụ (cross axis, mặc định là dọc). Cần cả hai để căn giữa hoàn toàn.
 
-## Cau 5
-
-[TYPE: MULTIPLE_CHOICE]
-
-Su khac biet giua `display: none` va `visibility: hidden`?
-
-- [x] `display: none` xoa khoi layout, `visibility: hidden` van chiem khong gian
-- [ ] Khong co su khac biet
-- [ ] `visibility: hidden` xoa khoi layout, `display: none` van chiem khong gian
-- [ ] `display: none` chi an tren mobile
-
-> **Giai thich:** `display: none` xoa element khoi document flow, khong chiem khong gian. `visibility: hidden` an element nhung VAN giu cho trong layout. `opacity: 0` cung an nhung van chiem cho va co the tuong tac (click).
-
-## Cau 6
+## Câu 5
 
 [TYPE: MULTIPLE_CHOICE]
 
-`position: sticky` hoat dong nhu the nao?
+Sự khác biệt giữa `display: none` và `visibility: hidden`?
 
-- [ ] Giong `position: fixed`
-- [ ] Giong `position: absolute`
-- [x] Hoat dong nhu `relative` cho den khi scroll den nguong, roi chuyen thanh `fixed`
-- [ ] Chi hoat dong trong Flexbox
+- [x] `display: none` xóa khỏi layout, `visibility: hidden` vẫn chiếm không gian
+- [ ] Không có sự khác biệt
+- [ ] `visibility: hidden` xóa khỏi layout, `display: none` vẫn chiếm không gian
+- [ ] `display: none` chỉ ẩn trên mobile
 
-> **Giai thich:** `position: sticky` ket hop relative va fixed. Element o vi tri binh thuong (relative) cho den khi nguoi dung scroll den nguong (vd: `top: 0`), luc do no "dinh" lai nhu fixed. Can co `top/bottom/left/right` va parent khong co `overflow: hidden`.
+> **Giải thích:** `display: none` xóa element khỏi document flow, không chiếm không gian. `visibility: hidden` ẩn element nhưng VẪN giữ chỗ trong layout. `opacity: 0` cũng ẩn nhưng vẫn chiếm chỗ và có thể tương tác (click).
 
-## Cau 7
+## Câu 6
 
 [TYPE: MULTIPLE_CHOICE]
 
-CSS Specificity dung nhat la gi?
+`position: sticky` hoạt động như thế nào?
+
+- [ ] Giống `position: fixed`
+- [ ] Giống `position: absolute`
+- [x] Hoạt động như `relative` cho đến khi scroll đến ngưỡng, rồi chuyển thành `fixed`
+- [ ] Chỉ hoạt động trong Flexbox
+
+> **Giải thích:** `position: sticky` kết hợp relative và fixed. Element ở vị trí bình thường (relative) cho đến khi người dùng scroll đến ngưỡng (vd: `top: 0`), lúc đó no "dính" lại như fixed. Cần có `top/bottom/left/right` và parent không có `overflow: hidden`.
+
+## Câu 7
+
+[TYPE: MULTIPLE_CHOICE]
+
+CSS Specificity đúng nhất là gì?
 
 - [ ] ID > Class > Inline style > Element
 - [x] !important > Inline style > ID > Class > Element
 - [ ] Class > ID > Element > Inline style
 - [ ] Element > Class > ID > Inline style
 
-> **Giai thich:** Thu tu uu tien: `!important` (cao nhat) > Inline style (thuoc tinh style="") > ID selector (#id) > Class/Attribute/Pseudo-class (.class, [attr], :hover) > Element/Pseudo-element (p, ::before). Khi cung specificity, khai bao SAU se thang.
+> **Giải thích:** Thứ tự ưu tiên: `!important` (cao nhất) > Inline style (thuộc tính style="") > ID selector (#id) > Class/Attribute/Pseudo-class (.class, [attr], :hover) > Element/Pseudo-element (p, ::before). Khi cùng specificity, khai báo SAU sẽ thắng.
 
-## Cau 8
+## Câu 8
 
 [TYPE: MULTIPLE_CHOICE]
 
-Khi nao nen dung CSS Grid thay vi Flexbox?
+Khi nào nên dùng CSS Grid thay vì Flexbox?
 
-- [ ] Khi can layout 1 chieu
-- [x] Khi can layout 2 chieu (dong va cot cung luc)
-- [ ] Khi can animation
-- [ ] Grid da thay the hoan toan Flexbox
+- [ ] Khi cần layout 1 chiều
+- [x] Khi cần layout 2 chiều (dòng và cột cùng lúc)
+- [ ] Khi cần animation
+- [ ] Grid đã thay thế hoàn toàn Flexbox
 
-> **Giai thich:** CSS Grid ly tuong cho layout 2 chieu (dinh nghia ca dong va cot). Flexbox tot cho layout 1 chieu (row HOAC column). Trong thuc te, chung thuong duoc ket hop: Grid cho page layout, Flexbox cho component layout.
+> **Giải thích:** CSS Grid lý tưởng cho layout 2 chiều (định nghĩa cả dòng và cột). Flexbox tốt cho layout 1 chiều (row HOẶC column). Trong thực tế, chúng thường được kết hợp: Grid cho page layout, Flexbox cho component layout.
 
-## Cau 9
+## Câu 9
 
 [TYPE: SELECT_RESULT]
 
-Gia tri cua `--size` trong element `.child` la gi?
+Giá trị của `--size` trong element `.child` là gì?
 
 ```css
 :root { --size: 16px; }
@@ -137,80 +137,80 @@ Gia tri cua `--size` trong element `.child` la gi?
 - [ ] 0px
 - [ ] inherit
 
-> **Giai thich:** CSS Variables ke thua theo DOM tree. `.child` nam trong `.parent`, nen `--size` duoc ke thua tu `.parent` (20px) thay vi `:root` (16px). Gia tri gan nhat trong scope chain se duoc su dung.
+> **Giải thích:** CSS Variables kế thừa theo DOM tree. `.child` nằm trong `.parent`, nên `--size` được kế thừa từ `.parent` (20px) thay vì `:root` (16px). Giá trị gần nhất trong scope chain sẽ được sử dụng.
 
-## Cau 10
-
-[TYPE: MULTIPLE_CHOICE]
-
-`clamp(14px, 2.5vw, 22px)` co y nghia gi?
-
-- [ ] Font size luon la 2.5vw
-- [ ] Font size la 14px hoac 22px
-- [x] Font size la 2.5vw nhung toi thieu 14px va toi da 22px
-- [ ] Font size tang tu 14px den 22px roi dung
-
-> **Giai thich:** `clamp(min, preferred, max)` tra ve gia tri preferred (2.5vw) nhung dam bao khong nho hon min (14px) va khong lon hon max (22px). Day la cach tuyet voi de tao responsive typography ma khong can media queries.
-
-## Cau 11
+## Câu 10
 
 [TYPE: MULTIPLE_CHOICE]
 
-Pseudo-element nao dung de them noi dung TRUOC mot element?
+`clamp(14px, 2.5vw, 22px)` có ý nghĩa gì?
+
+- [ ] Font size luôn là 2.5vw
+- [ ] Font size là 14px hoặc 22px
+- [x] Font size là 2.5vw nhưng tối thiểu 14px và tối đa 22px
+- [ ] Font size tăng từ 14px đến 22px rồi dừng
+
+> **Giải thích:** `clamp(min, preferred, max)` trả về giá trị preferred (2.5vw) nhưng đảm bảo không nhỏ hơn min (14px) và không lớn hơn max (22px). Đây là cách tuyệt vời để tạo responsive typography mà không cần media queries.
+
+## Câu 11
+
+[TYPE: MULTIPLE_CHOICE]
+
+Pseudo-element nào dùng để thêm nội dung TRƯỚC một element?
 
 - [ ] `:before`
 - [x] `::before`
 - [ ] `:first-child`
 - [ ] `::first-line`
 
-> **Giai thich:** `::before` (2 dau hai cham) la pseudo-element them noi dung truoc element. CSS3 quy dinh pseudo-elements dung `::` (2 dau) de phan biet voi pseudo-classes dung `:` (1 dau). Can co `content` property de hoat dong.
+> **Giải thích:** `::before` (2 dấu hai chấm) là pseudo-element thêm nội dung trước element. CSS3 quy định pseudo-elements dùng `::` (2 dấu) để phân biệt với pseudo-classes dùng `:` (1 dấu). Cần có `content` property để hoạt động.
 
-## Cau 12
+## Câu 12
 
 [TYPE: MULTIPLE_CHOICE]
 
-Tai sao nen dung `rem` thay vi `px` cho font-size?
+Tại sao nên dùng `rem` thay vì `px` cho font-size?
 
-- [ ] `rem` nhanh hon `px`
-- [ ] `rem` dep hon `px`
-- [x] `rem` tuong doi voi root font-size, giup accessibility tot hon (nguoi dung co the thay doi font-size trinh duyet)
-- [ ] `px` da bi loai bo trong CSS3
+- [ ] `rem` nhanh hơn `px`
+- [ ] `rem` đẹp hơn `px`
+- [x] `rem` tương đối với root font-size, giúp accessibility tốt hơn (người dùng có thể thay đổi font-size trình duyệt)
+- [ ] `px` đã bị loại bỏ trong CSS3
 
-> **Giai thich:** `rem` (root em) tuong doi voi font-size cua `<html>`. Khi nguoi dung thay doi font-size mac dinh cua trinh duyet (vi du nguoi kem mat tang len 20px), tat ca noi dung dung `rem` se tu dong dieu chinh. `px` co dinh nen khong phan hoi thay doi nay.
+> **Giải thích:** `rem` (root em) tương đối với font-size của `<html>`. Khi người dùng thay đổi font-size mặc định của trình duyệt (ví dụ người kém mắt tăng lên 20px), tất cả nội dung dùng `rem` sẽ tự động điều chỉnh. `px` cố định nên không phản hồi thay đổi này.
 
-## Cau 13
+## Câu 13
 
 [TYPE: TRUE_FALSE]
 
-Margin cua hai block elements ke nhau se cong lai (vi du: margin-bottom 20px + margin-top 30px = 50px).
+Margin của hai block elements kề nhau sẽ cộng lại (ví dụ: margin-bottom 20px + margin-top 30px = 50px).
 
 - [ ] True
 - [x] False
 
-> **Giai thich:** Day la Margin Collapsing. Margin doc (top/bottom) cua hai block elements ke nhau se gop lai, lay gia tri LON HON. Voi margin-bottom 20px + margin-top 30px, khoang cach thuc te la 30px (khong phai 50px). Margin ngang (left/right) KHONG collapse.
+> **Giải thích:** Đây là Margin Collapsing. Margin dọc (top/bottom) của hai block elements kề nhau sẽ gộp lại, lấy giá trị LỚN HƠN. Với margin-bottom 20px + margin-top 30px, khoảng cách thực tế là 30px (không phải 50px). Margin ngang (left/right) KHÔNG collapse.
 
-## Cau 14
+## Câu 14
 
 [TYPE: MULTIPLE_CHOICE]
 
-`z-index` chi hoat dong khi element co thuoc tinh nao?
+`z-index` chỉ hoạt động khi element có thuộc tính nào?
 
-- [x] `position` khac `static` (hoac trong flex/grid container)
+- [x] `position` khác `static` (hoặc trong flex/grid container)
 - [ ] `display: block`
 - [ ] `overflow: hidden`
-- [ ] `z-index` luon hoat dong
+- [ ] `z-index` luôn hoạt động
 
-> **Giai thich:** `z-index` chi co tac dung tren elements co `position: relative/absolute/fixed/sticky` hoac la flex/grid items. Tren element `position: static` (mac dinh), `z-index` bi bo qua.
+> **Giải thích:** `z-index` chỉ có tác dụng trên elements có `position: relative/absolute/fixed/sticky` hoặc là flex/grid items. Trên element `position: static` (mặc định), `z-index` bị bỏ qua.
 
-## Cau 15
+## Câu 15
 
 [TYPE: MULTIPLE_CHOICE]
 
-Cach tot nhat de an noi dung nhung van cho screen reader doc duoc?
+Cách tốt nhất để ẩn nội dung nhưng vẫn cho screen reader đọc được?
 
 - [ ] `display: none`
 - [ ] `visibility: hidden`
 - [ ] `opacity: 0`
 - [x] `position: absolute; width: 1px; height: 1px; clip: rect(0,0,0,0); overflow: hidden;`
 
-> **Giai thich:** `display: none` va `visibility: hidden` deu an khoi screen reader. `opacity: 0` van co the bi click. Ky thuat "visually hidden" (hoac sr-only) dung position absolute voi clip de an thi giac nhung van duoc screen reader doc. Day la pattern pho bien trong accessibility.
+> **Giải thích:** `display: none` và `visibility: hidden` đều ẩn khỏi screen reader. `opacity: 0` vẫn có thể bị click. Kỹ thuật "visually hidden" (hoặc sr-only) dùng position absolute với clip để ẩn thị giác nhưng vẫn được screen reader đọc. Đây là pattern phổ biến trong accessibility.

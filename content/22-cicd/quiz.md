@@ -1,155 +1,155 @@
 # Quiz - CI/CD
 
-## Cau 1
+## Câu 1
 
 [TYPE: MULTIPLE_CHOICE]
 
-CI trong CI/CD la viet tat cua gi?
+CI trong CI/CD là viết tắt của gì?
 
 - [ ] Code Integration
 - [x] Continuous Integration
 - [ ] Complete Installation
 - [ ] Cloud Infrastructure
 
-> **Giai thich:** CI = Continuous Integration - quy trinh tu dong hoa viec build va test code moi khi developer push code. Muc dich la phat hien loi som va dam bao code luon o trang thai co the release.
+> **Giải thích:** CI = Continuous Integration - quy trình tự động hóa việc build và test code mỗi khi developer push code. Mục đích là phát hiện lỗi sớm và đảm bảo code luôn ở trạng thái có thể release.
 
-## Cau 2
-
-[TYPE: MULTIPLE_CHOICE]
-
-Su khac biet giua Continuous Delivery va Continuous Deployment?
-
-- [ ] Giong nhau
-- [x] Delivery can manual approval truoc production, Deployment hoan toan tu dong
-- [ ] Delivery nhanh hon Deployment
-- [ ] Deployment khong can testing
-
-> **Giai thich:** Continuous Delivery: code duoc tu dong build, test, deploy len staging nhung CAN nguoi duyet (manual approval) truoc khi len production. Continuous Deployment: HOAN TOAN tu dong, code da pass tests se duoc deploy len production khong can duyet.
-
-## Cau 3
+## Câu 2
 
 [TYPE: MULTIPLE_CHOICE]
 
-Trong GitHub Actions, `needs: lint` co y nghia gi?
+Sự khác biệt giữa Continuous Delivery và Continuous Deployment?
 
-- [ ] Job nay se chay song song voi lint
-- [x] Job nay CHI chay SAU KHI job lint thanh cong
-- [ ] Job nay thay the job lint
-- [ ] Job nay khong can lint
+- [ ] Giống nhau
+- [x] Delivery cần manual approval trước production, Deployment hoàn toàn tự động
+- [ ] Delivery nhanh hơn Deployment
+- [ ] Deployment không cần testing
 
-> **Giai thich:** `needs` tao dependency giua cac jobs. `needs: lint` nghia la job hien tai se DOI job `lint` hoan thanh THANH CONG truoc khi bat dau. Neu `lint` fail, job nay se bi skip. Day la cach tao pipeline tuan tu.
+> **Giải thích:** Continuous Delivery: code được tự động build, test, deploy lên staging nhưng CẦN người duyệt (manual approval) trước khi lên production. Continuous Deployment: HOÀN TOÀN tự động, code đã pass tests sẽ được deploy lên production không cần duyệt.
 
-## Cau 4
-
-[TYPE: MULTIPLE_CHOICE]
-
-`npm ci` khac `npm install` nhu the nao trong CI?
-
-- [ ] Giong nhau
-- [ ] `npm ci` cham hon
-- [x] `npm ci` cai chinh xac tu lock file, nhanh hon, va xoa node_modules truoc
-- [ ] `npm ci` khong can package.json
-
-> **Giai thich:** `npm ci` (clean install): xoa node_modules, cai chinh xac theo package-lock.json (khong thay doi lock file), nhanh hon. `npm install` co the update lock file va khong dam bao version chinh xac. Trong CI, LUON dung `npm ci` de dam bao reproducibility.
-
-## Cau 5
+## Câu 3
 
 [TYPE: MULTIPLE_CHOICE]
 
-GitHub Secrets duoc su dung de lam gi?
+Trong GitHub Actions, `needs: lint` có ý nghĩa gì?
 
-- [ ] Ma hoa source code
-- [x] Luu tru thong tin nhay cam (API keys, passwords) an toan cho CI/CD
-- [ ] An commit history
-- [ ] Bao ve branches
+- [ ] Job này sẽ chạy song song với lint
+- [x] Job này CHỈ chạy SAU KHI job lint thành công
+- [ ] Job này thay thế job lint
+- [ ] Job này không cần lint
 
-> **Giai thich:** GitHub Secrets luu tru cac gia tri nhay cam (API keys, tokens, passwords) duoc ma hoa. Chung chi co the truy cap trong GitHub Actions workflows qua `${{ secrets.SECRET_NAME }}`. Secrets KHONG hien thi trong logs va KHONG the xem lai gia tri.
+> **Giải thích:** `needs` tạo dependency giữa các jobs. `needs: lint` nghĩa là job hiện tại sẽ ĐỢI job `lint` hoàn thành THÀNH CÔNG trước khi bắt đầu. Nếu `lint` fail, job này sẽ bị skip. Đây là cách tạo pipeline tuần tự.
 
-## Cau 6
-
-[TYPE: MULTIPLE_CHOICE]
-
-Blue-Green Deployment la gi?
-
-- [ ] Deploy mau xanh truoc, mau xanh la sau
-- [x] Chay 2 moi truong giong nhau, chuyen traffic giua chung khi deploy
-- [ ] Deploy 2 lan moi release
-- [ ] Chi deploy vao ban dem
-
-> **Giai thich:** Blue-Green: 2 moi truong production giong nhau (Blue va Green). Mot cai dang serve traffic, cai kia idle. Deploy len moi truong idle, test, roi chuyen traffic. Rollback nhanh: chi can chuyen traffic ve moi truong cu.
-
-## Cau 7
+## Câu 4
 
 [TYPE: MULTIPLE_CHOICE]
 
-Canary Deployment la gi?
+`npm ci` khác `npm install` như thế nào trong CI?
 
-- [ ] Deploy len toan bo server cung luc
-- [ ] Deploy chi cho team noi bo
-- [x] Deploy len mot phan nho users truoc, tang dan neu khong co loi
-- [ ] Deploy vao ban dem khi it traffic
+- [ ] Giống nhau
+- [ ] `npm ci` chậm hơn
+- [x] `npm ci` cài chính xác từ lock file, nhanh hơn, và xóa node_modules trước
+- [ ] `npm ci` không cần package.json
 
-> **Giai thich:** Canary: deploy version moi cho 1-10% users truoc (canary group). Monitor loi va performance. Neu OK, tang dan (10% → 25% → 50% → 100%). Neu co loi, rollback chi anh huong phan nho. Ten "canary" tu chim hoang yen trong ham mo (canh bao som).
+> **Giải thích:** `npm ci` (clean install): xóa node_modules, cài chính xác theo package-lock.json (không thay đổi lock file), nhanh hơn. `npm install` có thể update lock file và không đảm bảo version chính xác. Trong CI, LUÔN dùng `npm ci` để đảm bảo tính nhất quán (reproducibility).
 
-## Cau 8
-
-[TYPE: MULTIPLE_CHOICE]
-
-Matrix strategy trong GitHub Actions dung de lam gi?
-
-- [ ] Ma hoa build output
-- [x] Chay cung pipeline voi nhieu cau hinh khac nhau (VD: nhieu Node versions, nhieu OS)
-- [ ] Tao nhieu repositories
-- [ ] Chia code thanh modules
-
-> **Giai thich:** Matrix strategy chay cung job voi nhieu to hop cau hinh. Vi du: test tren Node 18, 20, 22 x Ubuntu, Windows = 6 jobs song song. Dam bao ung dung hoat dong tren nhieu moi truong ma khong can viet nhieu workflows.
-
-## Cau 9
+## Câu 5
 
 [TYPE: MULTIPLE_CHOICE]
 
-Tại sao nen dat lint/type-check TRUOC unit tests trong pipeline?
+GitHub Secrets được sử dụng để làm gì?
 
-- [ ] Lint nhanh hon nen dat truoc cho dep
-- [x] Lint nhanh, fail som - khong can chay tests nau lon neu code format sai
-- [ ] Lint phai chay truoc vi tests phu thuoc vao no
-- [ ] Khong co ly do, thu tu khong quan trong
+- [ ] Mã hóa source code
+- [x] Lưu trữ thông tin nhạy cảm (API keys, passwords) an toàn cho CI/CD
+- [ ] Ẩn commit history
+- [ ] Bảo vệ branches
 
-> **Giai thich:** Nguyen tac "Fail Fast": dat cac checks nhanh nhat truoc. Lint/format check chi mat vai giay. Neu fail, pipeline dung ngay ma khong mat thoi gian chay tests (co the mat vai phut). Tiet kiem thoi gian va tai nguyen CI runner.
+> **Giải thích:** GitHub Secrets lưu trữ các giá trị nhạy cảm (API keys, tokens, passwords) được mã hóa. Chúng chỉ có thể truy cập trong GitHub Actions workflows qua `${{ secrets.SECRET_NAME }}`. Secrets KHÔNG hiển thị trong logs và KHÔNG thể xem lại giá trị.
 
-## Cau 10
+## Câu 6
+
+[TYPE: MULTIPLE_CHOICE]
+
+Blue-Green Deployment là gì?
+
+- [ ] Deploy màu xanh trước, màu xanh lá sau
+- [x] Chạy 2 môi trường giống nhau, chuyển traffic giữa chúng khi deploy
+- [ ] Deploy 2 lần mỗi release
+- [ ] Chỉ deploy vào ban đêm
+
+> **Giải thích:** Blue-Green: 2 môi trường production giống nhau (Blue và Green). Một cái đang serve traffic, cái kia idle. Deploy lên môi trường idle, test, rồi chuyển traffic. Rollback nhanh: chỉ cần chuyển traffic về môi trường cũ.
+
+## Câu 7
+
+[TYPE: MULTIPLE_CHOICE]
+
+Canary Deployment là gì?
+
+- [ ] Deploy lên toàn bộ server cùng lúc
+- [ ] Deploy chỉ cho team nội bộ
+- [x] Deploy lên một phần nhỏ users trước, tăng dần nếu không có lỗi
+- [ ] Deploy vào ban đêm khi ít traffic
+
+> **Giải thích:** Canary: deploy version mới cho 1-10% users trước (canary group). Monitor lỗi và performance. Nếu OK, tăng dần (10% → 25% → 50% → 100%). Nếu có lỗi, rollback chỉ ảnh hưởng phần nhỏ. Tên "canary" từ chim hoàng yến trong hầm mỏ (cảnh báo sớm).
+
+## Câu 8
+
+[TYPE: MULTIPLE_CHOICE]
+
+Matrix strategy trong GitHub Actions dùng để làm gì?
+
+- [ ] Mã hóa build output
+- [x] Chạy cùng pipeline với nhiều cấu hình khác nhau (VD: nhiều Node versions, nhiều OS)
+- [ ] Tạo nhiều repositories
+- [ ] Chia code thành modules
+
+> **Giải thích:** Matrix strategy chạy cùng job với nhiều tổ hợp cấu hình. Ví dụ: test trên Node 18, 20, 22 x Ubuntu, Windows = 6 jobs song song. Đảm bảo ứng dụng hoạt động trên nhiều môi trường mà không cần viết nhiều workflows.
+
+## Câu 9
+
+[TYPE: MULTIPLE_CHOICE]
+
+Tại sao nên đặt lint/type-check TRƯỚC unit tests trong pipeline?
+
+- [ ] Lint nhanh hơn nên đặt trước cho đẹp
+- [x] Lint nhanh, fail sớm - không cần chạy tests lâu lắc nếu code format sai
+- [ ] Lint phải chạy trước vì tests phụ thuộc vào nó
+- [ ] Không có lý do, thứ tự không quan trọng
+
+> **Giải thích:** Nguyên tắc "Fail Fast": đặt các checks nhanh nhất trước. Lint/format check chỉ mất vài giây. Nếu fail, pipeline dừng ngay mà không mất thời gian chạy tests (có thể mất vài phút). Tiết kiệm thời gian và tài nguyên CI runner.
+
+## Câu 10
 
 [TYPE: TRUE_FALSE]
 
-Trong CI/CD, moi truong Staging nen giong Production nhat co the.
+Trong CI/CD, môi trường Staging nên giống Production nhất có thể.
 
 - [x] True
 - [ ] False
 
-> **Giai thich:** Environment Parity: Staging nen "mirror" Production (cung OS, cung dependencies, cau hinh tuong tu). Dieu nay dam bao test tren Staging phan anh chinh xac hanh vi tren Production. Su khac biet giua environments la nguyen nhan pho bien cua loi "works on staging but fails in production".
+> **Giải thích:** Environment Parity: Staging nên "mirror" Production (cùng OS, cùng dependencies, cấu hình tương tự). Điều này đảm bảo test trên Staging phản ánh chính xác hành vi trên Production. Sự khác biệt giữa environments là nguyên nhân phổ biến của lỗi "works on staging but fails in production".
 
-## Cau 11
+## Câu 11
 
 [TYPE: MULTIPLE_CHOICE]
 
-Artifact trong CI/CD la gi?
+Artifact trong CI/CD là gì?
 
-- [ ] Mot loai bug
-- [x] File/folder output tu build process (VD: compiled code, reports, docker images)
+- [ ] Một loại bug
+- [x] File/folder output từ build process (VD: compiled code, reports, docker images)
 - [ ] Secret key
-- [ ] Ten cua CI server
+- [ ] Tên của CI server
 
-> **Giai thich:** Artifacts la cac file duoc tao ra trong qua trinh build: compiled code (dist/), test reports, coverage reports, Docker images, deployment packages. Chung duoc luu tru va truyen giua cac jobs trong pipeline (vd: job build tao artifact, job deploy su dung artifact do).
+> **Giải thích:** Artifacts là các file được tạo ra trong quá trình build: compiled code (dist/), test reports, coverage reports, Docker images, deployment packages. Chúng được lưu trữ và truyền giữa các jobs trong pipeline (vd: job build tạo artifact, job deploy sử dụng artifact đó).
 
-## Cau 12
+## Câu 12
 
 [TYPE: MULTIPLE_CHOICE]
 
-Infrastructure as Code (IaC) co loi ich gi cho CI/CD?
+Infrastructure as Code (IaC) có lợi ích gì cho CI/CD?
 
-- [ ] Lam code chay nhanh hon
-- [ ] Thay the CI/CD pipeline
-- [x] Quan ly infrastructure bang code, co the version control va tu dong hoa
-- [ ] Chi dung cho frontend
+- [ ] Làm code chạy nhanh hơn
+- [ ] Thay thế CI/CD pipeline
+- [x] Quản lý infrastructure bằng code, có thể version control và tự động hóa
+- [ ] Chỉ dùng cho frontend
 
-> **Giai thich:** IaC (Terraform, CloudFormation, Pulumi) dinh nghia infrastructure bang code thay vi cau hinh thu cong. Loi ich: version control (track changes), reproducibility (tao lai moi truong giong nhau), automation (tich hop vao CI/CD pipeline), consistency (tranh "snowflake servers").
+> **Giải thích:** IaC (Terraform, CloudFormation, Pulumi) định nghĩa infrastructure bằng code thay vì cấu hình thủ công. Lợi ích: version control (track changes), tính nhất quán cao (reproducibility - tạo lại môi trường giống nhau), automation (tích hợp vào CI/CD pipeline), tránh tình trạng "snowflake servers".

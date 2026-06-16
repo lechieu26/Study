@@ -1,75 +1,75 @@
-# CI/CD - Bai Tap
+# CI/CD - Bài Tập
 
-## Bai 1: GitHub Actions CI co ban
-**Do kho: De**
+## Bài 1: GitHub Actions CI cơ bản
+**Độ khó: Dễ**
 
-Tao workflow CI cho mot du an Node.js:
+Tạo workflow CI cho một dự án Node.js:
 
-1. Trigger khi push len main hoac tao PR
-2. Chay tren ubuntu-latest
-3. Cai dat Node.js 20 voi npm cache
-4. Cai dependencies (`npm ci`)
-5. Chay lint (`npm run lint`)
-6. Chay unit tests (`npm test`)
-7. Upload coverage report dang artifact
+1. Trigger khi push lên main hoặc tạo PR
+2. Chạy trên ubuntu-latest
+3. Cài đặt Node.js 20 với npm cache
+4. Cài dependencies (`npm ci`)
+5. Chạy lint (`npm run lint`)
+6. Chạy unit tests (`npm test`)
+7. Upload coverage report dạng artifact
 
 ---
 
-## Bai 2: Multi-stage Pipeline
-**Do kho: Trung binh**
+## Bài 2: Multi-stage Pipeline
+**Độ khó: Trung bình**
 
-Tao pipeline nhieu giai doan:
+Tạo pipeline nhiều giai đoạn:
 
-1. **Job lint:** Chay ESLint va Prettier check
-2. **Job test:** Chay unit tests (can lint pass truoc)
-3. **Job build:** Build ung dung (can test pass truoc)
-4. **Matrix testing:** Test tren Node 18, 20, 22
-5. **Conditional deploy:** Chi deploy khi push len main (khong phai PR)
-6. Su dung caching cho node_modules
+1. **Job lint:** Chạy ESLint và Prettier check
+2. **Job test:** Chạy unit tests (cần lint pass trước)
+3. **Job build:** Build ứng dụng (cần test pass trước)
+4. **Matrix testing:** Test trên Node 18, 20, 22
+5. **Conditional deploy:** Chỉ deploy khi push lên main (không phải PR)
+6. Sử dụng caching cho node_modules
 7. Upload build artifact
 
 ---
 
-## Bai 3: Docker CI/CD Pipeline
-**Do kho: Trung binh**
+## Bài 3: Docker CI/CD Pipeline
+**Độ khó: Trung bình**
 
-Tao pipeline build va push Docker image:
+Tạo pipeline build và push Docker image:
 
-1. Build Docker image tu Dockerfile
-2. Tag image voi: `latest` va git commit SHA
-3. Push len Docker Hub (su dung secrets)
-4. Scan image voi Trivy (security vulnerabilities)
-5. Deploy len staging environment
-6. Chay health check sau deploy
+1. Build Docker image từ Dockerfile
+2. Tag image với: `latest` và git commit SHA
+3. Push lên Docker Hub (sử dụng secrets)
+4. Scan image với Trivy (security vulnerabilities)
+5. Deploy lên staging environment
+6. Chạy health check sau deploy
 
 ---
 
-## Bai 4: Full-Stack CI/CD
-**Do kho: Kho**
+## Bài 4: Full-Stack CI/CD
+**Độ khó: Khó**
 
-Tao CI/CD pipeline cho ung dung full-stack (frontend + backend):
+Tạo CI/CD pipeline cho ứng dụng full-stack (frontend + backend):
 
 1. **Frontend job:** Lint, test, build React app
-2. **Backend job:** Lint, test (voi PostgreSQL service), build Java/Node app
-3. **E2E tests:** Chay Playwright tests tren staging
-4. **Deploy staging:** Tu dong sau khi tests pass
-5. **Deploy production:** Can manual approval (environment protection)
-6. **Notification:** Gui thong bao Slack/Discord khi deploy thanh cong/that bai
-7. **Rollback:** Tu dong rollback neu health check fail
+2. **Backend job:** Lint, test (với PostgreSQL service), build Java/Node app
+3. **E2E tests:** Chạy Playwright tests trên staging
+4. **Deploy staging:** Tự động sau khi tests pass
+5. **Deploy production:** Cần manual approval (environment protection)
+6. **Notification:** Gửi thông báo Slack/Discord khi deploy thành công/thất bại
+7. **Rollback:** Tự động rollback nếu health check fail
 
 ---
 
-## Bai 5: Reusable Workflows
-**Do kho: Kho**
+## Bài 5: Reusable Workflows
+**Độ khó: Khó**
 
-Tao bo reusable workflows va composite actions:
+Tạo bộ reusable workflows và composite actions:
 
-1. Tao **composite action** cho: setup Node + install deps + cache
-2. Tao **reusable workflow** cho: lint + test + build
-3. Tao **reusable workflow** cho: Docker build + push
-4. Goi cac reusable workflows tu main workflow
-5. Tao workflow `release.yml` su dung semantic-release:
-   - Tu dong tang version dua tren conventional commits
-   - Tao GitHub Release voi changelog
-   - Build va push Docker image voi version tag
-6. Tao workflow `scheduled-check.yml` chay hang tuan kiem tra dependencies loi thoi
+1. Tạo **composite action** cho: setup Node + install deps + cache
+2. Tạo **reusable workflow** cho: lint + test + build
+3. Tạo **reusable workflow** cho: Docker build + push
+4. Gọi các reusable workflows từ main workflow
+5. Tạo workflow `release.yml` sử dụng semantic-release:
+   - Tự động tăng version dựa trên conventional commits
+   - Tạo GitHub Release với changelog
+   - Build và push Docker image với version tag
+6. Tạo workflow `scheduled-check.yml` chạy hàng tuần kiểm tra dependencies lỗi thời

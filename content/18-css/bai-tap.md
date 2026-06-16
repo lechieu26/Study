@@ -1,72 +1,72 @@
-# CSS - Bai Tap
+# CSS - Bài Tập
 
-## Bai 1: Card Component
-**Do kho: De**
+## Bài 1: Card Component
+**Độ khó: Dễ**
 
-Tao mot card component voi CSS thuan (khong dung framework):
+Tạo một card component với CSS thuần (không dùng framework):
 
-1. Card co bo goc (border-radius), bong do (box-shadow)
-2. Hinh anh tren cung, chiem toan bo chieu rong
-3. Phan noi dung gom: tieu de, mo ta, gia, nut "Mua ngay"
-4. Hover effect: card nang len (translateY) va bong do lon hon
-5. Nut co transition mau khi hover
-6. Su dung CSS Variables cho mau sac
-
----
-
-## Bai 2: Flexbox Navigation Bar
-**Do kho: De**
-
-Tao thanh navigation responsive voi Flexbox:
-
-1. Logo ben trai, menu items ben phai
-2. Menu items cach deu nhau
-3. Active item co underline va mau khac
-4. Hover effect cho moi menu item
-5. Sticky navigation (dinh o tren khi cuon)
-6. Tren mobile: menu items xep doc (column)
+1. Card có bo góc (border-radius), bóng đổ (box-shadow)
+2. Hình ảnh trên cùng, chiếm toàn bộ chiều rộng
+3. Phần nội dung gồm: tiêu đề, mô tả, giá, nút "Mua ngay"
+4. Hover effect: card nâng lên (translateY) và bóng đổ lớn hơn
+5. Nút có transition màu khi hover
+6. Sử dụng CSS Variables cho màu sắc
 
 ---
 
-## Bai 3: CSS Grid Dashboard
-**Do kho: Trung binh**
+## Bài 2: Flexbox Navigation Bar
+**Độ khó: Dễ**
 
-Tao dashboard layout su dung CSS Grid:
+Tạo thanh navigation responsive với Flexbox:
 
-1. Header chiem toan bo chieu rong
-2. Sidebar ben trai (250px co dinh)
-3. Main content chiem phan con lai
-4. Footer chiem toan bo chieu rong
-5. Main content co 3 stat cards xep theo grid (auto-fill, minmax)
-6. Su dung grid-template-areas
-7. Responsive: Tren mobile, sidebar chuyen thanh full-width tren main content
-
----
-
-## Bai 4: Animation Loading Spinner
-**Do kho: Trung binh**
-
-Tao 3 loai loading spinner chi bang CSS (khong JavaScript):
-
-1. **Spinner tron:** Vong tron quay voi border va animation rotate
-2. **Dots bouncing:** 3 cham nhay len xuong lech pha (animation-delay)
-3. **Progress bar:** Thanh tien trinh chay tu trai sang phai va lap lai
-4. Su dung @keyframes cho moi loai
-5. Moi spinner co the tuy chinh kich thuoc va mau qua CSS Variables
+1. Logo bên trái, menu items bên phải
+2. Menu items cách đều nhau
+3. Active item có underline và màu khác
+4. Hover effect cho mỗi menu item
+5. Sticky navigation (dính ở trên khi cuộn)
+6. Trên mobile: menu items xếp dọc (column)
 
 ---
 
-## Bai 5: Responsive Pricing Table
-**Do kho: Kho**
+## Bài 3: CSS Grid Dashboard
+**Độ khó: Trung bình**
 
-Tao bang gia 3 goi (Basic, Pro, Enterprise) voi CSS nang cao:
+Tạo dashboard layout sử dụng CSS Grid:
 
-1. 3 cards xep ngang, goi "Pro" noi bat hon (scale lon hon, mau khac, badge "Popular")
-2. Hover effect cho moi card (scale, shadow)
-3. Su dung CSS Grid hoac Flexbox
-4. Danh sach tinh nang voi icon check/cross (pseudo-element ::before)
-5. Nut CTA (Call to Action) voi gradient background va hover transition
-6. Responsive: 3 cot -> 1 cot tren mobile
-7. Dark mode toggle su dung CSS Variables (thay doi :root variables)
-8. Su dung clamp() cho font-size responsive
-9. Smooth scroll khi click nut
+1. Header chiếm toàn bộ chiều rộng
+2. Sidebar bên trái (250px cố định)
+3. Main content chiếm phần còn lại
+4. Footer chiếm toàn bộ chiều rộng
+5. Main content có 3 stat cards xếp theo grid (auto-fill, minmax)
+6. Sử dụng grid-template-areas
+7. Responsive: Trên mobile, sidebar chuyển thành full-width trên main content
+
+---
+
+## Bài 4: Animation Loading Spinner
+**Độ khó: Trung bình**
+
+Tạo 3 loại loading spinner chỉ bằng CSS (không JavaScript):
+
+1. **Spinner tròn:** Vòng tròn quay với border và animation rotate
+2. **Dots bouncing:** 3 chấm nhảy lên xuống lệch pha (animation-delay)
+3. **Progress bar:** Thanh tiến trình chạy từ trái sang phải và lặp lại
+4. Sử dụng @keyframes cho mỗi loại
+5. Mỗi spinner có thể tùy chỉnh kích thước và màu qua CSS Variables
+
+---
+
+## Bài 5: Responsive Pricing Table
+**Độ khó: Khó**
+
+Tạo bảng giá 3 gói (Basic, Pro, Enterprise) với CSS nâng cao:
+
+1. 3 cards xếp ngang, gói "Pro" nổi bật hơn (scale lớn hơn, màu khác, badge "Popular")
+2. Hover effect cho mỗi card (scale, shadow)
+3. Sử dụng CSS Grid hoặc Flexbox
+4. Danh sách tính năng với icon check/cross (pseudo-element ::before)
+5. Nút CTA (Call to Action) với gradient background và hover transition
+6. Responsive: 3 cột -> 1 cột trên mobile
+7. Dark mode toggle sử dụng CSS Variables (thay đổi :root variables)
+8. Sử dụng clamp() cho font-size responsive
+9. Smooth scroll khi click nút

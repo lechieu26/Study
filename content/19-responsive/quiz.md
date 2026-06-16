@@ -1,49 +1,49 @@
 # Quiz - Responsive Web Design
 
-## Cau 1
+## Câu 1
 
 [TYPE: MULTIPLE_CHOICE]
 
-Meta tag viewport nao la CHUAN cho responsive web?
+Meta tag viewport nào là CHUẨN cho responsive web?
 
 - [ ] `<meta name="viewport" content="width=1024">`
 - [x] `<meta name="viewport" content="width=device-width, initial-scale=1.0">`
 - [ ] `<meta name="viewport" content="width=device-width, user-scalable=no">`
 - [ ] `<meta name="responsive" content="true">`
 
-> **Giai thich:** `width=device-width` dat chieu rong viewport bang chieu rong thiet bi, `initial-scale=1.0` dat ty le zoom ban dau. Khong nen dung `user-scalable=no` vi no cam zoom, xau cho accessibility.
+> **Giải thích:** `width=device-width` đặt chiều rộng viewport bằng chiều rộng thiết bị, `initial-scale=1.0` đặt tỷ lệ zoom ban đầu. Không nên dùng `user-scalable=no` vì nó cấm zoom, xấu cho accessibility.
 
-## Cau 2
+## Câu 2
 
 [TYPE: MULTIPLE_CHOICE]
 
-Mobile-First approach su dung media query nao?
+Mobile-First approach sử dụng media query nào?
 
 - [ ] `@media (max-width: 768px)`
 - [x] `@media (min-width: 768px)`
 - [ ] `@media (width: 768px)`
 - [ ] `@media screen`
 
-> **Giai thich:** Mobile-First viet CSS cho mobile truoc (khong can media query), roi dung `min-width` de THEM style cho man hinh LON HON. Desktop-First dung `max-width`. Mobile-First duoc khuyen dung vi code gon hon va performance tot hon tren mobile.
+> **Giải thích:** Mobile-First viết CSS cho mobile trước (không cần media query), rồi dùng `min-width` để THÊM style cho màn hình LỚN HƠN. Desktop-First dùng `max-width`. Mobile-First được khuyến dùng vì code gọn hơn và performance tốt hơn trên mobile.
 
-## Cau 3
+## Câu 3
 
 [TYPE: MULTIPLE_CHOICE]
 
-Thuoc tinh CSS nao giup hinh anh tu dong co gian theo container?
+Thuộc tính CSS nào giúp hình ảnh tự động co giãn theo container?
 
 - [ ] `width: 100%`
 - [ ] `max-width: auto`
 - [x] `max-width: 100%; height: auto;`
 - [ ] `object-fit: contain`
 
-> **Giai thich:** `max-width: 100%` dam bao hinh khong lon hon container. `height: auto` giu ty le goc. `width: 100%` se keo gian hinh lon hon kich thuoc goc. `object-fit` dung cho hinh trong container co kich thuoc co dinh.
+> **Giải thích:** `max-width: 100%` đảm bảo hình không lớn hơn container. `height: auto` giữ tỷ lệ gốc. `width: 100%` sẽ kéo giãn hình lớn hơn kích thước gốc. `object-fit` dùng cho hình trong container có kích thước cố định.
 
-## Cau 4
+## Câu 4
 
 [TYPE: SELECT_RESULT]
 
-Voi CSS Mobile-First sau, tren man hinh 900px rong, grid co bao nhieu cot?
+Với CSS Mobile-First sau, trên màn hình 900px rộng, grid có bao nhiêu cột?
 
 ```css
 .grid { grid-template-columns: 1fr; }
@@ -57,111 +57,111 @@ Voi CSS Mobile-First sau, tren man hinh 900px rong, grid co bao nhieu cot?
 }
 ```
 
-- [ ] 1 cot
-- [x] 2 cot
-- [ ] 3 cot
-- [ ] 4 cot
+- [ ] 1 cột
+- [x] 2 cột
+- [ ] 3 cột
+- [ ] 4 cột
 
-> **Giai thich:** 900px > 768px nen media query `min-width: 768px` duoc kich hoat (2 cot). Nhung 900px < 1024px nen media query thu 2 KHONG duoc kich hoat. Ket qua: 2 cot.
+> **Giải thích:** 900px > 768px nên media query `min-width: 768px` được kích hoạt (2 cột). Nhưng 900px < 1024px nên media query thứ 2 KHÔNG được kích hoạt. Kết quả: 2 cột.
 
-## Cau 5
-
-[TYPE: MULTIPLE_CHOICE]
-
-`clamp(1rem, 2.5vw, 2rem)` co y nghia gi?
-
-- [ ] Font luon la 2.5vw
-- [ ] Font la 1rem tren mobile, 2rem tren desktop
-- [x] Font responsive theo viewport, toi thieu 1rem, toi da 2rem
-- [ ] Font tang tu 1rem den 2rem roi dung
-
-> **Giai thich:** `clamp(min, preferred, max)` tra ve gia tri preferred (2.5vw) nhung khong duoi min (1rem) va khong qua max (2rem). Day la cach tao responsive typography khong can media queries.
-
-## Cau 6
+## Câu 5
 
 [TYPE: MULTIPLE_CHOICE]
 
-Su khac biet giua `auto-fill` va `auto-fit` trong CSS Grid?
+`clamp(1rem, 2.5vw, 2rem)` có ý nghĩa gì?
 
-- [ ] Khong co su khac biet
-- [x] `auto-fill` giu cac track rong, `auto-fit` co cac track hien co de lap day khong gian
-- [ ] `auto-fill` chi dung voi minmax
-- [ ] `auto-fit` nhanh hon `auto-fill`
+- [ ] Font luôn là 2.5vw
+- [ ] Font là 1rem trên mobile, 2rem trên desktop
+- [x] Font responsive theo viewport, tối thiểu 1rem, tối đa 2rem
+- [ ] Font tăng từ 1rem đến 2rem rồi dừng
 
-> **Giai thich:** Khi so items it hon so cot co the: `auto-fill` tao cac track rong (co khong gian thua), `auto-fit` collapse cac track rong va gian cac item de lap day khong gian. Tren thuc te, su khac biet chi ro khi co it items.
+> **Giải thích:** `clamp(min, preferred, max)` trả về giá trị preferred (2.5vw) nhưng không dưới min (1rem) và không quá max (2rem). Đây là cách tạo responsive typography không cần media queries.
 
-## Cau 7
+## Câu 6
 
 [TYPE: MULTIPLE_CHOICE]
 
-Kich thuoc toi thieu cho touch target tren mobile la bao nhieu (theo WCAG)?
+Sự khác biệt giữa `auto-fill` và `auto-fit` trong CSS Grid?
+
+- [ ] Không có sự khác biệt
+- [x] `auto-fill` giữ các track rỗng, `auto-fit` co các track hiện có để lấp đầy không gian
+- [ ] `auto-fill` chỉ dùng với minmax
+- [ ] `auto-fit` nhanh hơn `auto-fill`
+
+> **Giải thích:** Khi số items ít hơn số cột có thể: `auto-fill` tạo các track rỗng (có không gian thừa), `auto-fit` collapse các track rỗng và giãn các item để lấp đầy không gian. Trên thực tế, sự khác biệt chỉ rõ khi có ít items.
+
+## Câu 7
+
+[TYPE: MULTIPLE_CHOICE]
+
+Kích thước tối thiểu cho touch target trên mobile là bao nhiêu (theo WCAG)?
 
 - [ ] 24x24px
 - [ ] 32x32px
 - [x] 44x44px
 - [ ] 64x64px
 
-> **Giai thich:** Theo Apple HIG va WCAG 2.1, touch target toi thieu la 44x44 CSS pixels. Google khuyen 48x48dp. Day dam bao nguoi dung co the bam chinh xac tren man hinh cam ung ma khong bi nham.
+> **Giải thích:** Theo Apple HIG và WCAG 2.1, touch target tối thiểu là 44x44 CSS pixels. Google khuyên 48x48dp. Đây đảm bảo người dùng có thể bấm chính xác trên màn hình cảm ứng mà không bị nhầm.
 
-## Cau 8
-
-[TYPE: MULTIPLE_CHOICE]
-
-Container Queries khac Media Queries o diem nao?
-
-- [ ] Container Queries nhanh hon
-- [x] Container Queries dua tren kich thuoc parent container, Media Queries dua tren viewport
-- [ ] Media Queries da bi thay the boi Container Queries
-- [ ] Container Queries chi dung cho images
-
-> **Giai thich:** Media Queries phan hoi theo kich thuoc **viewport** (man hinh). Container Queries phan hoi theo kich thuoc **parent container**. Dieu nay rat huu ich cho component-level responsive - mot component co the tu dieu chinh du o bat ky vi tri nao tren trang.
-
-## Cau 9
+## Câu 8
 
 [TYPE: MULTIPLE_CHOICE]
 
-Cach nao tot nhat de phuc vu hinh anh khac nhau cho mobile va desktop?
+Container Queries khác Media Queries ở điểm nào?
 
-- [ ] Dung JavaScript de doi src
-- [ ] Dung CSS media queries voi background-image
-- [x] Dung the `<picture>` voi `<source>` va media queries
-- [ ] Dung mot hinh lon cho tat ca
+- [ ] Container Queries nhanh hơn
+- [x] Container Queries dựa trên kích thước parent container, Media Queries dựa trên viewport
+- [ ] Media Queries đã bị thay thế bởi Container Queries
+- [ ] Container Queries chỉ dùng cho images
 
-> **Giai thich:** The `<picture>` voi `<source>` cho phep trinh duyet chon hinh phu hop TRUOC KHI tai. CSS background chi tai sau khi render. JavaScript doi src se tai hinh sai truoc roi moi doi. `<picture>` la giai phap chuan cho art direction responsive images.
+> **Giải thích:** Media Queries phản hồi theo kích thước **viewport** (màn hình). Container Queries phản hồi theo kích thước **parent container**. Điều này rất hữu ích cho component-level responsive - một component có thể tự điều chỉnh dù ở bất kỳ vị trí nào trên trang.
 
-## Cau 10
+## Câu 9
+
+[TYPE: MULTIPLE_CHOICE]
+
+Cách nào tốt nhất để phục vụ hình ảnh khác nhau cho mobile và desktop?
+
+- [ ] Dùng JavaScript để đổi src
+- [ ] Dùng CSS media queries với background-image
+- [x] Dùng thẻ `<picture>` với `<source>` và media queries
+- [ ] Dùng một hình lớn cho tất cả
+
+> **Giải thích:** Thẻ `<picture>` với `<source>` cho phép trình duyệt chọn hình phù hợp TRƯỚC KHI tải. CSS background chỉ tải sau khi render. JavaScript đổi src sẽ tải hình sai trước rồi mới đổi. `<picture>` là giải pháp chuẩn cho art direction responsive images.
+
+## Câu 10
 
 [TYPE: TRUE_FALSE]
 
-Media query `@media (hover: hover)` dung de phat hien thiet bi co ho tro hover (chuot) hay khong.
+Media query `@media (hover: hover)` dùng để phát hiện thiết bị có hỗ trợ hover (chuột) hay không.
 
 - [x] True
 - [ ] False
 
-> **Giai thich:** `@media (hover: hover)` kiem tra thiet bi co primary input ho tro hover khong. Desktop voi chuot = hover: hover. Mobile cam ung = hover: none. Rat huu ich de chi ap dung hover effects tren desktop, tranh UX xau tren mobile.
+> **Giải thích:** `@media (hover: hover)` kiểm tra thiết bị có primary input hỗ trợ hover không. Desktop với chuột = hover: hover. Mobile cảm ứng = hover: none. Rất hữu ích để chỉ áp dụng hover effects trên desktop, tránh UX xấu trên mobile.
 
-## Cau 11
-
-[TYPE: MULTIPLE_CHOICE]
-
-Don vi `svh` (small viewport height) khac `vh` nhu the nao?
-
-- [ ] `svh` nho hon `vh`
-- [x] `svh` tinh viewport KHI thanh dia chi trinh duyet mobile hien thi (viewport nho nhat), `vh` co the thay doi
-- [ ] `svh` la don vi cu, `vh` la don vi moi
-- [ ] Khong co su khac biet
-
-> **Giai thich:** Tren mobile, thanh dia chi trinh duyet co the an/hien khi scroll, lam thay doi chieu cao viewport. `vh` co the khong on dinh. `svh` (small viewport height) luon tinh theo viewport nho nhat (khi address bar hien). `lvh` (large) tinh khi address bar an. `dvh` (dynamic) thay doi theo trang thai hien tai.
-
-## Cau 12
+## Câu 11
 
 [TYPE: MULTIPLE_CHOICE]
 
-Khi nao nen dung `aspect-ratio` trong responsive design?
+Đơn vị `svh` (small viewport height) khác `vh` như thế nào?
 
-- [ ] Chi dung cho video
-- [ ] Chi dung tren desktop
-- [x] Khi can giu ty le chieu rong/cao co dinh cho element responsive
-- [ ] Thay the cho width va height
+- [ ] `svh` nhỏ hơn `vh`
+- [x] `svh` tính viewport KHI thanh địa chỉ trình duyệt mobile hiển thị (viewport nhỏ nhất), `vh` có thể thay đổi
+- [ ] `svh` là đơn vị cũ, `vh` là đơn vị mới
+- [ ] Không có sự khác biệt
 
-> **Giai thich:** `aspect-ratio` giu ty le khi element thay doi kich thuoc. Vi du: `aspect-ratio: 16/9` cho video container, `aspect-ratio: 1/1` cho hinh vuong. Element se tu tinh chieu cao dua tren chieu rong va ty le, rat huu ich cho responsive layout.
+> **Giải thích:** Trên mobile, thanh địa chỉ trình duyệt có thể ẩn/hiện khi scroll, làm thay đổi chiều cao viewport. `vh` có thể không ổn định. `svh` (small viewport height) luôn tính theo viewport nhỏ nhất (khi address bar hiện). `lvh` (large) tính khi address bar ẩn. `dvh` (dynamic) thay đổi theo trạng thái hiện tại.
+
+## Câu 12
+
+[TYPE: MULTIPLE_CHOICE]
+
+Khi nào nên dùng `aspect-ratio` trong responsive design?
+
+- [ ] Chỉ dùng cho video
+- [ ] Chỉ dùng trên desktop
+- [x] Khi cần giữ tỷ lệ chiều rộng/cao cố định cho element responsive
+- [ ] Thay thế cho width và height
+
+> **Giải thích:** `aspect-ratio` giữ tỷ lệ khi element thay đổi kích thước. Ví dụ: `aspect-ratio: 16/9` cho video container, `aspect-ratio: 1/1` cho hình vuông. Element sẽ tự tính chiều cao dựa trên chiều rộng và tỷ lệ, rất hữu ích cho responsive layout.

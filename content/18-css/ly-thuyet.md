@@ -1,54 +1,54 @@
-# CSS - Ly Thuyet Tu Co Ban Den Nang Cao
+# CSS - Lý Thuyết Từ Cơ Bản Đến Nâng Cao
 
-## Muc luc
+## Mục lục
 
-1. [Gioi thieu ve CSS](#1-gioi-thieu-ve-css)
-2. [Cach them CSS vao HTML](#2-cach-them-css-vao-html)
+1. [Giới thiệu về CSS](#1-giới thiệu-về-css)
+2. [Cách thêm CSS vào HTML](#2-cách-thêm-css-vào-html)
 3. [Selectors](#3-selectors)
-4. [Specificity va Cascade](#4-specificity-va-cascade)
+4. [Specificity và Cascade](#4-specificity-và-cascade)
 5. [Box Model](#5-box-model)
 6. [Typography](#6-typography)
-7. [Colors va Backgrounds](#7-colors-va-backgrounds)
-8. [Display va Visibility](#8-display-va-visibility)
+7. [Colors và Backgrounds](#7-colors-và-backgrounds)
+8. [Display và Visibility](#8-display-và-visibility)
 9. [Positioning](#9-positioning)
 10. [Flexbox](#10-flexbox)
 11. [CSS Grid](#11-css-grid)
-12. [Transitions va Animations](#12-transitions-va-animations)
-13. [Pseudo-classes va Pseudo-elements](#13-pseudo-classes-va-pseudo-elements)
+12. [Transitions và Animations](#12-transitions-và-animations)
+13. [Pseudo-classes và Pseudo-elements](#13-pseudo-classes-và-pseudo-elements)
 14. [CSS Variables (Custom Properties)](#14-css-variables-custom-properties)
 15. [CSS Functions](#15-css-functions)
 16. [Best Practices](#16-best-practices)
 
 ---
 
-## 1. Gioi thieu ve CSS
+## 1. Giới thiệu về CSS
 
-### 1.1 CSS la gi?
+### 1.1 CSS là gì?
 
-CSS (Cascading Style Sheets) la ngon ngu dinh kieu dung de mo ta cach trinh bay cua tai lieu HTML. CSS tach biet noi dung (HTML) va trinh bay (CSS), giup trang web dep hon va de bao tri hon.
+CSS (Cascading Style Sheets) là ngôn ngữ định kiểu dùng để mô tả cách trình bày của tài liệu HTML. CSS tách biệt nội dung (HTML) và trình bày (CSS), giúp trang web đẹp hơn và dễ bảo trì hơn.
 
-### 1.2 Lich su phat trien
+### 1.2 Lịch sử phát triển
 
-| Nam | Su kien |
+| Năm | Sự kiện |
 |-----|---------|
 | 1996 | CSS1 - font, color, text, margin, border |
 | 1998 | CSS2 - positioning, z-index, media types |
 | 2011 | CSS3 - modules: Flexbox, Grid, Animations, Variables |
-| 2017 | CSS Grid Layout duoc ho tro rong rai |
+| 2017 | CSS Grid Layout được hỗ trợ rộng rãi |
 | 2022 | Container Queries, :has() pseudo-class |
 | 2024 | Nesting, @scope, Scroll-driven Animations |
 
 ---
 
-## 2. Cach them CSS vao HTML
+## 2. Cách thêm CSS vào HTML
 
-### 2.1 Ba cach them CSS
+### 2.1 Ba cách thêm CSS
 
 ```html
-<!-- 1. Inline CSS - truc tiep tren element -->
-<p style="color: red; font-size: 16px;">Van ban do</p>
+<!-- 1. Inline CSS - trực tiếp trên element -->
+<p style="color: red; font-size: 16px;">Văn bản đỏ</p>
 
-<!-- 2. Internal CSS - trong the <style> -->
+<!-- 2. Internal CSS - trong thẻ <style> -->
 <head>
     <style>
         p { color: blue; }
@@ -56,13 +56,13 @@ CSS (Cascading Style Sheets) la ngon ngu dinh kieu dung de mo ta cach trinh bay 
     </style>
 </head>
 
-<!-- 3. External CSS - file rieng (KHUYEN DUNG) -->
+<!-- 3. External CSS - file riêng (KHUYÊN DÙNG) -->
 <head>
     <link rel="stylesheet" href="styles.css" />
 </head>
 ```
 
-**Thu tu uu tien:** Inline > Internal > External (nhung phu thuoc Specificity)
+**Thứ tự ưu tiên:** Inline > Internal > External (nhưng phụ thuộc Specificity)
 
 ---
 
@@ -87,25 +87,25 @@ h1 { font-size: 2rem; }
 
 /* Attribute Selector */
 input[type="text"] { border: 1px solid #ccc; }
-a[href^="https"] { color: green; }     /* Bat dau bang "https" */
-a[href$=".pdf"] { color: red; }        /* Ket thuc bang ".pdf" */
-a[href*="google"] { font-weight: bold; } /* Chua "google" */
+a[href^="https"] { color: green; }     /* Bắt đầu bằng "https" */
+a[href$=".pdf"] { color: red; }        /* Kết thúc bằng ".pdf" */
+a[href*="google"] { font-weight: bold; } /* Chứa "google" */
 ```
 
 ### 3.2 Combinator Selectors
 
 ```css
-/* Descendant (con chau) */
-div p { color: blue; }           /* Moi <p> ben trong <div> */
+/* Descendant (con cháu) */
+div p { color: blue; }           /* Mọi <p> bên trong <div> */
 
-/* Child (con truc tiep) */
-div > p { color: red; }          /* Chi <p> la con truc tiep cua <div> */
+/* Child (con trực tiếp) */
+div > p { color: red; }          /* Chỉ <p> là con trực tiếp của <div> */
 
-/* Adjacent Sibling (anh em ke) */
+/* Adjacent Sibling (anh em kề) */
 h2 + p { margin-top: 0; }       /* <p> ngay sau <h2> */
 
 /* General Sibling (anh em chung) */
-h2 ~ p { color: gray; }         /* Moi <p> sau <h2> cung cap */
+h2 ~ p { color: gray; }         /* Mọi <p> sau <h2> cùng cấp */
 ```
 
 ### 3.3 Grouping
@@ -119,9 +119,9 @@ h1, h2, h3, h4, h5, h6 {
 
 ---
 
-## 4. Specificity va Cascade
+## 4. Specificity và Cascade
 
-### 4.1 Specificity (Do uu tien)
+### 4.1 Specificity (Độ ưu tiên)
 
 ```
 !important    > Inline style > ID > Class/Attribute/Pseudo-class > Element/Pseudo-element
@@ -141,32 +141,32 @@ p { color: black; }
 /* Specificity: 1-1-1 */
 #intro .text p { color: green; }
 
-/* !important - tranh dung */
+/* !important - tránh dùng */
 p { color: purple !important; }
 ```
 
 ### 4.2 Cascade Order
 
-Khi cung specificity, quy tac sau se ghi de quy tac truoc:
+Khi cùng specificity, quy tắc sau sẽ ghi đè quy tắc trước:
 
 ```css
 p { color: red; }
-p { color: blue; }  /* -> Ket qua: blue (khai bao sau thang) */
+p { color: blue; }  /* -> Kết quả: blue (khai báo sau thắng) */
 ```
 
 ### 4.3 Inheritance
 
 ```css
-/* Mot so thuoc tinh ke thua tu parent */
+/* Một số thuộc tính kế thừa từ parent */
 body {
-    font-family: Arial, sans-serif;  /* Ke thua */
-    color: #333;                     /* Ke thua */
-    border: 1px solid red;           /* KHONG ke thua */
+    font-family: Arial, sans-serif;  /* Kế thừa */
+    color: #333;                     /* Kế thừa */
+    border: 1px solid red;           /* KHÔNG kế thừa */
 }
 
-/* Ep ke thua */
+/* Ép kế thừa */
 .child {
-    border: inherit;  /* Ep ke thua border tu parent */
+    border: inherit;  /* Ép kế thừa border từ parent */
 }
 ```
 
@@ -174,7 +174,7 @@ body {
 
 ## 5. Box Model
 
-### 5.1 Mo hinh hop
+### 5.1 Mô hình hộp
 
 ```
 +------------------------------------------+
@@ -201,30 +201,30 @@ body {
     margin: 10px;
 }
 
-/* Voi content-box (mac dinh):
-   Tong chieu rong = 300 + 20*2 + 2*2 + 10*2 = 364px */
+/* Với content-box (mặc định):
+   Tổng chiều rộng = 300 + 20*2 + 2*2 + 10*2 = 364px */
 
-/* Voi border-box (khuyen dung):
-   Tong chieu rong = 300 + 10*2 = 320px (padding + border nam trong 300px) */
+/* Với border-box (khuyến dùng):
+   Tổng chiều rộng = 300 + 10*2 = 320px (padding + border nằm trong 300px) */
 
 *, *::before, *::after {
-    box-sizing: border-box;  /* LUON SU DUNG */
+    box-sizing: border-box;  /* LUÔN SỬ DỤNG */
 }
 ```
 
 ### 5.2 Margin Collapsing
 
 ```css
-/* Margin tren-duoi cua 2 block elements se gop lai (khong cong) */
+/* Margin trên-dưới của 2 block elements sẽ gộp lại (không cộng) */
 .box1 { margin-bottom: 30px; }
 .box2 { margin-top: 20px; }
-/* Khoang cach thuc te: 30px (lay gia tri lon hon), KHONG PHAI 50px */
+/* Khoảng cách thực tế: 30px (lấy giá trị lớn hơn), KHÔNG PHẢI 50px */
 
-/* Cach tranh margin collapsing: */
+/* Cách tránh margin collapsing: */
 .parent {
-    overflow: hidden;      /* Hoac */
-    display: flow-root;    /* Hoac */
-    padding-top: 1px;      /* Hoac */
+    overflow: hidden;      /* Hoặc */
+    display: flow-root;    /* Hoặc */
+    padding-top: 1px;      /* Hoặc */
     border-top: 1px solid transparent;
 }
 ```
@@ -242,30 +242,30 @@ body {
     font-weight: 400;      /* 100-900, normal=400, bold=700 */
     font-style: italic;    /* normal, italic, oblique */
     line-height: 1.6;      /* 1.4-1.8 cho body text */
-    letter-spacing: 0.5px; /* Khoang cach chu */
+    letter-spacing: 0.5px; /* Khoảng cách chữ */
     word-spacing: 2px;
     text-align: center;    /* left, right, center, justify */
     text-decoration: none; /* underline, overline, line-through */
     text-transform: uppercase; /* lowercase, capitalize, none */
-    text-indent: 2em;      /* Thut dong dau tien */
+    text-indent: 2em;      /* Thụt dòng đầu tiên */
 }
 ```
 
-### 6.2 Don vi do
+### 6.2 Đơn vị đo
 
 ```css
 .units {
     /* Absolute Units */
     width: 300px;          /* Pixels */
-    font-size: 12pt;       /* Points (in an) */
+    font-size: 12pt;       /* Points (in ấn) */
 
     /* Relative Units */
-    font-size: 1.5em;      /* Tuong doi voi font-size parent */
-    font-size: 1.5rem;     /* Tuong doi voi font-size root (html) */
-    width: 50%;            /* Tuong doi voi parent */
+    font-size: 1.5em;      /* Tương đối với font-size parent */
+    font-size: 1.5rem;     /* Tương đối với font-size root (html) */
+    width: 50%;            /* Tương đối với parent */
     width: 50vw;           /* 50% viewport width */
     height: 100vh;         /* 100% viewport height */
-    width: 50vmin;         /* 50% cua chieu nho hon (vw hoac vh) */
+    width: 50vmin;         /* 50% của chiều nhỏ hơn (vw hoặc vh) */
     font-size: clamp(14px, 2vw, 22px);  /* Min, preferred, max */
 }
 ```
@@ -282,7 +282,7 @@ body { font-family: 'Roboto', sans-serif; }
 
 ---
 
-## 7. Colors va Backgrounds
+## 7. Colors và Backgrounds
 
 ### 7.1 Color Values
 
@@ -290,7 +290,7 @@ body { font-family: 'Roboto', sans-serif; }
 .colors {
     color: red;                        /* Named color */
     color: #ff6347;                    /* Hex */
-    color: #f634;                      /* Hex voi alpha */
+    color: #f634;                      /* Hex với alpha */
     color: rgb(255, 99, 71);           /* RGB */
     color: rgba(255, 99, 71, 0.5);     /* RGBA (alpha: 0-1) */
     color: hsl(9, 100%, 64%);          /* HSL (Hue, Saturation, Lightness) */
@@ -321,38 +321,38 @@ body { font-family: 'Roboto', sans-serif; }
 
 ---
 
-## 8. Display va Visibility
+## 8. Display và Visibility
 
 ### 8.1 Display
 
 ```css
-/* Block: chiem toan bo chieu rong, xuong dong */
+/* Block: chiếm toàn bộ chiều rộng, xuống dòng */
 div, p, h1, section { display: block; }
 
-/* Inline: chi chiem vua noi dung, khong xuong dong */
+/* Inline: chỉ chiếm vừa nội dung, không xuống dòng */
 span, a, strong { display: inline; }
 
-/* Inline-block: inline nhung co the set width/height */
+/* Inline-block: inline nhưng có thể set width/height */
 .badge { display: inline-block; width: 100px; height: 30px; }
 
-/* None: an hoan toan, khong chiem khong gian */
+/* None: ẩn hoàn toàn, không chiếm không gian */
 .hidden { display: none; }
 
-/* Flex va Grid */
+/* Flex và Grid */
 .flex-container { display: flex; }
 .grid-container { display: grid; }
 ```
 
-### 8.2 Visibility va Opacity
+### 8.2 Visibility và Opacity
 
 ```css
-/* visibility: hidden - AN nhung VAN chiem khong gian */
+/* visibility: hidden - ẨN nhưng VẪN chiếm không gian */
 .invisible { visibility: hidden; }
 
-/* opacity: 0 - trong suot nhung van chiem khong gian va tuong tac duoc */
+/* opacity: 0 - trong suốt nhưng vẫn chiếm không gian và tương tác được */
 .transparent { opacity: 0; }
 
-/* display: none - AN va KHONG chiem khong gian */
+/* display: none - ẨN và KHÔNG chiếm không gian */
 .gone { display: none; }
 ```
 
@@ -363,26 +363,26 @@ span, a, strong { display: inline; }
 ### 9.1 Position Values
 
 ```css
-/* Static (mac dinh) - theo document flow */
+/* Static (mặc định) - theo document flow */
 .static { position: static; }
 
-/* Relative - dich chuyen tuong doi voi vi tri goc */
+/* Relative - dịch chuyển tương đối với vị trí gốc */
 .relative {
     position: relative;
     top: 10px;
     left: 20px;
-    /* Van chiem khong gian tai vi tri goc */
+    /* Vẫn chiếm không gian tại vị trí gốc */
 }
 
-/* Absolute - thoat khoi flow, dinh vi theo ancestor gan nhat co position != static */
+/* Absolute - thoát khỏi flow, định vị theo ancestor gần nhất có position != static */
 .absolute {
     position: absolute;
     top: 0;
     right: 0;
-    /* Khong chiem khong gian trong flow */
+    /* Không chiếm không gian trong flow */
 }
 
-/* Fixed - dinh vi theo viewport, khong di chuyen khi scroll */
+/* Fixed - định vị theo viewport, không di chuyển khi scroll */
 .fixed-header {
     position: fixed;
     top: 0;
@@ -391,10 +391,10 @@ span, a, strong { display: inline; }
     z-index: 1000;
 }
 
-/* Sticky - ket hop relative va fixed */
+/* Sticky - kết hợp relative và fixed */
 .sticky-nav {
     position: sticky;
-    top: 0;                /* Dinh tai top khi scroll qua */
+    top: 0;                /* Dính tại top khi scroll qua */
     z-index: 100;
 }
 ```
@@ -402,7 +402,7 @@ span, a, strong { display: inline; }
 ### 9.2 Z-index
 
 ```css
-/* Chi hoat dong voi position != static */
+/* Chỉ hoạt động với position != static */
 .behind { z-index: 1; }
 .front { z-index: 10; }
 .overlay { z-index: 100; }
@@ -419,7 +419,7 @@ span, a, strong { display: inline; }
 .flex-container {
     display: flex;
 
-    /* Huong chinh */
+    /* Hướng chính */
     flex-direction: row;          /* row | row-reverse | column | column-reverse */
 
     /* Wrap */
@@ -428,18 +428,18 @@ span, a, strong { display: inline; }
     /* Shorthand */
     flex-flow: row wrap;
 
-    /* Canh chinh tren truc chinh (main axis) */
+    /* Canh chỉnh trên trục chính (main axis) */
     justify-content: center;
     /* flex-start | flex-end | center | space-between | space-around | space-evenly */
 
-    /* Canh chinh tren truc phu (cross axis) */
+    /* Canh chỉnh trên trục phụ (cross axis) */
     align-items: center;
     /* flex-start | flex-end | center | stretch | baseline */
 
-    /* Canh chinh cac dong (khi wrap) */
+    /* Canh chỉnh các dòng (khi wrap) */
     align-content: space-between;
 
-    gap: 16px;                    /* Khoang cach giua items */
+    gap: 16px;                    /* Khoảng cách giữa items */
     row-gap: 10px;
     column-gap: 20px;
 }
@@ -449,25 +449,25 @@ span, a, strong { display: inline; }
 
 ```css
 .flex-item {
-    flex-grow: 1;     /* Ty le gian ra (0 = khong gian) */
-    flex-shrink: 0;   /* Ty le co lai (0 = khong co) */
-    flex-basis: 200px; /* Kich thuoc ban dau */
+    flex-grow: 1;     /* Tỷ lệ giãn ra (0 = không giãn) */
+    flex-shrink: 0;   /* Tỷ lệ co lại (0 = không co) */
+    flex-basis: 200px; /* Kích thước ban đầu */
 
     /* Shorthand */
     flex: 1 0 200px;  /* grow shrink basis */
     flex: 1;          /* = flex: 1 1 0% */
 
-    /* Tu canh chinh tren cross axis */
+    /* Tự canh chỉnh trên cross axis */
     align-self: flex-end;
 
-    order: -1;        /* Thu tu hien thi (mac dinh: 0) */
+    order: -1;        /* Thứ tự hiển thị (mặc định: 0) */
 }
 ```
 
 ### 10.3 Flexbox Patterns
 
 ```css
-/* Can giua hoan hao */
+/* Căn giữa hoàn hảo */
 .center-both {
     display: flex;
     justify-content: center;
@@ -475,7 +475,7 @@ span, a, strong { display: inline; }
     min-height: 100vh;
 }
 
-/* Navbar: logo trai, menu phai */
+/* Navbar: logo trái, menu phải */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -501,12 +501,12 @@ span, a, strong { display: inline; }
 .grid-container {
     display: grid;
 
-    /* Dinh nghia cot */
-    grid-template-columns: 200px 1fr 200px;        /* 3 cot */
-    grid-template-columns: repeat(3, 1fr);          /* 3 cot bang nhau */
+    /* Định nghĩa cột */
+    grid-template-columns: 200px 1fr 200px;        /* 3 cột */
+    grid-template-columns: repeat(3, 1fr);          /* 3 cột bằng nhau */
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Responsive */
 
-    /* Dinh nghia dong */
+    /* Định nghĩa dòng */
     grid-template-rows: 80px 1fr 60px;
 
     /* Gap */
@@ -531,29 +531,29 @@ span, a, strong { display: inline; }
 .aside { grid-area: aside; }
 .footer { grid-area: footer; }
 
-/* Hoac dung line numbers */
+/* Hoặc dùng line numbers */
 .item {
-    grid-column: 1 / 3;     /* Tu cot 1 den cot 3 */
-    grid-row: 1 / 2;        /* Tu dong 1 den dong 2 */
+    grid-column: 1 / 3;     /* Từ cột 1 đến cột 3 */
+    grid-row: 1 / 2;        /* Từ dòng 1 đến dòng 2 */
 
     /* Shorthand */
-    grid-column: span 2;    /* Chiem 2 cot */
-    grid-row: span 3;       /* Chiem 3 dong */
+    grid-column: span 2;    /* Chiếm 2 cột */
+    grid-row: span 3;       /* Chiếm 3 dòng */
 }
 ```
 
 ### 11.3 Grid vs Flexbox
 
-| Tinh nang | Flexbox | Grid |
+| Tính năng | Flexbox | Grid |
 |-----------|---------|------|
-| Chieu | 1 chieu (row HOAC column) | 2 chieu (row VA column) |
+| Chiều | 1 chiều (row HOẶC column) | 2 chiều (row VÀ column) |
 | Use case | Navigation, toolbar, cards | Page layout, dashboard |
-| Content-based | Kich thuoc theo noi dung | Kich thuoc theo grid |
-| Overlap | Kho | De (grid-area chong nhau) |
+| Content-based | Kích thước theo nội dung | Kích thước theo grid |
+| Overlap | Khó | Dễ (grid-area chồng nhau) |
 
 ---
 
-## 12. Transitions va Animations
+## 12. Transitions và Animations
 
 ### 12.1 Transitions
 
@@ -581,7 +581,7 @@ span, a, strong { display: inline; }
 ### 12.2 Animations
 
 ```css
-/* Dinh nghia keyframes */
+/* Định nghĩa keyframes */
 @keyframes fadeInUp {
     from {
         opacity: 0;
@@ -599,7 +599,7 @@ span, a, strong { display: inline; }
     100% { transform: scale(1); }
 }
 
-/* Ap dung animation */
+/* Áp dụng animation */
 .card {
     animation: fadeInUp 0.6s ease-out forwards;
     /* animation: name duration timing-function delay iteration-count direction fill-mode; */
@@ -614,26 +614,26 @@ span, a, strong { display: inline; }
 
 ```css
 .transform {
-    transform: translateX(50px);       /* Di chuyen */
+    transform: translateX(50px);       /* Di chuyển */
     transform: translateY(-20px);
     transform: translate(50px, -20px);
     transform: rotate(45deg);          /* Xoay */
-    transform: scale(1.5);             /* Phong to */
-    transform: scale(0.8);             /* Thu nho */
-    transform: skewX(10deg);           /* Nghieng */
-    transform: matrix(1, 0, 0, 1, 0, 0); /* Ket hop tat ca */
+    transform: scale(1.5);             /* Phóng to */
+    transform: scale(0.8);             /* Thu nhỏ */
+    transform: skewX(10deg);           /* Nghiêng */
+    transform: matrix(1, 0, 0, 1, 0, 0); /* Kết hợp tất cả */
 
-    /* Nhieu transform */
+    /* Nhiều transform */
     transform: translate(-50%, -50%) rotate(45deg) scale(1.2);
 
-    /* Goc xoay */
+    /* Góc xoay */
     transform-origin: center center;   /* top left, 50% 50%, etc */
 }
 ```
 
 ---
 
-## 13. Pseudo-classes va Pseudo-elements
+## 13. Pseudo-classes và Pseudo-elements
 
 ### 13.1 Pseudo-classes
 
@@ -649,13 +649,13 @@ input:checked { accent-color: green; }
 /* Structural */
 li:first-child { font-weight: bold; }
 li:last-child { border-bottom: none; }
-li:nth-child(2n) { background: #f5f5f5; }     /* Chan */
-li:nth-child(2n+1) { background: white; }      /* Le */
-li:nth-child(3) { color: red; }                /* Thu 3 */
+li:nth-child(2n) { background: #f5f5f5; }     /* Chẵn */
+li:nth-child(2n+1) { background: white; }      /* Lẻ */
+li:nth-child(3) { color: red; }                /* Thứ 3 */
 p:first-of-type { font-size: 1.2em; }
 :root { --primary: #3498db; }
 
-/* Phu dinh */
+/* Phủ định */
 p:not(.special) { color: gray; }
 li:not(:last-child) { border-bottom: 1px solid #eee; }
 
@@ -672,22 +672,22 @@ input:placeholder-shown { border-color: gray; }
 ### 13.2 Pseudo-elements
 
 ```css
-/* Them noi dung truoc/sau */
+/* Thêm nội dung trước/sau */
 .required::before {
     content: "* ";
     color: red;
 }
 
 blockquote::before {
-    content: "\201C";      /* Dau ngoac kep mo */
+    content: "\201C";      /* Dấu ngoặc kép mở */
     font-size: 2em;
 }
 
-/* Dinh dang dong dau */
+/* Định dạng dòng đầu */
 p::first-line { font-weight: bold; }
 p::first-letter { font-size: 2em; float: left; }
 
-/* Dinh dang selection */
+/* Định dạng selection */
 ::selection {
     background: #3498db;
     color: white;
@@ -710,7 +710,7 @@ input::placeholder {
 
 ```css
 :root {
-    /* Khai bao bien */
+    /* Khai báo biến */
     --primary-color: #3498db;
     --secondary-color: #2ecc71;
     --font-size-base: 16px;
@@ -726,7 +726,7 @@ input::placeholder {
     padding: var(--spacing-md);
     border-radius: var(--border-radius);
     box-shadow: var(--shadow);
-    font-size: var(--font-size-base, 14px);  /* Gia tri mac dinh: 14px */
+    font-size: var(--font-size-base, 14px);  /* Giá trị mặc định: 14px */
 }
 
 /* Override trong scope */
@@ -735,7 +735,7 @@ input::placeholder {
     --secondary-color: #16213e;
 }
 
-/* Tinh toan voi calc() */
+/* Tính toán với calc() */
 .container {
     width: calc(100% - var(--spacing-lg) * 2);
     padding: var(--spacing-md);
@@ -748,7 +748,7 @@ input::placeholder {
 
 ```css
 .functions {
-    /* calc() - Tinh toan */
+    /* calc() - Tính toán */
     width: calc(100% - 60px);
     font-size: calc(14px + 0.5vw);
 
@@ -780,17 +780,17 @@ input::placeholder {
 
 ## 16. Best Practices
 
-### 16.1 Quy tac chung
+### 16.1 Quy tắc chung
 
-1. **Mobile-first:** Viet CSS cho mobile truoc, dung media queries cho man hinh lon
+1. **Mobile-first:** Viết CSS cho mobile trước, dùng media queries cho màn hình lớn
 2. **BEM Naming:** `.block__element--modifier` (vd: `.card__title--large`)
-3. **Tranh ID cho styling:** Dung class thay vi ID
-4. **Tranh !important:** Chi dung khi that su can thiet
-5. **CSS Variables:** Dung cho colors, spacing, fonts de de bao tri
-6. **border-box:** Luon set `box-sizing: border-box` cho tat ca elements
-7. **Shorthand:** Dung shorthand properties khi co the
-8. **Responsive units:** Dung rem, em, %, vw/vh thay vi px co dinh
-9. **Logical Properties:** Dung `margin-inline`, `padding-block` cho i18n
+3. **Tránh ID cho styling:** Dùng class thay vì ID
+4. **Tránh !important:** Chỉ dùng khi thật sự cần thiết
+5. **CSS Variables:** Dùng cho colors, spacing, fonts để dễ bảo trì
+6. **border-box:** Luôn set `box-sizing: border-box` cho tất cả elements
+7. **Shorthand:** Dùng shorthand properties khi có thể
+8. **Responsive units:** Dùng rem, em, %, vw/vh thay vì px cố định
+9. **Logical Properties:** Dùng `margin-inline`, `padding-block` cho i18n
 
 ### 16.2 CSS Reset/Normalize
 
@@ -825,14 +825,14 @@ input, button, textarea, select {
 
 ---
 
-## Tong ket
+## Tổng kết
 
-CSS la cong cu dinh kieu manh me cho web:
+CSS là công cụ định kiểu mạnh mẽ cho web:
 
-1. **Selectors:** Nhieu cach chon elements (class, ID, attribute, combinator)
-2. **Box Model:** Moi element la mot hop voi content, padding, border, margin
-3. **Layout:** Flexbox (1 chieu) va Grid (2 chieu)
+1. **Selectors:** Nhiều cách chọn elements (class, ID, attribute, combinator)
+2. **Box Model:** Mỗi element là một hộp với content, padding, border, margin
+3. **Layout:** Flexbox (1 chiều) và Grid (2 chiều)
 4. **Responsive:** Media queries, relative units, clamp()
-5. **Animations:** Transitions cho tuong tac, @keyframes cho animation phuc tap
-6. **Variables:** Custom properties giup tai su dung va bao tri
-7. **Specificity:** Hieu quy tac cascade de tranh xung dot
+5. **Animations:** Transitions cho tương tác, @keyframes cho animation phức tạp
+6. **Variables:** Custom properties giúp tái sử dụng và bảo trì
+7. **Specificity:** Hiểu quy tắc cascade để tránh xung đột

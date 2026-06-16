@@ -1,13 +1,13 @@
-# CSS - Dap An Bai Tap
+# CSS - Đáp Án Bài Tập
 
-## Bai 1: Card Component
+## Bài 1: Card Component
 
 ```html
 <div class="card">
-    <img src="https://via.placeholder.com/400x200" alt="San pham" class="card__image" />
+    <img src="https://via.placeholder.com/400x200" alt="Sản phẩm" class="card__image" />
     <div class="card__body">
-        <h3 class="card__title">Ten san pham</h3>
-        <p class="card__desc">Mo ta ngan ve san pham, tinh nang noi bat.</p>
+        <h3 class="card__title">Tên sản phẩm</h3>
+        <p class="card__desc">Mô tả ngắn về sản phẩm, tính năng nổi bật.</p>
         <div class="card__footer">
             <span class="card__price">299.000 VND</span>
             <button class="card__btn">Mua ngay</button>
@@ -94,25 +94,25 @@
 }
 ```
 
-**Giai thich:**
-- BEM naming convention cho de bao tri
-- CSS Variables de thay doi theme de dang
-- transition tren card va button cho smooth hover effect
-- object-fit: cover de hinh anh khong bi meo
+**Giải thích:**
+- Sử dụng BEM naming convention để dễ bảo trì.
+- CSS Variables để thay đổi theme dễ dàng.
+- Transition trên card và button cho smooth hover effect.
+- `object-fit: cover` để hình ảnh không bị méo.
 
 ---
 
-## Bai 2: Flexbox Navigation Bar
+## Bài 2: Flexbox Navigation Bar
 
 ```html
 <nav class="navbar">
     <a href="/" class="navbar__logo">MyBrand</a>
     <ul class="navbar__menu">
-        <li><a href="/" class="navbar__link navbar__link--active">Trang chu</a></li>
-        <li><a href="/about" class="navbar__link">Gioi thieu</a></li>
-        <li><a href="/services" class="navbar__link">Dich vu</a></li>
+        <li><a href="/" class="navbar__link navbar__link--active">Trang chủ</a></li>
+        <li><a href="/about" class="navbar__link">Giới thiệu</a></li>
+        <li><a href="/services" class="navbar__link">Dịch vụ</a></li>
         <li><a href="/blog" class="navbar__link">Blog</a></li>
-        <li><a href="/contact" class="navbar__link">Lien he</a></li>
+        <li><a href="/contact" class="navbar__link">Liên hệ</a></li>
     </ul>
 </nav>
 ```
@@ -189,7 +189,7 @@
 
 ---
 
-## Bai 3: CSS Grid Dashboard
+## Bài 3: CSS Grid Dashboard
 
 ```css
 .dashboard {
@@ -264,10 +264,10 @@
 
 ---
 
-## Bai 4: Animation Loading Spinner
+## Bài 4: Animation Loading Spinner
 
 ```css
-/* === 1. Spinner tron === */
+/* === 1. Spinner tròn === */
 :root {
     --spinner-size: 40px;
     --spinner-color: #3498db;
@@ -335,7 +335,7 @@
 
 ---
 
-## Bai 5: Responsive Pricing Table
+## Bài 5: Responsive Pricing Table
 
 ```css
 :root {

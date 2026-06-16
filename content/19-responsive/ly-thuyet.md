@@ -1,9 +1,9 @@
-# Responsive Web Design - Ly Thuyet Tu Co Ban Den Nang Cao
+# Responsive Web Design - Lý Thuyết Từ Cơ Bản Đến Nâng Cao
 
-## Muc luc
+## Mục lục
 
-1. [Gioi thieu ve Responsive Web Design](#1-gioi-thieu-ve-responsive-web-design)
-2. [Viewport va Meta Tag](#2-viewport-va-meta-tag)
+1. [Giới thiệu về Responsive Web Design](#1-giới-thiệu-về-responsive-web-design)
+2. [Viewport và Meta Tag](#2-viewport-và-meta-tag)
 3. [Media Queries](#3-media-queries)
 4. [Fluid Layouts](#4-fluid-layouts)
 5. [Responsive Images](#5-responsive-images)
@@ -13,33 +13,33 @@
 9. [CSS Grid Responsive Patterns](#9-css-grid-responsive-patterns)
 10. [Container Queries](#10-container-queries)
 11. [Responsive Navigation Patterns](#11-responsive-navigation-patterns)
-12. [Testing va Tools](#12-testing-va-tools)
+12. [Testing và Tools](#12-testing-và-tools)
 13. [Best Practices](#13-best-practices)
 
 ---
 
-## 1. Gioi thieu ve Responsive Web Design
+## 1. Giới thiệu về Responsive Web Design
 
-### 1.1 Responsive Web Design la gi?
+### 1.1 Responsive Web Design là gì?
 
-Responsive Web Design (RWD) la phuong phap thiet ke web giup trang web tu dong dieu chinh layout, hinh anh va noi dung cho phu hop voi moi kich thuoc man hinh - tu mobile nho den desktop lon.
+Responsive Web Design (RWD) là phương pháp thiết kế web giúp trang web tự động điều chỉnh layout, hình ảnh và nội dung cho phù hợp với mọi kích thước màn hình - từ mobile nhỏ đến desktop lớn.
 
-### 1.2 Tai sao can Responsive?
+### 1.2 Tại sao cần Responsive?
 
-- **60%+ traffic** tu mobile (2024)
-- Google **Mobile-First Indexing** - uu tien trang mobile cho SEO
-- Trai nghiem nguoi dung tot hon tren moi thiet bi
-- Chi can **1 codebase** cho moi thiet bi
+- **60%+ traffic** từ mobile (2024)
+- Google **Mobile-First Indexing** - ưu tiên trang mobile cho SEO
+- Trải nghiệm người dùng tốt hơn trên mọi thiết bị
+- Chỉ cần **1 codebase** cho mọi thiết bị
 
-### 1.3 Ba tru cot cua RWD
+### 1.3 Ba trụ cột của RWD
 
-1. **Fluid Grids** - Layout linh hoat dung don vi tuong doi (%, fr, vw)
-2. **Flexible Images** - Hinh anh tu dong co gian
-3. **Media Queries** - CSS dieu kien theo kich thuoc man hinh
+1. **Fluid Grids** - Layout linh hoạt dùng đơn vị tương đối (%, fr, vw)
+2. **Flexible Images** - Hình ảnh tự động co giãn
+3. **Media Queries** - CSS điều kiện theo kích thước màn hình
 
 ---
 
-## 2. Viewport va Meta Tag
+## 2. Viewport và Meta Tag
 
 ### 2.1 Viewport Meta Tag
 
@@ -47,24 +47,24 @@ Responsive Web Design (RWD) la phuong phap thiet ke web giup trang web tu dong d
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 ```
 
-**Cac gia tri:**
-- `width=device-width`: Chieu rong = chieu rong thiet bi
-- `initial-scale=1.0`: Ty le zoom ban dau
-- `maximum-scale=1.0`: Gioi han zoom toi da (tranh dung - xau cho accessibility)
-- `user-scalable=no`: Cam zoom (KHONG NEN dung)
+**Các giá trị:**
+- `width=device-width`: Chiều rộng = chiều rộng thiết bị
+- `initial-scale=1.0`: Tỷ lệ zoom ban đầu
+- `maximum-scale=1.0`: Giới hạn zoom tối đa (tránh dùng - xấu cho accessibility)
+- `user-scalable=no`: Cấm zoom (KHÔNG NÊN dùng)
 
 ### 2.2 Viewport Units
 
 ```css
 .hero {
-    width: 100vw;     /* 100% chieu rong viewport */
-    height: 100vh;    /* 100% chieu cao viewport */
-    min-height: 100svh; /* Small viewport height (tinh ca address bar mobile) */
+    width: 100vw;     /* 100% chiều rộng viewport */
+    height: 100vh;    /* 100% chiều cao viewport */
+    min-height: 100svh; /* Small viewport height (tính cả address bar mobile) */
 }
 
 .sidebar {
-    width: 25vw;      /* 25% chieu rong viewport */
-    min-width: 250px; /* Toi thieu 250px */
+    width: 25vw;      /* 25% chiều rộng viewport */
+    min-width: 250px; /* Tối thiểu 250px */
 }
 ```
 
@@ -72,30 +72,30 @@ Responsive Web Design (RWD) la phuong phap thiet ke web giup trang web tu dong d
 
 ## 3. Media Queries
 
-### 3.1 Cu phap co ban
+### 3.1 Cú pháp cơ bản
 
 ```css
-/* Man hinh nho hon 768px */
+/* Màn hình nhỏ hơn 768px */
 @media (max-width: 768px) {
     .container { padding: 10px; }
 }
 
-/* Man hinh lon hon 1024px */
+/* Màn hình lớn hơn 1024px */
 @media (min-width: 1024px) {
     .container { max-width: 1200px; }
 }
 
-/* Khoang giua */
+/* Khoảng giữa */
 @media (min-width: 768px) and (max-width: 1024px) {
     .sidebar { display: none; }
 }
 ```
 
-### 3.2 Breakpoints pho bien
+### 3.2 Breakpoints phổ biến
 
 ```css
 /* Mobile-First Breakpoints */
-/* Mobile: 0 - 767px (mac dinh, khong can media query) */
+/* Mobile: 0 - 767px (mặc định, không cần media query) */
 
 /* Tablet */
 @media (min-width: 768px) {
@@ -113,7 +113,7 @@ Responsive Web Design (RWD) la phuong phap thiet ke web giup trang web tu dong d
 }
 ```
 
-### 3.3 Media Features khac
+### 3.3 Media Features khác
 
 ```css
 /* Orientation */
@@ -175,10 +175,10 @@ Responsive Web Design (RWD) la phuong phap thiet ke web giup trang web tu dong d
 }
 ```
 
-### 4.2 Fluid Grid voi Percentages
+### 4.2 Fluid Grid với Percentages
 
 ```css
-/* 12-column grid don gian */
+/* 12-column grid đơn giản */
 .row {
     display: flex;
     flex-wrap: wrap;
@@ -208,7 +208,7 @@ Responsive Web Design (RWD) la phuong phap thiet ke web giup trang web tu dong d
     aspect-ratio: 1 / 1;
 }
 
-/* Fallback cho trinh duyet cu */
+/* Fallback cho trình duyệt cũ */
 .video-wrapper {
     position: relative;
     padding-bottom: 56.25%; /* 9/16 = 56.25% */
@@ -228,7 +228,7 @@ Responsive Web Design (RWD) la phuong phap thiet ke web giup trang web tu dong d
 
 ## 5. Responsive Images
 
-### 5.1 Fluid Images (co ban)
+### 5.1 Fluid Images (cơ bản)
 
 ```css
 img {
@@ -238,7 +238,7 @@ img {
 }
 ```
 
-### 5.2 Srcset va Sizes
+### 5.2 Srcset và Sizes
 
 ```html
 <img src="photo-800.jpg"
@@ -251,20 +251,20 @@ img {
      alt="Responsive photo" />
 ```
 
-**Giai thich:**
-- `srcset`: Danh sach anh va kich thuoc thuc (400w = 400px rong)
-- `sizes`: Bao trinh duyet anh se chiem bao nhieu viewport
-- Trinh duyet tu chon anh phu hop nhat (dua tren DPR va viewport)
+**Giải thích:**
+- `srcset`: Danh sách ảnh và kích thước thực (400w = 400px rộng)
+- `sizes`: Báo trình duyệt ảnh sẽ chiếm bao nhiêu viewport
+- Trình duyệt tự chọn ảnh phù hợp nhất (dựa trên DPR và viewport)
 
 ### 5.3 Picture Element
 
 ```html
 <picture>
-    <!-- WebP cho trinh duyet ho tro -->
+    <!-- WebP cho trình duyệt hỗ trợ -->
     <source type="image/webp"
             srcset="photo.webp" />
 
-    <!-- Hinh khac nhau cho breakpoints khac nhau -->
+    <!-- Hình khác nhau cho breakpoints khác nhau -->
     <source media="(min-width: 1024px)"
             srcset="photo-desktop.jpg" />
     <source media="(min-width: 768px)"
@@ -292,7 +292,7 @@ img {
     .hero { background-image: url('hero-desktop.jpg'); }
 }
 
-/* Hoac dung image-set */
+/* Hoặc dùng image-set */
 .hero {
     background-image: image-set(
         url('hero.webp') type('image/webp'),
@@ -305,14 +305,14 @@ img {
 
 ## 6. Mobile-First Approach
 
-### 6.1 Khai niem
+### 6.1 Khái niệm
 
-Viet CSS cho mobile truoc (man hinh nho nhat), sau do dung `min-width` media queries de them style cho man hinh lon hon.
+Viết CSS cho mobile trước (màn hình nhỏ nhất), sau đó dùng `min-width` media queries để thêm style cho màn hình lớn hơn.
 
-### 6.2 Vi du Mobile-First
+### 6.2 Ví dụ Mobile-First
 
 ```css
-/* === Mobile (mac dinh) === */
+/* === Mobile (mặc định) === */
 .grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -361,7 +361,7 @@ Viet CSS cho mobile truoc (man hinh nho nhat), sau do dung `min-width` media que
 ### 6.3 Desktop-First vs Mobile-First
 
 ```css
-/* Desktop-First (KHONG KHUYEN DUNG) - dung max-width */
+/* Desktop-First (KHÔNG KHUYÊN DÙNG) - dùng max-width */
 .grid { grid-template-columns: repeat(4, 1fr); }
 
 @media (max-width: 1024px) {
@@ -371,7 +371,7 @@ Viet CSS cho mobile truoc (man hinh nho nhat), sau do dung `min-width` media que
     .grid { grid-template-columns: 1fr; }
 }
 
-/* Mobile-First (KHUYEN DUNG) - dung min-width */
+/* Mobile-First (KHUYÊN DÙNG) - dùng min-width */
 .grid { grid-template-columns: 1fr; }
 
 @media (min-width: 768px) {
@@ -386,7 +386,7 @@ Viet CSS cho mobile truoc (man hinh nho nhat), sau do dung `min-width` media que
 
 ## 7. Responsive Typography
 
-### 7.1 Fluid Typography voi clamp()
+### 7.1 Fluid Typography với clamp()
 
 ```css
 html {
@@ -460,7 +460,7 @@ h1 { font-size: var(--step-3); }
 }
 
 .main-content {
-    flex: 1 1 600px;     /* Min 600px, chiem nhieu hon */
+    flex: 1 1 600px;     /* Min 600px, chiếm nhiều hơn */
 }
 ```
 
@@ -473,7 +473,7 @@ body {
     min-height: 100vh;
 }
 
-main { flex: 1; }  /* Day footer xuong duoi */
+main { flex: 1; }  /* Đẩy footer xuống dưới */
 ```
 
 ---
@@ -483,14 +483,14 @@ main { flex: 1; }  /* Day footer xuong duoi */
 ### 9.1 Auto-fill / Auto-fit
 
 ```css
-/* auto-fill: tao nhieu cot nhat co the */
+/* auto-fill: tạo nhiều cột nhất có thể */
 .grid-fill {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 20px;
 }
 
-/* auto-fit: giong auto-fill nhung gian cac cot hien co */
+/* auto-fit: giống auto-fill nhưng giãn các cột hiện có */
 .grid-fit {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
@@ -532,16 +532,16 @@ main { flex: 1; }  /* Day footer xuong duoi */
 
 ## 10. Container Queries
 
-### 10.1 Container Queries (CSS moi)
+### 10.1 Container Queries (CSS mới)
 
 ```css
-/* Dinh nghia container */
+/* Định nghĩa container */
 .card-wrapper {
     container-type: inline-size;
     container-name: card;
 }
 
-/* Style dua tren kich thuoc container (khong phai viewport) */
+/* Style dựa trên kích thước container (không phải viewport) */
 @container card (min-width: 400px) {
     .card {
         display: flex;
@@ -637,31 +637,31 @@ main { flex: 1; }  /* Day footer xuong duoi */
         z-index: 1000;
     }
 
-    /* Them padding-bottom cho body de tranh bi che */
+    /* Thêm padding-bottom cho body để tránh bị che */
     body { padding-bottom: 60px; }
 }
 ```
 
 ---
 
-## 12. Testing va Tools
+## 12. Testing và Tools
 
 ### 12.1 Chrome DevTools
 
-1. **Device Toolbar** (Ctrl + Shift + M): Gia lap cac thiet bi
-2. **Responsive Mode**: Keo tha de thay doi kich thuoc
-3. **Network throttling**: Gia lap mang cham (3G, 4G)
-4. **Lighthouse**: Kiem tra performance, accessibility, SEO
+1. **Device Toolbar** (Ctrl + Shift + M): Giả lập các thiết bị
+2. **Responsive Mode**: Kéo thả để thay đổi kích thước
+3. **Network throttling**: Giả lập mạng chậm (3G, 4G)
+4. **Lighthouse**: Kiểm tra performance, accessibility, SEO
 
 ### 12.2 Testing Checklist
 
-- [ ] iPhone SE (375px) - man hinh nho nhat pho bien
-- [ ] iPhone 14 (390px) - mobile pho bien
+- [ ] iPhone SE (375px) - màn hình nhỏ nhất phổ biến
+- [ ] iPhone 14 (390px) - mobile phổ biến
 - [ ] iPad (768px) - tablet portrait
 - [ ] iPad Landscape (1024px) - tablet landscape
-- [ ] Laptop (1366px) - man hinh pho bien nhat
+- [ ] Laptop (1366px) - màn hình phổ biến nhất
 - [ ] Desktop (1920px) - Full HD
-- [ ] 4K (2560px) - man hinh lon
+- [ ] 4K (2560px) - màn hình lớn
 
 ---
 
@@ -669,34 +669,34 @@ main { flex: 1; }  /* Day footer xuong duoi */
 
 ### 13.1 Do's
 
-1. **Mobile-First:** Viet CSS mobile truoc, dung `min-width` media queries
-2. **Relative Units:** Dung rem, em, %, vw thay vi px co dinh
-3. **Fluid Typography:** Dung `clamp()` cho responsive font-size
-4. **Flexible Images:** Luon co `max-width: 100%` cho images
-5. **Test tren thiet bi that:** Emulator khong chinh xac 100%
-6. **Content-First:** Thiet ke dua tren noi dung, khong phai thiet bi cu the
-7. **Touch Targets:** Toi thieu 44x44px cho nut bam tren mobile
+1. **Mobile-First:** Viết CSS mobile trước, dùng `min-width` media queries
+2. **Relative Units:** Dùng rem, em, %, vw thay vì px cố định
+3. **Fluid Typography:** Dùng `clamp()` cho responsive font-size
+4. **Flexible Images:** Luôn có `max-width: 100%` cho images
+5. **Test trên thiết bị thật:** Emulator không chính xác 100%
+6. **Content-First:** Thiết kế dựa trên nội dung, không phải thiết bị cụ thể
+7. **Touch Targets:** Tối thiểu 44x44px cho nút bấm trên mobile
 8. **Performance:** Lazy load images, optimize assets
 
 ### 13.2 Don'ts
 
-1. **KHONG** dung `max-scale=1` hoac `user-scalable=no`
-2. **KHONG** dung width co dinh (width: 960px)
-3. **KHONG** an noi dung quan trong tren mobile
-4. **KHONG** dung qua nhieu breakpoints
-5. **KHONG** chi test tren Chrome - test ca Safari, Firefox
-6. **KHONG** quen `<meta viewport>` tag
+1. **KHÔNG** dùng `max-scale=1` hoặc `user-scalable=no`
+2. **KHÔNG** dùng width cố định (width: 960px)
+3. **KHÔNG** ẩn nội dung quan trọng trên mobile
+4. **KHÔNG** dùng quá nhiều breakpoints
+5. **KHÔNG** chỉ test trên Chrome - test cả Safari, Firefox
+6. **KHÔNG** quên `<meta viewport>` tag
 
 ---
 
-## Tong ket
+## Tổng kết
 
-Responsive Web Design la ky nang bat buoc cho frontend developer:
+Responsive Web Design là kỹ năng bắt buộc cho frontend developer:
 
-1. **Viewport Meta Tag** la buoc dau tien cho moi trang responsive
-2. **Mobile-First** la phuong phap tieu chuan
-3. **Media Queries** dieu kien hoa CSS theo kich thuoc man hinh
-4. **Flexbox + Grid** la cong cu layout responsive hien dai
-5. **clamp()** giup typography responsive khong can media queries
-6. **Container Queries** la tuong lai cua component-level responsive
-7. **Testing** tren nhieu thiet bi la bat buoc
+1. **Viewport Meta Tag** là bước đầu tiên cho mỗi trang responsive
+2. **Mobile-First** là phương pháp tiêu chuẩn
+3. **Media Queries** điều kiện hóa CSS theo kích thước màn hình
+4. **Flexbox + Grid** là công cụ layout responsive hiện đại
+5. **clamp()** giúp typography responsive không cần media queries
+6. **Container Queries** là tương lai của component-level responsive
+7. **Testing** trên nhiều thiết bị là bắt buộc

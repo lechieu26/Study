@@ -1,67 +1,67 @@
 # Quiz - TypeScript
 
-## Cau 1
+## Câu 1
 
 [TYPE: MULTIPLE_CHOICE]
 
-TypeScript la gi?
+TypeScript là gì?
 
-- [ ] Mot ngon ngu lap trinh hoan toan moi
-- [x] Mot superset cua JavaScript them he thong kieu tinh
-- [ ] Mot framework JavaScript
-- [ ] Mot trinh duyet web
+- [ ] Một ngôn ngữ lập trình hoàn toàn mới
+- [x] Một superset của JavaScript thêm hệ thống kiểu tĩnh
+- [ ] Một framework JavaScript
+- [ ] Một trình duyệt web
 
-> **Giai thich:** TypeScript la superset cua JavaScript - moi code JavaScript hop le deu la TypeScript hop le. TypeScript them type system, interfaces, generics, ... va compile thanh JavaScript de chay.
+> **Giải thích:** TypeScript là superset của JavaScript - mọi code JavaScript hợp lệ đều là TypeScript hợp lệ. TypeScript thêm type system, interfaces, generics, ... và compile thành JavaScript để chạy.
 
-## Cau 2
+## Câu 2
 
 [TYPE: SELECT_RESULT]
 
-Doan code TypeScript sau co loi gi?
+Đoạn code TypeScript sau có lỗi gì?
 
 ```typescript
 let name: string = "An";
 name = 42;
 ```
 
-- [ ] Khong co loi
-- [x] Loi: khong the gan number vao bien kieu string
-- [ ] Loi: bien `name` da ton tai
-- [ ] Loi: thieu dau cham phay
+- [ ] Không có lỗi
+- [x] Lỗi: không thể gán number vào biến kiểu string
+- [ ] Lỗi: biến `name` đã tồn tại
+- [ ] Lỗi: thiếu dấu chấm phẩy
 
-> **Giai thich:** Bien `name` duoc khai bao kieu `string`. Gan `42` (number) vi pham type safety. Day la loi compile-time ma TypeScript phat hien, JavaScript se khong bao loi nay.
+> **Giải thích:** Biến `name` được khai báo kiểu `string`. Gán `42` (number) vi phạm type safety. Đây là lỗi compile-time mà TypeScript phát hiện, JavaScript sẽ không báo lỗi này.
 
-## Cau 3
-
-[TYPE: MULTIPLE_CHOICE]
-
-Su khac biet giua `interface` va `type` trong TypeScript?
-
-- [ ] Khong co su khac biet
-- [ ] `type` khong the dung cho objects
-- [x] `interface` co the merge declarations va extends, `type` ho tro union va intersection
-- [ ] `interface` nhanh hon `type`
-
-> **Giai thich:** `interface` ho tro declaration merging (khai bao lai de them thuoc tinh) va `extends`. `type` ho tro union (`|`), intersection (`&`), mapped types, conditional types. Cho object shapes, ca hai deu duoc; convention la dung `interface` cho objects, `type` cho union/utility.
-
-## Cau 4
+## Câu 3
 
 [TYPE: MULTIPLE_CHOICE]
 
-`unknown` khac `any` nhu the nao?
+Sự khác biệt giữa `interface` và `type` trong TypeScript?
 
-- [ ] Giong nhau
-- [ ] `unknown` nhanh hon `any`
-- [x] `unknown` an toan hon - phai kiem tra kieu truoc khi su dung
-- [ ] `any` an toan hon `unknown`
+- [ ] Không có sự khác biệt
+- [ ] `type` không thể dùng cho objects
+- [x] `interface` có thể merge declarations và extends, `type` hỗ trợ union và intersection
+- [ ] `interface` nhanh hơn `type`
 
-> **Giai thich:** `any` cho phep lam bat ky gi ma khong kiem tra kieu (tat type checking). `unknown` cung nhan moi gia tri nhung BAT BUOC phai narrow (kiem tra kieu) truoc khi su dung. `unknown` la lua chon an toan khi khong biet kieu.
+> **Giải thích:** `interface` hỗ trợ declaration merging (khai báo lại để thêm thuộc tính) và `extends`. `type` hỗ trợ union (`|`), intersection (`&`), mapped types, conditional types. Cho object shapes, cả hai đều được; convention là dùng `interface` cho objects, `type` cho union/utility.
 
-## Cau 5
+## Câu 4
+
+[TYPE: MULTIPLE_CHOICE]
+
+`unknown` khác `any` như thế nào?
+
+- [ ] Giống nhau
+- [ ] `unknown` nhanh hơn `any`
+- [x] `unknown` an toàn hơn - phải kiểm tra kiểu trước khi sử dụng
+- [ ] `any` an toàn hơn `unknown`
+
+> **Giải thích:** `any` cho phép làm bất kỳ gì mà không kiểm tra kiểu (tắt type checking). `unknown` cũng nhận mọi giá trị nhưng BẮT BUỘC phải narrow (kiểm tra kiểu) trước khi sử dụng. `unknown` là lựa chọn an toàn khi không biết kiểu.
+
+## Câu 5
 
 [TYPE: SELECT_RESULT]
 
-Kieu tra ve cua ham sau la gi?
+Kiểu trả về của hàm sau là gì?
 
 ```typescript
 function getValue(key: string): string | undefined {
@@ -75,39 +75,39 @@ function getValue(key: string): string | undefined {
 - [ ] `any`
 - [ ] `unknown`
 
-> **Giai thich:** Ham khai bao tra ve `string | undefined`. Vi `map[key]` co the khong ton tai (tra ve `undefined`), kieu union `string | undefined` la chinh xac. Nguoi goi phai kiem tra `undefined` truoc khi su dung.
+> **Giải thích:** Hàm khai báo trả về `string | undefined`. Vì `map[key]` có thể không tồn tại (trả về `undefined`), kiểu union `string | undefined` là chính xác. Người gọi phải kiểm tra `undefined` trước khi sử dụng.
 
-## Cau 6
-
-[TYPE: MULTIPLE_CHOICE]
-
-`Partial<User>` lam gi?
-
-- [ ] Xoa het thuoc tinh cua User
-- [x] Bien tat ca thuoc tinh cua User thanh optional (?)
-- [ ] Bien tat ca thuoc tinh thanh readonly
-- [ ] Chi lay mot phan cua User
-
-> **Giai thich:** `Partial<T>` la utility type bien tat ca thuoc tinh thanh optional. `Partial<{name: string; age: number}>` = `{name?: string; age?: number}`. Rat huu ich cho update operations (chi gui cac truong can thay doi).
-
-## Cau 7
+## Câu 6
 
 [TYPE: MULTIPLE_CHOICE]
 
-Generic constraint `<T extends HasLength>` co y nghia gi?
+`Partial<User>` làm gì?
 
-- [ ] T phai bang HasLength
-- [x] T phai co tat ca thuoc tinh cua HasLength (va co the co them)
-- [ ] T la con cua HasLength
-- [ ] T khong duoc co thuoc tinh cua HasLength
+- [ ] Xóa hết thuộc tính của User
+- [x] Biến tất cả thuộc tính của User thành optional (?)
+- [ ] Biến tất cả thuộc tính thành readonly
+- [ ] Chỉ lấy một phần của User
 
-> **Giai thich:** `T extends HasLength` nghia la T phai **it nhat** co cac thuoc tinh cua HasLength. Neu `HasLength = { length: number }`, thi T phai co `length: number` (string, array, ... deu OK). T co the co them thuoc tinh khac.
+> **Giải thích:** `Partial<T>` là utility type biến tất cả thuộc tính thành optional. `Partial<{name: string; age: number}>` = `{name?: string; age?: number}`. Rất hữu ích cho update operations (chỉ gửi các trường cần thay đổi).
 
-## Cau 8
+## Câu 7
+
+[TYPE: MULTIPLE_CHOICE]
+
+Generic constraint `<T extends HasLength>` có ý nghĩa gì?
+
+- [ ] T phải bằng HasLength
+- [x] T phải có tất cả thuộc tính của HasLength (và có thể có thêm)
+- [ ] T là con của HasLength
+- [ ] T không được có thuộc tính của HasLength
+
+> **Giải thích:** `T extends HasLength` nghĩa là T phải **ít nhất** có các thuộc tính của HasLength. Nếu `HasLength = { length: number }`, thì T phải có `length: number` (string, array, ... đều OK). T có thể có thêm thuộc tính khác.
+
+## Câu 8
 
 [TYPE: SELECT_RESULT]
 
-Kieu cua `result` la gi?
+Kiểu của `result` là gì?
 
 ```typescript
 type ApiResponse<T> =
@@ -126,56 +126,56 @@ function handle(res: ApiResponse<number>) {
 - [ ] `unknown`
 - [ ] `T`
 
-> **Giai thich:** Sau khi kiem tra `res.ok === true` (discriminated union narrowing), TypeScript biet `res` la `{ ok: true; data: number }`. Do do `res.data` co kieu `number` (generic T duoc thay bang number).
+> **Giải thích:** Sau khi kiểm tra `res.ok === true` (discriminated union narrowing), TypeScript biết `res` là `{ ok: true; data: number }`. Do đó `res.data` có kiểu `number` (generic T được thay bằng number).
 
-## Cau 9
-
-[TYPE: MULTIPLE_CHOICE]
-
-Tai sao nen tranh dung `enum` trong TypeScript hien dai?
-
-- [ ] Enum da bi deprecated
-- [ ] Enum khong hoat dong
-- [x] Union type (`"a" | "b"`) nhe hon, khong tao runtime code thua, va tree-shakeable
-- [ ] Enum khong type-safe
-
-> **Giai thich:** `enum` tao ra JavaScript runtime code (object). Union type (`type Status = "active" | "inactive"`) chi ton tai tai compile-time, khong tao runtime code, nhe hon cho bundle size. `const enum` la giua: inline gia tri nhung co han che voi declaration files.
-
-## Cau 10
+## Câu 9
 
 [TYPE: MULTIPLE_CHOICE]
 
-`keyof` operator tra ve gi?
+Tại sao nên tránh dùng `enum` trong TypeScript hiện đại?
 
-- [ ] Gia tri cua tat ca key
-- [x] Union type cua tat ca ten thuoc tinh (keys) cua mot type
-- [ ] So luong keys
-- [ ] Mang cac keys
+- [ ] Enum đã bị deprecated
+- [ ] Enum không hoạt động
+- [x] Union type (`"a" | "b"`) nhẹ hơn, không tạo runtime code thừa, và tree-shakeable
+- [ ] Enum không type-safe
 
-> **Giai thich:** `keyof T` tra ve union cua cac key names. Voi `type User = { id: number; name: string }`, `keyof User` = `"id" | "name"`. Day la compile-time type, khong phai runtime value. Ket hop voi generics (`K extends keyof T`) de tao type-safe property access.
+> **Giải thích:** `enum` tạo ra JavaScript runtime code (object). Union type (`type Status = "active" | "inactive"`) chỉ tồn tại tại compile-time, không tạo runtime code, nhẹ hơn cho bundle size. `const enum` là ở giữa: inline giá trị nhưng có hạn chế với declaration files.
 
-## Cau 11
-
-[TYPE: MULTIPLE_CHOICE]
-
-`as const` co tac dung gi?
-
-- [ ] Bien doi thanh class
-- [ ] Giong nhu `Object.freeze()`
-- [x] Ep TypeScript suy ra kieu literal hep nhat (readonly va literal types)
-- [ ] Chi dung voi string
-
-> **Giai thich:** `as const` (const assertion) khien TypeScript suy ra kieu hep nhat. `const x = [1, 2]` co kieu `number[]`, nhung `const x = [1, 2] as const` co kieu `readonly [1, 2]`. Tuong tu, `{ a: "hello" } as const` co kieu `{ readonly a: "hello" }` thay vi `{ a: string }`.
-
-## Cau 12
+## Câu 10
 
 [TYPE: MULTIPLE_CHOICE]
 
-Custom type guard `value is string` co tac dung gi?
+`keyof` operator trả về gì?
 
-- [ ] Ep value thanh string
-- [ ] Kiem tra value luc runtime
-- [x] Bao TypeScript rằng khi ham tra ve true, value co kieu string (narrowing)
-- [ ] Tuong duong voi typeof
+- [ ] Giá trị của tất cả key
+- [x] Union type của tất cả tên thuộc tính (keys) của một type
+- [ ] Số lượng keys
+- [ ] Mảng các keys
 
-> **Giai thich:** `function isString(v: unknown): v is string` la type predicate. Khi ham tra ve `true`, TypeScript tu dong narrow kieu cua tham so thanh `string` trong block `if (isString(v))`. Day la cach tao custom narrowing logic ma TypeScript co the hieu.
+> **Giải thích:** `keyof T` trả về union của các key names. Với `type User = { id: number; name: string }`, `keyof User` = `"id" | "name"`. Đây là compile-time type, không phải runtime value. Kết hợp với generics (`K extends keyof T`) để tạo type-safe property access.
+
+## Câu 11
+
+[TYPE: MULTIPLE_CHOICE]
+
+`as const` có tác dụng gì?
+
+- [ ] Biến đổi thành class
+- [ ] Giống như `Object.freeze()`
+- [x] Ép TypeScript suy ra kiểu literal hẹp nhất (readonly và literal types)
+- [ ] Chỉ dùng với string
+
+> **Giải thích:** `as const` (const assertion) khiến TypeScript suy ra kiểu hẹp nhất. `const x = [1, 2]` có kiểu `number[]`, nhưng `const x = [1, 2] as const` có kiểu `readonly [1, 2]`. Tương tự, `{ a: "hello" } as const` có kiểu `{ readonly a: "hello" }` thay vì `{ a: string }`.
+
+## Câu 12
+
+[TYPE: MULTIPLE_CHOICE]
+
+Custom type guard `value is string` có tác dụng gì?
+
+- [ ] Ép value thành string
+- [ ] Kiểm tra value lúc runtime
+- [x] Báo TypeScript rằng khi hàm trả về true, value có kiểu string (narrowing)
+- [ ] Tương đương với typeof
+
+> **Giải thích:** `function isString(v: unknown): v is string` là type predicate. Khi hàm trả về `true`, TypeScript tự động narrow kiểu của tham số thành `string` trong block `if (isString(v))`. Đây là cách tạo custom narrowing logic mà TypeScript có thể hiểu.

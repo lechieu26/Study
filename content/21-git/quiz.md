@@ -1,155 +1,155 @@
 # Quiz - Git & GitHub
 
-## Cau 1
+## Câu 1
 
 [TYPE: MULTIPLE_CHOICE]
 
-Git la loai Version Control System nao?
+Git là loại Version Control System nào?
 
 - [ ] Centralized (CVCS)
 - [x] Distributed (DVCS)
 - [ ] Local only
 - [ ] Cloud-based
 
-> **Giai thich:** Git la Distributed VCS - moi developer co ban sao day du cua repository (bao gom toan bo lich su). Khac voi Centralized VCS (SVN) chi co 1 server trung tam.
+> **Giải thích:** Git là Distributed VCS - mỗi developer có bản sao đầy đủ của repository (bao gồm toàn bộ lịch sử). Khác với Centralized VCS (SVN) chỉ có 1 server trung tâm.
 
-## Cau 2
+## Câu 2
 
 [TYPE: MULTIPLE_CHOICE]
 
-Lenh nao dua file tu Working Directory vao Staging Area?
+Lệnh nào đưa file từ Working Directory vào Staging Area?
 
 - [ ] `git commit`
 - [x] `git add`
 - [ ] `git push`
 - [ ] `git stage`
 
-> **Giai thich:** `git add` chuyen file tu Working Directory vao Staging Area (Index). `git commit` luu Staging Area vao Repository. `git push` day commits len remote. `git stage` khong phai lenh Git chuan.
+> **Giải thích:** `git add` chuyển file từ Working Directory vào Staging Area (Index). `git commit` lưu Staging Area vào Repository. `git push` đẩy commits lên remote. `git stage` không phải lệnh Git chuẩn.
 
-## Cau 3
-
-[TYPE: MULTIPLE_CHOICE]
-
-Su khac biet giua `git pull` va `git fetch`?
-
-- [ ] Giong nhau
-- [x] `git fetch` chi tai du lieu, `git pull` tai va tu dong merge
-- [ ] `git pull` nhanh hon `git fetch`
-- [ ] `git fetch` xoa branches cu
-
-> **Giai thich:** `git fetch` tai thay doi tu remote nhung KHONG thay doi working directory. `git pull` = `git fetch` + `git merge` (hoac `git rebase` neu cau hinh). Nen dung `git fetch` truoc de xem thay doi, roi quyet dinh merge.
-
-## Cau 4
+## Câu 3
 
 [TYPE: MULTIPLE_CHOICE]
 
-Khi nao xay ra merge conflict?
+Sự khác biệt giữa `git pull` và `git fetch`?
 
-- [ ] Khi 2 nguoi commit cung luc
-- [ ] Khi push ma remote co commit moi
-- [x] Khi 2 branches sua cung 1 dong trong cung 1 file
-- [ ] Khi xoa branch
+- [ ] Giống nhau
+- [x] `git fetch` chỉ tải dữ liệu, `git pull` tải và tự động merge
+- [ ] `git pull` nhanh hơn `git fetch`
+- [ ] `git fetch` xóa branches cũ
 
-> **Giai thich:** Conflict xay ra khi Git khong the tu dong gop 2 thay doi. Cu the: khi 2 branches thay doi cung mot dong (hoac vung) trong cung 1 file. Git se danh dau conflict va yeu cau developer giai quyet thu cong.
+> **Giải thích:** `git fetch` tải thay đổi từ remote nhưng KHÔNG thay đổi working directory. `git pull` = `git fetch` + `git merge` (hoặc `git rebase` nếu cấu hình). Nên dùng `git fetch` trước để xem thay đổi, rồi quyết định merge.
 
-## Cau 5
-
-[TYPE: MULTIPLE_CHOICE]
-
-`git reset --soft HEAD~1` lam gi?
-
-- [ ] Xoa commit cuoi va tat ca thay doi
-- [x] Huy commit cuoi nhung GIU thay doi trong staging area
-- [ ] Huy commit cuoi, thay doi ve working directory
-- [ ] Tao commit moi dao nguoc
-
-> **Giai thich:** `--soft` chi di chuyen HEAD lui 1 commit, giu tat ca thay doi trong staging area. `--mixed` (mac dinh) chuyen thay doi ve working directory. `--hard` xoa tat ca thay doi (NGUY HIEM). `git revert` moi tao commit dao nguoc.
-
-## Cau 6
+## Câu 4
 
 [TYPE: MULTIPLE_CHOICE]
 
-Tai sao KHONG nen `git rebase` tren branch da push va co nguoi khac dang dung?
+Khi nào xảy ra merge conflict?
 
-- [ ] Rebase cham hon merge
-- [ ] Rebase khong hoat dong tren remote
-- [x] Rebase thay doi lich su commits, gay conflict cho nguoi khac da pull branch cu
-- [ ] Rebase xoa code
+- [ ] Khi 2 người commit cùng lúc
+- [ ] Khi push mà remote có commit mới
+- [x] Khi 2 branches sửa cùng 1 dòng trong cùng 1 file
+- [ ] Khi xóa branch
 
-> **Giai thich:** Rebase rewrite commit history (tao commits moi voi hash khac). Neu nguoi khac da pull branch cu, khi ban push rebase, lich su se khong khop. Ho se gap conflict phuc tap khi pull. Quy tac: chi rebase branch CA NHAN, dung rebase branch CHIA SE.
+> **Giải thích:** Conflict xảy ra khi Git không thể tự động gộp 2 thay đổi. Cụ thể: khi 2 branches thay đổi cùng một dòng (hoặc vùng) trong cùng 1 file. Git sẽ đánh dấu conflict và yêu cầu developer giải quyết thủ công.
 
-## Cau 7
-
-[TYPE: MULTIPLE_CHOICE]
-
-`git stash` dung khi nao?
-
-- [ ] Khi muon xoa tat ca thay doi
-- [x] Khi can luu tam thay doi de chuyen sang viec khac
-- [ ] Khi muon commit nhanh
-- [ ] Khi muon push len remote
-
-> **Giai thich:** `git stash` luu tam cac thay doi chua commit vao stack, lam sach working directory. Sau do ban co the chuyen branch, lam viec khac, roi `git stash pop` de lay lai thay doi. Rat huu ich khi dang code do ma can fix bug gap.
-
-## Cau 8
+## Câu 5
 
 [TYPE: MULTIPLE_CHOICE]
 
-Conventional Commit message cho viec sua loi la gi?
+`git reset --soft HEAD~1` làm gì?
+
+- [ ] Xóa commit cuối và tất cả thay đổi
+- [x] Hủy commit cuối nhưng GIỮ thay đổi trong staging area
+- [ ] Hủy commit cuối, thay đổi về working directory
+- [ ] Tạo commit mới đảo ngược
+
+> **Giải thích:** `--soft` chỉ di chuyển HEAD lùi 1 commit, giữ tất cả thay đổi trong staging area. `--mixed` (mặc định) chuyển thay đổi về working directory. `--hard` xóa tất cả thay đổi (NGUY HIỂM). `git revert` mới tạo commit đảo ngược.
+
+## Câu 6
+
+[TYPE: MULTIPLE_CHOICE]
+
+Tại sao KHÔNG nên `git rebase` trên branch đã push và có người khác đang dùng?
+
+- [ ] Rebase chậm hơn merge
+- [ ] Rebase không hoạt động trên remote
+- [x] Rebase thay đổi lịch sử commits, gây conflict cho người khác đã pull branch cũ
+- [ ] Rebase xóa code
+
+> **Giải thích:** Rebase rewrite commit history (tạo commits mới với hash khác). Nếu người khác đã pull branch cũ, khi bạn push rebase, lịch sử sẽ không khớp. Họ sẽ gặp conflict phức tạp khi pull. Quy tắc: chỉ rebase branch CÁ NHÂN, đừng rebase branch CHIA SẺ.
+
+## Câu 7
+
+[TYPE: MULTIPLE_CHOICE]
+
+`git stash` dùng khi nào?
+
+- [ ] Khi muốn xóa tất cả thay đổi
+- [x] Khi cần lưu tạm thay đổi để chuyển sang việc khác
+- [ ] Khi muốn commit nhanh
+- [ ] Khi muốn push lên remote
+
+> **Giải thích:** `git stash` lưu tạm các thay đổi chưa commit vào stack, làm sạch working directory. Sau đó bạn có thể chuyển branch, làm việc khác, rồi `git stash pop` để lấy lại thay đổi. Rất hữu ích khi đang code dở mà cần fix bug gấp.
+
+## Câu 8
+
+[TYPE: MULTIPLE_CHOICE]
+
+Conventional Commit message cho việc sửa lỗi là gì?
 
 - [ ] `bug: fix login error`
 - [x] `fix: resolve login validation error`
 - [ ] `fixed: login error`
 - [ ] `bugfix(login): error`
 
-> **Giai thich:** Conventional Commits dung format: `<type>: <description>`. Type cho sua loi la `fix`. Cac type khac: `feat` (tinh nang moi), `docs` (tai lieu), `style` (format), `refactor`, `test`, `chore`. Optional scope: `fix(auth): ...`
+> **Giải thích:** Conventional Commits dùng format: `<type>: <description>`. Type cho sửa lỗi là `fix`. Các type khác: `feat` (tính năng mới), `docs` (tài liệu), `style` (format), `refactor`, `test`, `chore`. Optional scope: `fix(auth): ...`
 
-## Cau 9
+## Câu 9
 
 [TYPE: MULTIPLE_CHOICE]
 
-Lenh nao AN TOAN de hoan tac commit da push len remote?
+Lệnh nào AN TOÀN để hoàn tác commit đã push lên remote?
 
 - [ ] `git reset --hard`
 - [ ] `git push --force`
 - [x] `git revert`
 - [ ] `git checkout`
 
-> **Giai thich:** `git revert` tao commit MOI de dao nguoc thay doi, KHONG thay doi lich su. An toan cho shared branches. `git reset --hard` + `git push --force` rewrite history, gay van de cho nguoi khac. `git checkout` khong hoan tac commits.
+> **Giải thích:** `git revert` tạo commit MỚI để đảo ngược thay đổi, KHÔNG thay đổi lịch sử. An toàn cho shared branches. `git reset --hard` + `git push --force` rewrite history, gây vấn đề cho người khác. `git checkout` không hoàn tác commits.
 
-## Cau 10
+## Câu 10
 
 [TYPE: MULTIPLE_CHOICE]
 
-`.gitignore` co tac dung gi?
+`.gitignore` có tác dụng gì?
 
-- [ ] Xoa files khoi repository
-- [ ] An files khoi nguoi dung
-- [x] Bao Git bo qua (khong track) cac files/thu muc chi dinh
-- [ ] Ma hoa files nhay cam
+- [ ] Xóa files khỏi repository
+- [ ] Ẩn files khỏi người dùng
+- [x] Bảo Git bỏ qua (không track) các files/thư mục chỉ định
+- [ ] Mã hóa files nhạy cảm
 
-> **Giai thich:** `.gitignore` chi dinh cac file/folder ma Git se bo qua (khong add, khong commit). Thuong dung cho: `node_modules/`, `.env`, `dist/`, IDE files. Luu y: file DA DUOC tracked truoc do can `git rm --cached` truoc khi .gitignore co hieu luc.
+> **Giải thích:** `.gitignore` chỉ định các file/folder mà Git sẽ bỏ qua (không add, không commit). Thường dùng cho: `node_modules/`, `.env`, `dist/`, IDE files. Lưu ý: file ĐÃ ĐƯỢC tracked trước đó cần `git rm --cached` trước khi .gitignore có hiệu lực.
 
-## Cau 11
+## Câu 11
 
 [TYPE: TRUE_FALSE]
 
-`git cherry-pick` cho phep lay mot commit cu the tu branch khac ma khong can merge toan bo branch.
+`git cherry-pick` cho phép lấy một commit cụ thể từ branch khác mà không cần merge toàn bộ branch.
 
 - [x] True
 - [ ] False
 
-> **Giai thich:** `git cherry-pick abc1234` sao chep chinh xac 1 commit (hoac nhieu commits) tu branch khac vao branch hien tai. Khong can merge toan bo branch. Huu ich khi chi can 1 fix cu the tu branch khac.
+> **Giải thích:** `git cherry-pick abc1234` sao chép chính xác 1 commit (hoặc nhiều commits) từ branch khác vào branch hiện tại. Không cần merge toàn bộ branch. Hữu ích khi chỉ cần 1 fix cụ thể từ branch khác.
 
-## Cau 12
+## Câu 12
 
 [TYPE: MULTIPLE_CHOICE]
 
-`git reflog` huu ich trong truong hop nao?
+`git reflog` hữu ích trong trường hợp nào?
 
-- [ ] Xem lich su commit cua remote
-- [ ] Xem ai da sua file nao
-- [x] Khoi phuc commits/branches da mat (vi reset, delete branch, ...)
-- [ ] Xem log cua file cu the
+- [ ] Xem lịch sử commit của remote
+- [ ] Xem ai đã sửa file nào
+- [x] Khôi phục commits/branches đã mất (vì reset, delete branch, ...)
+- [ ] Xem log của file cụ thể
 
-> **Giai thich:** `git reflog` ghi lai MOI thay doi cua HEAD (commit, reset, checkout, rebase, ...). Day la "bao hiem cuoi cung" - ngay ca khi ban `reset --hard` hoac xoa branch, reflog van ghi lai va ban co the khoi phuc. Mac dinh luu 90 ngay.
+> **Giải thích:** `git reflog` ghi lại MỌI thay đổi của HEAD (commit, reset, checkout, rebase, ...). Đây là "bảo hiểm cuối cùng" - ngay cả khi bạn `reset --hard` hoặc xóa branch, reflog vẫn ghi lại và bạn có thể khôi phục. Mặc định lưu 90 ngày.

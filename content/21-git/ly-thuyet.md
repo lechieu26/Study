@@ -1,17 +1,17 @@
-# Git & GitHub - Ly Thuyet Tu Co Ban Den Nang Cao
+# Git & GitHub - Lý Thuyết Từ Cơ Bản Đến Nâng Cao
 
-## Muc luc
+## Mục lục
 
-1. [Gioi thieu ve Git](#1-gioi-thieu-ve-git)
-2. [Cai dat va Cau hinh](#2-cai-dat-va-cau-hinh)
-3. [Co ban: init, add, commit](#3-co-ban-init-add-commit)
-4. [Branching va Merging](#4-branching-va-merging)
+1. [Giới thiệu về Git](#1-gioi-thieu-ve-git)
+2. [Cài đặt và Cấu hình](#2-cai-dat-va-cau-hinh)
+3. [Cơ bản: init, add, commit](#3-co-ban-init-add-commit)
+4. [Branching và Merging](#4-branching-va-merging)
 5. [Remote Repositories](#5-remote-repositories)
-6. [Git Log va History](#6-git-log-va-history)
+6. [Git Log và History](#6-git-log-va-history)
 7. [Undoing Changes](#7-undoing-changes)
 8. [Stashing](#8-stashing)
 9. [Rebase](#9-rebase)
-10. [Cherry-pick va Tags](#10-cherry-pick-va-tags)
+10. [Cherry-pick và Tags](#10-cherry-pick-va-tags)
 11. [Gitignore](#11-gitignore)
 12. [GitHub Workflow](#12-github-workflow)
 13. [Git Hooks](#13-git-hooks)
@@ -20,105 +20,105 @@
 
 ---
 
-## 1. Gioi thieu ve Git
+## 1. Giới thiệu về Git
 
-### 1.1 Git la gi?
+### 1.1 Git là gì?
 
-Git la **he thong quan ly phien ban phan tan** (Distributed Version Control System - DVCS) do Linus Torvalds tao ra nam 2005. Git theo doi thay doi trong source code va cho phep nhieu developer cung lam viec tren mot du an.
+Git là **hệ thống quản lý phiên bản phân tán** (Distributed Version Control System - DVCS) do Linus Torvalds tạo ra năm 2005. Git theo dõi thay đổi trong source code và cho phép nhiều developer cùng làm việc trên một dự án.
 
-### 1.2 Khai niem co ban
+### 1.2 Khái niệm cơ bản
 
-| Khai niem | Mo ta |
+| Khái niệm | Mô tả |
 |-----------|-------|
-| Repository (Repo) | Thu muc du an duoc Git quan ly |
-| Commit | Mot "snapshot" cua code tai mot thoi diem |
-| Branch | Nhanh phat trien doc lap |
-| Merge | Gop hai nhanh lai |
-| Remote | Repo tren server (GitHub, GitLab) |
-| Clone | Sao chep repo tu remote ve local |
-| Pull | Tai thay doi tu remote |
-| Push | Day thay doi len remote |
+| Repository (Repo) | Thư mục dự án được Git quản lý |
+| Commit | Một "snapshot" của code tại một thời điểm |
+| Branch | Nhánh phát triển độc lập |
+| Merge | Gộp hai nhánh lại |
+| Remote | Repo trên server (GitHub, GitLab) |
+| Clone | Sao chép repo từ remote về local |
+| Pull | Tải thay đổi từ remote |
+| Push | Đẩy thay đổi lên remote |
 
-### 1.3 Ba vung cua Git
+### 1.3 Ba vùng của Git
 
 ```
 Working Directory  →  Staging Area  →  Repository
-   (lam viec)        (git add)       (git commit)
+   (làm việc)        (git add)       (git commit)
      |                    |                |
-  Cac file            Chuan bi          Luu tru
-  thay doi            commit          vinh vien
+  Các file            Chuẩn bị          Lưu trữ
+  thay đổi            commit          vĩnh viễn
 ```
 
 ---
 
-## 2. Cai dat va Cau hinh
+## 2. Cài đặt và Cấu hình
 
-### 2.1 Cau hinh ban dau
+### 2.1 Cấu hình ban đầu
 
 ```bash
-# Thiet lap ten va email (bat buoc)
+# Thiết lập tên và email (bắt buộc)
 git config --global user.name "Nguyen Van A"
 git config --global user.email "nguyenvana@email.com"
 
-# Editor mac dinh
+# Editor mặc định
 git config --global core.editor "code --wait"
 
-# Xem cau hinh
+# Xem cấu hình
 git config --list
 
-# Cau hinh cho du an cu the (khong co --global)
+# Cấu hình cho dự án cụ thể (không có --global)
 git config user.name "Work Account"
 ```
 
-### 2.2 SSH Key (ket noi GitHub)
+### 2.2 SSH Key (kết nối GitHub)
 
 ```bash
-# Tao SSH key
+# Tạo SSH key
 ssh-keygen -t ed25519 -C "email@example.com"
 
 # Copy public key
 cat ~/.ssh/id_ed25519.pub
 
-# Test ket noi
+# Test kết nối
 ssh -T git@github.com
 ```
 
 ---
 
-## 3. Co ban: init, add, commit
+## 3. Cơ bản: init, add, commit
 
-### 3.1 Khoi tao Repository
+### 3.1 Khởi tạo Repository
 
 ```bash
-# Tao repo moi
+# Tạo repo mới
 git init
-git init my-project   # Tao thu muc va init
+git init my-project   # Tạo thư mục và init
 
-# Clone repo co san
+# Clone repo có sẵn
 git clone https://github.com/user/repo.git
 git clone git@github.com:user/repo.git      # SSH
-git clone https://github.com/user/repo.git my-folder  # Ten thu muc khac
+git clone https://github.com/user/repo.git my-folder  # Tên thư mục khác
 ```
 
-### 3.2 Staging va Commit
+### 3.2 Staging và Commit
 
 ```bash
-# Xem trang thai
+# Xem trạng thái
 git status
-git status -s    # Rut gon
+git status -s    # Rút gọn
 
-# Them file vao staging
-git add file.txt           # Mot file
-git add src/               # Ca thu muc
+# Thêm file vào staging
+git add file.txt           # Một file
+git add src/               # Cả thư mục
 git add *.js               # Pattern
-git add -A                 # Tat ca thay doi
-git add -p                 # Tuong tac, chon tung phan
+git add -A                 # Tất cả thay đổi
+git add -p                 # Tương tác, chọn từng phần
 
 # Commit
 git commit -m "feat: them tinh nang dang nhap"
-git commit -am "fix: sua loi validate"   # add + commit (chi file da tracked)
+git commit -am "fix: sua loi validate"   # add + commit (chỉ file đã tracked)
 
-# Xem thay doi
+# Xem thay đổi
 git diff                   # Working vs Staging
 git diff --staged          # Staging vs Last commit
 git diff HEAD              # Working vs Last commit
@@ -126,185 +126,185 @@ git diff HEAD              # Working vs Last commit
 
 ---
 
-## 4. Branching va Merging
+## 4. Branching và Merging
 
-### 4.1 Quan ly Branch
+### 4.1 Quản lý Branch
 
 ```bash
 # Xem branches
 git branch           # Local
 git branch -r        # Remote
-git branch -a        # Tat ca
+git branch -a        # Tất cả
 
-# Tao branch moi
+# Tạo branch mới
 git branch feature/login
 
-# Chuyen branch
+# Chuyển branch
 git checkout feature/login
 git switch feature/login      # Git 2.23+
 
-# Tao va chuyen (tat ca 1)
+# Tạo và chuyển (tất cả trong 1)
 git checkout -b feature/login
 git switch -c feature/login   # Git 2.23+
 
-# Xoa branch
-git branch -d feature/login        # Da merge
-git branch -D feature/login        # Chua merge (force)
+# Xóa branch
+git branch -d feature/login        # Đã merge
+git branch -D feature/login        # Chưa merge (force)
 
-# Doi ten branch
+# Đổi tên branch
 git branch -m old-name new-name
-git branch -m new-name             # Doi ten branch hien tai
+git branch -m new-name             # Đổi tên branch hiện tại
 ```
 
 ### 4.2 Merge
 
 ```bash
-# Merge branch vao branch hien tai
+# Merge branch vào branch hiện tại
 git checkout main
 git merge feature/login
 
-# Merge khong tao merge commit (fast-forward)
+# Merge không tạo merge commit (fast-forward)
 git merge --ff-only feature/login
 
-# Merge luon tao merge commit
+# Merge luôn tạo merge commit
 git merge --no-ff feature/login
 
-# Huy merge dang conflict
+# Hủy merge đang conflict
 git merge --abort
 ```
 
-### 4.3 Giai quyet Conflict
+### 4.3 Giải quyết Conflict
 
 ```
 <<<<<<< HEAD
-Noi dung tren branch hien tai
+Nội dung trên branch hiện tại
 =======
-Noi dung tren branch merge vao
+Nội dung trên branch merge vào
 >>>>>>> feature/login
 ```
 
 ```bash
-# Sau khi sua conflict:
+# Sau khi sửa conflict:
 git add file-conflict.txt
-git commit    # Hoan thanh merge
+git commit    # Hoàn thành merge
 ```
 
 ---
 
 ## 5. Remote Repositories
 
-### 5.1 Quan ly Remote
+### 5.1 Quản lý Remote
 
 ```bash
 # Xem remotes
 git remote -v
 
-# Them remote
+# Thêm remote
 git remote add origin https://github.com/user/repo.git
 git remote add upstream https://github.com/original/repo.git
 
 # Push
 git push origin main
-git push -u origin main     # Set upstream (lan dau)
+git push -u origin main     # Set upstream (lần đầu)
 git push                    # Sau khi set upstream
 
 # Pull (fetch + merge)
 git pull origin main
-git pull --rebase origin main   # Dung rebase thay merge
+git pull --rebase origin main   # Dùng rebase thay vì merge
 
-# Fetch (chi tai, khong merge)
+# Fetch (chỉ tải, không merge)
 git fetch origin
 git fetch --all
 
-# Xoa remote branch
+# Xóa remote branch
 git push origin --delete feature/old
 ```
 
 ### 5.2 Fork Workflow
 
 ```bash
-# 1. Fork repo tren GitHub
-# 2. Clone fork ve
+# 1. Fork repo trên GitHub
+# 2. Clone fork về
 git clone https://github.com/your-user/repo.git
 
-# 3. Them upstream (repo goc)
+# 3. Thêm upstream (repo gốc)
 git remote add upstream https://github.com/original/repo.git
 
-# 4. Dong bo voi upstream
+# 4. Đồng bộ với upstream
 git fetch upstream
 git checkout main
 git merge upstream/main
 
-# 5. Tao branch, code, push len fork
+# 5. Tạo branch, code, push lên fork
 git checkout -b feature/new-feature
 # ... code ...
 git push origin feature/new-feature
 
-# 6. Tao Pull Request tren GitHub
+# 6. Tạo Pull Request trên GitHub
 ```
 
 ---
 
-## 6. Git Log va History
+## 6. Git Log và History
 
 ```bash
-# Log co ban
+# Log cơ bản
 git log
-git log --oneline                    # 1 dong moi commit
-git log --oneline --graph            # Co bieu do nhanh
-git log --oneline --graph --all      # Tat ca branches
-git log -5                           # 5 commits gan nhat
-git log --author="An"                # Theo tac gia
-git log --since="2024-01-01"         # Theo ngay
-git log --grep="fix"                 # Tim trong commit message
-git log -- path/to/file              # Lich su cua file cu the
-git log -p                           # Hien diff
+git log --oneline                    # 1 dòng mỗi commit
+git log --oneline --graph            # Có biểu đồ nhánh
+git log --oneline --graph --all      # Tất cả branches
+git log -5                           # 5 commits gần nhất
+git log --author="An"                # Theo tác giả
+git log --since="2024-01-01"         # Theo ngày
+git log --grep="fix"                 # Tìm trong commit message
+git log -- path/to/file              # Lịch sử của file cụ thể
+git log -p                           # Hiện diff
 
-# Blame - xem ai sua dong nao
+# Blame - xem ai sửa dòng nào
 git blame file.txt
-git blame -L 10,20 file.txt         # Chi dong 10-20
+git blame -L 10,20 file.txt         # Chỉ dòng 10-20
 
-# Show commit cu the
+# Show commit cụ thể
 git show abc1234
-git show HEAD~3                      # 3 commits truoc
+git show HEAD~3                      # 3 commits trước
 ```
 
 ---
 
 ## 7. Undoing Changes
 
-### 7.1 Cac cach hoan tac
+### 7.1 Các cách hoàn tác
 
 ```bash
-# Huy thay doi trong Working Directory
-git checkout -- file.txt      # Khoi phuc file (GIT CU)
-git restore file.txt          # Git 2.23+ (KHUYEN DUNG)
+# Hủy thay đổi trong Working Directory
+git checkout -- file.txt      # Khôi phục file (GIT CŨ)
+git restore file.txt          # Git 2.23+ (KHUYÊN DÙNG)
 
-# Huy staging (unstage)
-git reset HEAD file.txt       # Git cu
+# Hủy staging (unstage)
+git reset HEAD file.txt       # Git cũ
 git restore --staged file.txt # Git 2.23+
 
-# Sua commit cuoi (chua push)
-git commit --amend -m "Message moi"
-git commit --amend --no-edit     # Giu message, them file
+# Sửa commit cuối (chưa push)
+git commit --amend -m "Message mới"
+git commit --amend --no-edit     # Giữ message, thêm file
 
-# Revert (tao commit moi de hoan tac, AN TOAN cho shared branches)
+# Revert (tạo commit mới để hoàn tác, AN TOÀN cho shared branches)
 git revert abc1234
-git revert HEAD                  # Revert commit cuoi
+git revert HEAD                  # Revert commit cuối
 
-# Reset (DI CHUYEN HEAD, NGUY HIEM cho shared branches)
-git reset --soft HEAD~1    # Giu staging va working
-git reset --mixed HEAD~1   # Giu working, xoa staging (mac dinh)
-git reset --hard HEAD~1    # Xoa het (NGUY HIEM!)
+# Reset (DI CHUYỂN HEAD, NGUY HIỂM cho shared branches)
+git reset --soft HEAD~1    # Giữ staging và working
+git reset --mixed HEAD~1   # Giữ working, xóa staging (mặc định)
+git reset --hard HEAD~1    # Xóa hết (NGUY HIỂM!)
 ```
 
-### 7.2 Khoi phuc file da xoa
+### 7.2 Khôi phục file đã xóa
 
 ```bash
-# Tim commit xoa file
+# Tìm commit xóa file
 git log --diff-filter=D -- path/to/file
 
-# Khoi phuc
+# Khôi phục
 git checkout abc1234^ -- path/to/file
 ```
 
@@ -313,23 +313,23 @@ git checkout abc1234^ -- path/to/file
 ## 8. Stashing
 
 ```bash
-# Luu tam thay doi hien tai
+# Lưu tạm thay đổi hiện tại
 git stash
 git stash push -m "Dang lam feature login"
 
-# Xem danh sach stash
+# Xem danh sách stash
 git stash list
 
-# Lay lai stash
-git stash pop             # Lay va xoa khoi stash list
-git stash apply           # Lay nhung giu lai trong stash list
-git stash apply stash@{2} # Lay stash cu the
+# Lấy lại stash
+git stash pop             # Lấy và xóa khỏi stash list
+git stash apply           # Lấy nhưng giữ lại trong stash list
+git stash apply stash@{2} # Lấy stash cụ thể
 
-# Xoa stash
+# Xóa stash
 git stash drop stash@{0}
-git stash clear           # Xoa tat ca
+git stash clear           # Xóa tất cả
 
-# Tao branch tu stash
+# Tạo branch từ stash
 git stash branch new-branch stash@{0}
 ```
 
@@ -337,68 +337,68 @@ git stash branch new-branch stash@{0}
 
 ## 9. Rebase
 
-### 9.1 Rebase co ban
+### 9.1 Rebase cơ bản
 
 ```bash
-# Rebase feature branch len main moi nhat
+# Rebase feature branch lên main mới nhất
 git checkout feature/login
 git rebase main
 
-# Tuong duong voi:
-# 1. Lay cac commit cua feature/login
-# 2. Dat chung len dau main
-# Ket qua: lich su sach, tuyen tinh
+# Tương đương với:
+# 1. Lấy các commit của feature/login
+# 2. Đặt chúng lên đầu main
+# Kết quả: lịch sử sạch, tuyến tính
 ```
 
 ### 9.2 Interactive Rebase
 
 ```bash
-# Chinh sua 3 commits gan nhat
+# Chỉnh sửa 3 commits gần nhất
 git rebase -i HEAD~3
 
 # Trong editor:
 pick abc1234 feat: them login
-squash def5678 fix: sua typo login    # Gop vao commit truoc
-reword ghi9012 feat: them logout      # Doi message
+squash def5678 fix: sua typo login    # Gộp vào commit trước
+reword ghi9012 feat: them logout      # Đổi message
 
-# Cac lenh: pick, reword, edit, squash, fixup, drop
+# Các lệnh: pick, reword, edit, squash, fixup, drop
 ```
 
 ### 9.3 Rebase vs Merge
 
 | | Merge | Rebase |
-|--|-------|--------|
-| Lich su | Giu nguyen, co merge commits | Tuyen tinh, sach |
-| An toan | An toan cho shared branches | CHI dung cho local branches |
-| Conflict | Giai quyet 1 lan | Co the giai quyet nhieu lan |
-| Khi nao | Merge feature vao main | Cap nhat feature branch |
+| |--|-------|--------|
+| Lịch sử | Giữ nguyên, có merge commits | Tuyến tính, sạch |
+| An toàn | An toàn cho shared branches | CHỈ dùng cho local branches |
+| Conflict | Giải quyết 1 lần | Có thể giải quyết nhiều lần |
+| Khi nào | Merge feature vào main | Cập nhật feature branch |
 
-**Quy tac vang:** KHONG BAO GIO rebase branch da push va co nguoi khac dang lam viec.
+**Quy tắc vàng:** KHÔNG BAO GIỜ rebase branch đã push và có người khác đang làm việc.
 
 ---
 
-## 10. Cherry-pick va Tags
+## 10. Cherry-pick và Tags
 
 ### 10.1 Cherry-pick
 
 ```bash
-# Lay 1 commit tu branch khac
+# Lấy 1 commit từ branch khác
 git cherry-pick abc1234
 
-# Nhieu commits
+# Nhiều commits
 git cherry-pick abc1234 def5678
 
-# Chi staging, khong commit
+# Chỉ staging, không commit
 git cherry-pick --no-commit abc1234
 ```
 
 ### 10.2 Tags
 
 ```bash
-# Tao tag
+# Tạo tag
 git tag v1.0.0                        # Lightweight
-git tag -a v1.0.0 -m "Release 1.0.0" # Annotated (khuyen dung)
-git tag -a v1.0.0 abc1234             # Tag commit cu the
+git tag -a v1.0.0 -m "Release 1.0.0" # Annotated (khuyên dùng)
+git tag -a v1.0.0 abc1234             # Tag commit cụ thể
 
 # Xem tags
 git tag
@@ -406,9 +406,9 @@ git show v1.0.0
 
 # Push tags
 git push origin v1.0.0      # 1 tag
-git push origin --tags       # Tat ca tags
+git push origin --tags       # Tất cả tags
 
-# Xoa tag
+# Xóa tag
 git tag -d v1.0.0                    # Local
 git push origin --delete v1.0.0      # Remote
 ```
@@ -417,42 +417,42 @@ git push origin --delete v1.0.0      # Remote
 
 ## 11. Gitignore
 
-### 11.1 Cu phap .gitignore
+### 11.1 Cú pháp .gitignore
 
 ```gitignore
 # Comment
-*.log                  # Tat ca file .log
-!important.log         # Ngoai tru important.log
+*.log                  # Tất cả file .log
+!important.log         # Ngoại trừ important.log
 
-# Thu muc
+# Thư mục
 node_modules/
 dist/
 build/
 .idea/
 .vscode/
 
-# File cu the
+# File cụ thể
 .env
 .env.local
 *.secret
 
 # Pattern
-**/temp/               # Thu muc temp o bat ky dau
-src/**/*.test.js       # Tat ca .test.js trong src/
+**/temp/               # Thư mục temp ở bất kỳ đâu
+src/**/*.test.js       # Tất cả .test.js trong src/
 
 # OS files
 .DS_Store
 Thumbs.db
 ```
 
-### 11.2 Gitignore cho file da tracked
+### 11.2 Gitignore cho file đã tracked
 
 ```bash
-# Xoa file khoi Git nhung giu tren disk
+# Xóa file khỏi Git nhưng giữ trên disk
 git rm --cached file.txt
 git rm -r --cached node_modules/
 
-# Sau do them vao .gitignore va commit
+# Sau đó thêm vào .gitignore và commit
 ```
 
 ---
@@ -461,16 +461,16 @@ git rm -r --cached node_modules/
 
 ### 12.1 Pull Request (PR)
 
-1. **Fork** hoac **tao branch** tu main
-2. **Code** va commit voi conventional commits
-3. **Push** branch len remote
-4. **Tao PR** tren GitHub voi mo ta ro rang
-5. **Code Review** - doi nguoi khac review
-6. **Address feedback** - sua theo comment
+1. **Fork** hoặc **tạo branch** từ main
+2. **Code** và commit với conventional commits
+3. **Push** branch lên remote
+4. **Tạo PR** trên GitHub với mô tả rõ ràng
+5. **Code Review** - đợi người khác review
+6. **Address feedback** - sửa theo comment
 7. **Merge** sau khi approved
-8. **Xoa branch** sau merge
+8. **Xóa branch** sau khi merge
 
-### 12.2 GitHub Actions (CI/CD co ban)
+### 12.2 GitHub Actions (CI/CD cơ bản)
 
 ```yaml
 # .github/workflows/ci.yml
@@ -502,23 +502,23 @@ jobs:
 ### 13.1 Local Hooks
 
 ```bash
-# Cac hook pho bien (trong .git/hooks/)
-pre-commit       # Chay truoc khi commit (lint, format)
-commit-msg       # Kiem tra commit message
-pre-push         # Chay truoc khi push (test)
+# Các hook phổ biến (trong .git/hooks/)
+pre-commit       # Chạy trước khi commit (lint, format)
+commit-msg       # Kiểm tra commit message
+pre-push         # Chạy trước khi push (test)
 ```
 
-### 13.2 Husky (Git Hooks de dang)
+### 13.2 Husky (Git Hooks dễ dàng)
 
 ```bash
-# Cai dat
+# Cài đặt
 npm install --save-dev husky
 npx husky init
 
 # Pre-commit hook
 echo "npm run lint" > .husky/pre-commit
 
-# Commit-msg hook (kiem tra conventional commits)
+# Commit-msg hook (kiểm tra conventional commits)
 echo 'npx commitlint --edit "$1"' > .husky/commit-msg
 ```
 
@@ -538,20 +538,20 @@ echo 'npx commitlint --edit "$1"' > .husky/commit-msg
 
 ### 14.2 Types
 
-| Type | Mo ta |
+| Type | Mô tả |
 |------|-------|
-| feat | Tinh nang moi |
-| fix | Sua loi |
-| docs | Chi thay doi documentation |
-| style | Format, thieu dau cham phay (khong thay doi logic) |
-| refactor | Tai cau truc code (khong them tinh nang, khong sua loi) |
-| perf | Cai thien performance |
-| test | Them hoac sua test |
-| chore | Thay doi build, CI, dependencies |
-| ci | Thay doi CI configuration |
-| revert | Revert commit truoc |
+| feat | Tính năng mới |
+| fix | Sửa lỗi |
+| docs | Chỉ thay đổi documentation |
+| style | Format, thiếu dấu chấm phẩy (không thay đổi logic) |
+| refactor | Tái cấu trúc code (không thêm tính năng, không sửa lỗi) |
+| perf | Cải thiện performance |
+| test | Thêm hoặc sửa test |
+| chore | Thay đổi build, CI, dependencies |
+| ci | Thay đổi CI configuration |
+| revert | Revert commit trước |
 
-### 14.3 Vi du
+### 14.3 Ví dụ
 
 ```
 feat(auth): them chuc nang dang nhap bang Google
@@ -567,28 +567,28 @@ Closes #123
 
 ## 15. Best Practices
 
-1. **Commit thuong xuyen:** Moi commit la mot thay doi logic nho
-2. **Message ro rang:** Dung conventional commits
+1. **Commit thường xuyên:** Mỗi commit là một thay đổi logic nhỏ
+2. **Message rõ ràng:** Dùng conventional commits
 3. **Branch strategy:** main (stable), develop, feature/*, bugfix/*, hotfix/*
-4. **Pull truoc Push:** Luon `git pull --rebase` truoc khi push
-5. **Review code:** Khong merge truc tiep, luon qua PR/MR
-6. **Khong commit secrets:** Dung .env va .gitignore
-7. **.gitignore tu dau:** Them ngay khi init project
-8. **Tag releases:** Dung semantic versioning (v1.2.3)
-9. **Khong force push main:** Chi force push tren branch ca nhan
-10. **Rebase local, merge shared:** Giu lich su sach nhung an toan
+4. **Pull trước Push:** Luôn `git pull --rebase` trước khi push
+5. **Review code:** Không merge trực tiếp, luôn qua PR/MR
+6. **Không commit secrets:** Dùng .env và .gitignore
+7. **.gitignore từ đầu:** Thêm ngay khi init project
+8. **Tag releases:** Dùng semantic versioning (v1.2.3)
+9. **Không force push main:** Chỉ force push trên branch cá nhân
+10. **Rebase local, merge shared:** Giữ lịch sử sạch nhưng an toàn
 
 ---
 
-## Tong ket
+## Tổng kết
 
-Git la cong cu quan ly phien ban thiet yeu cho moi developer:
+Git là công cụ quản lý phiên bản thiết yếu cho mọi developer:
 
-1. **Co ban:** init, add, commit, status, diff
+1. **Cơ bản:** init, add, commit, status, diff
 2. **Branching:** branch, checkout/switch, merge
 3. **Remote:** clone, push, pull, fetch
-4. **Lich su:** log, blame, show
-5. **Hoan tac:** restore, revert, reset
-6. **Nang cao:** rebase, cherry-pick, stash, tags
+4. **Lịch sử:** log, blame, show
+5. **Hoàn tác:** restore, revert, reset
+6. **Nâng cao:** rebase, cherry-pick, stash, tags
 7. **Workflow:** Feature branch, PR, code review
 8. **Convention:** Conventional commits, semantic versioning

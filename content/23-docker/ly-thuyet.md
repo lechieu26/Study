@@ -1,9 +1,9 @@
-# Docker - Ly Thuyet Tu Co Ban Den Nang Cao
+# Docker - Lý Thuyết Từ Cơ Bản Đến Nâng Cao
 
-## Muc luc
+## Mục lục
 
-1. [Gioi thieu ve Docker](#1-gioi-thieu-ve-docker)
-2. [Cai dat Docker](#2-cai-dat-docker)
+1. [Giới thiệu về Docker](#1-gioi-thieu-ve-docker)
+2. [Cài đặt Docker](#2-cai-dat-docker)
 3. [Docker Images](#3-docker-images)
 4. [Docker Containers](#4-docker-containers)
 5. [Dockerfile](#5-dockerfile)
@@ -17,30 +17,30 @@
 
 ---
 
-## 1. Gioi thieu ve Docker
+## 1. Giới thiệu về Docker
 
-### 1.1 Docker la gi?
+### 1.1 Docker là gì?
 
-Docker la nen tang **container hoa** cho phep dong goi ung dung cung tat ca dependencies vao mot **container** nhe, di dong, chay nhat quan tren moi moi truong.
+Docker là nền tảng **container hóa** cho phép đóng gói ứng dụng cùng tất cả dependencies vào một **container** nhẹ, di động, chạy nhất quán trên mọi môi trường.
 
 ### 1.2 Container vs Virtual Machine
 
 | | Container | Virtual Machine |
 |--|-----------|-----------------|
-| Kich thuoc | MB | GB |
-| Khoi dong | Giay | Phut |
-| OS | Chia se kernel voi host | OS rieng |
+| Kích thước | MB | GB |
+| Khởi động | Giây | Phút |
+| OS | Chia sẻ kernel với host | OS riêng |
 | Isolation | Process-level | Hardware-level |
-| Performance | Gan nhu native | Overhead do hypervisor |
-| Density | Hang tram tren 1 host | Hang chuc |
+| Performance | Gần như native | Overhead do hypervisor |
+| Density | Hàng trăm trên 1 host | Hàng chục |
 
-### 1.3 Kien truc Docker
+### 1.3 Kiến trúc Docker
 
 ```
 Docker Client (CLI)
     |
     v
-Docker Daemon (dockerd)
+    Docker Daemon (dockerd)
     |
     +--→ Images (templates)
     +--→ Containers (instances)
@@ -48,48 +48,48 @@ Docker Daemon (dockerd)
     +--→ Networks
     |
     v
-Docker Registry (Docker Hub)
+    Docker Registry (Docker Hub)
 ```
 
-### 1.4 Khai niem co ban
+### 1.4 Khái niệm cơ bản
 
-| Khai niem | Mo ta |
+| Khái niệm | Mô tả |
 |-----------|-------|
-| Image | Template chi doc, chua OS + app + dependencies |
-| Container | Instance dang chay cua image |
-| Dockerfile | File chi dan de build image |
-| Docker Compose | Tool quan ly nhieu containers |
-| Volume | Luu tru du lieu ben ngoai container |
-| Network | Mang ket noi giua cac containers |
-| Registry | Kho luu tru images (Docker Hub) |
+| Image | Template chỉ đọc, chứa OS + app + dependencies |
+| Container | Instance đang chạy của image |
+| Dockerfile | File chỉ dẫn để build image |
+| Docker Compose | Tool quản lý nhiều containers |
+| Volume | Lưu trữ dữ liệu bên ngoài container |
+| Network | Mạng kết nối giữa các containers |
+| Registry | Kho lưu trữ images (Docker Hub) |
 
 ---
 
-## 2. Cai dat Docker
+## 2. Cài đặt Docker
 
-### 2.1 Cai dat tren Ubuntu
+### 2.1 Cài đặt trên Ubuntu
 
 ```bash
-# Cap nhat va cai dependencies
+# Cập nhật và cài dependencies
 sudo apt-get update
 sudo apt-get install ca-certificates curl gnupg
 
-# Them Docker GPG key
+# Thêm Docker GPG key
 sudo install -m 0755 -d /etc/apt/keyrings
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
 
-# Them Docker repository
+# Thêm Docker repository
 echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(. /etc/os-release && echo "$VERSION_CODENAME") stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
 
-# Cai Docker
+# Cài Docker
 sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin
 
-# Chay Docker khong can sudo
+# Chạy Docker không cần sudo
 sudo usermod -aG docker $USER
 ```
 
-### 2.2 Kiem tra
+### 2.2 Kiểm tra
 
 ```bash
 docker --version
@@ -101,32 +101,32 @@ docker run hello-world
 
 ## 3. Docker Images
 
-### 3.1 Quan ly Images
+### 3.1 Quản lý Images
 
 ```bash
-# Tim image tren Docker Hub
+# Tìm image trên Docker Hub
 docker search nginx
 
-# Tai image
+# Tải image
 docker pull nginx                  # Latest
-docker pull nginx:1.25             # Version cu the
-docker pull node:20-alpine         # Variant nhe
+docker pull nginx:1.25             # Version cụ thể
+docker pull node:20-alpine         # Variant nhẹ
 
 # Xem images local
 docker images
 docker image ls
 
-# Xoa image
+# Xóa image
 docker rmi nginx
-docker image prune          # Xoa images khong dung
-docker image prune -a       # Xoa TAT CA images khong dung
+docker image prune          # Xóa images không dùng
+docker image prune -a       # Xóa TẤT CẢ images không dùng
 
-# Xem chi tiet image
+# Xem chi tiết image
 docker inspect nginx
-docker history nginx        # Xem cac layers
+docker history nginx        # Xem các layers
 ```
 
-### 3.2 Image Tags va Naming
+### 3.2 Image Tags và Naming
 
 ```
 registry/repository:tag
@@ -135,7 +135,7 @@ docker.io/library/nginx:1.25-alpine
 |         |       |    |
 Registry  User    Name Tag
 
-# Vi du:
+# Ví dụ:
 nginx                    → docker.io/library/nginx:latest
 node:20-alpine           → docker.io/library/node:20-alpine
 myuser/myapp:v1.0        → docker.io/myuser/myapp:v1.0
@@ -146,56 +146,56 @@ ghcr.io/user/app:latest  → GitHub Container Registry
 
 ## 4. Docker Containers
 
-### 4.1 Chay Containers
+### 4.1 Chạy Containers
 
 ```bash
-# Chay container co ban
+# Chạy container cơ bản
 docker run nginx
 
-# Chay nen (detached)
+# Chạy nền (detached)
 docker run -d nginx
 
-# Chay voi ten
+# Chạy với tên
 docker run -d --name my-nginx nginx
 
 # Map port: host:container
 docker run -d -p 8080:80 nginx
-# Truy cap http://localhost:8080
+# Truy cập http://localhost:8080
 
-# Truyen environment variables
+# Truyền environment variables
 docker run -d -e DB_HOST=localhost -e DB_PORT=5432 postgres
 
-# Tu dong xoa khi dung
+# Tự động xóa khi dừng
 docker run --rm nginx echo "Hello"
 
-# Tuong tac (interactive terminal)
+# Tương tác (interactive terminal)
 docker run -it ubuntu bash
 docker run -it node:20-alpine sh
 ```
 
-### 4.2 Quan ly Containers
+### 4.2 Quản lý Containers
 
 ```bash
-# Xem containers dang chay
+# Xem containers đang chạy
 docker ps
-docker ps -a               # Tat ca (ca da dung)
+docker ps -a               # Tất cả (cả đã dừng)
 
-# Dung / Khoi dong / Khoi dong lai
+# Dừng / Khởi động / Khởi động lại
 docker stop my-nginx
 docker start my-nginx
 docker restart my-nginx
 
-# Xoa container
+# Xóa container
 docker rm my-nginx
-docker rm -f my-nginx      # Force (dang chay)
-docker container prune     # Xoa tat ca da dung
+docker rm -f my-nginx      # Force (đang chạy)
+docker container prune     # Xóa tất cả đã dừng
 
 # Xem logs
 docker logs my-nginx
 docker logs -f my-nginx    # Follow (real-time)
-docker logs --tail 100 my-nginx  # 100 dong cuoi
+docker logs --tail 100 my-nginx  # 100 dòng cuối
 
-# Chay lenh trong container dang chay
+# Chạy lệnh trong container đang chạy
 docker exec -it my-nginx bash
 docker exec my-nginx ls /etc/nginx
 
@@ -203,7 +203,7 @@ docker exec my-nginx ls /etc/nginx
 docker stats
 docker top my-nginx        # Processes trong container
 
-# Copy file giua host va container
+# Copy file giữa host và container
 docker cp file.txt my-nginx:/app/
 docker cp my-nginx:/app/log.txt ./
 ```
@@ -212,7 +212,7 @@ docker cp my-nginx:/app/log.txt ./
 
 ## 5. Dockerfile
 
-### 5.1 Cau truc Dockerfile
+### 5.1 Cấu trúc Dockerfile
 
 ```dockerfile
 # Base image
@@ -222,19 +222,19 @@ FROM node:20-alpine
 LABEL maintainer="dev@example.com"
 LABEL version="1.0"
 
-# Tao thu muc lam viec
+# Tạo thư mục làm việc
 WORKDIR /app
 
-# Copy dependency files truoc (tan dung cache)
+# Copy dependency files trước (tận dụng cache)
 COPY package.json package-lock.json ./
 
-# Cai dependencies
+# Cài dependencies
 RUN npm ci --production
 
 # Copy source code
 COPY . .
 
-# Build ung dung
+# Build ứng dụng
 RUN npm run build
 
 # Expose port (documentation)
@@ -244,36 +244,36 @@ EXPOSE 3000
 ENV NODE_ENV=production
 ENV PORT=3000
 
-# Tao user khong phai root
+# Tạo user không phải root
 RUN addgroup -S appgroup && adduser -S appuser -G appgroup
 USER appuser
 
-# Lenh chay khi container start
+# Lệnh chạy khi container start
 CMD ["node", "dist/index.js"]
 ```
 
-### 5.2 Cac Instructions quan trong
+### 5.2 Các Instructions quan trọng
 
 ```dockerfile
-# FROM - Base image (BAT BUOC, dong dau)
+# FROM - Base image (BẮT BUỘC, dòng đầu)
 FROM node:20-alpine
 FROM python:3.12-slim
 FROM eclipse-temurin:17-jre-alpine
 
-# RUN - Chay lenh khi build (tao layer moi)
+# RUN - Chạy lệnh khi build (tạo layer mới)
 RUN apt-get update && apt-get install -y curl && rm -rf /var/lib/apt/lists/*
 RUN npm ci --production
 
 # COPY vs ADD
-COPY . .                  # Copy files tu host vao image
-COPY --chown=app:app . .  # Copy voi owner
-ADD archive.tar.gz /app/  # Tu dong extract tar (dung COPY khi khong can)
+COPY . .                  # Copy files từ host vào image
+COPY --chown=app:app . .  # Copy với owner
+ADD archive.tar.gz /app/  # Tự động extract tar (dùng COPY khi không cần)
 
 # CMD vs ENTRYPOINT
-CMD ["node", "app.js"]           # Co the bi override khi docker run
-ENTRYPOINT ["node", "app.js"]    # Khong bi override (dung cho CLI tools)
+CMD ["node", "app.js"]           # Có thể bị override khi docker run
+ENTRYPOINT ["node", "app.js"]    # Không bị override (dùng cho CLI tools)
 
-# ENTRYPOINT + CMD ket hop
+# ENTRYPOINT + CMD kết hợp
 ENTRYPOINT ["node"]
 CMD ["app.js"]
 # docker run myapp → node app.js
@@ -296,7 +296,7 @@ docker build -t myapp .
 docker build -t myapp:v1.0 .
 docker build -t myapp:v1.0 -f Dockerfile.prod .
 
-# Build voi ARG
+# Build với ARG
 docker build --build-arg NODE_VERSION=18 -t myapp .
 
 # Xem build process
@@ -307,7 +307,7 @@ docker build --progress=plain -t myapp .
 
 ## 6. Docker Compose
 
-### 6.1 docker-compose.yml co ban
+### 6.1 docker-compose.yml cơ bản
 
 ```yaml
 # docker-compose.yml
@@ -368,24 +368,24 @@ volumes:
   postgres-data:
 ```
 
-### 6.2 Lenh Docker Compose
+### 6.2 Lệnh Docker Compose
 
 ```bash
-# Khoi dong tat ca services
+# Khởi động tất cả services
 docker compose up
 docker compose up -d            # Detached
 docker compose up --build       # Rebuild images
 
-# Dung
-docker compose down             # Dung va xoa containers
-docker compose down -v          # + xoa volumes
-docker compose down --rmi all   # + xoa images
+# Dừng
+docker compose down             # Dừng và xóa containers
+docker compose down -v          # + xóa volumes
+docker compose down --rmi all   # + xóa images
 
-# Quan ly
+# Quản lý
 docker compose ps               # Xem services
 docker compose logs             # Xem logs
-docker compose logs -f backend  # Follow logs cua 1 service
-docker compose exec backend sh  # Shell vao service
+docker compose logs -f backend  # Follow logs của 1 service
+docker compose exec backend sh  # Shell vào service
 
 # Scale
 docker compose up -d --scale backend=3
@@ -398,33 +398,33 @@ docker compose restart backend
 
 ## 7. Docker Networking
 
-### 7.1 Cac loai Network
+### 7.1 Các loại Network
 
 ```bash
 # Xem networks
 docker network ls
 
-# Cac driver:
-# - bridge (mac dinh): Containers tren cung host giao tiep
-# - host: Container dung network cua host
-# - none: Khong co network
+# Các driver:
+# - bridge (mặc định): Containers trên cùng host giao tiếp
+# - host: Container dùng network của host
+# - none: Không có network
 # - overlay: Multi-host (Docker Swarm)
 ```
 
 ### 7.2 Custom Network
 
 ```bash
-# Tao network
+# Tạo network
 docker network create my-network
 
-# Chay containers tren cung network
+# Chạy containers trên cùng network
 docker run -d --name api --network my-network node:20-alpine
 docker run -d --name db --network my-network postgres:16
 
-# Container "api" co the truy cap "db" bang ten:
+# Container "api" có thể truy cập "db" bằng tên:
 # postgres://db:5432
 
-# Xem chi tiet network
+# Xem chi tiết network
 docker network inspect my-network
 ```
 
@@ -449,48 +449,48 @@ networks:
   frontend-net:
   backend-net:
 
-# frontend <-> backend: OK (cung frontend-net)
-# backend <-> db: OK (cung backend-net)
-# frontend <-> db: KHONG (khac network)
+# frontend <-> backend: OK (cùng frontend-net)
+# backend <-> db: OK (cùng backend-net)
+# frontend <-> db: KHÔNG (khác network)
 ```
 
 ---
 
 ## 8. Docker Volumes
 
-### 8.1 Cac loai Volumes
+### 8.1 Các loại Volumes
 
 ```bash
-# 1. Named Volume (KHUYEN DUNG cho data)
+# 1. Named Volume (KHUYÊN DÙNG cho data)
 docker volume create my-data
 docker run -v my-data:/app/data nginx
 
-# 2. Bind Mount (dung cho development)
+# 2. Bind Mount (dùng cho development)
 docker run -v $(pwd)/src:/app/src nginx
 docker run -v ./src:/app/src nginx         # Docker Compose
 
-# 3. tmpfs Mount (RAM, mat khi dung container)
+# 3. tmpfs Mount (RAM, mất khi dừng container)
 docker run --tmpfs /app/temp nginx
 ```
 
-### 8.2 Quan ly Volumes
+### 8.2 Quản lý Volumes
 
 ```bash
-docker volume ls               # Xem tat ca
-docker volume inspect my-data  # Chi tiet
-docker volume rm my-data       # Xoa
-docker volume prune            # Xoa khong dung
+docker volume ls               # Xem tất cả
+docker volume inspect my-data  # Chi tiết
+docker volume rm my-data       # Xóa
+docker volume prune            # Xóa không dùng
 ```
 
 ---
 
 ## 9. Multi-stage Builds
 
-### 9.1 Tai sao Multi-stage?
+### 9.1 Tại sao Multi-stage?
 
-Giam kich thuoc image bang cach tach build stage va runtime stage.
+Giảm kích thước image bằng cách tách build stage và runtime stage.
 
-### 9.2 Vi du Node.js
+### 9.2 Ví dụ Node.js
 
 ```dockerfile
 # === Stage 1: Build ===
@@ -514,7 +514,7 @@ EXPOSE 3000
 CMD ["node", "dist/index.js"]
 ```
 
-### 9.3 Vi du Java Spring Boot
+### 9.3 Ví dụ Java Spring Boot
 
 ```dockerfile
 # === Stage 1: Build ===
@@ -539,7 +539,7 @@ HEALTHCHECK --interval=30s CMD wget -qO- http://localhost:8080/actuator/health |
 ENTRYPOINT ["java", "-jar", "app.jar"]
 ```
 
-### 9.4 Vi du React (Static)
+### 9.4 Ví dụ React (Static)
 
 ```dockerfile
 # === Stage 1: Build ===
@@ -550,7 +550,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# === Stage 2: Serve voi Nginx ===
+# === Stage 2: Serve với Nginx ===
 FROM nginx:alpine
 COPY --from=builder /app/dist /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
@@ -558,9 +558,9 @@ EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
 ```
 
-**Kich thuoc:**
-- Khong multi-stage: ~1.2GB (node + dependencies + source)
-- Multi-stage: ~25MB (chi nginx + static files)
+**Kích thước:**
+- Không multi-stage: ~1.2GB (node + dependencies + source)
+- Multi-stage: ~25MB (chỉ nginx + static files)
 
 ---
 
@@ -569,7 +569,7 @@ CMD ["nginx", "-g", "daemon off;"]
 ### 10.1 Docker Hub
 
 ```bash
-# Dang nhap
+# Đăng nhập
 docker login
 
 # Tag image
@@ -588,7 +588,7 @@ docker pull username/myapp:v1.0
 # Login
 echo $GITHUB_TOKEN | docker login ghcr.io -u USERNAME --password-stdin
 
-# Tag va push
+# Tag và push
 docker tag myapp ghcr.io/username/myapp:latest
 docker push ghcr.io/username/myapp:latest
 ```
@@ -600,19 +600,19 @@ docker push ghcr.io/username/myapp:latest
 ### 11.1 Security
 
 ```dockerfile
-# 1. Dung non-root user
+# 1. Dùng non-root user
 RUN addgroup -S app && adduser -S app -G app
 USER app
 
-# 2. Dung image nhe (alpine, slim, distroless)
-FROM node:20-alpine       # ~180MB thay vi ~1GB
+# 2. Dùng image nhẹ (alpine, slim, distroless)
+FROM node:20-alpine       # ~180MB thay vì ~1GB
 
 # 3. Scan vulnerabilities
 # docker scout cves myapp:latest
-# hoac dung Trivy: trivy image myapp:latest
+# hoặc dùng Trivy: trivy image myapp:latest
 
-# 4. Khong copy secrets vao image
-# Dung build secrets:
+# 4. Không copy secrets vào image
+# Dùng build secrets:
 RUN --mount=type=secret,id=npmrc,target=/root/.npmrc npm ci
 ```
 
@@ -641,16 +641,16 @@ services:
 
 ### 12.1 Dockerfile
 
-1. **Dung image cu the:** `node:20.11-alpine` thay vi `node:latest`
-2. **Multi-stage builds:** Tach build va runtime
-3. **Layer ordering:** COPY package.json truoc source code (cache)
-4. **Gop RUN:** Giam so layers (`RUN apt-get update && apt-get install -y ...`)
-5. **Non-root user:** Luon chay app voi user khong phai root
-6. **Alpine/Slim:** Dung base image nhe nhat co the
-7. **.dockerignore:** Giong .gitignore, tranh copy file khong can
-8. **HEALTHCHECK:** Luon dinh nghia health check
+1. **Dùng image cụ thể:** `node:20.11-alpine` thay vì `node:latest`
+2. **Multi-stage builds:** Tách build và runtime
+3. **Layer ordering:** COPY package.json trước source code (cache)
+4. **Gộp RUN:** Giảm số layers (`RUN apt-get update && apt-get install -y ...`)
+5. **Non-root user:** Luôn chạy app với user không phải root
+6. **Alpine/Slim:** Dùng base image nhẹ nhất có thể
+7. **.dockerignore:** Giống .gitignore, tránh copy file không cần
+8. **HEALTHCHECK:** Luôn định nghĩa health check
 9. **Labels:** Metadata cho image (maintainer, version)
-10. **No secrets in image:** Dung build secrets hoac env vars luc runtime
+10. **No secrets in image:** Dùng build secrets hoặc env vars lúc runtime
 
 ### 12.2 .dockerignore
 
@@ -668,22 +668,22 @@ coverage
 
 ### 12.3 Docker Compose
 
-1. **depends_on + healthcheck:** Dam bao services san sang truoc khi connect
+1. **depends_on + healthcheck:** Đảm bảo services sẵn sàng trước khi connect
 2. **Named volumes:** Cho persistent data
-3. **Environment variables:** Dung .env file
-4. **Networks:** Tach frontend va backend network
+3. **Environment variables:** Dùng .env file
+4. **Networks:** Tách frontend và backend network
 
 ---
 
-## Tong ket
+## Tổng kết
 
-Docker la nen tang container hoa thiet yeu cho development va deployment:
+Docker là nền tảng container hóa thiết yếu cho development và deployment:
 
-1. **Images:** Template chua OS + app + dependencies
-2. **Containers:** Instance chay tu image, nhe va nhanh
-3. **Dockerfile:** Dinh nghia cach build image (FROM, RUN, COPY, CMD)
-4. **Docker Compose:** Quan ly nhieu containers (full-stack apps)
-5. **Multi-stage:** Giam kich thuoc image dang ke
-6. **Volumes:** Luu tru data ben ngoai container
-7. **Networks:** Ket noi va co lap containers
+1. **Images:** Template chứa OS + app + dependencies
+2. **Containers:** Instance chạy từ image, nhẹ và nhanh
+3. **Dockerfile:** Định nghĩa cách build image (FROM, RUN, COPY, CMD)
+4. **Docker Compose:** Quản lý nhiều containers (full-stack apps)
+5. **Multi-stage:** Giảm kích thước image đáng kể
+6. **Volumes:** Lưu trữ data bên ngoài container
+7. **Networks:** Kết nối và cô lập containers
 8. **Security:** Non-root user, image scanning, secrets management

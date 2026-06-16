@@ -1,55 +1,55 @@
-# CI/CD - Ly Thuyet Tu Co Ban Den Nang Cao
+# CI/CD - Lý Thuyết Từ Cơ Bản Đến Nâng Cao
 
-## Muc luc
+## Mục lục
 
-1. [Gioi thieu ve CI/CD](#1-gioi-thieu-ve-cicd)
+1. [Giới thiệu về CI/CD](#1-gioi-thieu-ve-cicd)
 2. [Continuous Integration (CI)](#2-continuous-integration-ci)
 3. [Continuous Delivery vs Continuous Deployment](#3-continuous-delivery-vs-continuous-deployment)
 4. [GitHub Actions](#4-github-actions)
 5. [Pipeline Stages](#5-pipeline-stages)
 6. [Testing trong CI](#6-testing-trong-ci)
 7. [Docker trong CI/CD](#7-docker-trong-cicd)
-8. [Environment va Secrets](#8-environment-va-secrets)
+8. [Environment và Secrets](#8-environment-va-secrets)
 9. [Deployment Strategies](#9-deployment-strategies)
-10. [Monitoring va Rollback](#10-monitoring-va-rollback)
-11. [Cac CI/CD Tools pho bien](#11-cac-cicd-tools-pho-bien)
+10. [Monitoring và Rollback](#10-monitoring-va-rollback)
+11. [Các CI/CD Tools phổ biến](#11-cac-cicd-tools-pho-bien)
 12. [Best Practices](#12-best-practices)
 
 ---
 
-## 1. Gioi thieu ve CI/CD
+## 1. Giới thiệu về CI/CD
 
-### 1.1 CI/CD la gi?
+### 1.1 CI/CD là gì?
 
-CI/CD la tap hop cac phuong phap tu dong hoa quy trinh phat trien phan mem:
+CI/CD là tập hợp các phương pháp tự động hóa quy trình phát triển phần mềm:
 
-- **CI (Continuous Integration):** Tu dong build va test moi khi co code moi
-- **CD (Continuous Delivery):** Tu dong chuan bi release, deploy thu cong
-- **CD (Continuous Deployment):** Tu dong deploy len production
+- **CI (Continuous Integration):** Tự động build và test mỗi khi có code mới
+- **CD (Continuous Delivery):** Tự động chuẩn bị release, deploy thủ công
+- **CD (Continuous Deployment):** Tự động deploy lên production
 
-### 1.2 Tai sao can CI/CD?
+### 1.2 Tại sao cần CI/CD?
 
-| Khong co CI/CD | Co CI/CD |
+| Không có CI/CD | Có CI/CD |
 |---------------|----------|
-| Build thu cong, de sai | Build tu dong, nhat quan |
-| Test bi bo qua | Test bat buoc chay |
-| "It works on my machine" | Moi truong nhat quan |
-| Deploy mat nhieu gio | Deploy trong vai phut |
-| Phat hien loi muon | Phat hien loi som |
-| Rollback kho khan | Rollback nhanh chong |
+| Build thủ công, dễ sai | Build tự động, nhất quán |
+| Test bị bỏ qua | Test bắt buộc chạy |
+| "It works on my machine" | Môi trường nhất quán |
+| Deploy mất nhiều giờ | Deploy trong vài phút |
+| Phát hiện lỗi muộn | Phát hiện lỗi sớm |
+| Rollback khó khăn | Rollback nhanh chóng |
 
-### 1.3 Quy trinh CI/CD
+### 1.3 Quy trình CI/CD
 
 ```
 Developer push code
-    → CI Server phat hien
-    → Build ung dung
-    → Chay unit tests
-    → Chay integration tests
+    → CI Server phát hiện
+    → Build ứng dụng
+    → Chạy unit tests
+    → Chạy integration tests
     → Security scan
     → Build Docker image
     → Deploy to staging
-    → Chay E2E tests
+    → Chạy E2E tests
     → Deploy to production
     → Monitor & Alert
 ```
@@ -58,66 +58,66 @@ Developer push code
 
 ## 2. Continuous Integration (CI)
 
-### 2.1 Nguyen tac CI
+### 2.1 Nguyên tắc CI
 
-1. **Merge thuong xuyen:** Moi developer merge code vao main it nhat 1 lan/ngay
-2. **Build tu dong:** Moi commit trigger build tu dong
-3. **Test tu dong:** Moi build phai chay test suite
-4. **Fix ngay:** Neu build fail, fix la uu tien so 1
-5. **Moi nguoi thay duoc:** Dashboard build status cong khai
+1. **Merge thường xuyên:** Mỗi developer merge code vào main ít nhất 1 lần/ngày
+2. **Build tự động:** Mỗi commit trigger build tự động
+3. **Test tự động:** Mỗi build phải chạy test suite
+4. **Fix ngay:** Nếu build fail, fix là ưu tiên số 1
+5. **Mọi người thấy được:** Dashboard build status công khai
 
-### 2.2 CI Pipeline co ban
+### 2.2 CI Pipeline cơ bản
 
 ```yaml
-# Luong CI dien hinh
+# Luồng CI điển hình
 1. Checkout code
-2. Cai dat dependencies
+2. Cài đặt dependencies
 3. Lint / Format check
 4. Unit tests
 5. Integration tests
 6. Build artifact
-7. Bao cao ket qua
+7. Báo cáo kết quả
 ```
 
 ---
 
 ## 3. Continuous Delivery vs Continuous Deployment
 
-### 3.1 So sanh
+### 3.1 So sánh
 
 ```
 Continuous Integration
-    Code → Build → Test (tu dong)
+    Code → Build → Test (tự động)
 
 Continuous Delivery
     Code → Build → Test → Staging → [MANUAL APPROVE] → Production
 
 Continuous Deployment
-    Code → Build → Test → Staging → Production (HOAN TOAN tu dong)
+    Code → Build → Test → Staging → Production (HOÀN TOÀN tự động)
 ```
 
-### 3.2 Khi nao dung gi?
+### 3.2 Khi nào dùng gì?
 
-- **Delivery:** Khi can human review truoc production (finance, healthcare)
-- **Deployment:** Khi da co do tin cay cao vao test suite (SaaS, web apps)
+- **Delivery:** Khi cần human review trước production (finance, healthcare)
+- **Deployment:** Khi đã có độ tin cậy cao vào test suite (SaaS, web apps)
 
 ---
 
 ## 4. GitHub Actions
 
-### 4.1 Khai niem co ban
+### 4.1 Khái niệm cơ bản
 
-| Khai niem | Mo ta |
+| Khái niệm | Mô tả |
 |-----------|-------|
-| Workflow | File YAML dinh nghia pipeline (.github/workflows/) |
-| Event/Trigger | Su kien kich hoat workflow (push, PR, schedule) |
-| Job | Tap hop cac steps chay tren 1 runner |
-| Step | 1 lenh hoac 1 action |
-| Action | Thanh phan tai su dung (marketplace) |
-| Runner | May chay workflow (ubuntu, windows, macos) |
+| Workflow | File YAML định nghĩa pipeline (.github/workflows/) |
+| Event/Trigger | Sự kiện kích hoạt workflow (push, PR, schedule) |
+| Job | Tập hợp các steps chạy trên 1 runner |
+| Step | 1 lệnh hoặc 1 action |
+| Action | Thành phần tái sử dụng (marketplace) |
+| Runner | Máy chạy workflow (ubuntu, windows, macos) |
 | Artifact | File output (build, report) |
 
-### 4.2 Workflow co ban
+### 4.2 Workflow cơ bản
 
 ```yaml
 # .github/workflows/ci.yml
@@ -174,11 +174,11 @@ jobs:
           path: dist/
 ```
 
-### 4.3 Triggers pho bien
+### 4.3 Triggers phổ biến
 
 ```yaml
 on:
-  # Push len branch cu the
+  # Push lên branch cụ thể
   push:
     branches: [main]
     paths:
@@ -189,11 +189,11 @@ on:
   pull_request:
     types: [opened, synchronize, reopened]
 
-  # Dinh ky (cron)
+  # Định kỳ (cron)
   schedule:
-    - cron: '0 2 * * 1'  # Moi thu Hai luc 2h sang UTC
+    - cron: '0 2 * * 1'  # Mỗi thứ Hai lúc 2h sáng UTC
 
-  # Thu cong
+  # Thủ công
   workflow_dispatch:
     inputs:
       environment:
@@ -254,7 +254,7 @@ steps:
 
 ## 5. Pipeline Stages
 
-### 5.1 Pipeline hoan chinh
+### 5.1 Pipeline hoàn chỉnh
 
 ```yaml
 name: Full CI/CD Pipeline
@@ -343,34 +343,34 @@ jobs:
 
 ## 6. Testing trong CI
 
-### 6.1 Kim tu thap Testing
+### 6.1 Kim tự tháp Testing
 
 ```
         /\
-       /  \        E2E Tests (it, cham)
+       /  \        E2E Tests (ít, chậm)
       /----\
      /      \      Integration Tests
     /--------\
-   /          \    Unit Tests (nhieu, nhanh)
+   /          \    Unit Tests (nhiều, nhanh)
   /____________\
 ```
 
 ### 6.2 Test Configuration
 
 ```yaml
-# Unit tests voi coverage threshold
+# Unit tests với coverage threshold
 - name: Unit Tests
   run: |
     npm run test:unit -- --coverage --coverageReporters=text-summary
-    # Fail neu coverage duoi 80%
+    # Fail nếu coverage dưới 80%
 
-# Integration tests voi database
+# Integration tests với database
 - name: Integration Tests
   env:
     DATABASE_URL: postgres://postgres:test@localhost:5432/testdb
   run: npm run test:integration
 
-# E2E tests voi Playwright
+# E2E tests với Playwright
 - name: E2E Tests
   run: npx playwright test
   env:
@@ -381,7 +381,7 @@ jobs:
 
 ## 7. Docker trong CI/CD
 
-### 7.1 Build va Push Docker Image
+### 7.1 Build và Push Docker Image
 
 ```yaml
 jobs:
@@ -410,12 +410,12 @@ jobs:
 
 ---
 
-## 8. Environment va Secrets
+## 8. Environment và Secrets
 
 ### 8.1 GitHub Secrets
 
 ```yaml
-# Su dung secrets
+# Sử dụng secrets
 env:
   DATABASE_URL: ${{ secrets.DATABASE_URL }}
   API_KEY: ${{ secrets.API_KEY }}
@@ -423,46 +423,46 @@ env:
 # Environment secrets
 jobs:
   deploy:
-    environment: production  # Secrets rieng cho production
+    environment: production  # Secrets riêng cho production
     steps:
       - run: echo "Deploying with ${{ secrets.DEPLOY_KEY }}"
 ```
 
 ### 8.2 Environment Protection Rules
 
-- **Required reviewers:** Can nguoi approve truoc khi deploy
-- **Wait timer:** Doi X phut truoc khi deploy
-- **Branch restrictions:** Chi deploy tu main
-- **Secrets:** Secrets rieng cho moi environment
+- **Required reviewers:** Cần người approve trước khi deploy
+- **Wait timer:** Đợi X phút trước khi deploy
+- **Branch restrictions:** Chỉ deploy từ main
+- **Secrets:** Secrets riêng cho mỗi environment
 
 ---
 
 ## 9. Deployment Strategies
 
-### 9.1 Cac chien luoc deploy
+### 9.1 Các chiến lược deploy
 
 **1. Rolling Deployment:**
 ```
 Server 1: v1 → v2 (update)
-Server 2: v1 (van chay v1)
-Server 3: v1 (van chay v1)
+Server 2: v1 (vẫn chạy v1)
+Server 3: v1 (vẫn chạy v1)
 
 Server 1: v2 (xong)
 Server 2: v1 → v2 (update)
-Server 3: v1 (van chay v1)
+Server 3: v1 (vẫn chạy v1)
 ...
 ```
 
 **2. Blue-Green Deployment:**
 ```
 Blue (v1) ← Traffic
-Green (v2) - chuan bi
+Green (v2) - chuẩn bị
 
-Kiem tra Green OK:
+Kiểm tra Green OK:
 Blue (v1)
-Green (v2) ← Traffic (chuyen)
+Green (v2) ← Traffic (chuyển)
 
-Rollback: chuyen lai Blue
+Rollback: chuyển lại Blue
 ```
 
 **3. Canary Deployment:**
@@ -470,14 +470,14 @@ Rollback: chuyen lai Blue
 v1: 90% traffic
 v2: 10% traffic (canary)
 
-Monitor OK → tang dan:
+Monitor OK → tăng dần:
 v1: 50% | v2: 50%
 v1: 0%  | v2: 100%
 ```
 
 ---
 
-## 10. Monitoring va Rollback
+## 10. Monitoring và Rollback
 
 ### 10.1 Health Checks
 
@@ -509,44 +509,44 @@ v1: 0%  | v2: 100%
 
 ---
 
-## 11. Cac CI/CD Tools pho bien
+## 11. Các CI/CD Tools phổ biến
 
-| Tool | Dac diem |
+| Tool | Đặc điểm |
 |------|---------|
-| GitHub Actions | Tich hop voi GitHub, mien phi cho public repos |
-| GitLab CI/CD | Tich hop voi GitLab, pipeline manh me |
-| Jenkins | Open source, tu host, plugins phong phu |
-| CircleCI | Cloud-based, nhanh, config de doc |
-| Travis CI | Don gian, tot cho open source |
-| AWS CodePipeline | Tich hop voi AWS ecosystem |
-| Azure DevOps | Tich hop voi Microsoft ecosystem |
+| GitHub Actions | Tích hợp với GitHub, miễn phí cho public repos |
+| GitLab CI/CD | Tích hợp với GitLab, pipeline mạnh mẽ |
+| Jenkins | Open source, tự host, plugins phong phú |
+| CircleCI | Cloud-based, nhanh, config dễ đọc |
+| Travis CI | Đơn giản, tốt cho open source |
+| AWS CodePipeline | Tích hợp với AWS ecosystem |
+| Azure DevOps | Tích hợp với Microsoft ecosystem |
 
 ---
 
 ## 12. Best Practices
 
-1. **Build nhanh:** Pipeline nen hoan thanh duoi 10 phut
-2. **Fail fast:** Dat lint/type check truoc tests de fail som
-3. **Cache dependencies:** Dung cache cho npm, maven, docker layers
-4. **Parallel jobs:** Chay test song song khi co the
-5. **Idempotent deploys:** Deploy nhieu lan cung ket qua
-6. **Secrets management:** KHONG BAO GIO hardcode secrets
-7. **Environment parity:** Staging giong production nhat co the
-8. **Monitoring:** Theo doi sau deploy, tu dong alert
-9. **Rollback plan:** Luon co ke hoach rollback
-10. **Infrastructure as Code:** Dung Docker, Terraform, Kubernetes
+1. **Build nhanh:** Pipeline nên hoàn thành dưới 10 phút
+2. **Fail fast:** Đặt lint/type check trước tests để fail sớm
+3. **Cache dependencies:** Dùng cache cho npm, maven, docker layers
+4. **Parallel jobs:** Chạy test song song khi có thể
+5. **Idempotent deploys:** Deploy nhiều lần cùng kết quả
+6. **Secrets management:** KHÔNG BAO GÌỜ hardcode secrets
+7. **Environment parity:** Staging giống production nhất có thể
+8. **Monitoring:** Theo dõi sau deploy, tự động alert
+9. **Rollback plan:** Luôn có kế hoạch rollback
+10. **Infrastructure as Code:** Dùng Docker, Terraform, Kubernetes
 
 ---
 
-## Tong ket
+## Tổng kết
 
-CI/CD la xu huong bat buoc trong phat trien phan mem hien dai:
+CI/CD là xu hướng bắt buộc trong phát triển phần mềm hiện đại:
 
-1. **CI:** Tu dong build va test moi commit
-2. **CD:** Tu dong (hoac ban tu dong) deploy len production
-3. **GitHub Actions:** Cong cu CI/CD pho bien, de hoc
+1. **CI:** Tự động build và test mỗi commit
+2. **CD:** Tự động (hoặc bán tự động) deploy lên production
+3. **GitHub Actions:** Công cụ CI/CD phổ biến, dễ học
 4. **Pipeline stages:** Lint → Test → Build → Deploy
 5. **Testing:** Unit → Integration → E2E
-6. **Docker:** Container hoa de deploy nhat quan
+6. **Docker:** Container hóa để deploy nhất quán
 7. **Strategies:** Rolling, Blue-Green, Canary
-8. **Monitoring:** Health checks va rollback tu dong
+8. **Monitoring:** Health checks và rollback tự động

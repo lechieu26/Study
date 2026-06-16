@@ -1,114 +1,114 @@
 # Quiz - Docker
 
-## Cau 1
+## Câu 1
 
 [TYPE: MULTIPLE_CHOICE]
 
-Docker container khac Virtual Machine nhu the nao?
+Docker container khác Virtual Machine như thế nào?
 
-- [ ] Container chay tren hypervisor, VM chay tren OS
-- [x] Container chia se kernel voi host OS, nhe va nhanh hon VM
-- [ ] Khong co su khac biet
-- [ ] VM nhe hon container
+- [ ] Container chạy trên hypervisor, VM chạy trên OS
+- [x] Container chia sẻ kernel với host OS, nhẹ và nhanh hơn VM
+- [ ] Không có sự khác biệt
+- [ ] VM nhẹ hơn container
 
-> **Giai thich:** Container chia se kernel cua host OS, chi dong goi app va dependencies → kich thuoc MB, khoi dong trong giay. VM co OS rieng (guest OS) chay tren hypervisor → kich thuoc GB, khoi dong trong phut. Container nhe va nhanh hon nhung isolation kem hon VM.
+> **Giải thích:** Container chia sẻ kernel của host OS, chỉ đóng gói app và dependencies → kích thước MB, khởi động trong giây. VM có OS riêng (guest OS) chạy trên hypervisor → kích thước GB, khởi động trong phút. Container nhẹ và nhanh hơn nhưng isolation kém hơn VM.
 
-## Cau 2
-
-[TYPE: MULTIPLE_CHOICE]
-
-Trong Dockerfile, su khac biet giua `CMD` va `ENTRYPOINT`?
-
-- [ ] Giong nhau
-- [x] `CMD` co the bi override khi `docker run`, `ENTRYPOINT` khong bi override
-- [ ] `CMD` chay khi build, `ENTRYPOINT` chay khi start
-- [ ] Chi duoc dung 1 trong 2
-
-> **Giai thich:** `CMD` dinh nghia lenh mac dinh, co the bi thay the khi `docker run myapp <new-command>`. `ENTRYPOINT` dinh nghia executable chinh, KHONG bi thay the (chi them tham so). Thuong ket hop: `ENTRYPOINT ["node"]` + `CMD ["app.js"]` → co the doi file chay nhung luon dung node.
-
-## Cau 3
+## Câu 2
 
 [TYPE: MULTIPLE_CHOICE]
 
-Tai sao nen `COPY package.json` TRUOC `COPY . .` trong Dockerfile?
+Trong Dockerfile, sự khác biệt giữa `CMD` và `ENTRYPOINT`?
 
-- [ ] Package.json nho hon nen copy nhanh
-- [x] Tan dung Docker layer cache - chi rebuild dependencies khi package.json thay doi
-- [ ] Docker yeu cau thu tu nay
-- [ ] Khong co ly do, thu tu khong quan trong
+- [ ] Giống nhau
+- [x] `CMD` có thể bị override khi `docker run`, `ENTRYPOINT` không bị override
+- [ ] `CMD` chạy khi build, `ENTRYPOINT` chạy khi start
+- [ ] Chỉ được dùng 1 trong 2
 
-> **Giai thich:** Docker cache moi layer. Neu COPY package.json truoc roi RUN npm install, khi chi thay doi source code (khong doi package.json), Docker se dung cache cho layer install dependencies → build NHANH hon nhieu. Neu COPY . . truoc, bat ky thay doi nao cung invalidate cache.
+> **Giải thích:** `CMD` định nghĩa lệnh mặc định, có thể bị thay thế khi `docker run myapp <new-command>`. `ENTRYPOINT` định nghĩa executable chính, KHÔNG bị thay thế (chỉ thêm tham số). Thường kết hợp: `ENTRYPOINT ["node"]` + `CMD ["app.js"]` → có thể đổi file chạy nhưng luôn dùng node.
 
-## Cau 4
-
-[TYPE: MULTIPLE_CHOICE]
-
-Multi-stage build giai quyet van de gi?
-
-- [ ] Lam app chay nhanh hon
-- [x] Giam kich thuoc image bang cach tach build tools khoi runtime
-- [ ] Cho phep chay nhieu apps trong 1 container
-- [ ] Tang bao mat bang cach ma hoa code
-
-> **Giai thich:** Multi-stage build: stage 1 co build tools (compiler, npm dev deps) de build app. Stage 2 chi copy artifacts (compiled code) vao image nhe (alpine, distroless). Ket qua: image nho hon nhieu (VD: React app tu 1.2GB xuong 25MB).
-
-## Cau 5
+## Câu 3
 
 [TYPE: MULTIPLE_CHOICE]
 
-`docker compose up -d` lam gi?
+Tại sao nên `COPY package.json` TRƯỚC `COPY . .` trong Dockerfile?
+
+- [ ] Package.json nhỏ hơn nên copy nhanh
+- [x] Tận dụng Docker layer cache - chỉ rebuild dependencies khi package.json thay đổi
+- [ ] Docker yêu cầu thứ tự này
+- [ ] Không có lý do, thứ tự không quan trọng
+
+> **Giải thích:** Docker cache mỗi layer. Nếu COPY package.json trước rồi RUN npm install, khi chỉ thay đổi source code (không đổi package.json), Docker sẽ dùng cache cho layer install dependencies → build NHANH hơn nhiều. Nếu COPY . . trước, bất kỳ thay đổi nào cũng làm mất cache (invalidate cache) của các layer phía sau.
+
+## Câu 4
+
+[TYPE: MULTIPLE_CHOICE]
+
+Multi-stage build giải quyết vấn đề gì?
+
+- [ ] Làm app chạy nhanh hơn
+- [x] Giảm kích thước image bằng cách tách build tools khỏi runtime
+- [ ] Cho phép chạy nhiều apps trong 1 container
+- [ ] Tăng bảo mật bằng cách mã hóa code
+
+> **Giải thích:** Multi-stage build: stage 1 có build tools (compiler, npm dev deps) để build app. Stage 2 chỉ copy artifacts (compiled code) vào image nhẹ (alpine, distroless). Kết quả: image nhỏ hơn nhiều (VD: React app từ 1.2GB xuống 25MB).
+
+## Câu 5
+
+[TYPE: MULTIPLE_CHOICE]
+
+`docker compose up -d` làm gì?
 
 - [ ] Build images
-- [ ] Xoa containers
-- [x] Khoi dong tat ca services trong background (detached mode)
-- [ ] Hien thi logs
+- [ ] Xóa containers
+- [x] Khởi động tất cả services trong background (detached mode)
+- [ ] Hiển thị logs
 
-> **Giai thich:** `docker compose up` khoi dong tat ca services dinh nghia trong docker-compose.yml. Flag `-d` (detached) chay trong background, tra lai terminal. Khong co `-d`, logs se hien thi va Ctrl+C dung tat ca services.
+> **Giải thích:** `docker compose up` khởi động tất cả services định nghĩa trong docker-compose.yml. Flag `-d` (detached) chạy trong background, trả lại terminal. Không có `-d`, logs sẽ hiển thị và Ctrl+C dừng tất cả services.
 
-## Cau 6
-
-[TYPE: MULTIPLE_CHOICE]
-
-Named volume trong Docker dung de lam gi?
-
-- [ ] Tang toc do container
-- [ ] Chia se code giua containers
-- [x] Luu tru data persistent (khong mat khi xoa container)
-- [ ] Luu tru Docker images
-
-> **Giai thich:** Container la ephemeral - data trong container MAT khi xoa container. Named volumes luu data BEN NGOAI container lifecycle. Du xoa va tao lai container, data trong volume VAN CON. Thuong dung cho database data, upload files.
-
-## Cau 7
+## Câu 6
 
 [TYPE: MULTIPLE_CHOICE]
 
-`depends_on` voi `condition: service_healthy` co tac dung gi?
+Named volume trong Docker dùng để làm gì?
 
-- [ ] Tu dong restart service neu fail
-- [x] Chi start service SAU KHI service phu thuoc HEALTHY (pass healthcheck)
-- [ ] Ket noi 2 services vao cung network
-- [ ] Chia se volumes giua services
+- [ ] Tăng tốc độ container
+- [ ] Chia sẻ code giữa containers
+- [x] Lưu trữ data persistent (không mất khi xóa container)
+- [ ] Lưu trữ Docker images
 
-> **Giai thich:** `depends_on` voi `condition: service_healthy` dam bao service chi start khi dependency da HEALTHY (khong chi started). Vi du: backend doi DB pass healthcheck (`pg_isready`) truoc khi start. Khong co condition, backend co the start khi DB chua san sang → connection error.
+> **Giải thích:** Container là ephemeral - data trong container MẤT khi xóa container. Named volumes lưu data BÊN NGOÀI container lifecycle. Dù xóa và tạo lại container, data trong volume VẪN CÒN. Thường dùng cho database data, upload files.
 
-## Cau 8
+## Câu 7
 
 [TYPE: MULTIPLE_CHOICE]
 
-Tai sao nen dung non-root user trong container?
+`depends_on` với `condition: service_healthy` có tác dụng gì?
 
-- [ ] Container chay nhanh hon
-- [ ] Docker yeu cau bat buoc
-- [x] Giam rui ro bao mat - neu container bi compromise, attacker khong co quyen root
-- [ ] Giam kich thuoc image
+- [ ] Tự động restart service nếu fail
+- [x] Chỉ start service SAU KHI service phụ thuộc HEALTHY (pass healthcheck)
+- [ ] Kết nối 2 services vào cùng network
+- [ ] Chia sẻ volumes giữa services
 
-> **Giai thich:** Mac dinh container chay voi root. Neu ung dung bi exploit, attacker co quyen root TRONG container va co the escape ra host (container escape vulnerabilities). Chay voi non-root user (vd: `USER node`) gioi han quyen, giam thiet hai khi bi tan cong.
+> **Giải thích:** `depends_on` với `condition: service_healthy` đảm bảo service chỉ start khi dependency đã HEALTHY (không chỉ started). Ví dụ: backend đợi DB pass healthcheck (`pg_isready`) trước khi start. Không có condition, backend có thể start khi DB chưa sẵn sàng → connection error.
 
-## Cau 9
+## Câu 8
+
+[TYPE: MULTIPLE_CHOICE]
+
+Tại sao nên dùng non-root user trong container?
+
+- [ ] Container chạy nhanh hơn
+- [ ] Docker yêu cầu bắt buộc
+- [x] Giảm rủi ro bảo mật - nếu container bị compromise, attacker không có quyền root
+- [ ] Giảm kích thước image
+
+> **Giải thích:** Mặc định container chạy với root. Nếu ứng dụng bị exploit, attacker có quyền root TRONG container và có thể thoát ra host (container escape vulnerabilities). Chạy với non-root user (vd: `USER node`) giới hạn quyền, giảm thiểu thiệt hại khi bị tấn công.
+
+## Câu 9
 
 [TYPE: SELECT_RESULT]
 
-Voi Docker Compose sau, frontend co the truy cap database truc tiep khong?
+Với Docker Compose sau, frontend có thể truy cập database trực tiếp không?
 
 ```yaml
 services:
@@ -124,46 +124,46 @@ networks:
   private:
 ```
 
-- [ ] Co
-- [x] Khong
-- [ ] Tuy thuoc vao port mapping
-- [ ] Chi khi dung IP truc tiep
+- [ ] Có
+- [x] Không
+- [ ] Tùy thuộc vào port mapping
+- [ ] Chỉ khi dùng IP trực tiếp
 
-> **Giai thich:** Frontend chi o network `public`, database chi o network `private`. Chung KHONG co network chung nen KHONG the giao tiep. Backend o CA HAI networks nen la "bridge" giua frontend va database. Day la cach co lap network dung trong microservices.
+> **Giải thích:** Frontend chỉ ở network `public`, database chỉ ở network `private`. Chúng KHÔNG có network chung nên KHÔNG thể giao tiếp. Backend ở CẢ HAI networks nên là "bridge" giữa frontend và database. Đây là cách cô lập network dùng trong microservices.
 
-## Cau 10
+## Câu 10
 
 [TYPE: MULTIPLE_CHOICE]
 
-`docker image prune -a` lam gi?
+`docker image prune -a` làm gì?
 
-- [ ] Xoa tat ca containers
-- [ ] Xoa tat ca volumes
-- [x] Xoa tat ca images khong duoc container nao su dung
-- [ ] Xoa tat ca networks
+- [ ] Xóa tất cả containers
+- [ ] Xóa tất cả volumes
+- [x] Xóa tất cả images không được container nào sử dụng
+- [ ] Xóa tất cả networks
 
-> **Giai thich:** `docker image prune` xoa dangling images (images khong co tag). Them `-a` xoa TAT CA images khong duoc container nao dang su dung. Huu ich de giai phong dung luong disk. Chu y: images dang duoc container dung (ke ca stopped) se KHONG bi xoa.
+> **Giải thích:** `docker image prune` xóa dangling images (images không có tag). Thêm `-a` xóa TẤT CẢ images không được container nào đang sử dụng. Hữu ích để giải phóng dung lượng disk. Chú ý: images đang được container dùng (kể cả stopped) sẽ KHÔNG bị xóa.
 
-## Cau 11
+## Câu 11
 
 [TYPE: TRUE_FALSE]
 
-`EXPOSE 3000` trong Dockerfile tu dong publish port 3000 ra ngoai host.
+`EXPOSE 3000` trong Dockerfile tự động publish port 3000 ra ngoài host.
 
 - [ ] True
 - [x] False
 
-> **Giai thich:** `EXPOSE` chi la DOCUMENTATION - ghi lai port nao container lang nghe. No KHONG publish port ra host. De publish, can `-p 3000:3000` khi `docker run` hoac `ports: ["3000:3000"]` trong docker-compose.yml. `EXPOSE` giup developer va tools (nhu Docker Desktop) biet port nao nen map.
+> **Giải thích:** `EXPOSE` chỉ là DOCUMENTATION - ghi lại port nào container lắng nghe. Nó KHÔNG publish port ra host. Để publish, cần `-p 3000:3000` khi `docker run` hoặc `ports: ["3000:3000"]` trong docker-compose.yml. `EXPOSE` giúp developer và tools (như Docker Desktop) biết port nào nên map.
 
-## Cau 12
+## Câu 12
 
 [TYPE: MULTIPLE_CHOICE]
 
-Cach nao tot nhat de truyen secrets (passwords, API keys) vao Docker container trong production?
+Cách nào tốt nhất để truyền secrets (passwords, API keys) vào Docker container trong production?
 
 - [ ] Hardcode trong Dockerfile
-- [ ] Dung ENV trong Dockerfile
-- [ ] Dung .env file commit vao Git
-- [x] Dung Docker secrets hoac environment variables truyen luc runtime (khong commit vao code)
+- [ ] Dùng ENV trong Dockerfile
+- [ ] Dùng .env file commit vào Git
+- [x] Dùng Docker secrets hoặc environment variables truyền lúc runtime (không commit vào code)
 
-> **Giai thich:** KHONG BAO GIO hardcode secrets trong Dockerfile (secrets nam trong image layers, ai pull image deu thay). Cach tot: Docker secrets (Swarm/Compose), environment variables truyen luc runtime (`docker run -e`), hoac secret managers (AWS Secrets Manager, Vault). File `.env` KHONG commit vao Git.
+> **Giải thích:** KHÔNG BAO GIỜ hardcode secrets trong Dockerfile (secrets nằm trong image layers, ai pull image đều thấy). Cách tốt: Docker secrets (Swarm/Compose), environment variables truyền lúc runtime (`docker run -e`), hoặc secret managers (AWS Secrets Manager, Vault). File `.env` KHÔNG commit vào Git.

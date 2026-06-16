@@ -1,90 +1,90 @@
-# Git & GitHub - Bai Tap
+# Git & GitHub - Bài Tập
 
-## Bai 1: Git Co Ban
-**Do kho: De**
+## Bài 1: Git Cơ Bản
+**Độ khó: Dễ**
 
-Thuc hanh cac lenh Git co ban:
+Thực hành các lệnh Git cơ bản:
 
-1. Tao thu muc `my-project`, init Git repository
-2. Tao file `README.md` voi noi dung "# My Project"
-3. Tao file `.gitignore` bo qua `node_modules/` va `.env`
-4. Add va commit voi message "feat: initial project setup"
-5. Tao file `index.html` va `style.css`
-6. Add chi `index.html` vao staging (khong add style.css)
-7. Kiem tra trang thai (`git status`)
-8. Commit `index.html` voi message "feat: add homepage"
-9. Xem lich su commits (`git log --oneline`)
-10. Add va commit `style.css`
-
----
-
-## Bai 2: Branching va Merging
-**Do kho: Trung binh**
-
-Thuc hanh lam viec voi branches:
-
-1. Tu main, tao branch `feature/navbar`
-2. Tren `feature/navbar`: tao file `navbar.html`, commit
-3. Quay lai main, tao branch `feature/footer`
-4. Tren `feature/footer`: tao file `footer.html`, commit
-5. Merge `feature/navbar` vao main (fast-forward)
-6. Merge `feature/footer` vao main (se tao merge commit)
-7. Tao branch `feature/hero`, sua `index.html` dong 1
-8. Quay lai main, cung sua `index.html` dong 1 (tao conflict)
-9. Merge `feature/hero` vao main - giai quyet conflict
-10. Xem lich su voi `git log --oneline --graph --all`
+1. Tạo thư mục `my-project`, init Git repository
+2. Tạo file `README.md` với nội dung "# My Project"
+3. Tạo file `.gitignore` bỏ qua `node_modules/` và `.env`
+4. Add và commit với message "feat: initial project setup"
+5. Tạo file `index.html` và `style.css`
+6. Add chỉ `index.html` vào staging (không add style.css)
+7. Kiểm tra trạng thái (`git status`)
+8. Commit `index.html` với message "feat: add homepage"
+9. Xem lịch sử commits (`git log --oneline`)
+10. Add và commit `style.css`
 
 ---
 
-## Bai 3: Remote Workflow
-**Do kho: Trung binh**
+## Bài 2: Branching và Merging
+**Độ khó: Trung bình**
 
-Mo phong quy trinh lam viec voi GitHub:
+Thực hành làm việc với branches:
 
-1. Tao repository moi tren GitHub
-2. Ket noi local repo voi remote (`git remote add origin`)
-3. Push main len remote
-4. Tao branch `feature/login`, them code, push len remote
-5. Tren GitHub, tao Pull Request tu `feature/login` -> main
-6. Mo phong code review: them 1 commit fix theo feedback
-7. Push commit moi, merge PR tren GitHub
-8. Pull main moi nhat ve local
-9. Xoa branch `feature/login` (local va remote)
+1. Từ main, tạo branch `feature/navbar`
+2. Trên `feature/navbar`: tạo file `navbar.html`, commit
+3. Quay lại main, tạo branch `feature/footer`
+4. Trên `feature/footer`: tạo file `footer.html`, commit
+5. Merge `feature/navbar` vào main (fast-forward)
+6. Merge `feature/footer` vào main (sẽ tạo merge commit)
+7. Tạo branch `feature/hero`, sửa `index.html` dòng 1
+8. Quay lại main, cùng sửa `index.html` dòng 1 (tạo conflict)
+9. Merge `feature/hero` vào main - giải quyết conflict
+10. Xem lịch sử với `git log --oneline --graph --all`
 
 ---
 
-## Bai 4: Rebase va History
-**Do kho: Kho**
+## Bài 3: Remote Workflow
+**Độ khó: Trung bình**
 
-Thuc hanh chinh sua lich su Git:
+Mô phỏng quy trình làm việc với GitHub:
 
-1. Tao 5 commits tren branch `feature/dashboard`:
+1. Tạo repository mới trên GitHub
+2. Kết nối local repo với remote (`git remote add origin`)
+3. Push main lên remote
+4. Tạo branch `feature/login`, thêm code, push lên remote
+5. Trên GitHub, tạo Pull Request từ `feature/login` -> main
+6. Mô phỏng code review: thêm 1 commit fix theo feedback
+7. Push commit mới, merge PR trên GitHub
+8. Pull main mới nhất về local
+9. Xóa branch `feature/login` (local và remote)
+
+---
+
+## Bài 4: Rebase và History
+**Độ khó: Khó**
+
+Thực hành chỉnh sửa lịch sử Git:
+
+1. Tạo 5 commits trên branch `feature/dashboard`:
    - "add dashboard layout"
    - "fix typo in dashboard"
    - "add charts component"
    - "wip: styling"
    - "finish dashboard styling"
-2. Dung interactive rebase (`git rebase -i HEAD~5`) de:
-   - Squash "fix typo" vao commit dau
-   - Squash "wip: styling" va "finish dashboard styling" thanh 1
-   - Reword commit charts thanh "feat: add interactive charts"
-3. Ket qua: 3 commits sach
-4. Rebase `feature/dashboard` len main moi nhat
-5. Tao PR va merge
+2. Dùng interactive rebase (`git rebase -i HEAD~5`) để:
+   - Squash "fix typo" vào commit đầu
+   - Squash "wip: styling" và "finish dashboard styling" thành 1
+   - Reword commit charts thành "feat: add interactive charts"
+3. Kết quả: 3 commits sạch
+4. Rebase `feature/dashboard` lên main mới nhất
+5. Tạo PR và merge
 
 ---
 
-## Bai 5: Git Rescue
-**Do kho: Kho**
+## Bài 5: Git Rescue
+**Độ khó: Khó**
 
-Thuc hanh xu ly cac tinh huong "cuu ho" Git:
+Thực hành xử lý các tình huống "cứu hộ" Git:
 
-1. **Hoan tac commit chua push:** Commit nham, dung `git reset --soft` de giu thay doi
-2. **Hoan tac commit da push:** Dung `git revert` tao commit moi
-3. **Khoi phuc file da xoa:** Xoa file, commit, roi khoi phuc tu lich su
-4. **Stash:** Dang code do tren feature branch, can chuyen sang hotfix
-   - Stash thay doi hien tai
-   - Chuyen sang `hotfix/urgent`, fix, commit, push
-   - Quay lai feature branch, pop stash
-5. **Cherry-pick:** Lay 1 commit cu the tu branch khac
-6. **Reflog:** Tim va khoi phuc branch da xoa nham
+1. **Hoàn tác commit chưa push:** Commit nhầm, dùng `git reset --soft` để giữ thay đổi
+2. **Hoàn tác commit đã push:** Dùng `git revert` tạo commit mới
+3. **Khôi phục file đã xóa:** Xóa file, commit, rồi khôi phục từ lịch sử
+4. **Stash:** Đang code dở trên feature branch, cần chuyển sang hotfix
+   - Stash thay đổi hiện tại
+   - Chuyển sang `hotfix/urgent`, fix, commit, push
+   - Quay lại feature branch, pop stash
+5. **Cherry-pick:** Lấy 1 commit cụ thể từ branch khác
+6. **Reflog:** Tìm và khôi phục branch đã xóa nhầm

@@ -1,6 +1,6 @@
-# Responsive Web Design - Dap An Bai Tap
+# Responsive Web Design - Đáp Án Bài Tập
 
-## Bai 1: Responsive Card Grid
+## Bài 1: Responsive Card Grid
 
 ```html
 <!DOCTYPE html>
@@ -71,19 +71,19 @@
             min-height: 44px;
         }
 
-        /* Tablet: 2 cot */
+        /* Tablet: 2 cột */
         @media (min-width: 768px) {
             :root { --gap: 24px; }
             .product-grid { grid-template-columns: repeat(2, 1fr); }
         }
 
-        /* Desktop: 3 cot */
+        /* Desktop: 3 cột */
         @media (min-width: 1024px) {
             :root { --gap: 32px; }
             .product-grid { grid-template-columns: repeat(3, 1fr); }
         }
 
-        /* Large Desktop: 4 cot */
+        /* Large Desktop: 4 cột */
         @media (min-width: 1440px) {
             .product-grid { grid-template-columns: repeat(4, 1fr); }
         }
@@ -92,33 +92,33 @@
 <body>
     <div class="product-grid">
         <div class="card">
-            <img src="https://via.placeholder.com/400x200" alt="San pham 1" loading="lazy" />
+            <img src="https://via.placeholder.com/400x200" alt="Sản phẩm 1" loading="lazy" />
             <div class="card-body">
-                <h3 class="card-title">San pham 1</h3>
+                <h3 class="card-title">Sản phẩm 1</h3>
                 <p class="card-price">299.000 VND</p>
                 <button class="card-btn">Mua ngay</button>
             </div>
         </div>
         <div class="card">
-            <img src="https://via.placeholder.com/400x200" alt="San pham 2" loading="lazy" />
+            <img src="https://via.placeholder.com/400x200" alt="Sản phẩm 2" loading="lazy" />
             <div class="card-body">
-                <h3 class="card-title">San pham 2</h3>
+                <h3 class="card-title">Sản phẩm 2</h3>
                 <p class="card-price">499.000 VND</p>
                 <button class="card-btn">Mua ngay</button>
             </div>
         </div>
         <div class="card">
-            <img src="https://via.placeholder.com/400x200" alt="San pham 3" loading="lazy" />
+            <img src="https://via.placeholder.com/400x200" alt="Sản phẩm 3" loading="lazy" />
             <div class="card-body">
-                <h3 class="card-title">San pham 3</h3>
+                <h3 class="card-title">Sản phẩm 3</h3>
                 <p class="card-price">199.000 VND</p>
                 <button class="card-btn">Mua ngay</button>
             </div>
         </div>
         <div class="card">
-            <img src="https://via.placeholder.com/400x200" alt="San pham 4" loading="lazy" />
+            <img src="https://via.placeholder.com/400x200" alt="Sản phẩm 4" loading="lazy" />
             <div class="card-body">
-                <h3 class="card-title">San pham 4</h3>
+                <h3 class="card-title">Sản phẩm 4</h3>
                 <p class="card-price">599.000 VND</p>
                 <button class="card-btn">Mua ngay</button>
             </div>
@@ -128,16 +128,16 @@
 </html>
 ```
 
-**Giai thich:**
-- Mobile-first: bat dau voi 1 cot (`grid-template-columns: 1fr`)
-- CSS Variables cho gap, thay doi theo breakpoint
-- `object-fit: cover` giu hinh anh khong bi meo
-- `min-height: 44px` cho button dam bao touch target tren mobile
-- `loading="lazy"` giup performance
+**Giải thích:**
+- Mobile-first: bắt đầu với 1 cột (`grid-template-columns: 1fr`)
+- CSS Variables cho gap, thay đổi theo breakpoint
+- `object-fit: cover` giữ hình ảnh không bị méo
+- `min-height: 44px` cho button đảm bảo touch target trên mobile
+- `loading="lazy"` giúp performance
 
 ---
 
-## Bai 2: Mobile-First Landing Page
+## Bài 2: Mobile-First Landing Page
 
 ```css
 /* === Base (Mobile) === */
@@ -230,7 +230,7 @@ body {
     min-height: 44px;
 }
 
-/* Features - 1 cot mobile */
+/* Features - 1 cột mobile */
 .features {
     padding: var(--spacing-lg) var(--spacing-sm);
     display: grid;
@@ -291,7 +291,7 @@ body {
 
 ---
 
-## Bai 3: Dashboard Responsive Layout
+## Bài 3: Dashboard Responsive Layout
 
 ```css
 .dashboard {
@@ -320,7 +320,7 @@ body {
 .dashboard__main {
     grid-area: main;
     padding: 16px;
-    padding-bottom: 76px;   /* Cho du bottom nav tren mobile */
+    padding-bottom: 76px;   /* Cho đủ bottom nav trên mobile */
 }
 
 .stat-cards {
@@ -330,7 +330,7 @@ body {
     margin-bottom: 24px;
 }
 
-/* Bottom nav chi tren mobile */
+/* Bottom nav chỉ trên mobile */
 .bottom-nav {
     display: flex;
     justify-content: space-around;
@@ -353,7 +353,7 @@ body {
     justify-content: center;
 }
 
-/* Tablet: sidebar thu gon */
+/* Tablet: sidebar thu gọn */
 @media (min-width: 768px) {
     .dashboard {
         grid-template-areas:
@@ -377,7 +377,7 @@ body {
     .bottom-nav { display: none; }
 }
 
-/* Desktop: sidebar day du */
+/* Desktop: sidebar đầy đủ */
 @media (min-width: 1024px) {
     .dashboard {
         grid-template-columns: 250px 1fr;
@@ -398,7 +398,7 @@ body {
 
 ---
 
-## Bai 4: Responsive Image Gallery
+## Bài 4: Responsive Image Gallery
 
 ```css
 .gallery {
@@ -471,18 +471,17 @@ body {
         <picture>
             <source media="(min-width: 1024px)" srcset="photo1-large.jpg" />
             <source media="(min-width: 768px)" srcset="photo1-medium.jpg" />
-            <img src="photo1-small.jpg" alt="Hinh 1" loading="lazy" />
+            <img src="photo1-small.jpg" alt="Hình 1" loading="lazy" />
         </picture>
         <div class="gallery-overlay">
-            <p>Hinh 1 - Phong canh</p>
+            <p>Hình 1 - Phong cảnh</p>
         </div>
     </div>
     <div class="gallery-item">
-        <img src="photo2.jpg" alt="Hinh 2" loading="lazy" />
+        <img src="photo2.jpg" alt="Hình 2" loading="lazy" />
         <div class="gallery-overlay">
-            <p>Hinh 2</p>
+            <p>Hình 2</p>
         </div>
     </div>
-    <!-- ... them cac items ... -->
 </div>
 ```

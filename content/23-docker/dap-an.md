@@ -1,6 +1,6 @@
-# Docker - Dap An Bai Tap
+# Docker - Đáp Án Bài Tập
 
-## Bai 1: Dockerfile co ban
+## Bài 1: Dockerfile cơ bản
 
 **index.js:**
 ```javascript
@@ -27,10 +27,10 @@ FROM node:20-alpine
 
 WORKDIR /app
 
-# Copy dependency files truoc (layer cache)
+# Copy dependency files trước (tận dụng layer cache)
 COPY package.json package-lock.json ./
 
-# Cai dependencies
+# Cài dependencies
 RUN npm ci --production
 
 # Copy source code
@@ -43,7 +43,7 @@ EXPOSE 3000
 HEALTHCHECK --interval=30s --timeout=3s \
     CMD wget -qO- http://localhost:3000/health || exit 1
 
-# Chay voi non-root user
+# Chạy với non-root user
 USER node
 
 CMD ["node", "index.js"]
@@ -58,15 +58,15 @@ node_modules
 .vscode
 ```
 
-**Build va chay:**
+**Build và chạy:**
 ```bash
 # Build
 docker build -t my-api:v1 .
 
-# Chay
+# Chạy
 docker run -d --name my-api -p 8080:3000 my-api:v1
 
-# Kiem tra
+# Kiểm tra
 curl http://localhost:8080
 # {"message":"Hello from Docker!","timestamp":"..."}
 
@@ -76,14 +76,14 @@ curl http://localhost:8080/health
 # Xem logs
 docker logs my-api
 
-# Xem kich thuoc
+# Xem kích thước
 docker images my-api
 # ~180MB (node:20-alpine)
 ```
 
 ---
 
-## Bai 2: Docker Compose Full-Stack
+## Bài 2: Docker Compose Full-Stack
 
 ```yaml
 # docker-compose.yml
@@ -171,16 +171,16 @@ DB_PASS=secret123
 DB_NAME=myapp
 ```
 
-**Giai thich:**
-- Frontend chi o `frontend-net` → khong truy cap truc tiep DB
-- Backend o ca 2 networks → bridge giua frontend va DB
-- DB co healthcheck → backend doi DB san sang truoc khi start
-- Named volumes giu data khi restart containers
-- `.env` file tach cau hinh khoi docker-compose.yml
+**Giải thích:**
+- Frontend chỉ ở `frontend-net` → không truy cập trực tiếp DB.
+- Backend ở cả 2 networks → làm cầu nối (bridge) giữa frontend và DB.
+- DB có healthcheck → backend đợi DB sẵn sàng trước khi start.
+- Named volumes giúp giữ lại dữ liệu khi restart containers.
+- File `.env` tách riêng cấu hình khỏi file docker-compose.yml.
 
 ---
 
-## Bai 3: Multi-stage Build
+## Bài 3: Multi-stage Build
 
 **Dockerfile.multi:**
 ```dockerfile
@@ -194,7 +194,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-# === Stage 2: Serve voi Nginx ===
+# === Stage 2: Serve với Nginx ===
 FROM nginx:1.25-alpine AS production
 
 # Copy nginx config
@@ -246,15 +246,15 @@ server {
 }
 ```
 
-**So sanh kich thuoc:**
+**So sánh kích thước:**
 ```bash
-# Single-stage (tat ca trong 1)
+# Single-stage (tất cả trong 1)
 docker build -t react-app:single -f Dockerfile.single .
-# Kich thuoc: ~1.2GB
+# Kích thước: ~1.2GB
 
 # Multi-stage
 docker build -t react-app:multi -f Dockerfile.multi .
-# Kich thuoc: ~25MB
+# Kích thước: ~25MB
 
 docker images | grep react-app
 # react-app   multi    25MB
@@ -263,7 +263,7 @@ docker images | grep react-app
 
 ---
 
-## Bai 4: Docker Networking
+## Bài 4: Docker Networking
 
 ```yaml
 services:
@@ -329,27 +329,27 @@ volumes:
   db-data:
 ```
 
-**Kiem tra network isolation:**
+**Kiểm tra network isolation (cô lập mạng):**
 ```bash
 # Start
 docker compose up -d
 
-# Kiem tra: nginx KHONG the ping db
+# Kiểm tra: nginx KHÔNG thể ping db
 docker compose exec nginx ping db
-# ping: bad address 'db' → KHONG ket noi duoc (khac network)
+# ping: bad address 'db' → KHÔNG kết nối được (khác network)
 
-# Kiem tra: api-gateway CO THE ping db
+# Kiểm tra: api-gateway CÓ THỂ ping db
 docker compose exec api-gateway ping db
-# PING db (172.x.x.x): 56 data bytes → OK (cung backend-net)
+# PING db (172.x.x.x): 56 data bytes → OK (cùng backend-net)
 
-# Kiem tra: nginx CO THE ping api-gateway
+# Kiểm tra: nginx CÓ THỂ ping api-gateway
 docker compose exec nginx ping api-gateway
-# OK (cung frontend-net)
+# OK (cùng frontend-net)
 ```
 
 ---
 
-## Bai 5: Production-Ready Docker Setup
+## Bài 5: Production-Ready Docker Setup
 
 ```dockerfile
 # Dockerfile.prod
@@ -367,7 +367,7 @@ WORKDIR /app
 # Non-root user
 RUN addgroup -S app && adduser -S app -G app
 
-# Copy tu builder
+# Copy từ builder
 COPY --from=builder --chown=app:app /app/dist ./dist
 COPY --from=builder --chown=app:app /app/node_modules ./node_modules
 COPY --from=builder --chown=app:app /app/package.json ./
