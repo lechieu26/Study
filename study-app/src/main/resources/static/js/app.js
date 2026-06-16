@@ -594,22 +594,60 @@ function addCopyButtons() {
    Quiz Page
    =========================== */
 
+var QUIZ_DISPLAY_COUNT = 20;
+
 var quizState = {
     currentIndex: 0,
     totalQuestions: 0,
+    totalPool: 0,
     topicId: '',
     answers: {},
     correctCount: 0,
-    answered: {}
+    answered: {},
+    selectedCards: []
 };
+
+function shuffleArray(arr) {
+    for (var i = arr.length - 1; i > 0; i--) {
+        var j = Math.floor(Math.random() * (i + 1));
+        var temp = arr[i]; arr[i] = arr[j]; arr[j] = temp;
+    }
+    return arr;
+}
+
+function selectRandomQuestions() {
+    var allCards = document.querySelectorAll('.quiz-question-card');
+    var indices = [];
+    for (var i = 0; i < allCards.length; i++) indices.push(i);
+    shuffleArray(indices);
+    var count = Math.min(QUIZ_DISPLAY_COUNT, allCards.length);
+    var selected = indices.slice(0, count);
+    selected.sort(function(a, b) { return a - b; });
+
+    allCards.forEach(function(card) { card.classList.add('quiz-hidden'); });
+    var selectedCards = [];
+    for (var i = 0; i < selected.length; i++) {
+        selectedCards.push(allCards[selected[i]]);
+    }
+    if (selectedCards.length > 0) selectedCards[0].classList.remove('quiz-hidden');
+    return selectedCards;
+}
 
 function initQuizPage(topicId, totalQuestions) {
     quizState.topicId = topicId;
-    quizState.totalQuestions = totalQuestions;
+    quizState.totalPool = totalQuestions;
     quizState.currentIndex = 0;
     quizState.answers = {};
     quizState.correctCount = 0;
     quizState.answered = {};
+
+    quizState.selectedCards = selectRandomQuestions();
+    quizState.totalQuestions = quizState.selectedCards.length;
+
+    var totalEl = document.getElementById('totalQuestions');
+    if (totalEl) totalEl.textContent = quizState.totalQuestions;
+    var resultTotal = document.querySelector('.result-score-total');
+    if (resultTotal) resultTotal.textContent = '/ ' + quizState.totalQuestions;
 
     hljs.highlightAll();
     updateQuizProgress();
@@ -682,8 +720,7 @@ function updateQuizNav() {
 }
 
 function showQuestion(index) {
-    var cards = document.querySelectorAll('.quiz-question-card');
-    cards.forEach(function(card, i) {
+    quizState.selectedCards.forEach(function(card, i) {
         if (i === index) {
             card.classList.remove('quiz-hidden');
         } else {
@@ -757,8 +794,8 @@ function restartQuiz() {
     quizState.correctCount = 0;
     quizState.answered = {};
 
-    var cards = document.querySelectorAll('.quiz-question-card');
-    cards.forEach(function(card, i) {
+    var allCards = document.querySelectorAll('.quiz-question-card');
+    allCards.forEach(function(card) {
         var options = card.querySelectorAll('.quiz-option');
         options.forEach(function(opt) {
             opt.disabled = false;
@@ -767,6 +804,14 @@ function restartQuiz() {
         var explanation = card.querySelector('.quiz-explanation');
         if (explanation) explanation.style.display = 'none';
     });
+
+    quizState.selectedCards = selectRandomQuestions();
+    quizState.totalQuestions = quizState.selectedCards.length;
+
+    var totalEl = document.getElementById('totalQuestions');
+    if (totalEl) totalEl.textContent = quizState.totalQuestions;
+    var resultTotal = document.querySelector('.result-score-total');
+    if (resultTotal) resultTotal.textContent = '/ ' + quizState.totalQuestions;
 
     document.getElementById('quizResult').style.display = 'none';
     document.getElementById('quizContainer').style.display = 'block';
@@ -785,8 +830,7 @@ function reviewQuiz() {
     document.getElementById('quizNav').style.display = 'flex';
     document.getElementById('quizProgress').style.display = 'block';
 
-    var cards = document.querySelectorAll('.quiz-question-card');
-    cards.forEach(function(card) {
+    quizState.selectedCards.forEach(function(card) {
         card.classList.remove('quiz-hidden');
     });
 
