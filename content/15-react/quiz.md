@@ -124,7 +124,7 @@ useState hook trả về gì?
 
 [TYPE: SELECT_RESULT]
 
-Sau khi click button 3 lần, giá trị count là bao nhiêu?
+Khi click button 1 lần, giá trị count tăng lên bao nhiêu?
 
 ```jsx
 function Counter() {

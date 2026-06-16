@@ -968,10 +968,294 @@ function CartSummary() {
 
 ---
 
-## Bài 8-10: Hướng dẫn giải
+## Bài 8: Drag and Drop Kanban Board
 
-**Bài 8 (Kanban Board):** Sử dụng HTML5 Drag and Drop API với `onDragStart`, `onDragOver`, `onDrop`. State quản lý bởi useReducer với columns là object `{ todo: [], inProgress: [], done: [] }`. Khi drop, move item giữa columns.
+Sử dụng HTML5 Drag and Drop API với `onDragStart`, `onDragOver`, `onDrop`. State quản lý bởi useReducer với columns là object `{ todo: [], inProgress: [], done: [] }`. Khi drop, move item giữa columns.
 
-**Bài 9 (Chat):** Sử dụng WebSocket API (`new WebSocket(url)`). Custom hook `useWebSocket` quản lý connection, reconnection logic. `useRef` + `scrollIntoView` cho auto-scroll. Tin nhắn group bởi sender + timestamp gap.
+```jsx
+import { useReducer } from 'react';
 
-**Bài 10 (Dashboard):** React Router v6 `createBrowserRouter` + `RouterProvider`. Lazy load routes với `React.lazy`. AuthContext wrap protected routes. Layout component dùng `<Outlet />` cho nested routes. Breadcrumb tự generate từ `useLocation().pathname`.
+const initialState = {
+  todo: [{ id: 1, title: 'Task 1', priority: 'high' }],
+  inProgress: [],
+  done: []
+};
+
+function kanbanReducer(state, action) {
+  switch (action.type) {
+    case 'MOVE_CARD': {
+      const { cardId, fromColumn, toColumn } = action.payload;
+      const card = state[fromColumn].find(c => c.id === cardId);
+      return {
+        ...state,
+        [fromColumn]: state[fromColumn].filter(c => c.id !== cardId),
+        [toColumn]: [...state[toColumn], card]
+      };
+    }
+    case 'ADD_CARD':
+      return {
+        ...state,
+        todo: [...state.todo, { id: Date.now(), ...action.payload }]
+      };
+    case 'DELETE_CARD': {
+      const { cardId, column } = action.payload;
+      return {
+        ...state,
+        [column]: state[column].filter(c => c.id !== cardId)
+      };
+    }
+    default:
+      return state;
+  }
+}
+
+function KanbanBoard() {
+  const [columns, dispatch] = useReducer(kanbanReducer, initialState);
+
+  const handleDragStart = (e, cardId, column) => {
+    e.dataTransfer.setData('cardId', cardId);
+    e.dataTransfer.setData('fromColumn', column);
+  };
+
+  const handleDrop = (e, toColumn) => {
+    e.preventDefault();
+    const cardId = parseInt(e.dataTransfer.getData('cardId'));
+    const fromColumn = e.dataTransfer.getData('fromColumn');
+    if (fromColumn !== toColumn) {
+      dispatch({ type: 'MOVE_CARD', payload: { cardId, fromColumn, toColumn } });
+    }
+  };
+
+  const handleDragOver = (e) => e.preventDefault();
+
+  return (
+    <div style={{ display: 'flex', gap: '16px' }}>
+      {Object.entries(columns).map(([columnName, cards]) => (
+        <div
+          key={columnName}
+          onDrop={(e) => handleDrop(e, columnName)}
+          onDragOver={handleDragOver}
+          style={{ flex: 1, padding: '16px', background: '#f4f4f4', borderRadius: '8px' }}
+        >
+          <h3>{columnName}</h3>
+          {cards.map(card => (
+            <div
+              key={card.id}
+              draggable
+              onDragStart={(e) => handleDragStart(e, card.id, columnName)}
+              style={{ padding: '8px', margin: '8px 0', background: '#fff', borderRadius: '4px', cursor: 'grab' }}
+            >
+              {card.title}
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  );
+}
+```
+
+---
+
+## Bài 9: Real-time Chat Component
+
+Sử dụng WebSocket API (`new WebSocket(url)`). Custom hook `useWebSocket` quản lý connection, reconnection logic. `useRef` + `scrollIntoView` cho auto-scroll. Tin nhắn group bởi sender + timestamp gap.
+
+```jsx
+import { useState, useEffect, useRef, useCallback } from 'react';
+
+function useWebSocket(url) {
+  const [messages, setMessages] = useState([]);
+  const [isConnected, setIsConnected] = useState(false);
+  const wsRef = useRef(null);
+  const reconnectTimeoutRef = useRef(null);
+
+  const connect = useCallback(() => {
+    const ws = new WebSocket(url);
+    wsRef.current = ws;
+
+    ws.onopen = () => setIsConnected(true);
+    ws.onclose = () => {
+      setIsConnected(false);
+      reconnectTimeoutRef.current = setTimeout(connect, 3000);
+    };
+    ws.onmessage = (event) => {
+      const msg = JSON.parse(event.data);
+      setMessages(prev => [...prev, msg]);
+    };
+  }, [url]);
+
+  useEffect(() => {
+    connect();
+    return () => {
+      wsRef.current?.close();
+      clearTimeout(reconnectTimeoutRef.current);
+    };
+  }, [connect]);
+
+  const sendMessage = useCallback((text) => {
+    if (wsRef.current?.readyState === WebSocket.OPEN) {
+      wsRef.current.send(JSON.stringify({ text, timestamp: Date.now() }));
+    }
+  }, []);
+
+  return { messages, isConnected, sendMessage };
+}
+
+function ChatRoom({ roomUrl }) {
+  const { messages, isConnected, sendMessage } = useWebSocket(roomUrl);
+  const [input, setInput] = useState('');
+  const messagesEndRef = useRef(null);
+
+  useEffect(() => {
+    messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [messages]);
+
+  const handleSend = () => {
+    if (input.trim()) {
+      sendMessage(input.trim());
+      setInput('');
+    }
+  };
+
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', height: '400px' }}>
+      <div style={{ flex: 1, overflow: 'auto', padding: '16px' }}>
+        {messages.map((msg, i) => (
+          <div key={i} style={{ margin: '4px 0' }}>
+            <strong>{msg.sender}:</strong> {msg.text}
+          </div>
+        ))}
+        <div ref={messagesEndRef} />
+      </div>
+      <div style={{ display: 'flex', padding: '8px' }}>
+        <input
+          value={input}
+          onChange={e => setInput(e.target.value)}
+          onKeyDown={e => e.key === 'Enter' && handleSend()}
+          placeholder={isConnected ? 'Type a message...' : 'Reconnecting...'}
+          disabled={!isConnected}
+          style={{ flex: 1 }}
+        />
+        <button onClick={handleSend} disabled={!isConnected}>Send</button>
+      </div>
+    </div>
+  );
+}
+```
+
+---
+
+## Bài 10: Dashboard với React Router + Code Splitting
+
+React Router v6 `createBrowserRouter` + `RouterProvider`. Lazy load routes với `React.lazy`. AuthContext wrap protected routes. Layout component dùng `<Outlet />` cho nested routes. Breadcrumb tự generate từ `useLocation().pathname`.
+
+```jsx
+import { lazy, Suspense, createContext, useContext, useState } from 'react';
+import { createBrowserRouter, RouterProvider, Navigate, Outlet, useLocation, Link } from 'react-router-dom';
+
+// Auth Context
+const AuthContext = createContext(null);
+
+function AuthProvider({ children }) {
+  const [user, setUser] = useState(() => {
+    const token = localStorage.getItem('token');
+    return token ? { token } : null;
+  });
+
+  const login = (credentials) => {
+    const token = 'fake-jwt-token';
+    localStorage.setItem('token', token);
+    setUser({ token, ...credentials });
+  };
+
+  const logout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, login, logout }}>
+      {children}
+    </AuthContext.Provider>
+  );
+}
+
+function useAuth() {
+  return useContext(AuthContext);
+}
+
+// Protected Route
+function ProtectedRoute() {
+  const { user } = useAuth();
+  const location = useLocation();
+  if (!user) return <Navigate to="/login" state={{ from: location }} replace />;
+  return <Outlet />;
+}
+
+// Lazy-loaded pages
+const Dashboard = lazy(() => import('./pages/Dashboard'));
+const Users = lazy(() => import('./pages/Users'));
+const UserDetail = lazy(() => import('./pages/UserDetail'));
+const Products = lazy(() => import('./pages/Products'));
+const Settings = lazy(() => import('./pages/Settings'));
+
+// Layout with Sidebar + Breadcrumb
+function Layout() {
+  const location = useLocation();
+  const { logout } = useAuth();
+  const [collapsed, setCollapsed] = useState(false);
+
+  const breadcrumbs = location.pathname.split('/').filter(Boolean);
+
+  return (
+    <div style={{ display: 'flex', minHeight: '100vh' }}>
+      <aside style={{ width: collapsed ? '60px' : '200px', background: '#1a1a2e', color: '#fff', padding: '16px' }}>
+        <button onClick={() => setCollapsed(!collapsed)}>Toggle</button>
+        <nav>
+          <Link to="/">Dashboard</Link>
+          <Link to="/users">Users</Link>
+          <Link to="/products">Products</Link>
+          <Link to="/settings">Settings</Link>
+        </nav>
+        <button onClick={logout}>Logout</button>
+      </aside>
+      <main style={{ flex: 1, padding: '24px' }}>
+        <nav>{breadcrumbs.map((crumb, i) => (
+          <span key={i}> / {crumb}</span>
+        ))}</nav>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Outlet />
+        </Suspense>
+      </main>
+    </div>
+  );
+}
+
+// Router config
+const router = createBrowserRouter([
+  { path: '/login', element: <LoginPage /> },
+  {
+    element: <ProtectedRoute />,
+    children: [{
+      element: <Layout />,
+      children: [
+        { index: true, element: <Dashboard /> },
+        { path: 'users', element: <Users /> },
+        { path: 'users/:id', element: <UserDetail /> },
+        { path: 'products', element: <Products /> },
+        { path: 'settings', element: <Settings /> },
+        { path: '*', element: <p>404 - Not Found</p> }
+      ]
+    }]
+  }
+]);
+
+function App() {
+  return (
+    <AuthProvider>
+      <RouterProvider router={router} />
+    </AuthProvider>
+  );
+}
+```
