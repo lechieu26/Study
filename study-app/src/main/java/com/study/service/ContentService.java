@@ -44,6 +44,18 @@ public class ContentService {
         topics.put("oop", createTopic("oop", "Java OOP", "Lập trình Hướng đối tượng: Encapsulation, Inheritance, Polymorphism, Abstraction, SOLID", "🧱"));
         topics.put("design-patterns", createTopic("design-patterns", "Design Patterns", "Các mẫu thiết kế phần mềm: Creational, Structural, Behavioral", "🏗️"));
         topics.put("dsa", createTopic("dsa", "Cấu Trúc Dữ Liệu & Giải Thuật", "DSA: Array, Linked List, Tree, Graph, DP, Sorting, Searching", "🧮"));
+        topics.put("dsa-array", createTopic("dsa-array", "Array (Mảng)", "Mảng: Two Pointers, Sliding Window, Prefix Sum, Kadane's Algorithm", "📦"));
+        topics.put("dsa-linked-list", createTopic("dsa-linked-list", "Linked List", "Danh sách liên kết: Singly, Doubly, Fast & Slow Pointers, Cycle Detection", "🔗"));
+        topics.put("dsa-stack", createTopic("dsa-stack", "Stack (Ngăn xếp)", "Stack: LIFO, Monotonic Stack, Valid Parentheses, Expression Evaluation", "📚"));
+        topics.put("dsa-queue", createTopic("dsa-queue", "Queue (Hàng đợi)", "Queue: FIFO, Deque, PriorityQueue, BFS, Sliding Window", "📋"));
+        topics.put("dsa-hash", createTopic("dsa-hash", "Hash Table", "Bảng băm: HashMap, HashSet, Collision, Two Sum, LRU Cache", "#️⃣"));
+        topics.put("dsa-tree", createTopic("dsa-tree", "Tree (Cây)", "Cây: Binary Tree, BST, Traversal, AVL, Red-Black Tree", "🌳"));
+        topics.put("dsa-heap", createTopic("dsa-heap", "Heap & Priority Queue", "Đống: Min/Max Heap, Top-K, Merge K Lists, Median Finder", "⛰️"));
+        topics.put("dsa-graph", createTopic("dsa-graph", "Graph (Đồ thị)", "Đồ thị: BFS, DFS, Dijkstra, Topological Sort, Union-Find", "🕸️"));
+        topics.put("dsa-sort", createTopic("dsa-sort", "Sorting", "Sắp xếp: Bubble, Merge, Quick, Heap, Counting, TimSort", "🔢"));
+        topics.put("dsa-search", createTopic("dsa-search", "Searching", "Tìm kiếm: Binary Search, Search on Answer, Rotated Array", "🔎"));
+        topics.put("dsa-dp", createTopic("dsa-dp", "Dynamic Programming", "Quy hoạch động: Fibonacci, Knapsack, LIS, LCS, Edit Distance", "🧩"));
+        topics.put("dsa-greedy-backtracking", createTopic("dsa-greedy-backtracking", "Greedy & Backtracking", "Tham lam & Quay lui: Activity Selection, Subsets, Permutations, N-Queens", "♟️"));
         topics.put("sql", createTopic("sql", "SQL (PostgreSQL)", "SQL nâng cao: JOIN, Window Functions, CTE, Stored Functions, Optimization", "🗄️"));
         topics.put("spring-core", createTopic("spring-core", "Spring Core", "IoC, DI, Bean Lifecycle, Configuration, Profiles", "💚"));
         topics.put("spring-boot", createTopic("spring-boot", "Spring Boot", "Auto-configuration, Starters, Actuator, DevTools", "🚀"));
@@ -90,6 +102,18 @@ public class ContentService {
             case "oop" -> "02-oop/" + filename;
             case "design-patterns" -> "03-design-patterns/" + filename;
             case "dsa" -> "04-dsa/" + filename;
+            case "dsa-array" -> "04a-dsa-array/" + filename;
+            case "dsa-linked-list" -> "04b-dsa-linked-list/" + filename;
+            case "dsa-stack" -> "04c-dsa-stack/" + filename;
+            case "dsa-queue" -> "04d-dsa-queue/" + filename;
+            case "dsa-hash" -> "04e-dsa-hash/" + filename;
+            case "dsa-tree" -> "04f-dsa-tree/" + filename;
+            case "dsa-heap" -> "04g-dsa-heap/" + filename;
+            case "dsa-graph" -> "04h-dsa-graph/" + filename;
+            case "dsa-sort" -> "04i-dsa-sort/" + filename;
+            case "dsa-search" -> "04j-dsa-search/" + filename;
+            case "dsa-dp" -> "04k-dsa-dynamic-programming/" + filename;
+            case "dsa-greedy-backtracking" -> "04l-dsa-greedy-backtracking/" + filename;
             case "sql" -> "05-sql-postgresql/" + filename;
             case "spring-core" -> "06a-spring-core/" + filename;
             case "spring-boot" -> "06b-spring-boot/" + filename;
@@ -223,7 +247,11 @@ public class ContentService {
     public List<TopicGroup> getTopicGroups() {
         List<TopicGroup> groups = new ArrayList<>();
 
-        groups.add(new TopicGroup("DSA", "🧮", filterTopics("dsa")));
+        groups.add(new TopicGroup("DSA", "🧮", filterTopics(
+                "dsa", "dsa-array", "dsa-linked-list", "dsa-stack", "dsa-queue",
+                "dsa-hash", "dsa-tree", "dsa-heap", "dsa-graph",
+                "dsa-sort", "dsa-search", "dsa-dp", "dsa-greedy-backtracking"
+        )));
 
         groups.add(new TopicGroup("Learn Java", "☕", filterTopics(
                 "java", "oop", "collection-framework", "generic",
