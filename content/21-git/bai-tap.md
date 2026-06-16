@@ -1,7 +1,7 @@
 # Git & GitHub - Bai Tap
 
-## Bai 1: Git Co Ban
-**Do kho: De**
+## Bài 1: Git Co Ban
+**Độ khó: Dễ**
 
 Thuc hanh cac lenh Git co ban:
 
@@ -18,8 +18,8 @@ Thuc hanh cac lenh Git co ban:
 
 ---
 
-## Bai 2: Branching va Merging
-**Do kho: Trung binh**
+## Bài 2: Branching va Merging
+**Độ khó: Trung bình**
 
 Thuc hanh lam viec voi branches:
 
@@ -36,8 +36,8 @@ Thuc hanh lam viec voi branches:
 
 ---
 
-## Bai 3: Remote Workflow
-**Do kho: Trung binh**
+## Bài 3: Remote Workflow
+**Độ khó: Trung bình**
 
 Mo phong quy trinh lam viec voi GitHub:
 
@@ -53,8 +53,8 @@ Mo phong quy trinh lam viec voi GitHub:
 
 ---
 
-## Bai 4: Rebase va History
-**Do kho: Kho**
+## Bài 4: Rebase va History
+**Độ khó: Khó**
 
 Thuc hanh chinh sua lich su Git:
 
@@ -74,8 +74,8 @@ Thuc hanh chinh sua lich su Git:
 
 ---
 
-## Bai 5: Git Rescue
-**Do kho: Kho**
+## Bài 5: Git Rescue
+**Độ khó: Khó**
 
 Thuc hanh xu ly cac tinh huong "cuu ho" Git:
 

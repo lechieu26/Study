@@ -64,7 +64,7 @@ HTML (HyperText Markup Language) la **ngon ngu danh dau** dung de tao cau truc n
 </html>
 ```
 
-**Giai thich:**
+**Giải thích:**
 - `<!DOCTYPE html>`: Khai bao HTML5
 - `<html lang="vi">`: Phan tu goc, thuoc tinh `lang` giup trinh duyet va screen reader
 - `<head>`: Chua metadata (khong hien thi tren trang)

@@ -1,6 +1,6 @@
 # Responsive Web Design - Dap An Bai Tap
 
-## Bai 1: Responsive Card Grid
+## Bài 1: Responsive Card Grid
 
 ```html
 <!DOCTYPE html>
@@ -128,7 +128,7 @@
 </html>
 ```
 
-**Giai thich:**
+**Giải thích:**
 - Mobile-first: bat dau voi 1 cot (`grid-template-columns: 1fr`)
 - CSS Variables cho gap, thay doi theo breakpoint
 - `object-fit: cover` giu hinh anh khong bi meo
@@ -137,7 +137,7 @@
 
 ---
 
-## Bai 2: Mobile-First Landing Page
+## Bài 2: Mobile-First Landing Page
 
 ```css
 /* === Base (Mobile) === */
@@ -291,7 +291,7 @@ body {
 
 ---
 
-## Bai 3: Dashboard Responsive Layout
+## Bài 3: Dashboard Responsive Layout
 
 ```css
 .dashboard {
@@ -398,7 +398,7 @@ body {
 
 ---
 
-## Bai 4: Responsive Image Gallery
+## Bài 4: Responsive Image Gallery
 
 ```css
 .gallery {

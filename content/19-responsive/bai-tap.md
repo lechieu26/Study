@@ -1,7 +1,7 @@
 # Responsive Web Design - Bai Tap
 
-## Bai 1: Responsive Card Grid
-**Do kho: De**
+## Bài 1: Responsive Card Grid
+**Độ khó: Dễ**
 
 Tao mot trang hien thi danh sach san pham dung grid responsive:
 
@@ -15,8 +15,8 @@ Tao mot trang hien thi danh sach san pham dung grid responsive:
 
 ---
 
-## Bai 2: Mobile-First Landing Page
-**Do kho: Trung binh**
+## Bài 2: Mobile-First Landing Page
+**Độ khó: Trung bình**
 
 Thiet ke landing page hoan chinh theo Mobile-First:
 
@@ -31,8 +31,8 @@ Thiet ke landing page hoan chinh theo Mobile-First:
 
 ---
 
-## Bai 3: Dashboard Responsive Layout
-**Do kho: Trung binh**
+## Bài 3: Dashboard Responsive Layout
+**Độ khó: Trung bình**
 
 Tao admin dashboard responsive:
 
@@ -46,8 +46,8 @@ Tao admin dashboard responsive:
 
 ---
 
-## Bai 4: Responsive Image Gallery
-**Do kho: Trung binh**
+## Bài 4: Responsive Image Gallery
+**Độ khó: Trung bình**
 
 Tao gallery hinh anh responsive:
 
@@ -62,8 +62,8 @@ Tao gallery hinh anh responsive:
 
 ---
 
-## Bai 5: Responsive Email Template
-**Do kho: Kho**
+## Bài 5: Responsive Email Template
+**Độ khó: Khó**
 
 Tao email template responsive (gioi han: chi dung table layout va inline CSS):
 

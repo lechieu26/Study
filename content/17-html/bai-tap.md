@@ -1,7 +1,7 @@
 # HTML - Bai Tap
 
-## Bai 1: Tao trang ca nhan (Personal Page)
-**Do kho: De**
+## Bài 1: Tao trang ca nhan (Personal Page)
+**Độ khó: Dễ**
 
 Tao mot trang HTML hoan chinh gioi thieu ban than voi cac yeu cau:
 
@@ -16,8 +16,8 @@ Tao mot trang HTML hoan chinh gioi thieu ban than voi cac yeu cau:
 
 ---
 
-## Bai 2: Bieu mau dang ky
-**Do kho: Trung binh**
+## Bài 2: Bieu mau dang ky
+**Độ khó: Trung bình**
 
 Tao form dang ky tai khoan voi cac truong:
 
@@ -38,8 +38,8 @@ Yeu cau: Su dung `<fieldset>`, `<legend>`, `<label>`, HTML5 validation attribute
 
 ---
 
-## Bai 3: Semantic Blog Layout
-**Do kho: Trung binh**
+## Bài 3: Semantic Blog Layout
+**Độ khó: Trung bình**
 
 Tao layout blog hoan chinh su dung **chi HTML semantic** (khong CSS):
 
@@ -55,8 +55,8 @@ Yeu cau: Khong su dung `<div>` khi co the semantic tag. Su dung `<details>` va `
 
 ---
 
-## Bai 4: Bang gia san pham
-**Do kho: Trung binh**
+## Bài 4: Bang gia san pham
+**Độ khó: Trung bình**
 
 Tao bang so sanh gia 3 goi dich vu (Basic, Pro, Enterprise):
 
@@ -69,8 +69,8 @@ Tao bang so sanh gia 3 goi dich vu (Basic, Pro, Enterprise):
 
 ---
 
-## Bai 5: Trang Multimedia
-**Do kho: Kho**
+## Bài 5: Trang Multimedia
+**Độ khó: Khó**
 
 Tao trang gioi thieu san pham su dung day du multimedia:
 

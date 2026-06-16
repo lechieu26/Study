@@ -1,7 +1,7 @@
 # TypeScript - Bai Tap
 
-## Bai 1: Type-safe Collection
-**Do kho: Trung binh**
+## Bài 1: Type-safe Collection
+**Độ khó: Trung bình**
 
 Tao mot class `TypedCollection<T>` voi cac tinh nang:
 
@@ -26,8 +26,8 @@ for (const n of nums) { }  // Iterable
 
 ---
 
-## Bai 2: API Response Handler
-**Do kho: Trung binh**
+## Bài 2: API Response Handler
+**Độ khó: Trung bình**
 
 Thiet ke type system cho API client:
 
@@ -42,8 +42,8 @@ Thiet ke type system cho API client:
 
 ---
 
-## Bai 3: Event Emitter Generic
-**Do kho: Trung binh**
+## Bài 3: Event Emitter Generic
+**Độ khó: Trung bình**
 
 Tao type-safe EventEmitter:
 
@@ -72,8 +72,8 @@ emitter.emit("login", { userId: "123", timestamp: new Date() }); // OK
 
 ---
 
-## Bai 4: Builder Pattern Generic
-**Do kho: Kho**
+## Bài 4: Builder Pattern Generic
+**Độ khó: Khó**
 
 Tao type-safe Builder pattern:
 
@@ -104,8 +104,8 @@ const query = new QueryBuilder<Product>()
 
 ---
 
-## Bai 5: State Machine voi Types
-**Do kho: Kho**
+## Bài 5: State Machine voi Types
+**Độ khó: Khó**
 
 Implement type-safe finite state machine:
 

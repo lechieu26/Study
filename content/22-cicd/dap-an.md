@@ -1,6 +1,6 @@
 # CI/CD - Dap An Bai Tap
 
-## Bai 1: GitHub Actions CI co ban
+## Bài 1: GitHub Actions CI co ban
 
 ```yaml
 # .github/workflows/ci.yml
@@ -43,7 +43,7 @@ jobs:
           retention-days: 7
 ```
 
-**Giai thich:**
+**Giải thích:**
 - `actions/checkout@v4`: Clone repo vao runner
 - `actions/setup-node@v4` voi `cache: 'npm'`: Cai Node.js va cache node_modules
 - `npm ci`: Cai dependencies tu lock file (nhanh va nhat quan hon `npm install`)
@@ -52,7 +52,7 @@ jobs:
 
 ---
 
-## Bai 2: Multi-stage Pipeline
+## Bài 2: Multi-stage Pipeline
 
 ```yaml
 name: Multi-Stage CI
@@ -128,7 +128,7 @@ jobs:
         # Thay bang lenh deploy thuc te
 ```
 
-**Giai thich:**
+**Giải thích:**
 - `needs: lint`: Job test CHI chay sau khi lint pass
 - `strategy.matrix`: Chay test tren 3 phien ban Node.js song song
 - `if: matrix.node-version == 20`: Chi upload coverage tu Node 20
@@ -136,7 +136,7 @@ jobs:
 
 ---
 
-## Bai 3: Docker CI/CD Pipeline
+## Bài 3: Docker CI/CD Pipeline
 
 ```yaml
 name: Docker CI/CD
@@ -206,7 +206,7 @@ jobs:
 
 ---
 
-## Bai 4: Full-Stack CI/CD
+## Bài 4: Full-Stack CI/CD
 
 ```yaml
 name: Full-Stack CI/CD

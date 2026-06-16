@@ -1,6 +1,6 @@
 # Quiz - TypeScript
 
-## Cau 1
+## Câu 1
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -11,9 +11,9 @@ TypeScript la gi?
 - [ ] Mot framework JavaScript
 - [ ] Mot trinh duyet web
 
-> **Giai thich:** TypeScript la superset cua JavaScript - moi code JavaScript hop le deu la TypeScript hop le. TypeScript them type system, interfaces, generics, ... va compile thanh JavaScript de chay.
+> **Giải thích:** TypeScript la superset cua JavaScript - moi code JavaScript hop le deu la TypeScript hop le. TypeScript them type system, interfaces, generics, ... va compile thanh JavaScript de chay.
 
-## Cau 2
+## Câu 2
 
 [TYPE: SELECT_RESULT]
 
@@ -29,9 +29,9 @@ name = 42;
 - [ ] Loi: bien `name` da ton tai
 - [ ] Loi: thieu dau cham phay
 
-> **Giai thich:** Bien `name` duoc khai bao kieu `string`. Gan `42` (number) vi pham type safety. Day la loi compile-time ma TypeScript phat hien, JavaScript se khong bao loi nay.
+> **Giải thích:** Bien `name` duoc khai bao kieu `string`. Gan `42` (number) vi pham type safety. Day la loi compile-time ma TypeScript phat hien, JavaScript se khong bao loi nay.
 
-## Cau 3
+## Câu 3
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -42,9 +42,9 @@ Su khac biet giua `interface` va `type` trong TypeScript?
 - [x] `interface` co the merge declarations va extends, `type` ho tro union va intersection
 - [ ] `interface` nhanh hon `type`
 
-> **Giai thich:** `interface` ho tro declaration merging (khai bao lai de them thuoc tinh) va `extends`. `type` ho tro union (`|`), intersection (`&`), mapped types, conditional types. Cho object shapes, ca hai deu duoc; convention la dung `interface` cho objects, `type` cho union/utility.
+> **Giải thích:** `interface` ho tro declaration merging (khai bao lai de them thuoc tinh) va `extends`. `type` ho tro union (`|`), intersection (`&`), mapped types, conditional types. Cho object shapes, ca hai deu duoc; convention la dung `interface` cho objects, `type` cho union/utility.
 
-## Cau 4
+## Câu 4
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -55,9 +55,9 @@ Su khac biet giua `interface` va `type` trong TypeScript?
 - [x] `unknown` an toan hon - phai kiem tra kieu truoc khi su dung
 - [ ] `any` an toan hon `unknown`
 
-> **Giai thich:** `any` cho phep lam bat ky gi ma khong kiem tra kieu (tat type checking). `unknown` cung nhan moi gia tri nhung BAT BUOC phai narrow (kiem tra kieu) truoc khi su dung. `unknown` la lua chon an toan khi khong biet kieu.
+> **Giải thích:** `any` cho phep lam bat ky gi ma khong kiem tra kieu (tat type checking). `unknown` cung nhan moi gia tri nhung BAT BUOC phai narrow (kiem tra kieu) truoc khi su dung. `unknown` la lua chon an toan khi khong biet kieu.
 
-## Cau 5
+## Câu 5
 
 [TYPE: SELECT_RESULT]
 
@@ -75,9 +75,9 @@ function getValue(key: string): string | undefined {
 - [ ] `any`
 - [ ] `unknown`
 
-> **Giai thich:** Ham khai bao tra ve `string | undefined`. Vi `map[key]` co the khong ton tai (tra ve `undefined`), kieu union `string | undefined` la chinh xac. Nguoi goi phai kiem tra `undefined` truoc khi su dung.
+> **Giải thích:** Ham khai bao tra ve `string | undefined`. Vi `map[key]` co the khong ton tai (tra ve `undefined`), kieu union `string | undefined` la chinh xac. Nguoi goi phai kiem tra `undefined` truoc khi su dung.
 
-## Cau 6
+## Câu 6
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -88,9 +88,9 @@ function getValue(key: string): string | undefined {
 - [ ] Bien tat ca thuoc tinh thanh readonly
 - [ ] Chi lay mot phan cua User
 
-> **Giai thich:** `Partial<T>` la utility type bien tat ca thuoc tinh thanh optional. `Partial<{name: string; age: number}>` = `{name?: string; age?: number}`. Rat huu ich cho update operations (chi gui cac truong can thay doi).
+> **Giải thích:** `Partial<T>` la utility type bien tat ca thuoc tinh thanh optional. `Partial<{name: string; age: number}>` = `{name?: string; age?: number}`. Rat huu ich cho update operations (chi gui cac truong can thay doi).
 
-## Cau 7
+## Câu 7
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -101,9 +101,9 @@ Generic constraint `<T extends HasLength>` co y nghia gi?
 - [ ] T la con cua HasLength
 - [ ] T khong duoc co thuoc tinh cua HasLength
 
-> **Giai thich:** `T extends HasLength` nghia la T phai **it nhat** co cac thuoc tinh cua HasLength. Neu `HasLength = { length: number }`, thi T phai co `length: number` (string, array, ... deu OK). T co the co them thuoc tinh khac.
+> **Giải thích:** `T extends HasLength` nghia la T phai **it nhat** co cac thuoc tinh cua HasLength. Neu `HasLength = { length: number }`, thi T phai co `length: number` (string, array, ... deu OK). T co the co them thuoc tinh khac.
 
-## Cau 8
+## Câu 8
 
 [TYPE: SELECT_RESULT]
 
@@ -126,9 +126,9 @@ function handle(res: ApiResponse<number>) {
 - [ ] `unknown`
 - [ ] `T`
 
-> **Giai thich:** Sau khi kiem tra `res.ok === true` (discriminated union narrowing), TypeScript biet `res` la `{ ok: true; data: number }`. Do do `res.data` co kieu `number` (generic T duoc thay bang number).
+> **Giải thích:** Sau khi kiem tra `res.ok === true` (discriminated union narrowing), TypeScript biet `res` la `{ ok: true; data: number }`. Do do `res.data` co kieu `number` (generic T duoc thay bang number).
 
-## Cau 9
+## Câu 9
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -139,9 +139,9 @@ Tai sao nen tranh dung `enum` trong TypeScript hien dai?
 - [x] Union type (`"a" | "b"`) nhe hon, khong tao runtime code thua, va tree-shakeable
 - [ ] Enum khong type-safe
 
-> **Giai thich:** `enum` tao ra JavaScript runtime code (object). Union type (`type Status = "active" | "inactive"`) chi ton tai tai compile-time, khong tao runtime code, nhe hon cho bundle size. `const enum` la giua: inline gia tri nhung co han che voi declaration files.
+> **Giải thích:** `enum` tao ra JavaScript runtime code (object). Union type (`type Status = "active" | "inactive"`) chi ton tai tai compile-time, khong tao runtime code, nhe hon cho bundle size. `const enum` la giua: inline gia tri nhung co han che voi declaration files.
 
-## Cau 10
+## Câu 10
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -152,9 +152,9 @@ Tai sao nen tranh dung `enum` trong TypeScript hien dai?
 - [ ] So luong keys
 - [ ] Mang cac keys
 
-> **Giai thich:** `keyof T` tra ve union cua cac key names. Voi `type User = { id: number; name: string }`, `keyof User` = `"id" | "name"`. Day la compile-time type, khong phai runtime value. Ket hop voi generics (`K extends keyof T`) de tao type-safe property access.
+> **Giải thích:** `keyof T` tra ve union cua cac key names. Voi `type User = { id: number; name: string }`, `keyof User` = `"id" | "name"`. Day la compile-time type, khong phai runtime value. Ket hop voi generics (`K extends keyof T`) de tao type-safe property access.
 
-## Cau 11
+## Câu 11
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -165,9 +165,9 @@ Tai sao nen tranh dung `enum` trong TypeScript hien dai?
 - [x] Ep TypeScript suy ra kieu literal hep nhat (readonly va literal types)
 - [ ] Chi dung voi string
 
-> **Giai thich:** `as const` (const assertion) khien TypeScript suy ra kieu hep nhat. `const x = [1, 2]` co kieu `number[]`, nhung `const x = [1, 2] as const` co kieu `readonly [1, 2]`. Tuong tu, `{ a: "hello" } as const` co kieu `{ readonly a: "hello" }` thay vi `{ a: string }`.
+> **Giải thích:** `as const` (const assertion) khien TypeScript suy ra kieu hep nhat. `const x = [1, 2]` co kieu `number[]`, nhung `const x = [1, 2] as const` co kieu `readonly [1, 2]`. Tuong tu, `{ a: "hello" } as const` co kieu `{ readonly a: "hello" }` thay vi `{ a: string }`.
 
-## Cau 12
+## Câu 12
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -178,4 +178,4 @@ Custom type guard `value is string` co tac dung gi?
 - [x] Bao TypeScript rằng khi ham tra ve true, value co kieu string (narrowing)
 - [ ] Tuong duong voi typeof
 
-> **Giai thich:** `function isString(v: unknown): v is string` la type predicate. Khi ham tra ve `true`, TypeScript tu dong narrow kieu cua tham so thanh `string` trong block `if (isString(v))`. Day la cach tao custom narrowing logic ma TypeScript co the hieu.
+> **Giải thích:** `function isString(v: unknown): v is string` la type predicate. Khi ham tra ve `true`, TypeScript tu dong narrow kieu cua tham so thanh `string` trong block `if (isString(v))`. Day la cach tao custom narrowing logic ma TypeScript co the hieu.

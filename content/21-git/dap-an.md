@@ -1,6 +1,6 @@
 # Git & GitHub - Dap An Bai Tap
 
-## Bai 1: Git Co Ban
+## Bài 1: Git Co Ban
 
 ```bash
 # 1. Tao thu muc va init
@@ -53,7 +53,7 @@ git commit -m "feat: add base styles"
 
 ---
 
-## Bai 2: Branching va Merging
+## Bài 2: Branching va Merging
 
 ```bash
 # 1. Tao branch feature/navbar
@@ -111,7 +111,7 @@ git log --oneline --graph --all
 
 ---
 
-## Bai 3: Remote Workflow
+## Bài 3: Remote Workflow
 
 ```bash
 # 1. Tao repo tren GitHub (qua web)
@@ -153,7 +153,7 @@ git push origin --delete feature/login  # Remote
 
 ---
 
-## Bai 4: Rebase va History
+## Bài 4: Rebase va History
 
 ```bash
 # Tao 5 commits
@@ -212,7 +212,7 @@ git push --force-with-lease origin feature/dashboard
 
 ---
 
-## Bai 5: Git Rescue
+## Bài 5: Git Rescue
 
 ```bash
 # === 1. Hoan tac commit chua push ===
@@ -271,7 +271,7 @@ git reflog
 git checkout -b feature/important abc1234
 ```
 
-**Giai thich:**
+**Giải thích:**
 - `reset --soft`: Di chuyen HEAD nhung giu thay doi o staging (an toan nhat)
 - `revert`: Tao commit moi, an toan cho shared branches (khong rewrite history)
 - `stash`: Luu tam thay doi, rat huu ich khi can chuyen branch gap

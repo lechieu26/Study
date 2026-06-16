@@ -1,6 +1,6 @@
 # CSS - Dap An Bai Tap
 
-## Bai 1: Card Component
+## Bài 1: Card Component
 
 ```html
 <div class="card">
@@ -94,7 +94,7 @@
 }
 ```
 
-**Giai thich:**
+**Giải thích:**
 - BEM naming convention cho de bao tri
 - CSS Variables de thay doi theme de dang
 - transition tren card va button cho smooth hover effect
@@ -102,7 +102,7 @@
 
 ---
 
-## Bai 2: Flexbox Navigation Bar
+## Bài 2: Flexbox Navigation Bar
 
 ```html
 <nav class="navbar">
@@ -189,7 +189,7 @@
 
 ---
 
-## Bai 3: CSS Grid Dashboard
+## Bài 3: CSS Grid Dashboard
 
 ```css
 .dashboard {
@@ -264,7 +264,7 @@
 
 ---
 
-## Bai 4: Animation Loading Spinner
+## Bài 4: Animation Loading Spinner
 
 ```css
 /* === 1. Spinner tron === */
@@ -335,7 +335,7 @@
 
 ---
 
-## Bai 5: Responsive Pricing Table
+## Bài 5: Responsive Pricing Table
 
 ```css
 :root {

@@ -251,7 +251,7 @@ img {
      alt="Responsive photo" />
 ```
 
-**Giai thich:**
+**Giải thích:**
 - `srcset`: Danh sach anh va kich thuoc thuc (400w = 400px rong)
 - `sizes`: Bao trinh duyet anh se chiem bao nhieu viewport
 - Trinh duyet tu chon anh phu hop nhat (dua tren DPR va viewport)

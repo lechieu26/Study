@@ -1,6 +1,6 @@
 # Quiz - CI/CD
 
-## Cau 1
+## Câu 1
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -11,9 +11,9 @@ CI trong CI/CD la viet tat cua gi?
 - [ ] Complete Installation
 - [ ] Cloud Infrastructure
 
-> **Giai thich:** CI = Continuous Integration - quy trinh tu dong hoa viec build va test code moi khi developer push code. Muc dich la phat hien loi som va dam bao code luon o trang thai co the release.
+> **Giải thích:** CI = Continuous Integration - quy trinh tu dong hoa viec build va test code moi khi developer push code. Muc dich la phat hien loi som va dam bao code luon o trang thai co the release.
 
-## Cau 2
+## Câu 2
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -24,9 +24,9 @@ Su khac biet giua Continuous Delivery va Continuous Deployment?
 - [ ] Delivery nhanh hon Deployment
 - [ ] Deployment khong can testing
 
-> **Giai thich:** Continuous Delivery: code duoc tu dong build, test, deploy len staging nhung CAN nguoi duyet (manual approval) truoc khi len production. Continuous Deployment: HOAN TOAN tu dong, code da pass tests se duoc deploy len production khong can duyet.
+> **Giải thích:** Continuous Delivery: code duoc tu dong build, test, deploy len staging nhung CAN nguoi duyet (manual approval) truoc khi len production. Continuous Deployment: HOAN TOAN tu dong, code da pass tests se duoc deploy len production khong can duyet.
 
-## Cau 3
+## Câu 3
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -37,9 +37,9 @@ Trong GitHub Actions, `needs: lint` co y nghia gi?
 - [ ] Job nay thay the job lint
 - [ ] Job nay khong can lint
 
-> **Giai thich:** `needs` tao dependency giua cac jobs. `needs: lint` nghia la job hien tai se DOI job `lint` hoan thanh THANH CONG truoc khi bat dau. Neu `lint` fail, job nay se bi skip. Day la cach tao pipeline tuan tu.
+> **Giải thích:** `needs` tao dependency giua cac jobs. `needs: lint` nghia la job hien tai se DOI job `lint` hoan thanh THANH CONG truoc khi bat dau. Neu `lint` fail, job nay se bi skip. Day la cach tao pipeline tuan tu.
 
-## Cau 4
+## Câu 4
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -50,9 +50,9 @@ Trong GitHub Actions, `needs: lint` co y nghia gi?
 - [x] `npm ci` cai chinh xac tu lock file, nhanh hon, va xoa node_modules truoc
 - [ ] `npm ci` khong can package.json
 
-> **Giai thich:** `npm ci` (clean install): xoa node_modules, cai chinh xac theo package-lock.json (khong thay doi lock file), nhanh hon. `npm install` co the update lock file va khong dam bao version chinh xac. Trong CI, LUON dung `npm ci` de dam bao reproducibility.
+> **Giải thích:** `npm ci` (clean install): xoa node_modules, cai chinh xac theo package-lock.json (khong thay doi lock file), nhanh hon. `npm install` co the update lock file va khong dam bao version chinh xac. Trong CI, LUON dung `npm ci` de dam bao reproducibility.
 
-## Cau 5
+## Câu 5
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -63,9 +63,9 @@ GitHub Secrets duoc su dung de lam gi?
 - [ ] An commit history
 - [ ] Bao ve branches
 
-> **Giai thich:** GitHub Secrets luu tru cac gia tri nhay cam (API keys, tokens, passwords) duoc ma hoa. Chung chi co the truy cap trong GitHub Actions workflows qua `${{ secrets.SECRET_NAME }}`. Secrets KHONG hien thi trong logs va KHONG the xem lai gia tri.
+> **Giải thích:** GitHub Secrets luu tru cac gia tri nhay cam (API keys, tokens, passwords) duoc ma hoa. Chung chi co the truy cap trong GitHub Actions workflows qua `${{ secrets.SECRET_NAME }}`. Secrets KHONG hien thi trong logs va KHONG the xem lai gia tri.
 
-## Cau 6
+## Câu 6
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -76,9 +76,9 @@ Blue-Green Deployment la gi?
 - [ ] Deploy 2 lan moi release
 - [ ] Chi deploy vao ban dem
 
-> **Giai thich:** Blue-Green: 2 moi truong production giong nhau (Blue va Green). Mot cai dang serve traffic, cai kia idle. Deploy len moi truong idle, test, roi chuyen traffic. Rollback nhanh: chi can chuyen traffic ve moi truong cu.
+> **Giải thích:** Blue-Green: 2 moi truong production giong nhau (Blue va Green). Mot cai dang serve traffic, cai kia idle. Deploy len moi truong idle, test, roi chuyen traffic. Rollback nhanh: chi can chuyen traffic ve moi truong cu.
 
-## Cau 7
+## Câu 7
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -89,9 +89,9 @@ Canary Deployment la gi?
 - [x] Deploy len mot phan nho users truoc, tang dan neu khong co loi
 - [ ] Deploy vao ban dem khi it traffic
 
-> **Giai thich:** Canary: deploy version moi cho 1-10% users truoc (canary group). Monitor loi va performance. Neu OK, tang dan (10% → 25% → 50% → 100%). Neu co loi, rollback chi anh huong phan nho. Ten "canary" tu chim hoang yen trong ham mo (canh bao som).
+> **Giải thích:** Canary: deploy version moi cho 1-10% users truoc (canary group). Monitor loi va performance. Neu OK, tang dan (10% → 25% → 50% → 100%). Neu co loi, rollback chi anh huong phan nho. Ten "canary" tu chim hoang yen trong ham mo (canh bao som).
 
-## Cau 8
+## Câu 8
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -102,9 +102,9 @@ Matrix strategy trong GitHub Actions dung de lam gi?
 - [ ] Tao nhieu repositories
 - [ ] Chia code thanh modules
 
-> **Giai thich:** Matrix strategy chay cung job voi nhieu to hop cau hinh. Vi du: test tren Node 18, 20, 22 x Ubuntu, Windows = 6 jobs song song. Dam bao ung dung hoat dong tren nhieu moi truong ma khong can viet nhieu workflows.
+> **Giải thích:** Matrix strategy chay cung job voi nhieu to hop cau hinh. Vi du: test tren Node 18, 20, 22 x Ubuntu, Windows = 6 jobs song song. Dam bao ung dung hoat dong tren nhieu moi truong ma khong can viet nhieu workflows.
 
-## Cau 9
+## Câu 9
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -115,9 +115,9 @@ Tại sao nen dat lint/type-check TRUOC unit tests trong pipeline?
 - [ ] Lint phai chay truoc vi tests phu thuoc vao no
 - [ ] Khong co ly do, thu tu khong quan trong
 
-> **Giai thich:** Nguyen tac "Fail Fast": dat cac checks nhanh nhat truoc. Lint/format check chi mat vai giay. Neu fail, pipeline dung ngay ma khong mat thoi gian chay tests (co the mat vai phut). Tiet kiem thoi gian va tai nguyen CI runner.
+> **Giải thích:** Nguyen tac "Fail Fast": dat cac checks nhanh nhat truoc. Lint/format check chi mat vai giay. Neu fail, pipeline dung ngay ma khong mat thoi gian chay tests (co the mat vai phut). Tiet kiem thoi gian va tai nguyen CI runner.
 
-## Cau 10
+## Câu 10
 
 [TYPE: TRUE_FALSE]
 
@@ -126,9 +126,9 @@ Trong CI/CD, moi truong Staging nen giong Production nhat co the.
 - [x] True
 - [ ] False
 
-> **Giai thich:** Environment Parity: Staging nen "mirror" Production (cung OS, cung dependencies, cau hinh tuong tu). Dieu nay dam bao test tren Staging phan anh chinh xac hanh vi tren Production. Su khac biet giua environments la nguyen nhan pho bien cua loi "works on staging but fails in production".
+> **Giải thích:** Environment Parity: Staging nen "mirror" Production (cung OS, cung dependencies, cau hinh tuong tu). Dieu nay dam bao test tren Staging phan anh chinh xac hanh vi tren Production. Su khac biet giua environments la nguyen nhan pho bien cua loi "works on staging but fails in production".
 
-## Cau 11
+## Câu 11
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -139,9 +139,9 @@ Artifact trong CI/CD la gi?
 - [ ] Secret key
 - [ ] Ten cua CI server
 
-> **Giai thich:** Artifacts la cac file duoc tao ra trong qua trinh build: compiled code (dist/), test reports, coverage reports, Docker images, deployment packages. Chung duoc luu tru va truyen giua cac jobs trong pipeline (vd: job build tao artifact, job deploy su dung artifact do).
+> **Giải thích:** Artifacts la cac file duoc tao ra trong qua trinh build: compiled code (dist/), test reports, coverage reports, Docker images, deployment packages. Chung duoc luu tru va truyen giua cac jobs trong pipeline (vd: job build tao artifact, job deploy su dung artifact do).
 
-## Cau 12
+## Câu 12
 
 [TYPE: MULTIPLE_CHOICE]
 
@@ -152,4 +152,4 @@ Infrastructure as Code (IaC) co loi ich gi cho CI/CD?
 - [x] Quan ly infrastructure bang code, co the version control va tu dong hoa
 - [ ] Chi dung cho frontend
 
-> **Giai thich:** IaC (Terraform, CloudFormation, Pulumi) dinh nghia infrastructure bang code thay vi cau hinh thu cong. Loi ich: version control (track changes), reproducibility (tao lai moi truong giong nhau), automation (tich hop vao CI/CD pipeline), consistency (tranh "snowflake servers").
+> **Giải thích:** IaC (Terraform, CloudFormation, Pulumi) dinh nghia infrastructure bang code thay vi cau hinh thu cong. Loi ich: version control (track changes), reproducibility (tao lai moi truong giong nhau), automation (tich hop vao CI/CD pipeline), consistency (tranh "snowflake servers").

@@ -1,7 +1,7 @@
 # Docker - Bai Tap
 
-## Bai 1: Dockerfile co ban
-**Do kho: De**
+## Bài 1: Dockerfile co ban
+**Độ khó: Dễ**
 
 Tao Dockerfile cho ung dung Node.js Express don gian:
 
@@ -17,8 +17,8 @@ Tao Dockerfile cho ung dung Node.js Express don gian:
 
 ---
 
-## Bai 2: Docker Compose Full-Stack
-**Do kho: Trung binh**
+## Bài 2: Docker Compose Full-Stack
+**Độ khó: Trung bình**
 
 Tao Docker Compose cho ung dung full-stack:
 
@@ -32,8 +32,8 @@ Tao Docker Compose cho ung dung full-stack:
 
 ---
 
-## Bai 3: Multi-stage Build
-**Do kho: Trung binh**
+## Bài 3: Multi-stage Build
+**Độ khó: Trung bình**
 
 Tao multi-stage Dockerfile cho React app:
 
@@ -45,8 +45,8 @@ Tao multi-stage Dockerfile cho React app:
 
 ---
 
-## Bai 4: Docker Networking
-**Do kho: Trung binh**
+## Bài 4: Docker Networking
+**Độ khó: Trung bình**
 
 Thiet lap networking cho microservices:
 
@@ -61,8 +61,8 @@ Thiet lap networking cho microservices:
 
 ---
 
-## Bai 5: Production-Ready Docker Setup
-**Do kho: Kho**
+## Bài 5: Production-Ready Docker Setup
+**Độ khó: Khó**
 
 Tao Docker setup san sang cho production:
 

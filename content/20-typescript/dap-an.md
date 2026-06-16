@@ -1,6 +1,6 @@
 # TypeScript - Dap An Bai Tap
 
-## Bai 1: Type-safe Collection
+## Bài 1: Type-safe Collection
 
 ```typescript
 class TypedCollection<T> implements Iterable<T> {
@@ -79,7 +79,7 @@ for (const n of nums) {
 }
 ```
 
-**Giai thich:**
+**Giải thích:**
 - Generic `<T>` cho phep collection lam viec voi bat ky kieu nao
 - `map<U>` tra ve `TypedCollection<U>` - kieu moi co the khac kieu goc
 - `toArray()` tra ve `readonly T[]` de ngan viec thay doi tu ben ngoai
@@ -87,7 +87,7 @@ for (const n of nums) {
 
 ---
 
-## Bai 2: API Response Handler
+## Bài 2: API Response Handler
 
 ```typescript
 // Discriminated Union cho Response
@@ -170,7 +170,7 @@ async function example() {
 
 ---
 
-## Bai 3: Event Emitter Generic
+## Bài 3: Event Emitter Generic
 
 ```typescript
 class EventEmitter<Events extends Record<string, unknown>> {
@@ -238,7 +238,7 @@ emitter.emit("login", { userId: "123", timestamp: new Date() }); // OK
 
 ---
 
-## Bai 4: Builder Pattern Generic
+## Bài 4: Builder Pattern Generic
 
 ```typescript
 interface WhereClause<T> {
@@ -334,7 +334,7 @@ console.log(query);
 
 ---
 
-## Bai 5: State Machine voi Types
+## Bài 5: State Machine voi Types
 
 ```typescript
 // Dinh nghia trang thai va transitions
@@ -433,7 +433,7 @@ orderMachine.transition("draft", "submit", {
 // "confirm" khong ton tai trong OrderTransitions["cancelled"]
 ```
 
-**Giai thich:**
+**Giải thích:**
 - Discriminated union `OrderStates` dinh nghia data cho moi trang thai
 - `OrderTransitions` map trang thai -> action -> trang thai moi
 - TypeScript en force tai compile time: chi cho phep cac transitions da dinh nghia

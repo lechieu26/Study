@@ -1,6 +1,6 @@
 # Docker - Dap An Bai Tap
 
-## Bai 1: Dockerfile co ban
+## Bài 1: Dockerfile co ban
 
 **index.js:**
 ```javascript
@@ -83,7 +83,7 @@ docker images my-api
 
 ---
 
-## Bai 2: Docker Compose Full-Stack
+## Bài 2: Docker Compose Full-Stack
 
 ```yaml
 # docker-compose.yml
@@ -171,7 +171,7 @@ DB_PASS=secret123
 DB_NAME=myapp
 ```
 
-**Giai thich:**
+**Giải thích:**
 - Frontend chi o `frontend-net` → khong truy cap truc tiep DB
 - Backend o ca 2 networks → bridge giua frontend va DB
 - DB co healthcheck → backend doi DB san sang truoc khi start
@@ -180,7 +180,7 @@ DB_NAME=myapp
 
 ---
 
-## Bai 3: Multi-stage Build
+## Bài 3: Multi-stage Build
 
 **Dockerfile.multi:**
 ```dockerfile
@@ -263,7 +263,7 @@ docker images | grep react-app
 
 ---
 
-## Bai 4: Docker Networking
+## Bài 4: Docker Networking
 
 ```yaml
 services:
@@ -349,7 +349,7 @@ docker compose exec nginx ping api-gateway
 
 ---
 
-## Bai 5: Production-Ready Docker Setup
+## Bài 5: Production-Ready Docker Setup
 
 ```dockerfile
 # Dockerfile.prod

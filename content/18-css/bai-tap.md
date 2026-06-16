@@ -1,7 +1,7 @@
 # CSS - Bai Tap
 
-## Bai 1: Card Component
-**Do kho: De**
+## Bài 1: Card Component
+**Độ khó: Dễ**
 
 Tao mot card component voi CSS thuan (khong dung framework):
 
@@ -14,8 +14,8 @@ Tao mot card component voi CSS thuan (khong dung framework):
 
 ---
 
-## Bai 2: Flexbox Navigation Bar
-**Do kho: De**
+## Bài 2: Flexbox Navigation Bar
+**Độ khó: Dễ**
 
 Tao thanh navigation responsive voi Flexbox:
 
@@ -28,8 +28,8 @@ Tao thanh navigation responsive voi Flexbox:
 
 ---
 
-## Bai 3: CSS Grid Dashboard
-**Do kho: Trung binh**
+## Bài 3: CSS Grid Dashboard
+**Độ khó: Trung bình**
 
 Tao dashboard layout su dung CSS Grid:
 
@@ -43,8 +43,8 @@ Tao dashboard layout su dung CSS Grid:
 
 ---
 
-## Bai 4: Animation Loading Spinner
-**Do kho: Trung binh**
+## Bài 4: Animation Loading Spinner
+**Độ khó: Trung bình**
 
 Tao 3 loai loading spinner chi bang CSS (khong JavaScript):
 
@@ -56,8 +56,8 @@ Tao 3 loai loading spinner chi bang CSS (khong JavaScript):
 
 ---
 
-## Bai 5: Responsive Pricing Table
-**Do kho: Kho**
+## Bài 5: Responsive Pricing Table
+**Độ khó: Khó**
 
 Tao bang gia 3 goi (Basic, Pro, Enterprise) voi CSS nang cao:
 

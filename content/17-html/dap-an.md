@@ -1,6 +1,6 @@
 # HTML - Dap An Bai Tap
 
-## Bai 1: Tao trang ca nhan
+## Bài 1: Tao trang ca nhan
 
 ```html
 <!DOCTYPE html>
@@ -79,7 +79,7 @@
 </html>
 ```
 
-**Giai thich:**
+**Giải thích:**
 - Su dung cau truc HTML5 chuan voi DOCTYPE, meta charset, viewport
 - Semantic tags: header, main, section, footer
 - Anh co alt text mo ta
@@ -88,7 +88,7 @@
 
 ---
 
-## Bai 2: Bieu mau dang ky
+## Bài 2: Bieu mau dang ky
 
 ```html
 <!DOCTYPE html>
@@ -197,7 +197,7 @@
 </html>
 ```
 
-**Giai thich:**
+**Giải thích:**
 - Moi input deu co `<label>` voi `for` khop `id`
 - Su dung `fieldset` va `legend` nhom cac truong lien quan
 - HTML5 validation: `required`, `minlength`, `pattern`, `accept`
@@ -206,7 +206,7 @@
 
 ---
 
-## Bai 3: Semantic Blog Layout
+## Bài 3: Semantic Blog Layout
 
 ```html
 <!DOCTYPE html>
@@ -335,7 +335,7 @@
 
 ---
 
-## Bai 4: Bang gia san pham
+## Bài 4: Bang gia san pham
 
 ```html
 <!DOCTYPE html>
@@ -428,7 +428,7 @@
 
 ---
 
-## Bai 5: Trang Multimedia
+## Bài 5: Trang Multimedia
 
 ```html
 <!DOCTYPE html>

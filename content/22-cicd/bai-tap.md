@@ -1,7 +1,7 @@
 # CI/CD - Bai Tap
 
-## Bai 1: GitHub Actions CI co ban
-**Do kho: De**
+## Bài 1: GitHub Actions CI co ban
+**Độ khó: Dễ**
 
 Tao workflow CI cho mot du an Node.js:
 
@@ -15,8 +15,8 @@ Tao workflow CI cho mot du an Node.js:
 
 ---
 
-## Bai 2: Multi-stage Pipeline
-**Do kho: Trung binh**
+## Bài 2: Multi-stage Pipeline
+**Độ khó: Trung bình**
 
 Tao pipeline nhieu giai doan:
 
@@ -30,8 +30,8 @@ Tao pipeline nhieu giai doan:
 
 ---
 
-## Bai 3: Docker CI/CD Pipeline
-**Do kho: Trung binh**
+## Bài 3: Docker CI/CD Pipeline
+**Độ khó: Trung bình**
 
 Tao pipeline build va push Docker image:
 
@@ -44,8 +44,8 @@ Tao pipeline build va push Docker image:
 
 ---
 
-## Bai 4: Full-Stack CI/CD
-**Do kho: Kho**
+## Bài 4: Full-Stack CI/CD
+**Độ khó: Khó**
 
 Tao CI/CD pipeline cho ung dung full-stack (frontend + backend):
 
@@ -59,8 +59,8 @@ Tao CI/CD pipeline cho ung dung full-stack (frontend + backend):
 
 ---
 
-## Bai 5: Reusable Workflows
-**Do kho: Kho**
+## Bài 5: Reusable Workflows
+**Độ khó: Khó**
 
 Tao bo reusable workflows va composite actions:
 
