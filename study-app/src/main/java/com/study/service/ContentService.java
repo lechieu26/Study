@@ -4,6 +4,7 @@ import com.study.model.Exercise;
 import com.study.model.QuizQuestion;
 import com.study.model.Solution;
 import com.study.model.Topic;
+import com.study.model.TopicGroup;
 import org.commonmark.ext.gfm.tables.TablesExtension;
 import org.commonmark.node.Node;
 import org.commonmark.parser.Parser;
@@ -217,6 +218,44 @@ public class ContentService {
 
     public List<Topic> getAllTopics() {
         return new ArrayList<>(topics.values());
+    }
+
+    public List<TopicGroup> getTopicGroups() {
+        List<TopicGroup> groups = new ArrayList<>();
+
+        groups.add(new TopicGroup("DSA", "🧮", filterTopics("dsa")));
+
+        groups.add(new TopicGroup("Learn Java", "☕", filterTopics(
+                "java", "oop", "collection-framework", "generic",
+                "exception-handling", "io", "stream-api",
+                "reflection", "concurrency", "jdbc-connection-pool",
+                "design-patterns"
+        )));
+
+        groups.add(new TopicGroup("Java Spring", "🍃", filterTopics(
+                "spring-core", "spring-boot", "spring-mvc",
+                "spring-data-jpa", "spring-security", "spring-aop",
+                "spring-testing", "spring-microservices"
+        )));
+
+        groups.add(new TopicGroup("Front-end", "🌐", filterTopics(
+                "javascript", "react"
+        )));
+
+        groups.add(new TopicGroup("SQL", "🗄️", filterTopics("sql")));
+
+        return groups;
+    }
+
+    private List<Topic> filterTopics(String... ids) {
+        List<Topic> result = new ArrayList<>();
+        for (String id : ids) {
+            Topic t = topics.get(id);
+            if (t != null) {
+                result.add(t);
+            }
+        }
+        return result;
     }
 
     public Optional<Topic> getTopicById(String id) {

@@ -13,11 +13,19 @@
             <h2>📚 Ôn Tập</h2>
         </div>
         <ul class="nav-list">
-            <li th:each="t : ${topics}">
-                <a th:href="@{'/topic/' + ${t.id}}" class="nav-link">
-                    <span class="nav-icon" th:text="${t.icon}"></span>
-                    <span th:text="${t.name}"></span>
-                </a>
+            <li th:each="group : ${topicGroups}" class="nav-group">
+                <div class="nav-group-header">
+                    <span class="nav-group-icon" th:text="${group.icon}"></span>
+                    <span class="nav-group-title" th:text="${group.name}"></span>
+                </div>
+                <ul class="nav-group-items">
+                    <li th:each="t : ${group.topics}">
+                        <a th:href="@{'/topic/' + ${t.id}}" class="nav-link">
+                            <span class="nav-icon" th:text="${t.icon}"></span>
+                            <span th:text="${t.name}"></span>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>
@@ -28,23 +36,29 @@
             <p class="subtitle">Hệ thống ôn tập toàn diện với lý thuyết chi tiết, bài tập thực hành và nhiều cách giải khác nhau</p>
             <div class="hero-stats" id="heroStats"></div>
         </div>
-        <div class="topic-grid">
-            <div th:each="topic : ${topics}" class="topic-card" th:attr="data-topic-id=${topic.id}">
-                <div class="topic-icon" th:text="${topic.icon}"></div>
-                <h3 th:text="${topic.name}"></h3>
-                <p th:text="${topic.description}"></p>
-                <div class="topic-stats">
-                    <span class="badge" th:text="${#lists.size(topic.exercises)} + ' bài tập'"></span>
-                    <span class="badge badge-progress" th:id="'home-progress-' + ${topic.id}"></span>
-                </div>
-                <div class="topic-mini-progress" th:id="'home-bar-' + ${topic.id}">
-                    <div class="topic-mini-progress-fill"></div>
-                </div>
-                <div class="topic-actions">
-                    <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline">📖 Lý thuyết</a>
-                    <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary">📝 Bài tập</a>
-                    <a th:if="${topic.quizQuestions != null and !topic.quizQuestions.isEmpty()}"
-                       th:href="@{'/topic/' + ${topic.id} + '/quiz'}" class="btn btn-quiz">🧠 Quiz</a>
+        <div th:each="group : ${topicGroups}" class="topic-group-section">
+            <div class="topic-group-heading">
+                <span class="topic-group-heading-icon" th:text="${group.icon}"></span>
+                <h2 th:text="${group.name}"></h2>
+            </div>
+            <div class="topic-grid">
+                <div th:each="topic : ${group.topics}" class="topic-card" th:attr="data-topic-id=${topic.id}">
+                    <div class="topic-icon" th:text="${topic.icon}"></div>
+                    <h3 th:text="${topic.name}"></h3>
+                    <p th:text="${topic.description}"></p>
+                    <div class="topic-stats">
+                        <span class="badge" th:text="${#lists.size(topic.exercises)} + ' bài tập'"></span>
+                        <span class="badge badge-progress" th:id="'home-progress-' + ${topic.id}"></span>
+                    </div>
+                    <div class="topic-mini-progress" th:id="'home-bar-' + ${topic.id}">
+                        <div class="topic-mini-progress-fill"></div>
+                    </div>
+                    <div class="topic-actions">
+                        <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline">📖 Lý thuyết</a>
+                        <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary">📝 Bài tập</a>
+                        <a th:if="${topic.quizQuestions != null and !topic.quizQuestions.isEmpty()}"
+                           th:href="@{'/topic/' + ${topic.id} + '/quiz'}" class="btn btn-quiz">🧠 Quiz</a>
+                    </div>
                 </div>
             </div>
         </div>

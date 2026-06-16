@@ -15,11 +15,19 @@
             <h2>📚 Ôn Tập</h2>
         </div>
         <ul class="nav-list">
-            <li th:each="t : ${topics}">
-                <a th:href="@{'/topic/' + ${t.id}}" class="nav-link" th:classappend="${t.id == topic.id} ? 'active'">
-                    <span class="nav-icon" th:text="${t.icon}"></span>
-                    <span th:text="${t.name}"></span>
-                </a>
+            <li th:each="group : ${topicGroups}" class="nav-group">
+                <div class="nav-group-header">
+                    <span class="nav-group-icon" th:text="${group.icon}"></span>
+                    <span class="nav-group-title" th:text="${group.name}"></span>
+                </div>
+                <ul class="nav-group-items">
+                    <li th:each="t : ${group.topics}">
+                        <a th:href="@{'/topic/' + ${t.id}}" class="nav-link" th:classappend="${t.id == topic.id} ? 'active'">
+                            <span class="nav-icon" th:text="${t.icon}"></span>
+                            <span th:text="${t.name}"></span>
+                        </a>
+                    </li>
+                </ul>
             </li>
         </ul>
     </nav>
