@@ -783,7 +783,7 @@ System.out.println(1 + 2 + "3");
 System.out.println("1" + 2 + 3);
 ```
 
-- [ ] 33 và 123
+- [ ] 54 và 54
 - [x] 33 và 123
 - [ ] 123 và 123
 - [ ] 6 và 6
