@@ -97,6 +97,66 @@ body {
     text-align: center;
 }
 
+/* === Sidebar Groups === */
+.nav-group {
+    list-style: none;
+}
+
+.nav-group-header {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1.25rem 0.35rem;
+    margin-top: 0.25rem;
+}
+
+.nav-group-icon {
+    font-size: 1rem;
+}
+
+.nav-group-title {
+    font-size: 0.7rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--text-muted);
+}
+
+.nav-group-items {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-group-items .nav-link {
+    padding: 0.55rem 1.5rem 0.55rem 2rem;
+    font-size: 0.85rem;
+}
+
+/* === Topic Group Sections (Homepage) === */
+.topic-group-section {
+    margin-bottom: 2.5rem;
+}
+
+.topic-group-heading {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.25rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.topic-group-heading-icon {
+    font-size: 1.5rem;
+}
+
+.topic-group-heading h2 {
+    font-size: 1.4rem;
+    color: var(--text);
+    margin: 0;
+}
+
 /* === Main Content === */
 .content {
     margin-left: var(--sidebar-width);

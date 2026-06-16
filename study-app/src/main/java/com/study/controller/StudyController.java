@@ -20,6 +20,7 @@ public class StudyController {
     @GetMapping("/")
     public String home(Model model) {
         model.addAttribute("topics", contentService.getAllTopics());
+        model.addAttribute("topicGroups", contentService.getTopicGroups());
         return "index";
     }
 
@@ -29,6 +30,7 @@ public class StudyController {
             .orElseThrow(() -> new RuntimeException("Chủ đề không tồn tại: " + id));
         model.addAttribute("topic", topic);
         model.addAttribute("topics", contentService.getAllTopics());
+        model.addAttribute("topicGroups", contentService.getTopicGroups());
         return "topic";
     }
 
@@ -38,6 +40,7 @@ public class StudyController {
             .orElseThrow(() -> new RuntimeException("Chủ đề không tồn tại: " + topicId));
         model.addAttribute("topic", topic);
         model.addAttribute("topics", contentService.getAllTopics());
+        model.addAttribute("topicGroups", contentService.getTopicGroups());
         return "theory";
     }
 
@@ -50,6 +53,7 @@ public class StudyController {
         model.addAttribute("topic", topic);
         model.addAttribute("exercise", exercise);
         model.addAttribute("topics", contentService.getAllTopics());
+        model.addAttribute("topicGroups", contentService.getTopicGroups());
         return "exercise";
     }
 
@@ -59,6 +63,7 @@ public class StudyController {
             .orElseThrow(() -> new RuntimeException("Chủ đề không tồn tại: " + topicId));
         model.addAttribute("topic", topic);
         model.addAttribute("topics", contentService.getAllTopics());
+        model.addAttribute("topicGroups", contentService.getTopicGroups());
         return "quiz";
     }
 }
