@@ -187,13 +187,27 @@ public class ContentService {
             Matcher diffMatcher = Pattern.compile("\\*\\*Độ khó:\\s*(.+?)\\*\\*").matcher(section);
             String difficulty = diffMatcher.find() ? diffMatcher.group(1).trim() : "Trung bình";
 
-            String descHtml = renderMarkdown(section);
+            String boilerplate = extractBoilerplateCode(section);
+            String descSection = section;
+            if (boilerplate != null) {
+                descSection = section.replaceAll("(?s)###\\s*🧪\\s*Main Demo.*", "").trim();
+            }
+
+            String descHtml = renderMarkdown(descSection);
             List<Solution> solutions = parseSolutions(solutionSections.getOrDefault(exerciseNum, ""));
 
-            exercises.add(new Exercise(exerciseNum, title, difficulty, descHtml, solutions));
+            exercises.add(new Exercise(exerciseNum, title, difficulty, descHtml, solutions, boilerplate));
         }
 
         return exercises;
+    }
+
+    private String extractBoilerplateCode(String section) {
+        Matcher m = Pattern.compile("###\\s*🧪\\s*Main Demo\\s*\\n```java\\n(.*?)```", Pattern.DOTALL).matcher(section);
+        if (m.find()) {
+            return m.group(1).trim();
+        }
+        return null;
     }
 
     private Map<Integer, String> parseSolutionSections(String solutionMd) {

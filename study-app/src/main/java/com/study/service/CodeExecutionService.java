@@ -1,10 +1,12 @@
 package com.study.service;
 
 import com.study.model.CodeCheckResult;
+import com.study.model.TestCaseResult;
 import org.springframework.stereotype.Service;
 
 import java.io.*;
 import java.nio.file.*;
+import java.util.*;
 import java.util.concurrent.*;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -14,6 +16,8 @@ public class CodeExecutionService {
 
     private static final long TIMEOUT_SECONDS = 10;
     private static final int MAX_OUTPUT_LENGTH = 5000;
+    private static final Pattern TEST_RESULT_PATTERN =
+            Pattern.compile("\\[TEST (\\d+)\\] (PASS|FAIL)(?:: Expected (.+?), Got (.+))?");
 
     public CodeCheckResult executeJavaCode(String code) {
         Path tempDir = null;
@@ -41,9 +45,18 @@ public class CodeExecutionService {
                 ? runOutput.substring(0, MAX_OUTPUT_LENGTH) + "\n... (đã cắt bớt)"
                 : runOutput;
 
+            List<TestCaseResult> testResults = parseTestResults(truncatedOutput);
+
+            if (!testResults.isEmpty()) {
+                int passed = (int) testResults.stream().filter(TestCaseResult::isPassed).count();
+                int total = testResults.size();
+                int score = total > 0 ? (passed * 100) / total : 0;
+                String feedback = generateTestFeedback(passed, total);
+                return new CodeCheckResult(true, truncatedOutput, "", score, feedback, testResults, passed, total);
+            }
+
             int score = evaluateCode(code, truncatedOutput);
             String feedback = generateFeedback(score, code);
-
             return new CodeCheckResult(true, truncatedOutput, "", score, feedback);
 
         } catch (Exception e) {
@@ -52,6 +65,34 @@ public class CodeExecutionService {
             if (tempDir != null) {
                 deleteDirectory(tempDir);
             }
+        }
+    }
+
+    private List<TestCaseResult> parseTestResults(String output) {
+        List<TestCaseResult> results = new ArrayList<>();
+        String[] lines = output.split("\n");
+        for (String line : lines) {
+            Matcher m = TEST_RESULT_PATTERN.matcher(line.trim());
+            if (m.find()) {
+                int testId = Integer.parseInt(m.group(1));
+                boolean passed = "PASS".equals(m.group(2));
+                String expected = m.group(3) != null ? m.group(3).trim() : "";
+                String actual = m.group(4) != null ? m.group(4).trim() : "";
+                results.add(new TestCaseResult(testId, passed, "", expected, actual));
+            }
+        }
+        return results;
+    }
+
+    private String generateTestFeedback(int passed, int total) {
+        if (passed == total) {
+            return "Xuất sắc! Tất cả " + total + " test cases đều PASS! 🎉";
+        } else if (passed > total / 2) {
+            return "Khá tốt! " + passed + "/" + total + " test cases PASS. Hãy kiểm tra lại các test case còn lại.";
+        } else if (passed > 0) {
+            return "Cần cải thiện. Chỉ " + passed + "/" + total + " test cases PASS. Hãy xem lại logic.";
+        } else {
+            return "Chưa pass test nào. Hãy kiểm tra lại thuật toán và logic xử lý.";
         }
     }
 

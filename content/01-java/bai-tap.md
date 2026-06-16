@@ -5,11 +5,41 @@
 
 Viết chương trình kiểm tra xem một chuỗi có phải là **Palindrome** (chuỗi đối xứng) hay không, bỏ qua khoảng trắng, dấu câu và không phân biệt hoa thường.
 
-**Đầu vào:** `"A man, a plan, a canal: Panama"`
-**Đầu ra:** `true`
+| Test | Input | Expected Output |
+|------|-------|-----------------|
+| 1 | "A man, a plan, a canal: Panama" | true |
+| 2 | "race a car" | false |
+| 3 | " " | true |
+| 4 | "a" | true |
+| 5 | "0P" | false |
 
-**Đầu vào:** `"race a car"`
-**Đầu ra:** `false`
+### 🧪 Main Demo
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        check(1, String.valueOf(isPalindrome("A man, a plan, a canal: Panama")), "true");
+        check(2, String.valueOf(isPalindrome("race a car")), "false");
+        check(3, String.valueOf(isPalindrome(" ")), "true");
+        check(4, String.valueOf(isPalindrome("a")), "true");
+        check(5, String.valueOf(isPalindrome("0P")), "false");
+    }
+
+    // ==================== DO NOT MODIFY BELOW ====================
+    static void check(int testId, String actual, String expected) {
+        if (actual.equals(expected)) {
+            System.out.println("[TEST " + testId + "] PASS");
+        } else {
+            System.out.println("[TEST " + testId + "] FAIL: Expected " + expected + ", Got " + actual);
+        }
+    }
+
+    public static boolean isPalindrome(String s) {
+        // Code here ...
+        return false;
+    }
+}
+```
 
 ---
 
@@ -18,18 +48,88 @@ Viết chương trình kiểm tra xem một chuỗi có phải là **Palindrome*
 
 Cho một mảng số nguyên, tìm phần tử xuất hiện nhiều hơn ⌊n/2⌋ lần (majority element). Đảm bảo phần tử luôn tồn tại.
 
-**Đầu vào:** `[2, 2, 1, 1, 1, 2, 2]`
-**Đầu ra:** `2`
+**Gợi ý:** Boyer-Moore Voting Algorithm.
+
+| Test | Input | Expected Output |
+|------|-------|-----------------|
+| 1 | [2,2,1,1,1,2,2] | 2 |
+| 2 | [3,2,3] | 3 |
+| 3 | [1] | 1 |
+| 4 | [6,5,5] | 5 |
+| 5 | [1,1,1,2,2] | 1 |
+
+### 🧪 Main Demo
+```java
+public class Main {
+
+    public static void main(String[] args) {
+        check(1, String.valueOf(majorityElement(new int[]{2,2,1,1,1,2,2})), "2");
+        check(2, String.valueOf(majorityElement(new int[]{3,2,3})), "3");
+        check(3, String.valueOf(majorityElement(new int[]{1})), "1");
+        check(4, String.valueOf(majorityElement(new int[]{6,5,5})), "5");
+        check(5, String.valueOf(majorityElement(new int[]{1,1,1,2,2})), "1");
+    }
+
+    // ==================== DO NOT MODIFY BELOW ====================
+    static void check(int testId, String actual, String expected) {
+        if (actual.equals(expected)) {
+            System.out.println("[TEST " + testId + "] PASS");
+        } else {
+            System.out.println("[TEST " + testId + "] FAIL: Expected " + expected + ", Got " + actual);
+        }
+    }
+
+    public static int majorityElement(int[] nums) {
+        // Code here ...
+        return 0;
+    }
+}
+```
 
 ---
 
 ## Bài 3: Nhóm Anagram
 **Độ khó: Trung bình - Khó**
 
-Cho một mảng các chuỗi, nhóm các chuỗi là anagram của nhau lại với nhau. Anagram là các chuỗi có cùng các ký tự nhưng khác thứ tự.
+Cho một mảng các chuỗi, nhóm các chuỗi là anagram của nhau lại với nhau.
 
-**Đầu vào:** `["eat", "tea", "tan", "ate", "nat", "bat"]`
-**Đầu ra:** `[["eat","tea","ate"], ["tan","nat"], ["bat"]]`
+| Test | Input | Expected Output |
+|------|-------|-----------------|
+| 1 | ["eat","tea","tan","ate","nat","bat"] | 3 groups |
+| 2 | [""] | 1 group |
+| 3 | ["a"] | 1 group |
+| 4 | ["abc","def"] | 2 groups |
+| 5 | ["listen","silent","hello"] | 2 groups |
+
+### 🧪 Main Demo
+```java
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        check(1, String.valueOf(groupAnagrams(new String[]{"eat","tea","tan","ate","nat","bat"}).size()), "3");
+        check(2, String.valueOf(groupAnagrams(new String[]{""}).size()), "1");
+        check(3, String.valueOf(groupAnagrams(new String[]{"a"}).size()), "1");
+        check(4, String.valueOf(groupAnagrams(new String[]{"abc","def"}).size()), "2");
+        check(5, String.valueOf(groupAnagrams(new String[]{"listen","silent","hello"}).size()), "2");
+    }
+
+    // ==================== DO NOT MODIFY BELOW ====================
+    static void check(int testId, String actual, String expected) {
+        if (actual.equals(expected)) {
+            System.out.println("[TEST " + testId + "] PASS");
+        } else {
+            System.out.println("[TEST " + testId + "] FAIL: Expected " + expected + ", Got " + actual);
+        }
+    }
+
+    public static List<List<String>> groupAnagrams(String[] strs) {
+        // Code here ...
+        return new ArrayList<>();
+    }
+}
+```
 
 ---
 
