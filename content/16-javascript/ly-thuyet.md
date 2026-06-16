@@ -1,42 +1,42 @@
-# JavaScript - Ly Thuyet Tu Co Ban Den Nang Cao
+# JavaScript - Lý Thuyết Từ Cơ Bản Đến Nâng Cao
 
-## Muc luc
+## Mục lục
 
-1. [Gioi thieu ve JavaScript](#1-gioi-thieu-ve-javascript)
-2. [Cai dat va Moi truong Phat trien](#2-cai-dat-va-moi-truong-phat-trien)
-3. [Bien va Kieu du lieu](#3-bien-va-kieu-du-lieu)
-4. [Toan tu](#4-toan-tu)
-5. [Cau dieu kien](#5-cau-dieu-kien)
-6. [Vong lap](#6-vong-lap)
-7. [Ham (Functions)](#7-ham-functions)
-8. [Mang (Arrays)](#8-mang-arrays)
+1. [Giới thiệu về JavaScript](#1-giới-thiệu-về-javascript)
+2. [Cài đặt và Môi trường Phát triển](#2-cài-đặt-và-môi-trường-phát-triển)
+3. [Biến và Kiểu dữ liệu](#3-biến-và-kiểu-dữ-liệu)
+4. [Toán tử](#4-toán-tử)
+5. [Câu điều kiện](#5-câu-điều-kiện)
+6. [Vòng lặp](#6-vòng-lặp)
+7. [Hàm (Functions)](#7-hàm-functions)
+8. [Mảng (Arrays)](#8-mảng-arrays)
 9. [Object](#9-object)
 10. [String Methods](#10-string-methods)
-11. [Scope va Hoisting](#11-scope-va-hoisting)
+11. [Scope và Hoisting](#11-scope-và-hoisting)
 12. [Closure](#12-closure)
 13. [this Keyword](#13-this-keyword)
-14. [Prototype va Ke thua](#14-prototype-va-ke-thua)
+14. [Prototype và Kế thừa](#14-prototype-và-kế-thừa)
 15. [ES6+ Features](#15-es6-features)
-16. [Destructuring va Spread/Rest](#16-destructuring-va-spreadrest)
-17. [Promise va Async/Await](#17-promise-va-asyncawait)
+16. [Destructuring và Spread/Rest](#16-destructuring-và-spreadrest)
+17. [Promise và Async/Await](#17-promise-và-asyncawait)
 18. [Error Handling](#18-error-handling)
 19. [DOM Manipulation](#19-dom-manipulation)
 20. [Event Handling](#20-event-handling)
-21. [Fetch API va AJAX](#21-fetch-api-va-ajax)
+21. [Fetch API và AJAX](#21-fetch-api-và-ajax)
 22. [Web Storage API](#22-web-storage-api)
 23. [Regular Expressions](#23-regular-expressions)
 24. [Module System](#24-module-system)
 25. [Class (ES6)](#25-class-es6)
-26. [Iterator va Generator](#26-iterator-va-generator)
+26. [Iterator và Generator](#26-iterator-và-generator)
 27. [Symbol, Map, Set, WeakMap, WeakSet](#27-symbol-map-set-weakmap-weakset)
-28. [Proxy va Reflect](#28-proxy-va-reflect)
+28. [Proxy và Reflect](#28-proxy-và-reflect)
 29. [Web APIs](#29-web-apis)
-30. [Best Practices va Design Patterns](#30-best-practices-va-design-patterns)
-31. [Tong ket](#31-tong-ket)
+30. [Best Practices và Design Patterns](#30-best-practices-và-design-patterns)
+31. [Tổng kết](#31-tổng-kết)
 
 ---
 
-## 1. Gioi thieu ve JavaScript
+## 1. Giới thiệu về JavaScript
 
 ### 1.1 JavaScript la gi?
 
@@ -105,7 +105,7 @@ Source Code -> Parser -> AST (Abstract Syntax Tree) -> Interpreter -> Bytecode
 
 ---
 
-## 2. Cai dat va Moi truong Phat trien
+## 2. Cài đặt và Môi trường Phát triển
 
 ### 2.1 Chay JavaScript tren trinh duyet
 
@@ -188,7 +188,7 @@ Hello
 
 ---
 
-## 3. Bien va Kieu du lieu
+## 3. Biến và Kiểu dữ liệu
 
 ### 3.1 Khai bao bien
 
@@ -362,7 +362,7 @@ false, 0, -0, 0n, "", null, undefined, NaN
 
 ---
 
-## 4. Toan tu
+## 4. Toán tử
 
 ### 4.1 Toan tu so hoc (Arithmetic)
 
@@ -487,7 +487,7 @@ let phone = user.contact?.phone ?? "N/A";     // "N/A"
 
 ---
 
-## 5. Cau dieu kien
+## 5. Câu điều kiện
 
 ### 5.1 if...else
 
@@ -573,7 +573,7 @@ console.log(dayName[new Date().getDay()]);
 
 ---
 
-## 6. Vong lap
+## 6. Vòng lặp
 
 ### 6.1 for
 
@@ -672,7 +672,7 @@ outer: for (let i = 0; i < 3; i++) {
 
 ---
 
-## 7. Ham (Functions)
+## 7. Hàm (Functions)
 
 ### 7.1 Function Declaration
 
@@ -828,7 +828,7 @@ function addToTotal(value) {
 
 ---
 
-## 8. Mang (Arrays)
+## 8. Mảng (Arrays)
 
 ### 8.1 Tao mang
 
@@ -1244,7 +1244,7 @@ const output = highlight`Xin chao ${name}, ban ${age} tuoi`;
 
 ---
 
-## 11. Scope va Hoisting
+## 11. Scope và Hoisting
 
 ### 11.1 Cac loai Scope
 
@@ -1528,7 +1528,7 @@ greetAn("...");   // "Hello, An..."
 
 ---
 
-## 14. Prototype va Ke thua
+## 14. Prototype và Kế thừa
 
 ### 14.1 Prototype Chain
 
@@ -1719,7 +1719,7 @@ const grouped = Object.groupBy(people, p => p.age);
 
 ---
 
-## 16. Destructuring va Spread/Rest
+## 16. Destructuring và Spread/Rest
 
 ### 16.1 Array Destructuring
 
@@ -1785,7 +1785,7 @@ Math.max(...nums); // 3
 
 ---
 
-## 17. Promise va Async/Await
+## 17. Promise và Async/Await
 
 ### 17.1 Callback Hell
 
@@ -2354,7 +2354,7 @@ window.addEventListener("scroll", handler);              // Scroll
 
 ---
 
-## 21. Fetch API va AJAX
+## 21. Fetch API và AJAX
 
 ### 21.1 Fetch co ban
 
@@ -2930,7 +2930,7 @@ const json = user.serialize(); // '{"name":"An","email":"an@mail.com"}'
 
 ---
 
-## 26. Iterator va Generator
+## 26. Iterator và Generator
 
 ### 26.1 Iterator Protocol
 
@@ -3198,7 +3198,7 @@ function hasVisited(user) {
 
 ---
 
-## 28. Proxy va Reflect
+## 28. Proxy và Reflect
 
 ### 28.1 Proxy
 
@@ -3480,7 +3480,7 @@ console.log("4");                          // Dong bo -> Call Stack
 
 ---
 
-## 30. Best Practices va Design Patterns
+## 30. Best Practices và Design Patterns
 
 ### 30.1 Coding Best Practices
 
@@ -3681,7 +3681,7 @@ const result = users
 
 ---
 
-## 31. Tong ket
+## 31. Tổng kết
 
 ### 31.1 Lo trinh hoc JavaScript
 
