@@ -33,7 +33,7 @@
                         <span th:text="${topic.icon}"></span>
                         <span th:text="${topic.name} + ' - Quiz'"></span>
                     </h1>
-                    <p th:text="'Kiểm tra kiến thức với ' + ${#lists.size(topic.quizQuestions)} + ' câu hỏi'"></p>
+                    <p th:text="'Ngân hàng ' + ${#lists.size(topic.quizQuestions)} + ' câu hỏi — Mỗi lần quiz sẽ random 20 câu'"></p>
                 </div>
                 <div class="quiz-header-actions">
                     <a th:href="@{'/topic/' + ${topic.id} + '/theory'}" class="btn btn-outline btn-sm">📖 Lý Thuyết</a>
@@ -45,7 +45,7 @@
             <div class="quiz-progress-section" id="quizProgress">
                 <div class="quiz-progress-info">
                     <span class="quiz-progress-text">
-                        Câu <span id="currentQuestion">1</span> / <span th:text="${#lists.size(topic.quizQuestions)}" id="totalQuestions"></span>
+                        Câu <span id="currentQuestion">1</span> / <span id="totalQuestions">20</span>
                     </span>
                     <span class="quiz-score" id="quizScore">Điểm: 0</span>
                 </div>
@@ -65,9 +65,8 @@
             <!-- Quiz Questions Container -->
             <div th:if="${!#lists.isEmpty(topic.quizQuestions)}" class="quiz-container" id="quizContainer">
                 <div th:each="q, iter : ${topic.quizQuestions}"
-                     class="quiz-question-card"
+                     class="quiz-question-card quiz-hidden"
                      th:id="'question-' + ${q.id}"
-                     th:classappend="${iter.index == 0} ? '' : 'quiz-hidden'"
                      th:attr="data-question-id=${q.id},data-correct=${q.correctAnswer},data-type=${q.type}">
 
                     <!-- Question Type Badge -->
@@ -121,7 +120,7 @@
                     <h2 id="resultTitle">Kết quả Quiz</h2>
                     <div class="quiz-result-score">
                         <span class="result-score-value" id="resultScoreValue">0</span>
-                        <span class="result-score-total" th:text="'/ ' + ${#lists.size(topic.quizQuestions)}"></span>
+                        <span class="result-score-total">/ 20</span>
                     </div>
                     <div class="quiz-result-bar">
                         <div class="quiz-result-fill" id="resultFill"></div>
