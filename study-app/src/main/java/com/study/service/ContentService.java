@@ -75,6 +75,13 @@ public class ContentService {
         topics.put("jdbc-connection-pool", createTopic("jdbc-connection-pool", "JDBC & Connection Pool", "Database Connection: HikariCP, Pool Sizing, Spring Boot Integration", "🗃️"));
         topics.put("javascript", createTopic("javascript", "JavaScript", "JavaScript từ Cơ bản đến Nâng cao: ES6+, DOM, Async/Await, Closure, Prototype, Patterns", "🟨"));
         topics.put("react", createTopic("react", "React", "React từ Basic đến Advanced: JSX, Components, Hooks, Redux, Router, SSR, Testing", "⚛️"));
+        topics.put("html", createTopic("html", "HTML", "HTML5 toàn tập: Semantic, Forms, Multimedia, Accessibility", "🏷️"));
+        topics.put("css", createTopic("css", "CSS", "CSS từ cơ bản đến nâng cao: Selectors, Layout, Animations, Variables", "🎨"));
+        topics.put("responsive", createTopic("responsive", "Responsive Design", "Responsive Web Design: Mobile-First, Media Queries, Flexible Layouts", "📱"));
+        topics.put("typescript", createTopic("typescript", "TypeScript", "TypeScript: Types, Interfaces, Generics, Decorators, Modules", "💙"));
+        topics.put("git", createTopic("git", "Git & Version Control", "Git: Basics, Branching, Merging, Collaboration, GitHub", "🔀"));
+        topics.put("cicd", createTopic("cicd", "CI/CD & DevOps", "CI/CD: GitHub Actions, Jenkins, Docker, Deployment, Monitoring", "⚙️"));
+        topics.put("docker", createTopic("docker", "Docker", "Docker: Containers, Images, Compose, Orchestration, Best Practices", "🐳"));
     }
 
     private Topic createTopic(String id, String name, String description, String icon) {
@@ -133,6 +140,13 @@ public class ContentService {
             case "jdbc-connection-pool" -> "14-jdbc-connection-pool/" + filename;
             case "javascript" -> "16-javascript/" + filename;
             case "react" -> "15-react/" + filename;
+            case "html" -> "17-html/" + filename;
+            case "css" -> "18-css/" + filename;
+            case "responsive" -> "19-responsive/" + filename;
+            case "typescript" -> "20-typescript/" + filename;
+            case "git" -> "21-git/" + filename;
+            case "cicd" -> "22-cicd/" + filename;
+            case "docker" -> "23-docker/" + filename;
             default -> throw new IllegalArgumentException("Unknown topic: " + topicId);
         };
     }
@@ -281,7 +295,11 @@ public class ContentService {
         )));
 
         groups.add(new TopicGroup("Front-end", "🌐", filterTopics(
-                "javascript", "react"
+                "html", "css", "responsive", "typescript", "javascript", "react"
+        )));
+
+        groups.add(new TopicGroup("DevOps & Tools", "🛠️", filterTopics(
+                "git", "cicd", "docker"
         )));
 
         groups.add(new TopicGroup("SQL", "🗄️", filterTopics("sql")));
