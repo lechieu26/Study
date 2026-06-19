@@ -14,6 +14,10 @@
 
 ---
 
+> **📥 Tải file SQL:** [procurement-database.sql](/api/download/erp-procurement/procurement-database.sql) — Cấu trúc bảng và dữ liệu mẫu cho module Mua hàng (suppliers, purchase_requests, purchase_orders, goods_receipts). Yêu cầu chạy file `erp-database.sql` từ module Tổng Quan trước.
+
+---
+
 ## 1. Tổng quan nghiệp vụ mua hàng
 
 ### 1.1 Procurement là gì?

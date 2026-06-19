@@ -12,6 +12,10 @@
 
 ---
 
+> **📥 Tải file SQL:** [erp-database.sql](/api/download/erp-system/erp-database.sql) — Chứa cấu trúc bảng dùng chung (users, categories, products) và dữ liệu mẫu. Chạy file này TRƯỚC khi chạy SQL của các module khác.
+
+---
+
 ## 1. Tổng quan về ERP
 
 ### 1.1 ERP là gì?

@@ -12,6 +12,10 @@
 
 ---
 
+> **📥 Tải file SQL:** [manufacturing-database.sql](/api/download/erp-manufacturing/manufacturing-database.sql) — Cấu trúc bảng và dữ liệu mẫu cho module Sản xuất (boms, bom_items, work_orders). Yêu cầu chạy file `erp-database.sql` từ module Tổng Quan trước.
+
+---
+
 ## 1. Tổng quan sản xuất
 
 ### 1.1 Manufacturing trong ERP

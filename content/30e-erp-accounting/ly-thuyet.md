@@ -14,6 +14,10 @@
 
 ---
 
+> **📥 Tải file SQL:** [accounting-database.sql](/api/download/erp-accounting/accounting-database.sql) — Cấu trúc bảng và dữ liệu mẫu cho module Kế toán (accounts, journal_entries, receipt_vouchers, payment_vouchers). Yêu cầu chạy file `erp-database.sql` từ module Tổng Quan trước.
+
+---
+
 ## 1. Tổng quan kế toán trong ERP
 
 ### 1.1 Accounting module là gì?

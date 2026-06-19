@@ -14,6 +14,10 @@
 
 ---
 
+> **📥 Tải file SQL:** [sales-database.sql](/api/download/erp-sales/sales-database.sql) — Cấu trúc bảng và dữ liệu mẫu cho module Bán hàng (customers, quotations, sales_orders, invoices, payments). Yêu cầu chạy file `erp-database.sql` từ module Tổng Quan trước.
+
+---
+
 ## 1. Tổng quan nghiệp vụ bán hàng
 
 ### 1.1 Sales là gì trong ERP?
