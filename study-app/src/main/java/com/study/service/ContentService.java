@@ -83,6 +83,32 @@ public class ContentService {
         topics.put("cicd", createTopic("cicd", "CI/CD & DevOps", "CI/CD: GitHub Actions, Jenkins, Docker, Deployment, Monitoring", "⚙️"));
         topics.put("docker", createTopic("docker", "Docker", "Docker: Containers, Images, Compose, Orchestration, Best Practices", "🐳"));
 
+        // C/C++ Course
+        topics.put("cpp-overview", createTopic("cpp-overview", "C/C++ - Tổng Quan & Môi Trường", "C/C++ là gì, cài môi trường, biên dịch và chạy chương trình đầu tiên", "💻"));
+        topics.put("cpp-basic-syntax", createTopic("cpp-basic-syntax", "C/C++ - Cú Pháp Cơ Bản", "Biến, kiểu dữ liệu, nhập xuất, toán tử và cách viết chương trình C/C++ cơ bản", "⌨️"));
+        topics.put("cpp-control-flow", createTopic("cpp-control-flow", "C/C++ - Điều Kiện & Vòng Lặp", "if, switch, for, while, do-while và tư duy điều khiển luồng chương trình", "🔁"));
+        topics.put("cpp-functions-scope", createTopic("cpp-functions-scope", "C/C++ - Hàm & Phạm Vi", "Hàm, tham số, giá trị trả về, overload, scope và tổ chức code", "🧰"));
+        topics.put("cpp-arrays-strings-pointers", createTopic("cpp-arrays-strings-pointers", "C/C++ - Mảng, Chuỗi & Con Trỏ", "Mảng, chuỗi C/C++, con trỏ, tham chiếu và cấp phát động", "🧵"));
+        topics.put("cpp-struct-enum-file", createTopic("cpp-struct-enum-file", "C/C++ - Struct, Enum & File", "struct, enum, tổ chức dữ liệu và đọc ghi file", "📄"));
+        topics.put("cpp-oop", createTopic("cpp-oop", "C++ OOP", "Class, object, constructor, encapsulation, inheritance, polymorphism trong C++", "🏛️"));
+        topics.put("cpp-stl-template", createTopic("cpp-stl-template", "C++ STL & Template", "vector, string, map, set, algorithm, template và lambda", "🧩"));
+        topics.put("cpp-memory-performance", createTopic("cpp-memory-performance", "C++ Bộ Nhớ & Hiệu Năng", "RAII, smart pointer, move semantics, tối ưu và tránh lỗi bộ nhớ", "⚡"));
+        topics.put("cpp-algorithms-projects", createTopic("cpp-algorithms-projects", "C/C++ Thuật Toán & Dự Án", "Thuật toán, cấu trúc dữ liệu cơ bản và bài tập tổng hợp bằng C/C++", "🚧"));
+
+        // DSA with C++ Course
+        topics.put("dsa-cpp-complexity", createTopic("dsa-cpp-complexity", "DSA C++ - Độ Phức Tạp", "Big O, tư duy tối ưu và cách đọc phân tích bài toán", "📈"));
+        topics.put("dsa-cpp-array-vector-string", createTopic("dsa-cpp-array-vector-string", "DSA C++ - Mảng, Vector, Chuỗi", "Mảng, vector, string, two pointers, sliding window và prefix sum", "📦"));
+        topics.put("dsa-cpp-linked-list", createTopic("dsa-cpp-linked-list", "DSA C++ - Danh Sách Liên Kết", "Linked list, thao tác chèn xóa tìm kiếm và kỹ thuật con trỏ", "🔗"));
+        topics.put("dsa-cpp-stack-queue-deque", createTopic("dsa-cpp-stack-queue-deque", "DSA C++ - Stack, Queue, Deque", "Ngăn xếp, hàng đợi, deque và các ứng dụng thường gặp", "📚"));
+        topics.put("dsa-cpp-recursion-backtracking", createTopic("dsa-cpp-recursion-backtracking", "DSA C++ - Đệ Quy & Quay Lui", "Đệ quy, backtracking, sinh cấu hình và xử lý trạng thái", "♟️"));
+        topics.put("dsa-cpp-sort-search", createTopic("dsa-cpp-sort-search", "DSA C++ - Sắp Xếp & Tìm Kiếm", "Các thuật toán sắp xếp, tìm kiếm nhị phân và binary search on answer", "🔎"));
+        topics.put("dsa-cpp-hash-set-map", createTopic("dsa-cpp-hash-set-map", "DSA C++ - Hash, Set, Map", "Bảng băm, unordered_map, map, set và bài toán đếm tần suất", "#️⃣"));
+        topics.put("dsa-cpp-binary-tree-bst", createTopic("dsa-cpp-binary-tree-bst", "DSA C++ - Cây Nhị Phân & BST", "Binary tree, binary search tree, DFS và các thao tác trên cây", "🌳"));
+        topics.put("dsa-cpp-heap-priority-queue", createTopic("dsa-cpp-heap-priority-queue", "DSA C++ - Heap & Priority Queue", "Heap, priority_queue, top K và xử lý phần tử ưu tiên", "⛰️"));
+        topics.put("dsa-cpp-graph", createTopic("dsa-cpp-graph", "DSA C++ - Đồ Thị", "Biểu diễn đồ thị, BFS, DFS và đường đi ngắn nhất cơ bản", "🕸️"));
+        topics.put("dsa-cpp-dynamic-programming", createTopic("dsa-cpp-dynamic-programming", "DSA C++ - Quy Hoạch Động", "DP 1 chiều, 2 chiều, knapsack, LIS và tối ưu trạng thái", "🧠"));
+        topics.put("dsa-cpp-projects", createTopic("dsa-cpp-projects", "DSA C++ - Dự Án & Tổng Hợp", "Bài tập lớn, khung dự án luyện DSA và tổng ôn thuật toán", "🧪"));
+
         // ERP Personal Project
         topics.put("erp-system", createTopic("erp-system", "Dự Án ERP - Tổng Quan", "Kiến trúc hệ thống ERP, Tech Stack, Database Design, Project Setup", "🏢"));
         topics.put("erp-sales", createTopic("erp-sales", "ERP - Quản Lý Bán Hàng", "Báo giá, Đơn hàng, Hóa đơn, Thanh toán, Công nợ khách hàng", "💰"));
@@ -156,6 +182,28 @@ public class ContentService {
             case "git" -> "21-git/" + filename;
             case "cicd" -> "22-cicd/" + filename;
             case "docker" -> "23-docker/" + filename;
+            case "cpp-overview" -> "24a-cpp-overview/" + filename;
+            case "cpp-basic-syntax" -> "24b-cpp-basic-syntax/" + filename;
+            case "cpp-control-flow" -> "24c-cpp-control-flow/" + filename;
+            case "cpp-functions-scope" -> "24d-cpp-functions-scope/" + filename;
+            case "cpp-arrays-strings-pointers" -> "24e-cpp-arrays-strings-pointers/" + filename;
+            case "cpp-struct-enum-file" -> "24f-cpp-struct-enum-file/" + filename;
+            case "cpp-oop" -> "24g-cpp-oop/" + filename;
+            case "cpp-stl-template" -> "24h-cpp-stl-template/" + filename;
+            case "cpp-memory-performance" -> "24i-cpp-memory-performance/" + filename;
+            case "cpp-algorithms-projects" -> "24j-cpp-algorithms-projects/" + filename;
+            case "dsa-cpp-complexity" -> "25a-dsa-cpp-complexity/" + filename;
+            case "dsa-cpp-array-vector-string" -> "25b-dsa-cpp-array-vector-string/" + filename;
+            case "dsa-cpp-linked-list" -> "25c-dsa-cpp-linked-list/" + filename;
+            case "dsa-cpp-stack-queue-deque" -> "25d-dsa-cpp-stack-queue-deque/" + filename;
+            case "dsa-cpp-recursion-backtracking" -> "25e-dsa-cpp-recursion-backtracking/" + filename;
+            case "dsa-cpp-sort-search" -> "25f-dsa-cpp-sort-search/" + filename;
+            case "dsa-cpp-hash-set-map" -> "25g-dsa-cpp-hash-set-map/" + filename;
+            case "dsa-cpp-binary-tree-bst" -> "25h-dsa-cpp-binary-tree-bst/" + filename;
+            case "dsa-cpp-heap-priority-queue" -> "25i-dsa-cpp-heap-priority-queue/" + filename;
+            case "dsa-cpp-graph" -> "25j-dsa-cpp-graph/" + filename;
+            case "dsa-cpp-dynamic-programming" -> "25k-dsa-cpp-dynamic-programming/" + filename;
+            case "dsa-cpp-projects" -> "25l-dsa-cpp-projects/" + filename;
             case "erp-system" -> "30-erp-system/" + filename;
             case "erp-sales" -> "30a-erp-sales/" + filename;
             case "erp-procurement" -> "30b-erp-procurement/" + filename;
@@ -168,13 +216,15 @@ public class ContentService {
     }
 
     private String loadMarkdownContent(String relativePath) {
-        Path filePath = Path.of(System.getProperty("content.dir", "../content"), relativePath);
-        try {
-            if (Files.exists(filePath)) {
-                return Files.readString(filePath, StandardCharsets.UTF_8);
+        for (Path contentRoot : getContentRootCandidates()) {
+            Path filePath = contentRoot.resolve(relativePath).normalize();
+            try {
+                if (Files.exists(filePath)) {
+                    return Files.readString(filePath, StandardCharsets.UTF_8);
+                }
+            } catch (IOException e) {
+                // try next location
             }
-        } catch (IOException e) {
-            // fall through
         }
 
         try {
@@ -188,6 +238,28 @@ public class ContentService {
             // fall through
         }
         return "";
+    }
+
+    private List<Path> getContentRootCandidates() {
+        String configuredContentDir = System.getProperty("content.dir");
+        Path workingDir = Path.of(System.getProperty("user.dir"));
+        List<Path> candidates = new ArrayList<>();
+
+        if (configuredContentDir != null && !configuredContentDir.isBlank()) {
+            candidates.add(Path.of(configuredContentDir));
+        }
+
+        candidates.add(workingDir.resolve("content"));
+        candidates.add(workingDir.resolve("../content"));
+        candidates.add(workingDir.resolve("study-app/../content"));
+        candidates.add(Path.of("content"));
+        candidates.add(Path.of("../content"));
+
+        return candidates.stream()
+                .map(Path::toAbsolutePath)
+                .map(Path::normalize)
+                .distinct()
+                .toList();
     }
 
     private String loadAndRenderMarkdown(String relativePath) {
@@ -316,6 +388,22 @@ public class ContentService {
 
         groups.add(new TopicGroup("DevOps & Tools", "🛠️", filterTopics(
                 "git", "cicd", "docker"
+        )));
+
+        groups.add(new TopicGroup("C/C++", "💻", filterTopics(
+                "cpp-overview", "cpp-basic-syntax", "cpp-control-flow",
+                "cpp-functions-scope", "cpp-arrays-strings-pointers",
+                "cpp-struct-enum-file", "cpp-oop", "cpp-stl-template",
+                "cpp-memory-performance", "cpp-algorithms-projects"
+        )));
+
+        groups.add(new TopicGroup("DSA C++", "🧠", filterTopics(
+                "dsa-cpp-complexity", "dsa-cpp-array-vector-string",
+                "dsa-cpp-linked-list", "dsa-cpp-stack-queue-deque",
+                "dsa-cpp-recursion-backtracking", "dsa-cpp-sort-search",
+                "dsa-cpp-hash-set-map", "dsa-cpp-binary-tree-bst",
+                "dsa-cpp-heap-priority-queue", "dsa-cpp-graph",
+                "dsa-cpp-dynamic-programming", "dsa-cpp-projects"
         )));
 
         groups.add(new TopicGroup("SQL", "🗄️", filterTopics("sql")));
