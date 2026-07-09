@@ -1,6 +1,7 @@
 package com.study.service;
 
 import com.study.model.Exercise;
+import com.study.model.InterviewNote;
 import com.study.model.QuizQuestion;
 import com.study.model.Solution;
 import com.study.model.Topic;
@@ -262,6 +263,34 @@ public class ContentService {
                 .toList();
     }
 
+    private List<Path> getDocsCppRootCandidates() {
+        String configuredDocsDir = System.getProperty("docscpp.dir");
+        Path workingDir = Path.of(System.getProperty("user.dir"));
+        List<Path> candidates = new ArrayList<>();
+
+        if (configuredDocsDir != null && !configuredDocsDir.isBlank()) {
+            candidates.add(Path.of(configuredDocsDir));
+        }
+
+        candidates.add(workingDir.resolve("DocsCpp"));
+        candidates.add(workingDir.resolve("../DocsCpp"));
+        candidates.add(workingDir.resolve("study-app/../DocsCpp"));
+        candidates.add(Path.of("DocsCpp"));
+        candidates.add(Path.of("../DocsCpp"));
+
+        return candidates.stream()
+                .map(Path::toAbsolutePath)
+                .map(Path::normalize)
+                .distinct()
+                .toList();
+    }
+
+    private Optional<Path> findDocsCppRoot() {
+        return getDocsCppRootCandidates().stream()
+                .filter(Files::isDirectory)
+                .findFirst();
+    }
+
     private String loadAndRenderMarkdown(String relativePath) {
         String md = loadMarkdownContent(relativePath);
         if (md.isEmpty()) return "<p>Nội dung đang được cập nhật...</p>";
@@ -437,11 +466,71 @@ public class ContentService {
         return Optional.ofNullable(topics.get(id));
     }
 
+    public List<InterviewNote> getInterviewNotes() {
+        Optional<Path> docsRoot = findDocsCppRoot();
+        if (docsRoot.isEmpty()) {
+            return List.of();
+        }
+
+        try (var files = Files.list(docsRoot.get())) {
+            return files
+                    .filter(path -> Files.isRegularFile(path) && path.getFileName().toString().endsWith(".md"))
+                    .sorted(Comparator.comparing(path -> path.getFileName().toString()))
+                    .map(this::toInterviewNote)
+                    .flatMap(Optional::stream)
+                    .toList();
+        } catch (IOException e) {
+            return List.of();
+        }
+    }
+
+    public Optional<InterviewNote> getInterviewNoteById(String id) {
+        return getInterviewNotes().stream()
+                .filter(note -> note.getId().equals(id))
+                .findFirst();
+    }
+
     public Optional<Exercise> getExercise(String topicId, int exerciseId) {
         return getTopicById(topicId)
             .flatMap(topic -> topic.getExercises().stream()
                 .filter(e -> e.getId() == exerciseId)
                 .findFirst());
+    }
+
+    private Optional<InterviewNote> toInterviewNote(Path path) {
+        try {
+            String md = Files.readString(path, StandardCharsets.UTF_8);
+            String fileName = path.getFileName().toString();
+            String id = fileName.substring(0, fileName.length() - 3)
+                    .toLowerCase(Locale.ROOT)
+                    .replace('_', '-');
+            String title = extractMarkdownTitle(md).orElse(fileName.substring(0, fileName.length() - 3).replace('_', ' '));
+            String summary = extractMarkdownSummary(md).orElse("Ghi chú interview C/C++");
+            String html = renderMarkdown(md);
+            return Optional.of(new InterviewNote(id, title, fileName, summary, html));
+        } catch (IOException e) {
+            return Optional.empty();
+        }
+    }
+
+    private Optional<String> extractMarkdownTitle(String md) {
+        return md.lines()
+                .map(String::trim)
+                .filter(line -> line.startsWith("# "))
+                .map(line -> line.substring(2).trim())
+                .filter(title -> !title.isBlank())
+                .findFirst();
+    }
+
+    private Optional<String> extractMarkdownSummary(String md) {
+        return md.lines()
+                .map(String::trim)
+                .filter(line -> !line.isBlank())
+                .filter(line -> !line.startsWith("#"))
+                .filter(line -> !line.startsWith("```"))
+                .filter(line -> !line.startsWith("|"))
+                .filter(line -> !line.startsWith("- "))
+                .findFirst();
     }
 
     private List<QuizQuestion> parseQuizQuestions(String quizMd) {

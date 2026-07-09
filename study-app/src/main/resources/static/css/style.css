@@ -1124,6 +1124,89 @@ body {
     min-width: 0;
 }
 
+/* === Interview Notes === */
+.interview-layout {
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 1.5rem;
+    align-items: start;
+}
+
+.interview-note-list {
+    position: sticky;
+    top: 1rem;
+    max-height: calc(100vh - 2rem);
+    overflow-y: auto;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.interview-note-list h2 {
+    font-size: 1rem;
+    margin-bottom: 0.9rem;
+    color: var(--text);
+}
+
+.interview-note-card {
+    display: flex;
+    flex-direction: column;
+    padding: 0.75rem 0.85rem;
+    border: 1px solid transparent;
+    border-radius: 8px;
+    color: var(--text-muted);
+    text-decoration: none;
+    transition: all 0.2s;
+}
+
+.interview-note-card:hover,
+.interview-note-card.active {
+    background: rgba(79, 70, 229, 0.12);
+    border-color: rgba(79, 70, 229, 0.45);
+    color: var(--text);
+}
+
+.interview-note-card strong {
+    color: var(--text);
+    font-size: 0.95rem;
+    line-height: 1.35;
+}
+
+.interview-note-card span:last-child {
+    font-size: 0.8rem;
+    line-height: 1.45;
+}
+
+.interview-note-file {
+    color: var(--primary-light);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.interview-reader {
+    display: grid;
+    grid-template-columns: 220px minmax(0, 1fr);
+    gap: 1.25rem;
+    min-width: 0;
+}
+
+.interview-reader .toc-sidebar {
+    width: 220px;
+}
+
+.interview-selected-meta {
+    display: inline-flex;
+    margin-bottom: 1rem;
+    padding: 0.3rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    color: var(--primary-light);
+    background: rgba(79, 70, 229, 0.08);
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
 .theory-nav-buttons {
     display: flex;
     justify-content: center;
@@ -1422,6 +1505,16 @@ body {
     }
     .theory-layout {
         flex-direction: column;
+    }
+    .interview-layout {
+        grid-template-columns: 1fr;
+    }
+    .interview-note-list {
+        position: static;
+        max-height: none;
+    }
+    .interview-reader {
+        display: block;
     }
     .content {
         padding: 2rem;

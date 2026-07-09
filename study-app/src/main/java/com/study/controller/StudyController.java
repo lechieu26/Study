@@ -1,6 +1,7 @@
 package com.study.controller;
 
 import com.study.model.Exercise;
+import com.study.model.InterviewNote;
 import com.study.model.Topic;
 import com.study.service.ContentService;
 import org.springframework.stereotype.Controller;
@@ -42,6 +43,28 @@ public class StudyController {
         model.addAttribute("topics", contentService.getAllTopics());
         model.addAttribute("topicGroups", contentService.getTopicGroups());
         return "theory";
+    }
+
+    @GetMapping("/interview")
+    public String interview(Model model) {
+        var notes = contentService.getInterviewNotes();
+        model.addAttribute("notes", notes);
+        model.addAttribute("selectedNote", notes.isEmpty() ? null : notes.get(0));
+        model.addAttribute("topics", contentService.getAllTopics());
+        model.addAttribute("topicGroups", contentService.getTopicGroups());
+        return "interview";
+    }
+
+    @GetMapping("/interview/{id}")
+    public String interviewNote(@PathVariable String id, Model model) {
+        var notes = contentService.getInterviewNotes();
+        InterviewNote selectedNote = contentService.getInterviewNoteById(id)
+            .orElseThrow(() -> new RuntimeException("Ghi chú interview không tồn tại: " + id));
+        model.addAttribute("notes", notes);
+        model.addAttribute("selectedNote", selectedNote);
+        model.addAttribute("topics", contentService.getAllTopics());
+        model.addAttribute("topicGroups", contentService.getTopicGroups());
+        return "interview";
     }
 
     @GetMapping("/topic/{topicId}/exercise/{exerciseId}")

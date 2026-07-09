@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title th:text="${topic.name} + ' - Lý Thuyết'">Lý Thuyết</title>
+    <title>C++ Interview Notes</title>
     <link rel="stylesheet" th:href="@{/css/style.css}">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
 </head>
@@ -16,7 +16,7 @@
         </div>
         <ul class="nav-list">
             <li>
-                <a th:href="@{/interview}" class="nav-link">
+                <a th:href="@{/interview}" class="nav-link active">
                     <span class="nav-icon">💼</span>
                     <span>C++ Interview</span>
                 </a>
@@ -28,7 +28,7 @@
                 </div>
                 <ul class="nav-group-items">
                     <li th:each="t : ${group.topics}">
-                        <a th:href="@{'/topic/' + ${t.id}}" class="nav-link" th:classappend="${t.id == topic.id} ? 'active'">
+                        <a th:href="@{'/topic/' + ${t.id}}" class="nav-link">
                             <span class="nav-icon" th:text="${t.icon}"></span>
                             <span th:text="${t.name}"></span>
                         </a>
@@ -42,13 +42,10 @@
         <div class="page-header theory-page-header">
             <div class="page-header-left">
                 <h1>
-                    <span th:text="${topic.icon}"></span>
-                    <span th:text="${topic.name} + ' - Lý Thuyết'"></span>
+                    <span>💼</span>
+                    <span>C++ Interview Notes</span>
                 </h1>
-                <p th:text="${topic.description}"></p>
-            </div>
-            <div class="page-header-actions">
-                <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary">📝 Đến Bài Tập</a>
+                <p>Kho kiến thức phỏng vấn đọc trực tiếp từ thư mục DocsCpp.</p>
             </div>
         </div>
 
@@ -56,22 +53,37 @@
             <div class="reading-progress-fill" id="readingProgress"></div>
         </div>
 
-        <div class="theory-layout">
-            <aside class="toc-sidebar" id="tocSidebar">
-                <div class="toc-header">
-                    <h3>📑 Mục Lục</h3>
-                    <button class="toc-toggle" id="tocToggle" title="Thu gọn">◀</button>
-                </div>
-                <nav class="toc-nav" id="tocNav"></nav>
+        <div th:if="${#lists.isEmpty(notes)}" class="quiz-empty">
+            <div class="quiz-empty-icon">📄</div>
+            <h3>Chưa tìm thấy ghi chú</h3>
+            <p>Hãy kiểm tra thư mục DocsCpp hoặc cấu hình JVM property docscpp.dir.</p>
+        </div>
+
+        <div th:if="${!#lists.isEmpty(notes)}" class="interview-layout">
+            <aside class="interview-note-list">
+                <h2>Danh sách kiến thức</h2>
+                <a th:each="note : ${notes}"
+                   th:href="@{'/interview/' + ${note.id}}"
+                   class="interview-note-card"
+                   th:classappend="${selectedNote != null and note.id == selectedNote.id} ? 'active'">
+                    <strong th:text="${note.title}"></strong>
+                </a>
             </aside>
 
-            <div class="theory-main">
-                <div class="theory-content markdown-body" id="theoryContent" th:utext="${topic.theoryHtml}"></div>
+            <div class="interview-reader">
+                <aside class="toc-sidebar" id="tocSidebar">
+                    <div class="toc-header">
+                        <h3>📑 Mục Lục</h3>
+                        <button class="toc-toggle" id="tocToggle" title="Thu gọn">◀</button>
+                    </div>
+                    <nav class="toc-nav" id="tocNav"></nav>
+                </aside>
 
-                <div class="theory-nav-buttons">
-                    <a th:href="@{'/topic/' + ${topic.id}}" class="btn btn-primary btn-lg">
-                        📝 Bắt Đầu Làm Bài Tập →
-                    </a>
+                <div class="theory-main">
+                    <div class="interview-selected-meta" th:if="${selectedNote != null}">
+                        <span th:text="${selectedNote.fileName}"></span>
+                    </div>
+                    <div class="theory-content markdown-body" id="theoryContent" th:utext="${selectedNote.html}"></div>
                 </div>
             </div>
         </div>
@@ -80,8 +92,8 @@
     <button class="scroll-to-top" id="scrollToTop" title="Lên đầu trang">↑</button>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/sql.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/cpp.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/powershell.min.js"></script>
     <script th:src="@{/js/app.js}"></script>
     <script>
         initTheoryPage();
